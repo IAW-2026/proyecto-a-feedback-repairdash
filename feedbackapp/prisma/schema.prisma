@@ -11,3 +11,78 @@ generator client {
 datasource db {
   provider = "postgresql"
 }
+
+model Cliente {
+  id         Int             @id @default(autoincrement())
+  mail       String          @unique
+  nombre     String
+  apellido   String
+  valoracion Int
+  reviews    ReviewCliente[] //tiene n reviews
+}
+
+model Trabajador {
+  id               Int               @id @default(autoincrement())
+  //los ids deben cambiar a algo que otorgue clerk
+  mail             String            @unique
+  nombre           String
+  apellido         String
+  valoracion       Int
+  reviewTrabajador ReviewTrabajador?
+}
+
+model Trabajo {
+  id               Int               @id @default(autoincrement())
+  tipoDeTrabajo    String
+  fechaInicio      DateTime
+  fechaFin         DateTime
+  reviewCliente    ReviewCliente?
+  reviewTrabajador ReviewTrabajador?
+  reporte          Reporte?         
+  /**
+    Lógica de mi app, despúes pido que sea obligatorio.
+    lo dejo en opcional en la base de datos*/
+}
+
+//dos claves foraneas. 
+//quiero crear que review cliente se forma por idtrabajo e idcliente
+model ReviewCliente {
+  idCliente  Int     @unique
+  idTrabajo  Int     @unique
+  valoracion Int
+  review     String
+  autor      Cliente @relation(fields: [idCliente], references: [id])
+  trabajo    Trabajo @relation(fields: [idTrabajo], references: [id])
+
+  @@id([idCliente, idTrabajo]) //dos claves foraneas
+}
+//Intentar unificar
+model ReviewTrabajador {
+  idTrabajador Int        @unique
+  idTrabajo    Int        @unique
+  valoracion   Int
+  review       String
+  autor        Trabajador @relation(fields: [idTrabajador], references: [id])
+  trabajo      Trabajo    @relation(fields: [idTrabajo], references: [id])
+
+  @@id([idTrabajador, idTrabajo]) //dos claves foraneas
+}
+//Preguntar si esto esta bien.
+model Reporte {
+  id Int @id @default(autoincrement())
+  idTrabajo Int @unique
+  pruebas Pruebas[] 
+  resolucion Estado @default(SinResolver)
+  trabajo Trabajo @relation(fields: [idTrabajo], references: [id])
+}
+
+model Pruebas {
+  idReporte Int @unique
+  reporte Reporte @relation(fields:[idReporte], references:[id])
+  tipo String
+  url   String
+}
+enum Estado{
+  SinResolver
+  Resuelto
+}
