@@ -9,6 +9,7 @@ Response { "message": "Reporte creado exitosamente",
         "reportado": "Francisco Recalde" }, "estado": "SinResolver" }*/
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
+export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
 function validarID(value: unknown): value is number {
     return typeof value === "number" && Number.isInteger(value) && value > 0;
