@@ -4,9 +4,9 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "/prisma"
+  provider = "prisma-client-js"
 }
+
 
 datasource db {
   provider = "postgresql"
@@ -73,7 +73,7 @@ model Reporte {
   idTrabajo   Int       @unique
   idReportado Int
   idReportante Int
-  decision    Fallo
+  decision    Fallo?
   pruebas     Pruebas[]
   resolucion  Estado    @default(SinResolver)
   trabajo     Trabajo   @relation(fields: [idTrabajo], references: [id])
