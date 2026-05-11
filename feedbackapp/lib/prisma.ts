@@ -1,15 +1,17 @@
-
 import { PrismaClient } from "@prisma/client";
-console.log("DATABASE_URL presente:", !!process.env.DATABASE_URL);
-const prisma = new PrismaClient();
 
-export default prisma;
-/*singleton por si alguna vez lo uso:
-import { PrismaClient } from "@prisma/client";
-declare global {
-  var prisma: PrismaClient | undefined;
+const databaseUrl = process.env.DATABASE_URL;
+
+if (!databaseUrl && process.env.NODE_ENV === "production") {
+  console.warn("CUIDADO: DATABASE_URL no está definida en el entorno de producción.");
 }
-const prisma = global.prisma || new PrismaClient();
+
+const prisma = new PrismaClient({
+  datasources: {
+    db: {
+      url: databaseUrl,
+    },
+  },
+});
 
 export default prisma;
-*/
