@@ -6,12 +6,6 @@ if (!databaseUrl && process.env.NODE_ENV === "production") {
   console.warn("CUIDADO: DATABASE_URL no está definida en el entorno de producción.");
 }
 
-const prisma = new PrismaClient({
-  datasources: {
-    db: {
-      url: databaseUrl,
-    },
-  },
-});
+const prisma = new PrismaClient();
 
 export default prisma;

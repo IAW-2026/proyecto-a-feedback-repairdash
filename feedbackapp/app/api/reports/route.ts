@@ -9,7 +9,7 @@ Response { "message": "Reporte creado exitosamente",
         "reportado": "Francisco Recalde" }, "estado": "SinResolver" }*/
 import { NextResponse } from "next/server";
 import prisma from "@/lib/prisma";
-export const runtime = 'nodejs'; // Asegura que Turbopack use el PrismaClient correcto
+export const runtime = 'nodejs'; 
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
 function validarID(value: unknown): value is number {
