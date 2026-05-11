@@ -1,12 +1,8 @@
 //POST feedback/api/report
 /*Origen: Rider app o driver app 
 Objetivo: Comenzar un reporte dada una situación que no puede ser resuelta entre ambos usuarios 
-EndPoint: POST feedback/api/report Request: 200 OK: 
-{ "idTrabajo": 42, "idReportante": 10, "idReportado": 1, } 
-Response { "message": "Reporte creado exitosamente", 
-    "idReporte": 7, 
-    "vinculos": { "reportante": "Juan Perez", 
-        "reportado": "Francisco Recalde" }, "estado": "SinResolver" }*/
+EndPoint: POST feedback/api/report */ 
+
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
