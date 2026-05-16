@@ -54,10 +54,10 @@ export async function GET(
     const reportesConFalloEnContra = usuario.reportesRecibidos.filter((r: any) => r.decision === "EnContra").length;
 
     return NextResponse.json(
-        { 
-            idUsuario: usuario.id, 
-            reportesAbiertos, 
-            reportesConFalloEnContra 
+        {
+            idUsuario: usuario.id,
+            reportesAbiertos,
+            reportesConFalloEnContra
         },
         { status: 200 }
     );

@@ -26,4 +26,59 @@ export async function PUT(request: Request) {
             { status: 400 }
         );
     }
+    const { idTrabajo } = body;
+    if (!validarID(idTrabajo)) {
+        return NextResponse.json(
+            { message: "El idTrabajo no es un ID valido" },
+            { status: 400 }
+        );
+    }
+    //Debo chequear 
+    const trabajo = await prisma.trabajo.findUnique({
+        where: { id: idTrabajo },
+        include: {
+            cliente: true,
+            trabajador: true
+        }
+    });
+    if (!trabajo) {
+        return NextResponse.json({ message: "Trabajo no encontrado" }, { status: 404 });
+    }
+    const [reviewCliente, reviewTrabajador] = await prisma.$transaction([
+        prisma.review.upsert({
+            where: {
+                idTrabajo_idUsuario: {  // Prisma autogenera este nombre
+                    idTrabajo: idTrabajo,
+                    idUsuario: trabajo.idCliente,
+                }
+            },
+            update: {},
+            create: { idTrabajo, idUsuario: trabajo.idCliente },
+        }),
+        prisma.review.upsert({
+            where: {idTrabajo_idUsuario: {
+                idTrabajo: idTrabajo,
+                idUsuario: trabajo.idTrabajador,
+            } },
+            update: {},
+            create: { idTrabajo, idUsuario: trabajo.idTrabajador },
+        })
+    ]);
+
+    return NextResponse.json(
+        {
+            status: "ReadyToRate",
+            datosDelTrabajo: {
+                idTrabajo: trabajo.id,
+                tipoDeTrabajo: trabajo.tipoDeTrabajo,
+                cliente: { id: trabajo.cliente.id, nombre: nombreCompleto(trabajo.cliente) },
+                trabajador: { id: trabajo.trabajador.id, nombre: nombreCompleto(trabajo.trabajador) },
+            },
+            reviews: {
+                cliente: { idReview: reviewCliente.id, idUsuario: reviewCliente.idUsuario },
+                trabajador: { idReview: reviewTrabajador.id, idUsuario: reviewTrabajador.idUsuario },
+            },
+        },
+        { status: 200 }
+    );
 }
