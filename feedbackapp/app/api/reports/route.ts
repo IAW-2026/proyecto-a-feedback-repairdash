@@ -5,6 +5,7 @@ EndPoint: POST feedback/api/report */
 
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
+import { requireInternalRequest } from "@/lib/internalAuth";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 
 
@@ -13,6 +14,11 @@ function nombreCompleto(usuario: { nombre: string; apellido: string }) {
 }
 
 export async function POST(request: Request) {
+    const internalGuard = requireInternalRequest(request);
+    if (internalGuard) {
+        return internalGuard;
+    }
+
     const prisma = getPrisma();
     //Si no se envía un JSON. Catch()  vuelve nulo a body
     const body = await request.json().catch(() => null);

@@ -5,6 +5,7 @@ Response 200 OK: { "id": 5, "nombre": "Juan", "apellido": "Pérez", "valoracion"
 { "id": 102, "idTrabajo": 58, "valoracion": 3, "review": "Hizo el trabajo, pero llegó un poco tarde." } ] }*/
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
+import { requireInternalRequest } from "@/lib/internalAuth";
 export const dynamic = 'force-dynamic';
 
 
@@ -17,6 +18,10 @@ export async function GET(
     { params }: { params: Promise<{ id: string }> }
 ) {
     const prisma = getPrisma();
+    const internalGuard = requireInternalRequest(request);
+    if (internalGuard) {
+        return internalGuard;
+    }
     // Esperamos a que los parámetros estén listos
     const { id } = await params;
     const usuario = await prisma.usuario.findUnique({

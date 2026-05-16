@@ -5,6 +5,7 @@ Response 200 OK:
  { "idUsuario": 1, "reportesAbiertos": 1, "reportesConFalloEnContra": 0 }*/
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
+import { requireInternalRequest } from "@/lib/internalAuth";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 
 
@@ -17,6 +18,10 @@ export async function GET(
     { params }: { params: Promise<{ id: string }> }
 ) {
     const prisma = getPrisma();
+    const internalGuard = requireInternalRequest(request);
+    if (internalGuard) {
+        return internalGuard;
+    }
     // Esperamos a que los parámetros estén listos
     const { id } = await params;
     const [usuario, reportesAbiertos, reportesConFalloEnContra] = await Promise.all([
