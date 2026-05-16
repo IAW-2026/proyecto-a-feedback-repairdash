@@ -13,7 +13,7 @@ datasource db {
 }
 
 model Usuario {
-  id                     Int         @id 
+  id                     String         @id 
   mail                   String      @unique
   nombre                 String
   apellido               String
@@ -42,8 +42,8 @@ enum TipoUsuario {
 
 model Trabajo {
   id            Int      @id 
-  idCliente     Int
-  idTrabajador  Int
+  idCliente     String
+  idTrabajador  String
   tipoDeTrabajo String
   fechaInicio   DateTime
   fechaFin      DateTime?
@@ -60,7 +60,7 @@ model Trabajo {
 model Review {
   id         Int     @id @default(autoincrement())
   idTrabajo  Int
-  idUsuario  Int
+  idUsuario  String
   valoracion Int?
   review     String?
   autor      Usuario @relation(fields: [idUsuario], references: [id])
@@ -72,8 +72,8 @@ model Review {
 model Reporte {
   id          Int       @id @default(autoincrement())
   idTrabajo   Int       @unique
-  idReportado Int
-  idReportante Int
+  idReportado String
+  idReportante String
   decision    Fallo?
   pruebas     Pruebas[]
   resolucion  Estado    @default(SinResolver)
