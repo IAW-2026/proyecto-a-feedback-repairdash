@@ -5,8 +5,7 @@ Response 200 OK: { "id": 5, "nombre": "Juan", "apellido": "Pérez", "valoracion"
 { "id": 102, "idTrabajo": 58, "valoracion": 3, "review": "Hizo el trabajo, pero llegó un poco tarde." } ] }*/
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
-export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
-//Esto es VALIDAR EL ID, debo consultar a clerk?
+export const dynamic = 'force-dynamic';
 function validarID(value: unknown): value is number {
     return typeof value === "number" && Number.isInteger(value) && value > 0;
 }
@@ -28,4 +27,51 @@ export async function GET(
             { status: 400 }
         );
     }
+    const usuario = await prisma.usuario.findUnique({
+        where: { id: id },
+        select: {
+            id: true,
+            nombre: true,
+            apellido: true,
+            valoracion: true,
+        }
+    });
+
+    if (!usuario) {
+        return NextResponse.json(
+            { message: "Usuario no encontrado." },
+            { status: 404 }
+        );
+    }
+    const reviewsRecibidas = await prisma.review.findMany({
+        where: {
+            trabajo: {
+                OR: [
+                    { idCliente: id },
+                    { idTrabajador: id }
+                ]
+            },
+            idUsuario: { not: id } 
+        },
+        select: {
+            id: true,
+            idTrabajo: true,
+            valoracion: true,
+            review: true
+        }
+    });
+
+    return NextResponse.json(
+        {
+            id: usuario.id,
+            nombre: usuario.nombre,
+            apellido: usuario.apellido,
+            valoracion: usuario.valoracion,
+            reviews: reviewsRecibidas
+        },
+        { status: 200 }
+    );
+
+
+
 }

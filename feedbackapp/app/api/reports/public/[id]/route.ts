@@ -28,19 +28,24 @@ export async function GET(
             { status: 400 }
         );
     }
-    const usuario = await prisma.usuario.findUnique({
-        where: {
-            id: Number(id),
-        },
-        include: {
-            reportesRecibidos: {
-                select: {
-                    resolucion: true,
-                    decision: true
-                }
+    const [usuario, reportesAbiertos, reportesConFalloEnContra] = await Promise.all([
+        prisma.usuario.findUnique({
+            where: { id: id },
+            select: { id: true } // Solo traemos el ID para confirmar si existe
+        }),
+        prisma.reporte.count({
+            where: {
+                idReportado: id,
+                resolucion: "SinResolver"
             }
-        }
-    });
+        }),
+        prisma.reporte.count({
+            where: {
+                idReportado: id,
+                decision: "EnContra"
+            }
+        })
+    ]);
 
     if (!usuario) {
         return NextResponse.json(
@@ -50,9 +55,6 @@ export async function GET(
     }
 
     // Calculamos las estadísticas en backend usando JS
-    const reportesAbiertos = usuario.reportesRecibidos.filter((r: any) => r.resolucion === "SinResolver").length;
-    const reportesConFalloEnContra = usuario.reportesRecibidos.filter((r: any) => r.decision === "EnContra").length;
-
     return NextResponse.json(
         {
             idUsuario: usuario.id,
