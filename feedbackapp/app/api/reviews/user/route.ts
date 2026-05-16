@@ -7,10 +7,7 @@ Response 200 OK: { "status": "ReadyToRate", "datosDelTrabajo": { "idTrabajo": 42
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
-//Esto es VALIDAR EL ID, debo consultar a clerk?
-function validarID(value: unknown): value is number {
-    return typeof value === "number" && Number.isInteger(value) && value > 0;
-}
+
 
 function nombreCompleto(usuario: { nombre: string; apellido: string }) {
     return `${usuario.nombre} ${usuario.apellido}`;
@@ -27,12 +24,6 @@ export async function PUT(request: Request) {
         );
     }
     const { idTrabajo } = body;
-    if (!validarID(idTrabajo)) {
-        return NextResponse.json(
-            { message: "El idTrabajo no es un ID valido" },
-            { status: 400 }
-        );
-    }
     //Debo chequear 
     const trabajo = await prisma.trabajo.findUnique({
         where: { id: idTrabajo },

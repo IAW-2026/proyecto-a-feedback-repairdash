@@ -6,9 +6,7 @@ Response 200 OK: { "id": 5, "nombre": "Juan", "apellido": "Pérez", "valoracion"
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic';
-function validarID(value: unknown): value is number {
-    return typeof value === "number" && Number.isInteger(value) && value > 0;
-}
+
 
 function nombreCompleto(usuario: { nombre: string; apellido: string }) {
     return `${usuario.nombre} ${usuario.apellido}`;
@@ -21,12 +19,6 @@ export async function GET(
     const prisma = getPrisma();
     // Esperamos a que los parámetros estén listos
     const { id } = await params;
-    if (!validarID(id)) {
-        return NextResponse.json(
-            { message: "el ID es un ID no válido." },
-            { status: 400 }
-        );
-    }
     const usuario = await prisma.usuario.findUnique({
         where: { id: id },
         select: {

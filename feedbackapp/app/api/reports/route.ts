@@ -6,10 +6,7 @@ EndPoint: POST feedback/api/report */
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
-//Esto es VALIDAR EL ID, debo consultar a clerk?
-function validarID(value: unknown): value is number {
-    return typeof value === "number" && Number.isInteger(value) && value > 0;
-}
+
 
 function nombreCompleto(usuario: { nombre: string; apellido: string }) {
     return `${usuario.nombre} ${usuario.apellido}`;
@@ -29,19 +26,6 @@ export async function POST(request: Request) {
 
     const { idTrabajo, idReportante, idReportado } = body;
 
-    if (
-        !validarID(idTrabajo) ||
-        !validarID(idReportante) ||
-        !validarID(idReportado)
-    ) {
-        return NextResponse.json(
-            {
-                message:
-                    "idTrabajo, idReportante e idReportado no son IDs validos",
-            },
-            { status: 400 }
-        );
-    }
 
     if (idReportante === idReportado) {
         return NextResponse.json(
