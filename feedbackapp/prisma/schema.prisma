@@ -4,16 +4,16 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "/prisma"
+  provider = "prisma-client-js"
 }
+
 
 datasource db {
   provider = "postgresql"
 }
 
 model Usuario {
-  id                     Int         @id @default(autoincrement())
+  id                     Int         @id 
   mail                   String      @unique
   nombre                 String
   apellido               String
@@ -41,12 +41,12 @@ enum TipoUsuario {
 }
 
 model Trabajo {
-  id            Int      @id @default(autoincrement())
+  id            Int      @id 
   idCliente     Int
   idTrabajador  Int
   tipoDeTrabajo String
   fechaInicio   DateTime
-  fechaFin      DateTime
+  fechaFin      DateTime?
   cliente       Usuario  @relation("TrabajoCliente", fields: [idCliente], references: [id])
   trabajador    Usuario  @relation("TrabajoTrabajador", fields: [idTrabajador], references: [id])
   reviews       Review[]
@@ -61,10 +61,11 @@ model Review {
   id         Int     @id @default(autoincrement())
   idTrabajo  Int
   idUsuario  Int
-  valoracion Int
-  review     String
+  valoracion Int?
+  review     String?
   autor      Usuario @relation(fields: [idUsuario], references: [id])
   trabajo    Trabajo @relation(fields: [idTrabajo], references: [id])
+  @@unique([idTrabajo, idUsuario])
 }
 
 //Preguntar si esto esta bien.
@@ -73,7 +74,7 @@ model Reporte {
   idTrabajo   Int       @unique
   idReportado Int
   idReportante Int
-  decision    Fallo
+  decision    Fallo?
   pruebas     Pruebas[]
   resolucion  Estado    @default(SinResolver)
   trabajo     Trabajo   @relation(fields: [idTrabajo], references: [id])
