@@ -7,8 +7,7 @@ export default async function AdminDashboard() {
 
   // Validamos si en los metadatos de Clerk figura como admin
   const publicMetadata = sessionClaims?.publicMetadata as { role?: string } | undefined;
-  const unsafeMetadata = sessionClaims?.metadata as { role?: string } | undefined;
-  const role = publicMetadata?.role ?? unsafeMetadata?.role;
+  const role = publicMetadata?.role;
   const isAdmin = role === "admin";
 
   // Si no es admin, lo sacamos de la pantalla inmediatamente
@@ -26,7 +25,7 @@ export default async function AdminDashboard() {
   return (
     <div className="p-8">
       <h1>Panel de Control de Administrador</h1>
-      {/* Tu lógica y UI para que Manu, Valen o vos resuelvan disputas */}
+     
     </div>
   );
 }

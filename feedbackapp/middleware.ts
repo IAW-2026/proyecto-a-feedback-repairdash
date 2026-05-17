@@ -7,7 +7,8 @@ const isPublicRoute = createRouteMatcher([
   "/api/reports(.*)",         // APIs usadas por otras apps (token interno)
   "/api/reviews/user(.*)",    // APIs usadas por otras apps (token interno)
   "/api/trabajos(.*)",        // APIs usadas por otras apps (token interno)
-  "/api/usuarios(.*)"         // API donde Rider App te inyecta los usuarios creados allá
+  "/api/usuarios(.*)",        // API donde Rider App te inyecta los usuarios creados allá
+  "/api/webhooks/clerk(.*)"
 ]);
 
 export default clerkMiddleware((auth, req) => {

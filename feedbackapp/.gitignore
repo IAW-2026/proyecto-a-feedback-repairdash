@@ -41,3 +41,5 @@ yarn-error.log*
 next-env.d.ts
 
 /../../../../../../../prisma
+
+changes-2026-05-16.md
