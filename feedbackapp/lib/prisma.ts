@@ -1,12 +1,12 @@
 import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = globalThis as unknown as {
-  prisma: PrismaClient | undefined;
-};
+// Dejamos la variable declarada pero vacía
+let prisma: PrismaClient;
 
+// Creamos una función que solo instancia a Prisma cuando se la llama
 export const getPrisma = () => {
-  if (!globalForPrisma.prisma) {
-    globalForPrisma.prisma = new PrismaClient();
+  if (!prisma) {
+    prisma = new PrismaClient();
   }
-  return globalForPrisma.prisma;
+  return prisma;
 };
