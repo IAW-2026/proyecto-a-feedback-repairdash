@@ -1,175 +1,124 @@
-import { NextRequest, NextResponse } from "next/server";
-import { verifyWebhook } from "@clerk/nextjs/webhooks";
-import { TipoUsuario } from "@prisma/client";
+import { Webhook } from "svix";
+import { headers } from "next/headers";
+import { WebhookEvent } from "@clerk/nextjs/server";
 import { getPrisma } from "@/lib/prisma";
 
-const TIPO_METADATA_KEYS = ["tipoUsuario", "tipo", "role", "rol"] as const;
-const ADMIN_METADATA_KEYS = ["isAdmin", "isadmin", "is_admin", "admin"] as const;
-
-const VALID_METADATA_VALUES = {
-  cliente: TipoUsuario.Cliente,
-  client: TipoUsuario.Cliente,
-  rider: TipoUsuario.Cliente,
-  trabajador: TipoUsuario.Trabajador,
-  worker: TipoUsuario.Trabajador,
-  driver: TipoUsuario.Trabajador,
-} as const;
-
-function normalizeTipoUsuario(value: unknown): TipoUsuario | null {
-  if (typeof value !== "string") {
-    return null;
-  }
-
-  const normalizedValue = value.trim().toLowerCase();
-
-  if (normalizedValue in VALID_METADATA_VALUES) {
-    return VALID_METADATA_VALUES[
-      normalizedValue as keyof typeof VALID_METADATA_VALUES
-    ];
-  }
-
-  return null;
-}
-
-function getTipoUsuarioFromMetadata(
-  ...metadataSources: Array<Record<string, unknown> | null | undefined>
-): TipoUsuario | null {
-  for (const metadata of metadataSources) {
-    for (const key of TIPO_METADATA_KEYS) {
-      const tipo = normalizeTipoUsuario(metadata?.[key]);
-      if (tipo) {
-        return tipo;
-      }
-    }
-  }
-
-  return null;
-}
-
-function normalizeIsAdmin(value: unknown): boolean {
-  if (typeof value === "boolean") {
-    return value;
-  }
-
-  if (typeof value !== "string") {
-    return false;
-  }
-
-  return ["true", "1", "si", "sí", "yes"].includes(
-    value.trim().toLowerCase()
-  );
-}
-
-function getIsAdminFromMetadata(
-  ...metadataSources: Array<Record<string, unknown> | null | undefined>
-): boolean {
-  for (const metadata of metadataSources) {
-    if (!metadata) {
-      continue;
-    }
-
-    for (const key of ADMIN_METADATA_KEYS) {
-      if (normalizeIsAdmin(metadata[key])) {
-        return true;
-      }
-    }
-
-    const role = typeof metadata.role === "string" ? metadata.role : metadata.rol;
-    if (typeof role === "string" && role.trim().toLowerCase() === "admin") {
-      return true;
-    }
-  }
-
-  return false;
-}
-
-function getPrimaryEmail(data: {
-  email_addresses?: Array<{ id: string; email_address: string }>;
-  primary_email_address_id?: string | null;
-}) {
-  const primaryEmail = data.email_addresses?.find(
-    (email) => email.id === data.primary_email_address_id
-  );
-
-  return primaryEmail?.email_address ?? data.email_addresses?.[0]?.email_address;
-}
-
-export async function POST(request: NextRequest) {
-  if (!process.env.CLERK_WEBHOOK_SIGNING_SECRET) {
-    console.error("Falta configurar CLERK_WEBHOOK_SIGNING_SECRET para verificar webhooks de Clerk.");
-    return NextResponse.json(
-      { message: "Webhook no configurado" },
-      { status: 500 }
-    );
-  }
-
-  let event;
-
-  try {
-    event = await verifyWebhook(request);
-  } catch (error) {
-    console.error("Error verificando webhook de Clerk:", error);
-    return NextResponse.json({ message: "Webhook invalido" }, { status: 400 });
-  }
-
+export async function POST(req: Request) {
+  console.log("=== INICIANDO WEBHOOK DE CLERK ===");
+  
   const prisma = getPrisma();
+  // Configura CLERK_WEBHOOK_SIGNING_SECRET en tu .env o Vercel
+  const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
+  
+  if (!WEBHOOK_SECRET) {
+    console.error("❌ ERROR: Falta CLERK_WEBHOOK_SIGNING_SECRET");
+    throw new Error(
+      "Por favor agrega CLERK_WEBHOOK_SIGNING_SECRET de Clerk Dashboard en las variables de entorno o .env"
+    );
+  }
 
-  if (event.type === "user.deleted") {
-    if (!event.data.id) {
-      return NextResponse.json(
-        { message: "Falta id de usuario eliminado" },
-        { status: 400 }
-      );
-    }
+  // Obtiene las cabeceras Headers para la validación de svix
+  const headerPayload = await headers();
+  const svix_id = headerPayload.get("svix-id");
+  const svix_timestamp = headerPayload.get("svix-timestamp");
+  const svix_signature = headerPayload.get("svix-signature");
 
-    await prisma.usuario.updateMany({
-      where: { id: event.data.id },
-      data: { activo: false },
+  // Si no hay headers para Svix, lanzar error
+  if (!svix_id || !svix_timestamp || !svix_signature) {
+    console.warn("⚠️ Advertencia: Faltan headers de Svix devolviendo 400");
+    return new Response("No svix headers", {
+      status: 400,
     });
   }
 
-  if (event.type === "user.created" || event.type === "user.updated") {
-    const email = getPrimaryEmail(event.data);
-    const tipo = getTipoUsuarioFromMetadata(
-      event.data.public_metadata,
-      event.data.private_metadata,
-      event.data.unsafe_metadata
-    );
-    const isAdmin = getIsAdminFromMetadata(
-      event.data.public_metadata,
-      event.data.private_metadata,
-      event.data.unsafe_metadata
-    );
+  // Obtener el body JSON
+  //const payload = await req.json();
+  //const body = JSON.stringify(payload);
+  const body = await req.text(); 
+  console.log("✅ Body del Webhook parseado correctamente.");
 
-    if (!email || !tipo) {
-      return NextResponse.json(
-        { message: "Faltan email principal o metadata.tipoUsuario/tipo/role/rol valido" },
-        { status: 400 }
-      );
-    }
+  // Crear instancia de Webhook de Svix
+  const wh = new Webhook(WEBHOOK_SECRET);
 
-    await prisma.usuario.upsert({
-      where: { id: event.data.id },
-      update: {
-        mail: email,
-        nombre: event.data.first_name ?? "",
-        apellido: event.data.last_name ?? "",
-        tipo,
-        isAdmin,
-        activo: true,
-      },
-      create: {
-        id: event.data.id,
-        mail: email,
-        nombre: event.data.first_name ?? "",
-        apellido: event.data.last_name ?? "",
-        valoracion: 0,
-        tipo,
-        isAdmin,
-        activo: true,
-      },
+  let evt: WebhookEvent;
+
+  // Validar el payload con los headers y the secret
+  try {
+    evt = wh.verify(body, {
+      "svix-id": svix_id,
+      "svix-timestamp": svix_timestamp,
+      "svix-signature": svix_signature,
+    }) as WebhookEvent;
+    console.log("✅ Firma del webhook verificada correctamente con Svix.");
+  } catch (err) {
+    console.error("❌ ERROR al verificar la firma del webhook con Svix:", err);
+    return new Response("Error procesando el payload", {
+      status: 400,
     });
   }
 
-  return NextResponse.json({ received: true, type: event.type });
+  // Procesar eventos
+  const eventType = evt.type;
+  console.log(`📌 Tipo de evento recibido: ${eventType}`);
+  console.log(`📝 Datos del evento (ID de usuario): ${evt.data.id}`);
+  
+  try {
+    if (eventType === "user.created") {
+      const { id, email_addresses, first_name, last_name } = evt.data;
+      const email = email_addresses[0]?.email_address;
+      
+      console.log(`Intentando crear usuario en BD: ID=${id}, Email=${email}, Nombre=${first_name} ${last_name}`);
+    
+      await prisma.usuario.create({
+        data: {
+          id: id,
+          mail: email,
+          nombre: first_name || "Sin Nombre",
+          apellido: last_name || "Sin Apellido",
+          valoracion: 0,
+          tipo: "Cliente", // Por defecto Cliente
+        },
+      });
+      console.log(`🎉 Usuario creado correctamente en BD: ${id}`);
+    } 
+    
+    else if (eventType === "user.updated") {
+       const { id, email_addresses, first_name, last_name } = evt.data;
+       const email = email_addresses[0]?.email_address;
+
+       console.log(`Intentando actualizar usuario en BD: ID=${id}`);
+
+       await prisma.usuario.update({
+         where: { id: id },
+         data: {
+           mail: email,
+           nombre: first_name || "Sin Nombre",
+           apellido: last_name || "Sin Apellido",
+         },
+       });
+       console.log(`🔄 Usuario actualizado correctamente en BD: ${id}`);
+    } 
+    
+    else if (eventType === "user.deleted") {
+      const { id } = evt.data;
+      
+      console.log(`Intentando marcar como inactivo al usuario en BD: ID=${id}`);
+
+      if (id) {
+        await prisma.usuario.update({
+          where: { id: id },
+          data: {
+            activo: false,
+          },
+        });
+        console.log(`🗑️ Usuario ${id} marcado como inactivo (borrado en clerk).`);
+      }
+    }
+    
+    return new Response("Webhook recibido y procesado correctamente", { status: 200 });
+
+  } catch (dbError) {
+    console.error("❌ ERROR operando en la base de datos dentro del webhook de Clerk:", dbError);
+    return new Response("Error interno procesando en BD", { status: 500 });
+  }
 }
