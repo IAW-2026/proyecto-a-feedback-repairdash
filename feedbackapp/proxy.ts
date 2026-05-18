@@ -11,11 +11,11 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/clerk(.*)"
 ]);
 
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
   if (!isPublicRoute(req)) {
     // Si la pantalla o API no es pública, Clerk exige login. 
     // Si es una pantalla web y no hay sesión, Next.js lo redirecciona solo a /login
-    auth.protect(); 
+    await auth.protect();
   }
 });
 

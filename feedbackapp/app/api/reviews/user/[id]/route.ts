@@ -9,10 +9,6 @@ import { requireInternalRequest } from "@/lib/internalAuth";
 export const dynamic = 'force-dynamic';
 
 
-function nombreCompleto(usuario: { nombre: string; apellido: string }) {
-    return `${usuario.nombre} ${usuario.apellido}`;
-}
-
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
@@ -53,8 +49,7 @@ export async function GET(
         select: {
             id: true,
             idTrabajo: true,
-            valoracion: true,
-            review: true
+            valoracion: true
         }
     });
 
@@ -63,8 +58,7 @@ export async function GET(
             id: usuario.id,
             nombre: usuario.nombre,
             apellido: usuario.apellido,
-            valoracion: usuario.valoracion,
-            reviews: reviewsRecibidas
+            valoracion: usuario.valoracion
         },
         { status: 200 }
     );

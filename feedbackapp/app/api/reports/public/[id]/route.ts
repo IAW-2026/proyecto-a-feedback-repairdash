@@ -9,10 +9,6 @@ import { requireInternalRequest } from "@/lib/internalAuth";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 
 
-function nombreCompleto(usuario: { nombre: string; apellido: string }) {
-    return `${usuario.nombre} ${usuario.apellido}`;
-}
-
 export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }

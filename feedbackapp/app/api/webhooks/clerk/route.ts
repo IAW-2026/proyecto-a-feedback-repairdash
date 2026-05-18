@@ -3,30 +3,44 @@ import { verifyWebhook } from "@clerk/nextjs/webhooks";
 import { TipoUsuario } from "@prisma/client";
 import { getPrisma } from "@/lib/prisma";
 
+const VALID_CREATED_BY_APP_VALUES = {
+  driver: TipoUsuario.Trabajador,
+  rider: TipoUsuario.Cliente,
+} as const;
+
 function normalizeTipoUsuario(value: unknown): TipoUsuario | null {
-  if (value === TipoUsuario.Cliente || value === "cliente") {
+  if (typeof value !== "string") {
+    return null;
+  }
+
+  const normalizedValue = value.toLowerCase();
+
+  if (normalizedValue === TipoUsuario.Cliente.toLowerCase()) {
     return TipoUsuario.Cliente;
   }
 
-  if (value === TipoUsuario.Trabajador || value === "trabajador") {
+  if (normalizedValue === TipoUsuario.Trabajador.toLowerCase()) {
     return TipoUsuario.Trabajador;
   }
 
   return null;
 }
 
-function getTipoUsuario(publicMetadata: Record<string, unknown> | undefined): TipoUsuario | null {
+function getTipoUsuario(publicMetadata: Record<string, unknown> | null | undefined): TipoUsuario | null {
   const tipoDirecto = normalizeTipoUsuario(publicMetadata?.tipoUsuario);
   if (tipoDirecto) {
     return tipoDirecto;
   }
 
-  if (publicMetadata?.createdByApp === "driver") {
-    return TipoUsuario.Trabajador;
-  }
+  const createdByApp =
+    typeof publicMetadata?.createdByApp === "string"
+      ? publicMetadata.createdByApp.toLowerCase()
+      : null;
 
-  if (publicMetadata?.createdByApp === "rider") {
-    return TipoUsuario.Cliente;
+  if (createdByApp && createdByApp in VALID_CREATED_BY_APP_VALUES) {
+    return VALID_CREATED_BY_APP_VALUES[
+      createdByApp as keyof typeof VALID_CREATED_BY_APP_VALUES
+    ];
   }
 
   return null;
@@ -44,6 +58,14 @@ function getPrimaryEmail(data: {
 }
 
 export async function POST(request: NextRequest) {
+  if (!process.env.CLERK_WEBHOOK_SIGNING_SECRET) {
+    console.error("Falta configurar CLERK_WEBHOOK_SIGNING_SECRET para verificar webhooks de Clerk.");
+    return NextResponse.json(
+      { message: "Webhook no configurado" },
+      { status: 500 }
+    );
+  }
+
   let event;
 
   try {
@@ -61,7 +83,7 @@ export async function POST(request: NextRequest) {
 
     if (!email || !tipo) {
       return NextResponse.json(
-        { message: "Faltan email principal o publicMetadata.createdByApp valido" },
+        { message: "Faltan email principal o publicMetadata.tipoUsuario/createdByApp valido" },
         { status: 400 }
       );
     }
@@ -85,5 +107,5 @@ export async function POST(request: NextRequest) {
     });
   }
 
-  return NextResponse.json({ received: true });
+  return NextResponse.json({ received: true, type: event.type });
 }
