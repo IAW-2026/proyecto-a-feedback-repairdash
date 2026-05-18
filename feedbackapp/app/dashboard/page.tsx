@@ -4,8 +4,11 @@ import { redirect } from "next/navigation";
 export default async function AdminDashboard() {
   const user = await currentUser();
 
-  const publicMetadata = user?.publicMetadata as { role?: string } | undefined;
-  const isAdmin = publicMetadata?.role === "admin";
+  const publicMetadata = user?.publicMetadata as
+    | { isAdmin?: boolean; role?: string }
+    | undefined;
+  const isAdmin =
+    publicMetadata?.isAdmin === true || publicMetadata?.role === "admin";
 
   if (!isAdmin) {
     redirect("/unauthorized");

@@ -3,9 +3,16 @@ import { verifyWebhook } from "@clerk/nextjs/webhooks";
 import { TipoUsuario } from "@prisma/client";
 import { getPrisma } from "@/lib/prisma";
 
-const VALID_CREATED_BY_APP_VALUES = {
-  driver: TipoUsuario.Trabajador,
+const TIPO_METADATA_KEYS = ["tipoUsuario", "tipo", "role", "rol"] as const;
+const ADMIN_METADATA_KEYS = ["isAdmin", "isadmin", "is_admin", "admin"] as const;
+
+const VALID_METADATA_VALUES = {
+  cliente: TipoUsuario.Cliente,
+  client: TipoUsuario.Cliente,
   rider: TipoUsuario.Cliente,
+  trabajador: TipoUsuario.Trabajador,
+  worker: TipoUsuario.Trabajador,
+  driver: TipoUsuario.Trabajador,
 } as const;
 
 function normalizeTipoUsuario(value: unknown): TipoUsuario | null {
@@ -13,37 +20,67 @@ function normalizeTipoUsuario(value: unknown): TipoUsuario | null {
     return null;
   }
 
-  const normalizedValue = value.toLowerCase();
+  const normalizedValue = value.trim().toLowerCase();
 
-  if (normalizedValue === TipoUsuario.Cliente.toLowerCase()) {
-    return TipoUsuario.Cliente;
-  }
-
-  if (normalizedValue === TipoUsuario.Trabajador.toLowerCase()) {
-    return TipoUsuario.Trabajador;
+  if (normalizedValue in VALID_METADATA_VALUES) {
+    return VALID_METADATA_VALUES[
+      normalizedValue as keyof typeof VALID_METADATA_VALUES
+    ];
   }
 
   return null;
 }
 
-function getTipoUsuario(publicMetadata: Record<string, unknown> | null | undefined): TipoUsuario | null {
-  const tipoDirecto = normalizeTipoUsuario(publicMetadata?.tipoUsuario);
-  if (tipoDirecto) {
-    return tipoDirecto;
-  }
-
-  const createdByApp =
-    typeof publicMetadata?.createdByApp === "string"
-      ? publicMetadata.createdByApp.toLowerCase()
-      : null;
-
-  if (createdByApp && createdByApp in VALID_CREATED_BY_APP_VALUES) {
-    return VALID_CREATED_BY_APP_VALUES[
-      createdByApp as keyof typeof VALID_CREATED_BY_APP_VALUES
-    ];
+function getTipoUsuarioFromMetadata(
+  ...metadataSources: Array<Record<string, unknown> | null | undefined>
+): TipoUsuario | null {
+  for (const metadata of metadataSources) {
+    for (const key of TIPO_METADATA_KEYS) {
+      const tipo = normalizeTipoUsuario(metadata?.[key]);
+      if (tipo) {
+        return tipo;
+      }
+    }
   }
 
   return null;
+}
+
+function normalizeIsAdmin(value: unknown): boolean {
+  if (typeof value === "boolean") {
+    return value;
+  }
+
+  if (typeof value !== "string") {
+    return false;
+  }
+
+  return ["true", "1", "si", "sí", "yes"].includes(
+    value.trim().toLowerCase()
+  );
+}
+
+function getIsAdminFromMetadata(
+  ...metadataSources: Array<Record<string, unknown> | null | undefined>
+): boolean {
+  for (const metadata of metadataSources) {
+    if (!metadata) {
+      continue;
+    }
+
+    for (const key of ADMIN_METADATA_KEYS) {
+      if (normalizeIsAdmin(metadata[key])) {
+        return true;
+      }
+    }
+
+    const role = typeof metadata.role === "string" ? metadata.role : metadata.rol;
+    if (typeof role === "string" && role.trim().toLowerCase() === "admin") {
+      return true;
+    }
+  }
+
+  return false;
 }
 
 function getPrimaryEmail(data: {
@@ -77,13 +114,36 @@ export async function POST(request: NextRequest) {
 
   const prisma = getPrisma();
 
+  if (event.type === "user.deleted") {
+    if (!event.data.id) {
+      return NextResponse.json(
+        { message: "Falta id de usuario eliminado" },
+        { status: 400 }
+      );
+    }
+
+    await prisma.usuario.updateMany({
+      where: { id: event.data.id },
+      data: { activo: false },
+    });
+  }
+
   if (event.type === "user.created" || event.type === "user.updated") {
     const email = getPrimaryEmail(event.data);
-    const tipo = getTipoUsuario(event.data.public_metadata);
+    const tipo = getTipoUsuarioFromMetadata(
+      event.data.public_metadata,
+      event.data.private_metadata,
+      event.data.unsafe_metadata
+    );
+    const isAdmin = getIsAdminFromMetadata(
+      event.data.public_metadata,
+      event.data.private_metadata,
+      event.data.unsafe_metadata
+    );
 
     if (!email || !tipo) {
       return NextResponse.json(
-        { message: "Faltan email principal o publicMetadata.tipoUsuario/createdByApp valido" },
+        { message: "Faltan email principal o metadata.tipoUsuario/tipo/role/rol valido" },
         { status: 400 }
       );
     }
@@ -95,6 +155,8 @@ export async function POST(request: NextRequest) {
         nombre: event.data.first_name ?? "",
         apellido: event.data.last_name ?? "",
         tipo,
+        isAdmin,
+        activo: true,
       },
       create: {
         id: event.data.id,
@@ -103,6 +165,8 @@ export async function POST(request: NextRequest) {
         apellido: event.data.last_name ?? "",
         valoracion: 0,
         tipo,
+        isAdmin,
+        activo: true,
       },
     });
   }

@@ -19,6 +19,8 @@ model Usuario {
   apellido               String
   valoracion             Int
   tipo                   TipoUsuario
+  isAdmin                Boolean      @default(false)
+  activo                 Boolean      @default(true)
   trabajosComoCliente    Trabajo[]   @relation("TrabajoCliente") //Esto son nombres a las relaciones
   trabajosComoTrabajador Trabajo[]   @relation("TrabajoTrabajador")
   reviews                Review[]
