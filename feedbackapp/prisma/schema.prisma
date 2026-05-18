@@ -4,85 +4,100 @@
 // Get a free hosted Postgres database in seconds: `npx create-db`
 
 generator client {
-  provider = "prisma-client"
-  output   = "/prisma"
+  provider = "prisma-client-js"
 }
+
 
 datasource db {
   provider = "postgresql"
 }
 
-model Cliente {
-  id         Int             @id @default(autoincrement())
-  mail       String          @unique
-  nombre     String
-  apellido   String
-  valoracion Int
-  reviews    ReviewCliente[] //tiene n reviews
+model Usuario {
+  id                     String         @id 
+  mail                   String      @unique
+  nombre                 String
+  apellido               String
+  valoracion             Int
+  tipo                   TipoUsuario
+  isAdmin                Boolean      @default(false)
+  activo                 Boolean      @default(true)
+  trabajosComoCliente    Trabajo[]   @relation("TrabajoCliente") //Esto son nombres a las relaciones
+  trabajosComoTrabajador Trabajo[]   @relation("TrabajoTrabajador")
+  reviews                Review[]
+  reportesHechos         Reporte[]   @relation("ReporteReportante")
+  reportesRecibidos      Reporte[]   @relation("ReporteReportado")
+  //Un usuario tiene N trabajos dependiendo de lo que haga y cada trabajo tiene un cliente
+  /**
+   * /**
+   * /**
+   * /**
+   * /*CONSULTAR
+   * Como hago esto? lo dejo como usuario o lo vuelvo a separar. Si lo separo, como hago
+   * para diferenciar las reviews unificadas y la conexion entre trabajador y cliente
+   */
 }
 
-model Trabajador {
-  id               Int               @id @default(autoincrement())
-  //los ids deben cambiar a algo que otorgue clerk
-  mail             String            @unique
-  nombre           String
-  apellido         String
-  valoracion       Int
-  reviewTrabajador ReviewTrabajador?
+enum TipoUsuario {
+  Cliente
+  Trabajador
 }
 
 model Trabajo {
-  id               Int               @id @default(autoincrement())
-  tipoDeTrabajo    String
-  fechaInicio      DateTime
-  fechaFin         DateTime
-  reviewCliente    ReviewCliente?
-  reviewTrabajador ReviewTrabajador?
-  reporte          Reporte?         
+  id            Int      @id 
+  idCliente     String
+  idTrabajador  String
+  tipoDeTrabajo String
+  fechaInicio   DateTime
+  fechaFin      DateTime?
+  cliente       Usuario  @relation("TrabajoCliente", fields: [idCliente], references: [id])
+  trabajador    Usuario  @relation("TrabajoTrabajador", fields: [idTrabajador], references: [id])
+  reviews       Review[]
+  reporte       Reporte?
   /**
-    Lógica de mi app, despúes pido que sea obligatorio.
-    lo dejo en opcional en la base de datos*/
+   * Logica de mi app, despues pido que sea obligatorio.
+   * lo dejo en opcional en la base de datos
+   */
 }
 
-//dos claves foraneas. 
-//quiero crear que review cliente se forma por idtrabajo e idcliente
-model ReviewCliente {
-  idCliente  Int     @unique
-  idTrabajo  Int     @unique
-  valoracion Int
-  review     String
-  autor      Cliente @relation(fields: [idCliente], references: [id])
+model Review {
+  id         Int     @id @default(autoincrement())
+  idTrabajo  Int
+  idUsuario  String
+  valoracion Int?
+  review     String?
+  autor      Usuario @relation(fields: [idUsuario], references: [id])
   trabajo    Trabajo @relation(fields: [idTrabajo], references: [id])
-
-  @@id([idCliente, idTrabajo]) //dos claves foraneas
+  @@unique([idTrabajo, idUsuario])
 }
-//Intentar unificar
-model ReviewTrabajador {
-  idTrabajador Int        @unique
-  idTrabajo    Int        @unique
-  valoracion   Int
-  review       String
-  autor        Trabajador @relation(fields: [idTrabajador], references: [id])
-  trabajo      Trabajo    @relation(fields: [idTrabajo], references: [id])
 
-  @@id([idTrabajador, idTrabajo]) //dos claves foraneas
-}
 //Preguntar si esto esta bien.
 model Reporte {
-  id Int @id @default(autoincrement())
-  idTrabajo Int @unique
-  pruebas Pruebas[] 
-  resolucion Estado @default(SinResolver)
-  trabajo Trabajo @relation(fields: [idTrabajo], references: [id])
+  id          Int       @id @default(autoincrement())
+  idTrabajo   Int       @unique
+  idReportado String
+  idReportante String
+  decision    Fallo?
+  pruebas     Pruebas[]
+  resolucion  Estado    @default(SinResolver)
+  trabajo     Trabajo   @relation(fields: [idTrabajo], references: [id])
+  reportado   Usuario   @relation("ReporteReportado", fields: [idReportado], references: [id])
+  reportante  Usuario   @relation("ReporteReportante", fields: [idReportante], references: [id])
+
+}
+enum Fallo{
+  AFavor
+  EnContra
 }
 
 model Pruebas {
-  idReporte Int @unique
-  reporte Reporte @relation(fields:[idReporte], references:[id])
-  tipo String
-  url   String
+  id        Int     @id @default(autoincrement())
+  idReporte Int
+  tipo      String
+  url       String
+  reporte   Reporte @relation(fields: [idReporte], references: [id])
 }
-enum Estado{
+
+enum Estado {
   SinResolver
   Resuelto
 }
