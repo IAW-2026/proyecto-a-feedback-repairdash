@@ -1,17 +1,11 @@
 //api para recibir trabajos. Cuando se confirma, que me mande toda la data
 import { NextResponse } from "next/server";
 import { getPrisma } from "@/lib/prisma";
-import { requireInternalRequest } from "@/lib/internalAuth";
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
-    const internalGuard = requireInternalRequest(request);
-    if (internalGuard) {
-      return internalGuard;
-    }
-
     const prisma = getPrisma();
     const body = await request.json().catch(() => null);
     
@@ -34,9 +28,9 @@ export async function POST(request: Request) {
 
     const nuevoTrabajo = await prisma.trabajo.create({
       data: {
-        id: id,
-        idCliente: idCliente,
-        idTrabajador: idTrabajador,
+        id: parseInt(id),
+        idCliente: parseInt(idCliente),
+        idTrabajador: parseInt(idTrabajador),
         tipoDeTrabajo,
         fechaInicio: new Date(), 
       },
