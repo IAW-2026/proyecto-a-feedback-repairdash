@@ -4,11 +4,14 @@ import { WebhookEvent } from "@clerk/nextjs/server";
 import { getPrisma } from "@/lib/prisma";
 
 export async function POST(req: Request) {
+  console.log("=== INICIANDO WEBHOOK DE CLERK ===");
+  
   const prisma = getPrisma();
   // Configura CLERK_WEBHOOK_SIGNING_SECRET en tu .env o Vercel
   const WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SIGNING_SECRET;
-
+  
   if (!WEBHOOK_SECRET) {
+    console.error("❌ ERROR: Falta CLERK_WEBHOOK_SIGNING_SECRET");
     throw new Error(
       "Por favor agrega CLERK_WEBHOOK_SIGNING_SECRET de Clerk Dashboard en las variables de entorno o .env"
     );
@@ -22,6 +25,7 @@ export async function POST(req: Request) {
 
   // Si no hay headers para Svix, lanzar error
   if (!svix_id || !svix_timestamp || !svix_signature) {
+    console.warn("⚠️ Advertencia: Faltan headers de Svix devolviendo 400");
     return new Response("No svix headers", {
       status: 400,
     });
@@ -30,6 +34,7 @@ export async function POST(req: Request) {
   // Obtener el body JSON
   const payload = await req.json();
   const body = JSON.stringify(payload);
+  console.log("✅ Body del Webhook parseado correctamente.");
 
   // Crear instancia de Webhook de Svix
   const wh = new Webhook(WEBHOOK_SECRET);
@@ -43,8 +48,9 @@ export async function POST(req: Request) {
       "svix-timestamp": svix_timestamp,
       "svix-signature": svix_signature,
     }) as WebhookEvent;
+    console.log("✅ Firma del webhook verificada correctamente con Svix.");
   } catch (err) {
-    console.error("Error al verificar el webhook:", err);
+    console.error("❌ ERROR al verificar la firma del webhook con Svix:", err);
     return new Response("Error procesando el payload", {
       status: 400,
     });
@@ -52,11 +58,15 @@ export async function POST(req: Request) {
 
   // Procesar eventos
   const eventType = evt.type;
+  console.log(`📌 Tipo de evento recibido: ${eventType}`);
+  console.log(`📝 Datos del evento (ID de usuario): ${evt.data.id}`);
   
   try {
     if (eventType === "user.created") {
       const { id, email_addresses, first_name, last_name } = evt.data;
       const email = email_addresses[0]?.email_address;
+      
+      console.log(`Intentando crear usuario en BD: ID=${id}, Email=${email}, Nombre=${first_name} ${last_name}`);
     
       await prisma.usuario.create({
         data: {
@@ -68,12 +78,14 @@ export async function POST(req: Request) {
           tipo: "Cliente", // Por defecto Cliente
         },
       });
-      console.log(`Usuario creado correctamente en BD: ${id}`);
+      console.log(`🎉 Usuario creado correctamente en BD: ${id}`);
     } 
     
     else if (eventType === "user.updated") {
        const { id, email_addresses, first_name, last_name } = evt.data;
        const email = email_addresses[0]?.email_address;
+
+       console.log(`Intentando actualizar usuario en BD: ID=${id}`);
 
        await prisma.usuario.update({
          where: { id: id },
@@ -83,29 +95,29 @@ export async function POST(req: Request) {
            apellido: last_name || "Sin Apellido",
          },
        });
-       console.log(`Usuario actualizado correctamente en BD: ${id}`);
+       console.log(`🔄 Usuario actualizado correctamente en BD: ${id}`);
     } 
     
     else if (eventType === "user.deleted") {
       const { id } = evt.data;
       
+      console.log(`Intentando marcar como inactivo al usuario en BD: ID=${id}`);
+
       if (id) {
-        // En vez de borrar físicamente el registro (para evitar perder relaciones de Trabajos/Reportes), 
-        // pasamos al usuario a `activo = false` o bien se lo borra usando active.
         await prisma.usuario.update({
           where: { id: id },
           data: {
             activo: false,
           },
         });
-        console.log(`Usuario ${id} marcado como inactivo (borrado en clerk).`);
+        console.log(`🗑️ Usuario ${id} marcado como inactivo (borrado en clerk).`);
       }
     }
     
     return new Response("Webhook recibido y procesado correctamente", { status: 200 });
 
   } catch (dbError) {
-    console.error("Error operando en la base de datos dentro del webhook de clerk:", dbError);
+    console.error("❌ ERROR operando en la base de datos dentro del webhook de Clerk:", dbError);
     return new Response("Error interno procesando en BD", { status: 500 });
   }
 }
