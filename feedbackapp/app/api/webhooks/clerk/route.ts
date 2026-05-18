@@ -32,8 +32,9 @@ export async function POST(req: Request) {
   }
 
   // Obtener el body JSON
-  const payload = await req.json();
-  const body = JSON.stringify(payload);
+  //const payload = await req.json();
+  //const body = JSON.stringify(payload);
+  const body = await req.text(); 
   console.log("✅ Body del Webhook parseado correctamente.");
 
   // Crear instancia de Webhook de Svix
