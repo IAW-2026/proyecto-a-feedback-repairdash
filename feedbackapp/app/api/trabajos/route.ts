@@ -28,9 +28,9 @@ export async function POST(request: Request) {
 
     const nuevoTrabajo = await prisma.trabajo.create({
       data: {
-        id: parseInt(id),
-        idCliente: parseInt(idCliente),
-        idTrabajador: parseInt(idTrabajador),
+        id: typeof id === 'number' ? id.toString() : id,
+        idCliente: typeof idCliente === 'number' ? idCliente.toString() : idCliente,
+        idTrabajador: typeof idTrabajador === 'number' ? idTrabajador.toString() : idTrabajador,
         tipoDeTrabajo,
         fechaInicio: new Date(), 
       },

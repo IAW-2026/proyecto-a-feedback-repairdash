@@ -61,7 +61,7 @@ model Trabajo {
 }
 
 model Review {
-  id         String  @id
+  id         String  @id @default(uuid())
   idTrabajo  String
   idUsuario  String
   valoracion Int?
@@ -74,7 +74,7 @@ model Review {
 
 //Preguntar si esto esta bien.
 model Reporte {
-  id           String       @id  
+  id           String       @id @default(uuid())
   idTrabajo    String    @unique
   idReportado  String
   idReportante String

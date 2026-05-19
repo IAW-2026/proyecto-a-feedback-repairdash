@@ -11,10 +11,9 @@ export default function LoginPage() {
 
         {/* Componente de Login de Clerk */}
         <SignIn
-          signUpUrl={null}
           routing="path"
           path="/login"
-          redirect="/"
+          fallbackRedirectUrl="/"
         />
       </div>
     </div>
