@@ -33,9 +33,12 @@ export async function PUT(request: Request) {
             { status: 400 }
         );
     }
+    //Convertir a string para Prisma
+    const idTrabajoStr = idTrabajo.toString();
+    
     //Debo chequear 
     const trabajo = await prisma.trabajo.findUnique({
-        where: { id: idTrabajo },
+        where: { id: idTrabajoStr },
         include: {
             cliente: true,
             trabajador: true
@@ -48,20 +51,20 @@ export async function PUT(request: Request) {
         prisma.review.upsert({
             where: {
                 idTrabajo_idUsuario: {  // Prisma autogenera este nombre
-                    idTrabajo: idTrabajo,
+                    idTrabajo: idTrabajoStr,
                     idUsuario: trabajo.idCliente,
                 }
             },
             update: {},
-            create: { idTrabajo, idUsuario: trabajo.idCliente },
+            create: { idTrabajo: idTrabajoStr, idUsuario: trabajo.idCliente },
         }),
         prisma.review.upsert({
             where: {idTrabajo_idUsuario: {
-                idTrabajo: idTrabajo,
+                idTrabajo: idTrabajoStr,
                 idUsuario: trabajo.idTrabajador,
             } },
             update: {},
-            create: { idTrabajo, idUsuario: trabajo.idTrabajador },
+            create: { idTrabajo: idTrabajoStr, idUsuario: trabajo.idTrabajador },
         })
     ]);
 

@@ -27,12 +27,16 @@ export async function POST(request: Request) {
         );
     }
 
-    const { idTrabajo, idReportante, idReportado } = body;
+    let idTrabajo: string;
+    let idReportante: string;
+    let idReportado: string;
+    
+    const ids = body;
 
     if (
-        !validarID(idTrabajo) ||
-        !validarID(idReportante) ||
-        !validarID(idReportado)
+        !validarID(ids.idTrabajo) ||
+        !validarID(ids.idReportante) ||
+        !validarID(ids.idReportado)
     ) {
         return NextResponse.json(
             {
@@ -42,6 +46,11 @@ export async function POST(request: Request) {
             { status: 400 }
         );
     }
+
+    // Convertir IDs a string para Prisma
+    idTrabajo = ids.idTrabajo.toString();
+    idReportante = ids.idReportante.toString();
+    idReportado = ids.idReportado.toString();
 
     if (idReportante === idReportado) {
         return NextResponse.json(
