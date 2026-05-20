@@ -1,65 +1,80 @@
-import Image from "next/image";
+import { Star, Briefcase, Calendar } from 'lucide-react';
+
+interface ReviewPendiente {
+  id: string;
+  nombreUsuario: string;
+  tipoDeTrabajo: string;
+  fechaFin: string;
+}
+
+const reviewsPendientes: ReviewPendiente[] = [
+  { id: "1", nombreUsuario: "Carlos Pérez", tipoDeTrabajo: "Plomería", fechaFin: "2025-05-10" },
+  { id: "2", nombreUsuario: "Laura Gómez", tipoDeTrabajo: "Electricidad", fechaFin: "2025-05-14" },
+  { id: "3", nombreUsuario: "Marcos Silva", tipoDeTrabajo: "Pintura", fechaFin: "2025-05-17" },
+];
 
 export default function Home() {
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+  };
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
+    <div className="p-8">
+      {/* Header de sección */}
+      <div className="mb-12">
+        <div className="text-xs uppercase tracking-widest text-brand-accent-mid font-semibold mb-2">
+          Pendientes
+        </div>
+        <h1 className="text-4xl font-bold text-white mb-3">Reviews pendientes</h1>
+        <p className="text-brand-accent-mid">Estos trabajos esperan tu valoración</p>
+      </div>
+
+      {/* Grid de cards */}
+      {reviewsPendientes.length > 0 ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {reviewsPendientes.map((review) => (
+            <div
+              key={review.id}
+              className="bg-brand-card rounded-xl p-6 border border-brand-accent-soft/20 hover:border-brand-accent-strong/40 transition-all duration-300 hover:shadow-lg hover:shadow-brand-accent-strong/10"
             >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+              {/* Header de la card */}
+              <div className="flex items-start justify-between mb-4">
+                <div>
+                  <h3 className="text-lg font-bold text-white">{review.nombreUsuario}</h3>
+                  <p className="text-sm text-brand-accent-mid mt-1">{review.tipoDeTrabajo}</p>
+                </div>
+                <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
+                  <Star size={18} className="text-brand-accent-strong" />
+                </div>
+              </div>
+
+              {/* Fecha */}
+              <div className="flex items-center gap-2 text-brand-accent-mid text-sm mb-6">
+                <Calendar size={16} />
+                <span>{formatDate(review.fechaFin)}</span>
+              </div>
+
+              {/* Botón */}
+              <button className="w-full bg-brand-accent-strong hover:bg-brand-accent-strong/80 text-white font-semibold py-3 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
+                <Briefcase size={18} />
+                Dejar review
+              </button>
+            </div>
+          ))}
+        </div>
+      ) : (
+        /* Estado vacío */
+        <div className="flex flex-col items-center justify-center py-16 px-4">
+          <div className="bg-brand-accent-soft/10 p-4 rounded-full mb-4">
+            <Star size={48} className="text-brand-accent-mid" />
+          </div>
+          <h2 className="text-2xl font-bold text-white mb-2">Sin reviews pendientes</h2>
+          <p className="text-brand-accent-mid text-center">
+            ¡Excelente! Completaste todas tus valoraciones. Estamos listos para los próximos trabajos.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+      )}
     </div>
   );
 }

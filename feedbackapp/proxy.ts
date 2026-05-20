@@ -11,17 +11,18 @@ const isPublicRoute = createRouteMatcher([
   "/api/reviews(.*)",              // API: otras apps leen/agregan reviews  
   "/api/trabajos(.*)",             // API: otras apps consultan trabajos  
   "/api/usuarios(.*)",             // API: Webhook que inyecta usuarios nuevos 
+  "/"
 ]);
 
 /**
  */
-export default clerkMiddleware((auth, req) => {
+export default clerkMiddleware(async (auth, req) => {
   if (req.nextUrl.pathname.startsWith('/sign-up')) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
   if (!isPublicRoute(req)) {
-    const { userId } = auth();
+    const { userId } = await auth();
     if (!userId) {
       return NextResponse.redirect(new URL('/login', req.url))
     }
