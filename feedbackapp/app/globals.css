@@ -20,6 +20,41 @@
   fallback: 'Inter', system-ui, sans-serif;
 }
 
+@keyframes starRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes briefcaseSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+}
+
+.star-rotate {
+  animation: starRotate 0.3s ease-out forwards;
+}
+
+.briefcase-slide {
+  animation: briefcaseSlide 0.2s ease-out forwards;
+}
+
+/* Animaciones de hover para cards */
+.review-card:hover .star-icon {
+  animation: starRotate 0.3s ease-out forwards;
+}
+
+.review-card:hover .briefcase-icon {
+  animation: briefcaseSlide 0.2s ease-out forwards;
+}
+
 body {
   background: var(--brand-bg);
   color: #ffffff;

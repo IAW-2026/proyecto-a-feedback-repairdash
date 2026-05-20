@@ -36,7 +36,7 @@ export default function Home() {
           {reviewsPendientes.map((review) => (
             <div
               key={review.id}
-              className="bg-brand-card rounded-xl p-6 border border-brand-accent-soft/20 hover:border-brand-accent-strong/40 transition-all duration-300 hover:shadow-lg hover:shadow-brand-accent-strong/10"
+              className="review-card bg-brand-card rounded-xl p-6 border border-brand-accent-soft/20 cursor-pointer transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20"
             >
               {/* Header de la card */}
               <div className="flex items-start justify-between mb-4">
@@ -45,7 +45,7 @@ export default function Home() {
                   <p className="text-sm text-brand-accent-mid mt-1">{review.tipoDeTrabajo}</p>
                 </div>
                 <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
-                  <Star size={18} className="text-brand-accent-strong" />
+                  <Star size={18} className="star-icon text-brand-accent-strong transition-transform duration-300" />
                 </div>
               </div>
 
@@ -56,8 +56,8 @@ export default function Home() {
               </div>
 
               {/* Botón */}
-              <button className="w-full bg-brand-accent-strong hover:bg-brand-accent-strong/80 text-white font-semibold py-3 rounded-lg transition-colors duration-200 flex items-center justify-center gap-2">
-                <Briefcase size={18} />
+              <button className="w-full bg-brand-accent-strong hover:bg-brand-accent-strong text-white font-semibold py-3 rounded-lg transition-all duration-200 ease-out hover:scale-[1.02] flex items-center justify-center gap-2 cursor-pointer active:scale-95">
+                <Briefcase size={18} className="briefcase-icon transition-transform duration-200" />
                 Dejar review
               </button>
             </div>

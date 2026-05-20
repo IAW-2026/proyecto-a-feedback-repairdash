@@ -43,10 +43,10 @@ export function Sidebar() {
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${
+                  className={`flex items-center gap-3 px-4 py-3 rounded-lg transition-all duration-200 ease-out ${
                     isActive
                       ? 'bg-brand-accent-soft text-white'
-                      : 'text-brand-accent-mid hover:bg-brand-accent-soft/10'
+                      : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1'
                   }`}
                 >
                   <Icon size={20} />
@@ -60,7 +60,7 @@ export function Sidebar() {
 
       {/* Logout */}
       <div className="p-4 border-t border-brand-accent-soft/20">
-        <button className="flex items-center gap-3 w-full px-4 py-3 rounded-lg text-brand-accent-mid hover:bg-brand-accent-soft/10 transition-colors">
+        <button className="flex items-center gap-3 w-full px-4 py-3 rounded-lg text-brand-accent-mid transition-all duration-200 ease-out hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1">
           <LogOut size={20} />
           <span className="font-medium">Cerrar sesión</span>
         </button>
