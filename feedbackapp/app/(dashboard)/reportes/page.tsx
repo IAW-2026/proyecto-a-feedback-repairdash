@@ -44,7 +44,8 @@ interface ReporteCard {
 
 function ReporteCard({ reporte }: { reporte: ReporteCard }) {
   return (
-    <div className="bg-[#3a1f52] rounded-lg p-6 border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
+    <Link href={`/reportes/${reporte.id}`}>
+      <div className="bg-[#3a1f52] rounded-lg p-6 border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
       <div className="flex justify-between items-start mb-4">
         <div>
           <h3 className="font-gilroy font-bold text-[#fbdaf9] text-lg">{reporte.nombreUsuario}</h3>
@@ -92,7 +93,8 @@ function ReporteCard({ reporte }: { reporte: ReporteCard }) {
       <div className="flex items-center gap-2 text-[#8d62a5] text-sm">
         <span>📅 {reporte.fecha}</span>
       </div>
-    </div>
+      </div>
+    </Link>
   );
 }
 
