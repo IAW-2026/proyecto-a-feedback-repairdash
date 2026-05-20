@@ -12,23 +12,20 @@ datasource db {
 }
 
 model Usuario {
-  id                     String         @id
+  id                     String      @id
   mail                   String      @unique
   nombre                 String
   apellido               String
   valoracion             Int
   tipo                   TipoUsuario
+  activo                 Boolean     @default(true)
   trabajosComoCliente    Trabajo[]   @relation("TrabajoCliente") //Esto son nombres a las relaciones
   trabajosComoTrabajador Trabajo[]   @relation("TrabajoTrabajador")
   reviews                Review[]
   reportesHechos         Reporte[]   @relation("ReporteReportante")
   reportesRecibidos      Reporte[]   @relation("ReporteReportado")
   //Un usuario tiene N trabajos dependiendo de lo que haga y cada trabajo tiene un cliente
-  /**
-   * /**
-   * /**
-   * /**
-   * /**
+   /**
    * /**
    * /**
    * /*CONSULTAR
@@ -43,7 +40,7 @@ enum TipoUsuario {
 }
 
 model Trabajo {
-  id            String       @id
+  id            String    @id
   idCliente     String
   idTrabajador  String
   tipoDeTrabajo String
@@ -74,7 +71,7 @@ model Review {
 
 //Preguntar si esto esta bien.
 model Reporte {
-  id           String       @id @default(uuid())
+  id           String    @id @default(uuid())
   idTrabajo    String    @unique
   idReportado  String
   idReportante String
@@ -92,7 +89,7 @@ enum Fallo {
 }
 
 model Pruebas {
-  id        String     @id  
+  id        String  @id @default(uuid())
   idReporte String
   tipo      String
   url       String

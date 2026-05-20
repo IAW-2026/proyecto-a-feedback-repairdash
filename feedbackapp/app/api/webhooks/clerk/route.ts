@@ -184,48 +184,21 @@ async function handleUserDeleted(data: any) {
     const prismaClient = getPrisma();
     const usuarioExistente = await prismaClient.usuario.findUnique({
       where: { id: data.id },
-      include: {
-        trabajosComoCliente: true,
-        trabajosComoTrabajador: true,
-        reviews: true,
-        reportesHechos: true,
-        reportesRecibidos: true,
-      },
     });
 
     if (!usuarioExistente) {
-      console.warn(`[WEBHOOK] Usuario ${data.id} no encontrado en BD. No se elimina.`);
+      console.warn(`[WEBHOOK] Usuario ${data.id} no encontrado en BD. No se desactiva.`);
       return;
     }
 
-    // Verificar si tiene dependencias activas
-    const tieneTrabajos =
-      usuarioExistente.trabajosComoCliente.length > 0 ||
-      usuarioExistente.trabajosComoTrabajador.length > 0;
-    const tieneReviews = usuarioExistente.reviews.length > 0;
-    const tieneReportes =
-      usuarioExistente.reportesHechos.length > 0 ||
-      usuarioExistente.reportesRecibidos.length > 0;
-
-    if (tieneTrabajos || tieneReviews || tieneReportes) {
-      console.warn(
-        `[WEBHOOK] No se puede eliminar usuario ${data.id}. Tiene dependencias:` +
-        `\n  - Trabajos: ${tieneTrabajos}` +
-        `\n  - Reviews: ${tieneReviews}` +
-        `\n  - Reportes: ${tieneReportes}`
-      );
-
-      return;
-    }
-
-    // Si no hay dependencias, eliminar
-    await prismaClient.usuario.delete({
+    await prismaClient.usuario.update({
       where: { id: data.id },
+      data: { activo: false },
     });
 
-    console.log(`[WEBHOOK] Usuario eliminado: ${data.id}`);
+    console.log(`[WEBHOOK] Usuario desactivado: ${data.id}`);
   } catch (error) {
-    console.error('[WEBHOOK] Error eliminando usuario:', error);
+    console.error('[WEBHOOK] Error desactivando usuario:', error);
     throw error;
   }
 }
