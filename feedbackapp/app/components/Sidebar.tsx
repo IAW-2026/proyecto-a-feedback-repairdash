@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, Settings, LogOut } from 'lucide-react';
+import { Home, BarChart3, Settings, LogOut, User } from 'lucide-react';
 
 export function Sidebar() {
   const pathname = usePathname();
@@ -17,6 +17,11 @@ export function Sidebar() {
       label: 'Reportes',
       href: '/reportes',
       icon: BarChart3,
+    },
+    {
+      label: 'Perfil',
+      href: '/perfil',
+      icon: User,
     },
     {
       label: 'Configuración',
