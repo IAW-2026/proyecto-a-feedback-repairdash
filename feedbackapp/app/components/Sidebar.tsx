@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, LogOut, User, X, Star } from 'lucide-react';
+import { Home, BarChart3, LogOut, User, X, Star, Shield } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface SidebarProps {
@@ -46,6 +46,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       href: '/perfil',
       icon: User,
     },
+    {
+      label: 'Admin',
+      href: '/admin/reportes',
+      icon: Shield,
+    },
   ];
 
   return (
@@ -86,9 +91,14 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* Logo / App Name */}
         <div className="p-[clamp(1rem,4vw,1.5rem)] border-b border-brand-accent-soft/20">
-          <h1 className="font-gilroy font-bold text-white" style={{ fontSize: 'clamp(1.25rem, 5vw, 1.5rem)' }}>
-            Feedback App
-          </h1>
+          <div className="flex flex-col">
+            <span className="text-2xl font-bold text-white font-gilroy leading-tight">
+              RepairDash
+            </span>
+            <span className="text-xs font-medium text-[#c392dd] tracking-wide pl-[45%]">
+              Feedback App
+            </span>
+          </div>
         </div>
 
         {/* Navigation */}

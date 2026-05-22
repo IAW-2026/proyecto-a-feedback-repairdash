@@ -29,29 +29,17 @@ export default function Home() {
     <div className="min-h-screen bg-brand-bg flex flex-col items-center justify-center px-[clamp(1rem,4vw,2rem)] py-[clamp(1rem,4vw,2rem)]">
       <div className="w-full max-w-[1100px]">
         {/* Header */}
-        <div className="text-center mb-[clamp(1.5rem,4vw,2.5rem)]">
-          <h1 
-            className="font-gilroy font-bold text-white"
-            style={{ fontSize: 'clamp(1.25rem, 5vw, 1.5rem)' }}
-          >
+        <div className="mb-[clamp(2rem,6vw,4rem)]">
+          <div className="text-xs uppercase tracking-widest text-[#c392dd] font-semibold mb-2">
             Feedback App
-          </h1>
-        </div>
-          {/* Welcome Section */}
-          <div className="text-center mb-[clamp(2rem,6vw,4rem)]">
-            <h2
-              className="font-gilroy font-bold text-white mb-[clamp(0.5rem,2vw,1rem)]"
-              style={{ fontSize: 'clamp(1.4rem, 5vw, 2.2rem)' }}
-            >
-              ¿Qué querés hacer hoy?
-            </h2>
-            <p
-              className="text-brand-accent-mid"
-              style={{ fontSize: 'clamp(1rem, 3vw, 1.4rem)' }}
-            >
-              Accede a las principales funciones de la app
-            </p>
           </div>
+          <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
+            RepairDash
+          </h1>
+          <p className="text-[#c392dd]">
+            Accedé a las principales funciones de la app
+          </p>
+        </div>
 
         {/* Cards Grid - Mobile First */}
         <div className="w-full grid [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] gap-[clamp(1rem,2vw,1.5rem)]">
