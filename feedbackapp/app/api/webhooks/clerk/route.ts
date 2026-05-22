@@ -1,39 +1,39 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { prisma } from '@/lib/prisma';
-import { TipoUsuario } from '@/generated/prisma/client';
+import { rolDeUsuario } from '@/generated/prisma/client';
 
 export async function POST(req: Request) {
   try {
-    /* const headerPayload = await headers();
-   const svix_id = headerPayload.get('svix-id');
-   const svix_timestamp = headerPayload.get('svix-timestamp');
-   const svix_signature = headerPayload.get('svix-signature');
- 
-   // Validar que todos los headers estén presentes
-   if (!svix_id || !svix_timestamp || !svix_signature) {
-     console.warn('[WEBHOOK] Headers de firma incompletos');
-     return new Response('Missing webhook headers', { status: 401 });
-   }
-  
-   const body = await req.text();
+    const headerPayload = await headers();
+    const svix_id = headerPayload.get('svix-id');
+    const svix_timestamp = headerPayload.get('svix-timestamp');
+    const svix_signature = headerPayload.get('svix-signature');
 
-   const wh = new Webhook(process.env.WEBHOOK_SECRET || '');
- 
-   let evt: any;
-   try {
-     evt = wh.verify(body, {
-       'svix-id': svix_id,
-       'svix-timestamp': svix_timestamp,
-       'svix-signature': svix_signature,
-     });
-   } catch (err) {
-     console.error('[WEBHOOK] Error validando firma:', err);
-     return new Response('Unauthorized', { status: 401 });
-   }*/
-    const body = await req.text(); //HAY QUE COMENTARLO DESPUÉS
-    let evt: any; //HAY QUE COMENTARLO DESPUÉS
-    evt = JSON.parse(body); //HAY QUE COMENTARLO DESPUÉS
+    if (!svix_id || !svix_timestamp || !svix_signature) {
+      console.warn('[WEBHOOK] Headers de firma incompletos');
+      return new Response('Missing webhook headers', { status: 401 });
+    }
+
+    const body = await req.text();
+
+    const webhookSecret = process.env.WEBHOOK_SECRET;
+    if (!webhookSecret) {
+      throw new Error('WEBHOOK_SECRET no configurado');
+    }
+
+    const wh = new Webhook(webhookSecret);
+    let evt: any;
+    try {
+      evt = wh.verify(body, {
+        'svix-id': svix_id,
+        'svix-timestamp': svix_timestamp,
+        'svix-signature': svix_signature,
+      });
+    } catch (err) {
+      console.error('[WEBHOOK] Error validando firma:', err);
+      return new Response('Unauthorized', { status: 401 });
+    }
 
     const eventType = evt?.type as string;
 
@@ -66,19 +66,19 @@ async function handleUserCreated(data: any) {
     const email = data.email_addresses?.[0]?.email_address;
     if (!email) throw new Error('Email no proporcionado');
 
-    const userType = data.public_metadata?.tipo || 'Cliente';
-    if (!['Cliente', 'Trabajador'].includes(userType)) {
-      throw new Error(`Tipo de usuario inválido: ${userType}`);
+    const role = data.public_metadata?.role as rolDeUsuario;
+    if (!Object.values(rolDeUsuario).includes(role)) {
+      throw new Error(`Rol inválido o no proporcionado: ${role}`);
     }
 
-    const usuarioCreado = await prisma.usuario.create({ // ← directo, sin ()
+    const usuarioCreado = await prisma.usuario.create({
       data: {
         id: data.id,
         mail: email,
         nombre: data.first_name || '',
         apellido: data.last_name || '',
         valoracion: 0,
-        tipo: userType as TipoUsuario,
+        rol: role,
       },
     });
 
@@ -93,7 +93,7 @@ async function handleUserUpdated(data: any) {
   try {
     if (!data.id) throw new Error('Clerk ID no proporcionado');
 
-    const usuarioExistente = await prisma.usuario.findUnique({ // ← directo
+    const usuarioExistente = await prisma.usuario.findUnique({
       where: { id: data.id },
     });
 
@@ -109,15 +109,15 @@ async function handleUserUpdated(data: any) {
     if (data.first_name && data.first_name !== usuarioExistente.nombre) updateData.nombre = data.first_name;
     if (data.last_name && data.last_name !== usuarioExistente.apellido) updateData.apellido = data.last_name;
 
-    if (data.public_metadata?.tipo) {
-      const newType = data.public_metadata.tipo;
-      if (['Cliente', 'Trabajador'].includes(newType) && newType !== usuarioExistente.tipo) {
-        updateData.tipo = newType;
+    if (data.public_metadata?.role) {
+      const newRole = data.public_metadata.role as rolDeUsuario;
+      if (Object.values(rolDeUsuario).includes(newRole) && newRole !== usuarioExistente.rol) {
+        updateData.rol = newRole;
       }
     }
 
     if (Object.keys(updateData).length > 0) {
-      await prisma.usuario.update({ where: { id: data.id }, data: updateData }); // ← directo
+      await prisma.usuario.update({ where: { id: data.id }, data: updateData });
       console.log(`[WEBHOOK] Usuario actualizado: ${data.id}`);
     } else {
       console.log(`[WEBHOOK] Sin cambios para: ${data.id}`);
@@ -132,7 +132,7 @@ async function handleUserDeleted(data: any) {
   try {
     if (!data.id) throw new Error('Clerk ID no proporcionado');
 
-    const usuarioExistente = await prisma.usuario.findUnique({ // ← directo
+    const usuarioExistente = await prisma.usuario.findUnique({
       where: { id: data.id },
     });
 
@@ -141,7 +141,7 @@ async function handleUserDeleted(data: any) {
       return;
     }
 
-    await prisma.usuario.update({ // ← directo
+    await prisma.usuario.update({
       where: { id: data.id },
       data: { activo: false },
     });
