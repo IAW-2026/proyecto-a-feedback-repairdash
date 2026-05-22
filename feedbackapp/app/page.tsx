@@ -1,65 +1,90 @@
-import Image from "next/image";
+'use client';
+
+import Link from 'next/link';
+import { BarChart3, Star, User } from 'lucide-react';
 
 export default function Home() {
+  const sections = [
+    {
+      label: 'Reportes',
+      href: '/reportes',
+      icon: BarChart3,
+      description: 'Ver y crear reportes',
+    },
+    {
+      label: 'Reviews',
+      href: '/reviews',
+      icon: Star,
+      description: 'Reviews pendientes',
+    },
+    {
+      label: 'Perfil',
+      href: '/perfil',
+      icon: User,
+      description: 'Tu información',
+    },
+  ];
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <div className="min-h-screen bg-brand-bg flex flex-col items-center justify-center px-[clamp(1rem,4vw,2rem)] py-[clamp(1rem,4vw,2rem)]">
+      <div className="w-full max-w-[1100px]">
+        {/* Header */}
+        <div className="mb-[clamp(2rem,6vw,4rem)]">
+          <div className="text-xs uppercase tracking-widest text-[#c392dd] font-semibold mb-2">
+            Feedback App
+          </div>
+          <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
+            RepairDash
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-[#c392dd]">
+            Accedé a las principales funciones de la app
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        {/* Cards Grid - Mobile First */}
+        <div className="w-full grid [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] gap-[clamp(1rem,2vw,1.5rem)]">
+          {sections.map((section) => {
+            const Icon = section.icon;
+            return (
+              <Link
+                key={section.href}
+                href={section.href}
+                className="block w-full"
+              >
+                    <div
+                      className="
+                        w-full min-h-[120px] p-[clamp(1rem,3vw,1.5rem)]
+                        bg-brand-card border border-brand-accent-soft/20 rounded-xl
+                        flex flex-col items-center justify-center gap-[clamp(0.75rem,2vw,1rem)]
+                        cursor-pointer
+                        transition-all duration-300 ease-out
+                        hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-brand-accent-strong/60
+                        hover:shadow-xl hover:shadow-brand-accent-strong/20
+                        active:scale-95
+                      "
+                    >
+                      {/* Icon */}
+                      <div className="bg-brand-accent-strong/10 p-[clamp(0.75rem,2vw,1rem)] rounded-lg">
+                        <Icon
+                          size={48}
+                          className="text-brand-accent-strong"
+                          style={{ width: 'min(48px, 12vw)', height: 'min(48px, 12vw)' }}
+                        />
+                      </div>
+
+                      {/* Label */}
+                      <span
+                        className="font-semibold text-white text-center"
+                        style={{ fontSize: 'clamp(0.9rem, 2.5vw, 1.1rem)' }}
+                      >
+                        {section.label}
+                      </span>
+                    </div>
+              </Link>
+            );
+          })}
         </div>
-      </main>
+      </div>
     </div>
   );
 }

@@ -1,12 +1,11 @@
 //api para recibir trabajos. Cuando se confirma, que me mande toda la data
 import { NextResponse } from "next/server";
-import { getPrisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
-    const prisma = getPrisma();
     const body = await request.json().catch(() => null);
     
     if(!body){
@@ -28,9 +27,9 @@ export async function POST(request: Request) {
 
     const nuevoTrabajo = await prisma.trabajo.create({
       data: {
-        id: parseInt(id),
-        idCliente: parseInt(idCliente),
-        idTrabajador: parseInt(idTrabajador),
+        id: typeof id === 'number' ? id.toString() : id,
+        idCliente: typeof idCliente === 'number' ? idCliente.toString() : idCliente,
+        idTrabajador: typeof idTrabajador === 'number' ? idTrabajador.toString() : idTrabajador,
         tipoDeTrabajo,
         fechaInicio: new Date(), 
       },
