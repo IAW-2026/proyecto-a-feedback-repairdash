@@ -1,12 +1,11 @@
 //api para recibir trabajos. Cuando se confirma, que me mande toda la data
 import { NextResponse } from "next/server";
-import { getPrisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 
 export const dynamic = 'force-dynamic';
 
 export async function POST(request: Request) {
   try {
-    const prisma = getPrisma();
     const body = await request.json().catch(() => null);
     
     if(!body){
