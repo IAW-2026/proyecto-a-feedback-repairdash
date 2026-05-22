@@ -4,7 +4,7 @@ Objetivo: Comenzar un reporte dada una situación que no puede ser resuelta entr
 EndPoint: POST feedback/api/report */ 
 
 import { NextResponse } from "next/server";
-import { getPrisma } from "@/lib/prisma";
+import { prisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
 function validarID(value: unknown): value is number {
@@ -16,7 +16,6 @@ function nombreCompleto(usuario: { nombre: string; apellido: string }) {
 }
 
 export async function POST(request: Request) {
-    const prisma = getPrisma();
     //Si no se envía un JSON. Catch()  vuelve nulo a body
     const body = await request.json().catch(() => null);
 

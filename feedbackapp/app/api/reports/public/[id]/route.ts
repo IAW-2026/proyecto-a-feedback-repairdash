@@ -4,7 +4,7 @@ EndPoint: GET feedback/api/reports/public/:userId Request: nada, el ID ya viaja 
 Response 200 OK:
  { "idUsuario": 1, "reportesAbiertos": 1, "reportesConFalloEnContra": 0 }*/
 import { NextResponse } from "next/server";
-import { getPrisma } from "@/lib/prisma";
+import { prisma }  from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
 function validarID(value: unknown): value is number {
@@ -19,7 +19,6 @@ export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
-    const prisma = getPrisma();
     // Esperamos a que los parámetros estén listos
     const { id } = await params;
     if (!validarID(id)) {
