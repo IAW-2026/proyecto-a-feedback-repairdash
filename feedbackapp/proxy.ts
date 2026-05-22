@@ -14,8 +14,20 @@ const isPublicRoute = createRouteMatcher([
   "/"
 ]);
 
+const isAdminRoute = createRouteMatcher(['/admin(.*)']);
 /**
- */
+ */// middleware.ts
+/*
+export default clerkMiddleware(async (auth, req) => {
+  if (isAdminRoute(req)) {
+    const { sessionClaims } = await auth();
+    const role = sessionClaims?.metadata?.role;
+
+    if (role !== 'admin') {
+      return Response.redirect(new URL('/', req.url));
+    }
+  }
+});*/
 export default clerkMiddleware(async (auth, req) => {
   /*if (req.nextUrl.pathname.startsWith('/sign-up')) {
     return NextResponse.redirect(new URL('/login', req.url))
@@ -26,7 +38,14 @@ export default clerkMiddleware(async (auth, req) => {
     if (!userId) {
       return NextResponse.redirect(new URL('/login', req.url))
     }
-  }*/
+  if (isAdminRoute(req)) {
+    const { sessionClaims } = await auth();
+    const role = sessionClaims?.metadata?.role;
+
+    if (role !== 'admin') {
+      return Response.redirect(new URL('/', req.url));
+    }
+    }*/
 });
 
 export const config = {
