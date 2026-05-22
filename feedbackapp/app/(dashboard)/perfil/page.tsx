@@ -31,7 +31,7 @@ function StarRating({ rating, max = 5 }: { rating: number; max?: number }) {
 
 export default function PerfilPage() {
   return (
-    <div className="p-[clamp(1rem,4vw,2rem)] max-w-full md:max-w-4xl mx-auto w-full">
+    <div className="w-full">
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>

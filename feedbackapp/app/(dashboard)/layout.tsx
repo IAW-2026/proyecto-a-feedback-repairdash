@@ -31,7 +31,11 @@ export default function DashboardLayout({
       <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
 
       {/* Main Content */}
-      <main className="w-full lg:ml-64 min-h-screen flex-1 lg:pt-0 pt-16">{children}</main>
+      <main className="flex-1 w-full min-h-screen flex flex-col items-center overflow-x-hidden lg:pt-[clamp(1.5rem,4vw,3rem)] pt-[calc(4rem+clamp(1.5rem,4vw,3rem))] pb-[clamp(1.5rem,4vw,3rem)] px-[clamp(1rem,4vw,2.5rem)]">
+        <div className="w-full max-w-[1100px]">
+          {children}
+        </div>
+      </main>
     </div>
   );
 }

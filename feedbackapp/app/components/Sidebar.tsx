@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, Settings, LogOut, User, X } from 'lucide-react';
+import { Home, BarChart3, LogOut, User, X, Star } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface SidebarProps {
@@ -32,6 +32,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       icon: Home,
     },
     {
+      label: 'Reviews',
+      href: '/reviews',
+      icon: Star,
+    },
+    {
       label: 'Reportes',
       href: '/reportes',
       icon: BarChart3,
@@ -40,11 +45,6 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       label: 'Perfil',
       href: '/perfil',
       icon: User,
-    },
-    {
-      label: 'Configuración',
-      href: '/configuracion',
-      icon: Settings,
     },
   ];
 
@@ -65,7 +65,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Sidebar Drawer */}
       <aside
-        className="fixed lg:relative left-0 top-0 lg:top-auto h-screen w-64 bg-brand-card border-r border-brand-accent-soft/20 flex flex-col overflow-y-auto transition-transform duration-300 ease-out"
+        className="fixed lg:sticky left-0 top-0 h-screen w-64 lg:w-[190px] lg:flex-shrink-0 bg-brand-card border-r border-brand-accent-soft/20 flex flex-col overflow-y-auto transition-transform duration-300 ease-out"
         style={{
           transform: isMobile ? (isOpen ? 'translateX(0)' : 'translateX(-100%)') : 'translateX(0)',
           zIndex: isOpen && isMobile ? 1000 : 'auto',

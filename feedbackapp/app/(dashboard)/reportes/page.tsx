@@ -118,7 +118,7 @@ function EmptyState({ title }: { title: string }) {
 
 export default function ReportesPage() {
   return (
-    <div className="p-[clamp(1rem,4vw,2rem)] max-w-full md:max-w-6xl lg:max-w-7xl mx-auto w-full">
+    <div className="w-full">
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(1rem,3vw,2rem)]">
@@ -149,7 +149,7 @@ export default function ReportesPage() {
           Reportes enviados
         </h2>
         {reportesEnviados.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,1.5rem)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,2vw,1.75rem)]">
             {reportesEnviados.map((reporte) => (
               <ReporteCard key={reporte.id} reporte={reporte} />
             ))}
@@ -165,7 +165,7 @@ export default function ReportesPage() {
           Reportes recibidos
         </h2>
         {reportesRecibidos.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,1.5rem)]">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,2vw,1.75rem)]">
             {reportesRecibidos.map((reporte) => (
               <ReporteCard key={reporte.id} reporte={reporte} />
             ))}
