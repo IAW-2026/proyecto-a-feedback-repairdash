@@ -1,13 +1,39 @@
 import { Webhook } from 'svix';
 import { headers } from 'next/headers';
 import { prisma } from '@/lib/prisma';
-import { TipoUsuario } from '@/generated/prisma/client'; 
+import { TipoUsuario } from '@/generated/prisma/client';
 
 export async function POST(req: Request) {
   try {
-    const body = await req.text();
-    let evt: any;
-    evt = JSON.parse(body);
+    /* const headerPayload = await headers();
+   const svix_id = headerPayload.get('svix-id');
+   const svix_timestamp = headerPayload.get('svix-timestamp');
+   const svix_signature = headerPayload.get('svix-signature');
+ 
+   // Validar que todos los headers estén presentes
+   if (!svix_id || !svix_timestamp || !svix_signature) {
+     console.warn('[WEBHOOK] Headers de firma incompletos');
+     return new Response('Missing webhook headers', { status: 401 });
+   }
+  
+   const body = await req.text();
+
+   const wh = new Webhook(process.env.WEBHOOK_SECRET || '');
+ 
+   let evt: any;
+   try {
+     evt = wh.verify(body, {
+       'svix-id': svix_id,
+       'svix-timestamp': svix_timestamp,
+       'svix-signature': svix_signature,
+     });
+   } catch (err) {
+     console.error('[WEBHOOK] Error validando firma:', err);
+     return new Response('Unauthorized', { status: 401 });
+   }*/
+    const body = await req.text(); //HAY QUE COMENTARLO DESPUÉS
+    let evt: any; //HAY QUE COMENTARLO DESPUÉS
+    evt = JSON.parse(body); //HAY QUE COMENTARLO DESPUÉS
 
     const eventType = evt?.type as string;
 
