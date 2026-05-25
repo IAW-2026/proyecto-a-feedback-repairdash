@@ -15,12 +15,12 @@ export async function POST(request: Request) {
         );
     }
 
-    const { id, idCliente, idTrabajador, tipoDeTrabajo } = body;
+    const { id, idRider, idDriver, tipoDeTrabajo } = body;
 
     // Validamos que Driverapp nos mande TODO lo necesario
-    if (!id || !idCliente || !idTrabajador || !tipoDeTrabajo) {
+    if (!id || !idRider || !idDriver || !tipoDeTrabajo) {
       return NextResponse.json(
-        { error: "Faltan datos obligatorios (id, idCliente, idTrabajador o tipoDeTrabajo)" },
+        { error: "Faltan datos obligatorios (id, idRider, idDriver o tipoDeTrabajo)" },
         { status: 400 }
       );
     }
@@ -28,8 +28,8 @@ export async function POST(request: Request) {
     const nuevoTrabajo = await prisma.trabajo.create({
       data: {
         id: typeof id === 'number' ? id.toString() : id,
-        idCliente: typeof idCliente === 'number' ? idCliente.toString() : idCliente,
-        idTrabajador: typeof idTrabajador === 'number' ? idTrabajador.toString() : idTrabajador,
+        idRider: typeof idRider === 'number' ? idRider.toString() : idRider,
+        idDriver: typeof idDriver === 'number' ? idDriver.toString() : idDriver,
         tipoDeTrabajo,
         fechaInicio: new Date(), 
       },

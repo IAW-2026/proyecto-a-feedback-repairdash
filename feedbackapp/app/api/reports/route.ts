@@ -73,8 +73,8 @@ export async function POST(request: Request) {
     const trabajo = await prisma.trabajo.findUnique({
         where: { id: idTrabajo },
         include: {
-            cliente: true,
-            trabajador: true,
+            rider: true,
+            driver: true,
             reporte: true,
         },
     });
@@ -93,7 +93,7 @@ export async function POST(request: Request) {
         );
     }
 
-    const usuariosDelTrabajo = [trabajo.idCliente, trabajo.idTrabajador];
+    const usuariosDelTrabajo = [trabajo.idRider, trabajo.idDriver];
     const usuariosValidos =
         usuariosDelTrabajo.includes(idReportante) &&
         usuariosDelTrabajo.includes(idReportado);

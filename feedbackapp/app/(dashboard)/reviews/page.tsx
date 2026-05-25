@@ -1,5 +1,4 @@
-import { Star, User, Calendar } from 'lucide-react';
-
+import { Star, User, Calendar } from 'lucide-react';import PendingReviewGuard from '@/components/PendingReviewGuard';
 // Mock data - reviews sobre mí
 const myReviewProfile = {
   nombre: "Carlos",
@@ -148,7 +147,8 @@ function RatingBar({
 
 export default function MyReviewsPage() {
   return (
-    <div className="w-full">
+    <PendingReviewGuard>
+      <div className="w-full">
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <p
@@ -294,5 +294,6 @@ export default function MyReviewsPage() {
         </div>
       </div>
     </div>
+    </PendingReviewGuard>
   );
 }
