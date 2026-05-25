@@ -2,8 +2,8 @@
 cada usuario hacia el otro, por lo que se debe llamar a feedback app. 
 EndPoint: PUT feedback/api/reviews/user 
 Request: { "idTrabajo": 42 } 
-Response 200 OK: { "status": "ReadyToRate", "datosDelTrabajo": { "idTrabajo": 42, "tipoDeTrabajo": "Flete", "cliente": { "id": 10, "nombre": "Juan" }, 
-"trabajador": { "id": 1, "nombre": "Sebastian" } } }*/
+Response 200 OK: { "status": "ReadyToRate", "datosDelTrabajo": { "idTrabajo": 42, "tipoDeTrabajo": "Flete", "Rider": { "id": 10, "nombre": "Juan" }, 
+"Driver": { "id": 1, "nombre": "Sebastian" } } }*/
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
@@ -39,31 +39,31 @@ export async function PUT(request: Request) {
     const trabajo = await prisma.trabajo.findUnique({
         where: { id: idTrabajoStr },
         include: {
-            cliente: true,
-            trabajador: true
+            rider: true,
+            driver: true
         }
     });
     if (!trabajo) {
         return NextResponse.json({ message: "Trabajo no encontrado" }, { status: 404 });
     }
-    const [reviewCliente, reviewTrabajador] = await prisma.$transaction([
+    const [reviewRider, reviewDriver] = await prisma.$transaction([
         prisma.review.upsert({
             where: {
                 idTrabajo_idUsuario: {  // Prisma autogenera este nombre
                     idTrabajo: idTrabajoStr,
-                    idUsuario: trabajo.idCliente,
+                    idUsuario: trabajo.idRider,
                 }
             },
             update: {},
-            create: { idTrabajo: idTrabajoStr, idUsuario: trabajo.idCliente },
+            create: { idTrabajo: idTrabajoStr, idUsuario: trabajo.idRider },
         }),
         prisma.review.upsert({
             where: {idTrabajo_idUsuario: {
                 idTrabajo: idTrabajoStr,
-                idUsuario: trabajo.idTrabajador,
+                idUsuario: trabajo.idDriver,
             } },
             update: {},
-            create: { idTrabajo: idTrabajoStr, idUsuario: trabajo.idTrabajador },
+            create: { idTrabajo: idTrabajoStr, idUsuario: trabajo.idDriver },
         })
     ]);
 
@@ -73,12 +73,12 @@ export async function PUT(request: Request) {
             datosDelTrabajo: {
                 idTrabajo: trabajo.id,
                 tipoDeTrabajo: trabajo.tipoDeTrabajo,
-                cliente: { id: trabajo.cliente.id, nombre: nombreCompleto(trabajo.cliente) },
-                trabajador: { id: trabajo.trabajador.id, nombre: nombreCompleto(trabajo.trabajador) },
+                rider: { id: trabajo.rider.id, nombre: nombreCompleto(trabajo.rider) },
+                driver: { id: trabajo.driver.id, nombre: nombreCompleto(trabajo.driver) },
             },
             reviews: {
-                cliente: { idReview: reviewCliente.id, idUsuario: reviewCliente.idUsuario },
-                trabajador: { idReview: reviewTrabajador.id, idUsuario: reviewTrabajador.idUsuario },
+                rider: { idReview: reviewRider.id, idUsuario: reviewRider.idUsuario },
+                driver: { idReview: reviewDriver.id, idUsuario: reviewDriver.idUsuario },
             },
         },
         { status: 200 }
