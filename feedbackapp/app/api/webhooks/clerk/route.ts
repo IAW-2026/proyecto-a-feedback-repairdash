@@ -80,17 +80,15 @@ export async function POST(req: Request) {
 }
 
 async function handleUserCreated(data: any) {
-  try {
+   try {
     if (!data.id) throw new Error('Clerk ID no proporcionado');
 
     const email = data.email_addresses?.[0]?.email_address;
     if (!email) throw new Error('Email no proporcionado');
 
-    const role = getMetadataRole(data);
-    if (!role) {
-      throw new Error(`Rol inválido o no proporcionado en metadata`);
-    }
-
+    // Si no hay rol, usar 'rider' como default
+    const role = getMetadataRole(data) ?? 'rider';
+    //Luego se actualiza
     const usuarioCreado = await prisma.usuario.create({
       data: {
         id: data.id,
