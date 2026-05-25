@@ -46,8 +46,8 @@ export async function GET(
         where: {
             trabajo: {
                 OR: [
-                    { idCliente: id },
-                    { idTrabajador: id }
+                    { idRider: id },
+                    { idDriver: id }
                 ]
             },
             idUsuario: { not: id } 
