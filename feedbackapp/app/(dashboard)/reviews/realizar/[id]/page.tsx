@@ -1,24 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { Star, Briefcase, Calendar, Send, AlertCircle, CheckCircle } from 'lucide-react';
-
-// Mock data
-const reviewPendiente = {
-  id: '1',
-  trabajo: {
-    id: 't1',
-    tipoDeTrabajo: 'Plomería',
-    fechaInicio: '2025-04-01',
-    fechaFin: '2025-05-10',
-  },
-  usuarioAEvaluar: {
-    id: 'u1',
-    nombre: 'Carlos',
-    apellido: 'Pérez',
-    tipo: 'Trabajador',
-  },
-};
+import { useState, useEffect } from 'react';
+import { useParams, useRouter } from 'next/navigation';
+import { Star, Briefcase, Calendar, Send, AlertCircle, CheckCircle, Loader } from 'lucide-react';
 
 // Rating labels
 const ratingLabels: Record<number, string> = {
@@ -40,20 +24,64 @@ function getInitials(nombre: string, apellido: string): string {
   return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase();
 }
 
+interface ReviewData {
+  id: string;
+  trabajo: {
+    id: string;
+    tipoDeTrabajo: string;
+    fechaInicio: string;
+    fechaFin: string;
+  };
+  usuarioAEvaluar: {
+    id: string;
+    nombre: string;
+    apellido: string;
+    rol: string;
+  };
+}
+
 export default function RealizarReviewPage() {
+  const params = useParams();
+  const router = useRouter();
+  const reviewId = params.id as string;
+
   const [puntaje, setPuntaje] = useState<number | null>(null);
   const [hoverPuntaje, setHoverPuntaje] = useState<number | null>(null);
   const [review, setReview] = useState('');
   const [enviando, setEnviando] = useState(false);
   const [enviado, setEnviado] = useState(false);
-  const [errores, setErrores] = useState<{ puntaje?: string; review?: string }>({});
+  const [cargando, setCargando] = useState(true);
+  const [errorCarga, setErrorCarga] = useState<string | null>(null);
+  const [errores, setErrores] = useState<{ puntaje?: string; review?: string; api?: string }>({});
+  const [reviewPendiente, setReviewPendiente] = useState<ReviewData | null>(null);
 
-  const { trabajo, usuarioAEvaluar } = reviewPendiente;
-  const initials = getInitials(usuarioAEvaluar.nombre, usuarioAEvaluar.apellido);
+  // Cargar datos de la review
+  useEffect(() => {
+    const cargarReview = async () => {
+      try {
+        const response = await fetch(`/api/reviews/${reviewId}`)
+        if (!response.ok) {
+          setErrorCarga('No se pudo cargar la review')
+          return
+        }
+        const data = await response.json()
+        setReviewPendiente(data.review)
+      } catch (error) {
+        console.error('Error cargando review:', error)
+        setErrorCarga('Error al cargar la review')
+      } finally {
+        setCargando(false)
+      }
+    }
+
+    if (reviewId) {
+      cargarReview()
+    }
+  }, [reviewId]);
 
   // Validar y enviar
   const handleEnviar = async () => {
-    const nuevosErrores: { puntaje?: string; review?: string } = {};
+    const nuevosErrores: { puntaje?: string; review?: string; api?: string } = {};
 
     if (puntaje === null) {
       nuevosErrores.puntaje = 'Seleccioná un puntaje para continuar';
@@ -65,30 +93,47 @@ export default function RealizarReviewPage() {
 
     setErrores(nuevosErrores);
 
-    if (Object.keys(nuevosErrores).length === 0) {
-      // Simular envío
+    if (Object.keys(nuevosErrores).length === 0 && reviewPendiente) {
       setEnviando(true);
+      setErrores({});
 
-      // Mock submit - log data
-      console.log('Review enviada:', {
-        idReview: reviewPendiente.id,
-        idUsuarioAEvaluar: usuarioAEvaluar.id,
-        idTrabajo: trabajo.id,
-        puntaje,
-        review,
-        timestamp: new Date().toISOString(),
-      });
+      try {
+        const response = await fetch(`/api/reviews/${reviewId}`, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            valoracion: puntaje,
+            review,
+          }),
+        });
 
-      // Simular delay de envío
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+        const data = await response.json();
 
-      setEnviando(false);
-      setEnviado(true);
+        if (!response.ok) {
+          if (response.status === 400) {
+            setErrores({ api: data.error || 'Error de validación' });
+          } else {
+            setErrores({ api: data.error || 'Hubo un error al enviar la review' });
+          }
+          setEnviando(false);
+          return;
+        }
 
-      // Mostrar estado de éxito por 2 segundos, luego redirigir
-      setTimeout(() => {
-        window.location.href = '/dashboard';
-      }, 2000);
+        setEnviando(false);
+        setEnviado(true);
+
+        // Redirigir después de 2 segundos
+        setTimeout(() => {
+          router.push('/');
+          router.refresh();
+        }, 2000);
+      } catch (error) {
+        console.error('Error enviando review:', error);
+        setErrores({ api: 'Hubo un error al enviar la review' });
+        setEnviando(false);
+      }
     }
   };
 
@@ -112,6 +157,42 @@ export default function RealizarReviewPage() {
       </div>
     );
   }
+
+  // Pantalla de carga
+  if (cargando) {
+    return (
+      <div className="p-8">
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 p-8 max-w-xl w-full text-center">
+            <Loader size={48} className="text-[#f500f1] mx-auto mb-4 animate-spin" />
+            <p className="text-[#c392dd]">Cargando review...</p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Pantalla de error de carga
+  if (errorCarga || !reviewPendiente) {
+    return (
+      <div className="p-8">
+        <div className="flex items-center justify-center min-h-[60vh]">
+          <div className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 p-8 max-w-xl w-full text-center">
+            <AlertCircle size={48} className="text-red-400 mx-auto mb-4" />
+            <h2 className="text-2xl font-bold text-[#fbdaf9] mb-4">
+              Error
+            </h2>
+            <p className="text-[#c392dd]">
+              {errorCarga || 'No se pudo cargar la review'}
+            </p>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  const { trabajo, usuarioAEvaluar } = reviewPendiente;
+  const initials = getInitials(usuarioAEvaluar.nombre, usuarioAEvaluar.apellido);
 
   return (
     <div className="p-8">
@@ -156,7 +237,7 @@ export default function RealizarReviewPage() {
                   {usuarioAEvaluar.nombre} {usuarioAEvaluar.apellido}
                 </h2>
                 <span className="inline-block mt-2 px-3 py-1 bg-[#8d62a5]/20 rounded-full text-xs text-[#c392dd] font-medium">
-                  {usuarioAEvaluar.tipo}
+                  {usuarioAEvaluar.rol}
                 </span>
               </div>
             </div>
@@ -258,7 +339,7 @@ export default function RealizarReviewPage() {
               <textarea
                 value={review}
                 onChange={(e) => {
-                  setReview(e.target.value.slice(0, 500));
+                  setReview(e.target.value.slice(0, 1000));
                   setErrores({ ...errores, review: undefined });
                 }}
                 placeholder="Contá tu experiencia con este usuario..."
@@ -274,15 +355,22 @@ export default function RealizarReviewPage() {
                       {errores.review}
                     </p>
                   )}
+                  {errores.api && (
+                    <p className="text-red-400 text-xs">
+                      {errores.api}
+                    </p>
+                  )}
                 </div>
                 <span
                   className={`text-xs ${
-                    review.length > 500 || review.length < 10
+                    review.length > 1000
+                      ? 'text-red-400 font-semibold'
+                      : review.length < 10
                       ? 'text-red-400'
                       : 'text-[#8d62a5]'
                   }`}
                 >
-                  {review.length} / 500
+                  {review.length} / 1000
                 </span>
               </div>
             </div>
@@ -290,9 +378,9 @@ export default function RealizarReviewPage() {
             {/* Botón enviar */}
             <button
               onClick={handleEnviar}
-              disabled={puntaje === null || review.length < 10 || enviando}
+              disabled={puntaje === null || review.length < 10 || review.length > 1000 || enviando}
               className={`w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
-                puntaje !== null && review.length >= 10 && !enviando
+                puntaje !== null && review.length >= 10 && review.length <= 1000 && !enviando
                   ? 'bg-[#f500f1] text-white cursor-pointer hover:scale-[1.02]'
                   : 'bg-[#f500f1] text-white opacity-50 cursor-not-allowed'
               }`}
