@@ -12,8 +12,9 @@ export default async function ReviewsPage({
     throw new Error('Usuario no autenticado')
   }
   // Parámetros de paginación y búsqueda
-  const page = parseInt(searchParams.page ?? '1')
-  const search = searchParams.search ?? ''
+  const params = await searchParams
+  const page = parseInt(params.page ?? '1')
+  const search = params.search ?? ''
   const POR_PAGINA = 10
 
   // Construir el where clause
