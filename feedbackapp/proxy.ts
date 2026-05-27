@@ -11,41 +11,28 @@ const isPublicRoute = createRouteMatcher([
   "/api/reviews(.*)",              // API: otras apps leen/agregan reviews  
   "/api/trabajos(.*)",             // API: otras apps consultan trabajos  
   "/api/usuarios(.*)",             // API: Webhook que inyecta usuarios nuevos 
-  "/"
 ]);
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)']);
-/**
- */// middleware.ts
-/*
 export default clerkMiddleware(async (auth, req) => {
-  if (isAdminRoute(req)) {
-    const { sessionClaims } = await auth();
-    const role = sessionClaims?.metadata?.role;
-
-    if (role !== 'admin') {
-      return Response.redirect(new URL('/', req.url));
-    }
-  }
-});*/
-export default clerkMiddleware(async (auth, req) => {
-  /*if (req.nextUrl.pathname.startsWith('/sign-up')) {
+  if (req.nextUrl.pathname.startsWith('/sign-up')) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
- /* if (!isPublicRoute(req)) {
+  if (!isPublicRoute(req)) {
     const { userId } = await auth();
     if (!userId) {
       return NextResponse.redirect(new URL('/login', req.url))
     }
+  }
   if (isAdminRoute(req)) {
     const { sessionClaims } = await auth();
-    const role = sessionClaims?.metadata?.role;
-
-    if (role !== 'admin') {
-      return Response.redirect(new URL('/', req.url));
+    const role = (sessionClaims?.metadata as any)?.role;
+    const isAdmin = role === 'feedbackAdmin' || role === "admin";
+    if (!isAdmin) {
+      return NextResponse.redirect(new URL('/', req.url));
     }
-    }*/
+  }
 });
 
 export const config = {
