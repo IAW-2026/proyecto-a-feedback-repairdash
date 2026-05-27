@@ -113,11 +113,11 @@ export default function ReviewsClient({
       <div className="mb-8 flex items-start justify-between">
         <div>
           <div className="text-xs uppercase tracking-widest text-[#c392dd] mb-2">
-            MIS REVIEWS
+            REVIEWS RECIBIDAS
           </div>
-          <h1 className="text-4xl font-bold text-white mb-3">Mi perfil</h1>
+          <h1 className="text-4xl font-bold text-white mb-3">Reviews recibidas</h1>
           <p className="text-[#c392dd]">
-            Resumen de valoraciones recibidas
+            Reviews recibidas por trabajos que realicé
           </p>
         </div>
 

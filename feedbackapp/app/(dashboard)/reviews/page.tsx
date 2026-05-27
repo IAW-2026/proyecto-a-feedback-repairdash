@@ -17,15 +17,17 @@ export default async function ReviewsPage({
   const search = params.search ?? ''
   const POR_PAGINA = 10
 
-  // Construir el where clause
+  // Construir el where clause para reviews recibidas
   const whereClause = {
-    idUsuario: user.id,
-    review: { not: null },
+    estaCompleta: true,
     trabajo: {
       OR: [
-        { tipoDeTrabajo: { contains: search, mode: 'insensitive' as const } }
-      ]
-    }
+        { idRider: user.id },
+        { idDriver: user.id }
+      ],
+      ...(search ? { tipoDeTrabajo: { contains: search, mode: 'insensitive' as const } } : {})
+    },
+    NOT: { idUsuario: user.id }  // Reviews escritas por otros, no por mí
   }
 
   // Obtener reviews paginadas
@@ -49,18 +51,8 @@ export default async function ReviewsPage({
 
   const totalPaginas = Math.ceil(total / POR_PAGINA)
 
-  // Calcular promedio de todas las reviews (sin paginación)
-  const todasLasReviews = await prisma.review.findMany({
-    where: {
-      idUsuario: user.id,
-      valoracion: { not: null }
-    },
-    select: { valoracion: true }
-  })
-
-  const promedio = todasLasReviews.length > 0
-    ? (todasLasReviews.reduce((acc, r) => acc + r.valoracion!, 0) / todasLasReviews.length).toFixed(1)
-    : null
+  // Obtener promedio del atributo del usuario
+  const promedio = user.valoracion > 0 ? user.valoracion.toString() : null
 
   return (
     <ReviewsClient
