@@ -5,7 +5,7 @@ import { prisma } from '@/lib/prisma'
 export async function getCurrentUser() {
   const { userId } = await auth()
   if (!userId) {
-   // throw new Error('Usuario no autenticado')
+    return null
   }
   const user = await prisma.usuario.findUnique({ where: { id: userId } })
   if (!user) {
