@@ -4,9 +4,11 @@ import { NextRequest, NextResponse } from 'next/server'
 
 export async function GET(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise< { id: string }> }
 ) {
   try {
+    const { id } = await params;
+    
     // Verificar autenticación
     const { userId } = await auth()
     if (!userId) {
@@ -14,8 +16,9 @@ export async function GET(
     }
 
     // Obtener la review
+    
     const review = await prisma.review.findUnique({
-      where: { id: params.id },
+      where: { id: id },
       include: {
         trabajo: true,
         autor: true,
@@ -65,9 +68,11 @@ export async function GET(
 
 export async function PUT(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise< { id: string }> }
 ) {
   try {
+    const { id } = await params;
+    
     // Verificar autenticación
     const { userId } = await auth()
     if (!userId) {
@@ -102,7 +107,7 @@ export async function PUT(
 
     // Obtener la review para verificar que pertenece al usuario
     const reviewRecord = await prisma.review.findUnique({
-      where: { id: params.id },
+      where: { id: id },
     })
 
     if (!reviewRecord) {
@@ -122,7 +127,7 @@ export async function PUT(
 
     // Actualizar la review
     const updatedReview = await prisma.review.update({
-      where: { id: params.id },
+      where: { id: id },
       data: {
         valoracion,
         review,

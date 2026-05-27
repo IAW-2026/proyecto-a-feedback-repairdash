@@ -27,7 +27,7 @@ interface Trabajo {
   id: string;
   tipoDeTrabajo: string;
   fechaInicio: Date;
-  fechaFin: Date;
+  fechaFin: Date | null;
 }
 
 interface UsuarioAEvaluar {
@@ -220,7 +220,7 @@ export default function RealizarReviewForm({
                 <Calendar size={18} className="text-[#c392dd] flex-shrink-0" />
                 <span className="text-sm text-[#fbdaf9]">
                   {formatDate(trabajo.fechaInicio.toString())} →{' '}
-                  {formatDate(trabajo.fechaFin.toString())}
+                  {trabajo.fechaFin ? formatDate(trabajo.fechaFin.toString()) : 'Fecha no definida'}
                 </span>
               </div>
             </div>
