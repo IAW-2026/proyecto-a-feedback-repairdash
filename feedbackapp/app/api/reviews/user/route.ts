@@ -2,8 +2,8 @@
 cada usuario hacia el otro, por lo que se debe llamar a feedback app. 
 EndPoint: PUT feedback/api/reviews/user 
 Request: { "idTrabajo": 42 } 
-Response 200 OK: { "status": "ReadyToRate", "datosDelTrabajo": { "idTrabajo": 42, "tipoDeTrabajo": "Flete", "Rider": { "id": 10, "nombre": "Juan" }, 
-"Driver": { "id": 1, "nombre": "Sebastian" } } }*/
+Response 200 OK: { "status": "ReadyToRate", "datosDelTrabajo": { "idTrabajo": 42, "tipoDeTrabajo": "Flete", "rider": { "id": 10, "nombre": "Juan" }, 
+"trabajador": { "id": 1, "nombre": "Sebastian" } } }*/
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)

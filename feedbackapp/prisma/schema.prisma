@@ -48,22 +48,24 @@ model Trabajo {
 }
 
 model Review {
-  id         String  @id @default(uuid())
-  idTrabajo  String
-  idUsuario  String
-  valoracion Int?
-  review     String?
-  autor      Usuario @relation(fields: [idUsuario], references: [id])
-  trabajo    Trabajo @relation(fields: [idTrabajo], references: [id])
+  id           String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idTrabajo    String
+  idUsuario    String
+  estaCompleta Boolean @default(false)
+  valoracion   Int?
+  review       String?
+  autor        Usuario @relation(fields: [idUsuario], references: [id])
+  trabajo      Trabajo @relation(fields: [idTrabajo], references: [id])
 
   @@unique([idTrabajo, idUsuario])
 }
 
 model Reporte {
-  id           String    @id @default(uuid())
+  id           String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
   idTrabajo    String    @unique
   idReportado  String
   idReportante String
+  estaCompleto Boolean   @default(false)
   decision     Fallo?
   pruebas      Pruebas[]
   resolucion   Estado    @default(SinResolver)
@@ -78,8 +80,8 @@ enum Fallo {
 }
 
 model Pruebas {
-  id        String  @id @default(uuid())
-  idReporte String
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idReporte String  @db.Uuid
   tipo      String
   url       String
   reporte   Reporte @relation(fields: [idReporte], references: [id])
