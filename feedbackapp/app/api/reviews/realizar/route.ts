@@ -75,7 +75,7 @@ export async function PUT(request: NextRequest) {
     }
 
     // Actualizar la review
-    const updatedReview = await prisma.review.update({
+    const reviewActualizada = await prisma.review.update({
       where: { id: reviewId },
       data: {
         valoracion,
@@ -84,8 +84,51 @@ export async function PUT(request: NextRequest) {
       },
     });
 
+    // PASO 1: Obtener el trabajo para saber quién es el evaluado
+    const trabajo = await prisma.trabajo.findUnique({
+      where: { id: reviewActualizada.idTrabajo },
+    });
+
+    if (trabajo) {
+      // PASO 2: Determinar el id del usuario evaluado
+      // El usuario evaluado es el OTRO participante del trabajo (no quien escribió la review)
+      const idEvaluado =
+        trabajo.idRider === userId ? trabajo.idDriver : trabajo.idRider;
+
+      // PASO 3 y 4: Obtener todas las reviews recibidas por el evaluado y calcular el promedio
+      const reviewsRecibidas = await prisma.review.findMany({
+        where: {
+          estaCompleta: true,
+          valoracion: { gte: 1 },
+          trabajo: {
+            OR: [
+              { idRider: idEvaluado },
+              { idDriver: idEvaluado },
+            ],
+          },
+          NOT: { idUsuario: idEvaluado },
+        },
+        select: { valoracion: true },
+      });
+
+      // PASO 5: Calcular el nuevo promedio
+      const nuevoPromedio =
+        reviewsRecibidas.length > 0
+          ? Math.round(
+              reviewsRecibidas.reduce((acc, r) => acc + r.valoracion!, 0) /
+                reviewsRecibidas.length
+            )
+          : 0;
+
+      // PASO 6: Actualizar valoracion del usuario evaluado
+      await prisma.usuario.update({
+        where: { id: idEvaluado },
+        data: { valoracion: nuevoPromedio },
+      });
+    }
+
     return NextResponse.json(
-      { ok: true, review: updatedReview },
+      { ok: true, review: reviewActualizada },
       { status: 200 }
     );
   } catch (error) {
