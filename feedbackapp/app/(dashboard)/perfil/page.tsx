@@ -39,25 +39,11 @@ export default async function PerfilPage() {
   }
 
   // Realizar todas las consultas en paralelo
-  const [totalTrabajos, reviews, reportesEnContra, reportesPendientes] = await Promise.all([
+  const [totalTrabajos, reportesEnContra, reportesPendientes] = await Promise.all([
     prisma.trabajo.count({
       where: {
         OR: [{ idRider: user.id }, { idDriver: user.id }],
       },
-    }),
-    prisma.review.findMany({
-      where: {
-        estaCompleta: true,
-        valoracion: { gte: 1 },
-        trabajo: {
-          OR: [
-            { idRider: user.id },
-            { idDriver: user.id }
-          ]
-        },
-        NOT: { idUsuario: user.id }
-      },
-      select: { valoracion: true },
     }),
     prisma.reporte.count({
       where: {
@@ -73,13 +59,8 @@ export default async function PerfilPage() {
     }),
   ]);
 
-  // Calcular promedio de calificaciones
-  const promedioCalificaciones =
-    reviews.length > 0
-      ? parseFloat(
-          (reviews.reduce((acc, r) => acc + (r.valoracion || 0), 0) / reviews.length).toFixed(1)
-        )
-      : null;
+  // Obtener promedio de calificaciones del atributo del usuario
+  const promedioCalificaciones = user.valoracion > 0 ? user.valoracion : null;
 
   return (
     <PendingReviewGuard>
