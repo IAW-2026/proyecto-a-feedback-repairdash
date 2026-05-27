@@ -27,10 +27,10 @@ export default clerkMiddleware(async (auth, req) => {
   }
   if (isAdminRoute(req)) {
     const { sessionClaims } = await auth();
-    const role = (sessionClaims?.publicMetadata as any)?.role;
-
-    if (role !== 'admin') {
-      return Response.redirect(new URL('/', req.url));
+    const role = (sessionClaims?.metadata as any)?.role;
+    const isAdmin = role === 'feedbackAdmin' || role === "admin";
+    if (!isAdmin) {
+      return NextResponse.redirect(new URL('/', req.url));
     }
   }
 });
