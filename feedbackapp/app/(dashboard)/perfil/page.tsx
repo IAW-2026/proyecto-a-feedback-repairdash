@@ -1,17 +1,18 @@
+import { redirect } from 'next/navigation';
 import { User, Mail, Lock, Star, Briefcase, AlertCircle, Clock } from 'lucide-react';
+import { getCurrentUser } from '@/lib/getCurrentUser';
+import { prisma } from '@/lib/prisma';
 import PendingReviewGuard from '@/components/PendingReviewGuard';
 
-// Mock data - TODO: reemplazar con query a base de datos
-const mockUser = {
-  nombre: 'Carlos Méndez',
-  email: 'carlos.mendez@email.com',
-  trabajos: 8,
-  ratingPromedio: 4.3,
-  reportesFallados: 2,
-  reportesPendientes: 3,
-};
+function StarRating({ rating, max = 5 }: { rating: number | null; max?: number }) {
+  if (rating === null) {
+    return (
+      <div className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+        Sin calificaciones
+      </div>
+    );
+  }
 
-function StarRating({ rating, max = 5 }: { rating: number; max?: number }) {
   return (
     <div className="flex flex-wrap items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
       <div className="flex gap-[clamp(0.25rem,0.5vw,0.5rem)]">
@@ -30,7 +31,37 @@ function StarRating({ rating, max = 5 }: { rating: number; max?: number }) {
   );
 }
 
-export default function PerfilPage() {
+export default async function PerfilPage() {
+  // Obtener usuario autenticado
+  const user = await getCurrentUser();
+  if (!user) {
+    redirect('/login');
+  }
+
+  // Realizar todas las consultas en paralelo
+  const [totalTrabajos, reportesEnContra, reportesPendientes] = await Promise.all([
+    prisma.trabajo.count({
+      where: {
+        OR: [{ idRider: user.id }, { idDriver: user.id }],
+      },
+    }),
+    prisma.reporte.count({
+      where: {
+        idReportado: user.id,
+        decision: 'EnContra',
+      },
+    }),
+    prisma.reporte.count({
+      where: {
+        idReportado: user.id,
+        resolucion: 'SinResolver',
+      },
+    }),
+  ]);
+
+  // Obtener promedio de calificaciones del atributo del usuario
+  const promedioCalificaciones = user.valoracion > 0 ? user.valoracion : null;
+
   return (
     <PendingReviewGuard>
       <div className="w-full">
@@ -66,7 +97,7 @@ export default function PerfilPage() {
                 <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
                   <input
                     type="text"
-                    value={mockUser.nombre}
+                    value={`${user.nombre} ${user.apellido}`}
                     disabled
                     className="flex-1 bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] cursor-not-allowed opacity-60 min-h-[44px]"
                     style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}
@@ -86,7 +117,7 @@ export default function PerfilPage() {
                 <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
                   <input
                     type="email"
-                    value={mockUser.email}
+                    value={user.mail}
                     disabled
                     className="flex-1 bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] cursor-not-allowed opacity-60 min-h-[44px]"
                     style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}
@@ -114,7 +145,7 @@ export default function PerfilPage() {
                 Trabajos en los que te viste involucrado
               </p>
               <div className="font-gilroy font-bold text-[#f500f1]" style={{ fontSize: 'clamp(2.5rem, 8vw, 3rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-                {mockUser.trabajos}
+                {totalTrabajos}
               </div>
               <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                 proyectos completados
@@ -136,8 +167,7 @@ export default function PerfilPage() {
                 Calificación promedio recibida
               </p>
               <div className="flex items-center justify-center">
-                {/* TODO: reemplazar con query a base de datos */}
-                <StarRating rating={mockUser.ratingPromedio} />
+                <StarRating rating={promedioCalificaciones} />
               </div>
             </div>
           </div>
@@ -161,7 +191,7 @@ export default function PerfilPage() {
                   </p>
                 </div>
                 <div className="font-gilroy font-bold text-red-400" style={{ fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-                  {mockUser.reportesFallados}
+                  {reportesEnContra}
                 </div>
                 <p className="text-red-300/70" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                   reportes resueltos desfavorablemente
@@ -177,7 +207,7 @@ export default function PerfilPage() {
                   </p>
                 </div>
                 <div className="font-gilroy font-bold text-[#c392dd]" style={{ fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-                  {mockUser.reportesPendientes}
+                  {reportesPendientes}
                 </div>
                 <p className="text-[#c392dd]/70" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                   en evaluación o realizados por ti
@@ -187,6 +217,6 @@ export default function PerfilPage() {
           </div>
         </div>
       </div>
-    </PendingReviewGuard >
+    </PendingReviewGuard>
   );
 }
