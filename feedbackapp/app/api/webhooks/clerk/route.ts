@@ -3,6 +3,26 @@ import { headers } from 'next/headers';
 import { prisma } from '@/lib/prisma';
 import { rolDeUsuario } from '@/generated/prisma/client';
 
+// Validar que el rol sea válido
+function parseRole(value: unknown): rolDeUsuario | null {
+  const validRoles = ['rider', 'driver', 'feedbackAdmin'];
+  if (typeof value === 'string' && validRoles.includes(value)) {
+    return value as rolDeUsuario;
+  }
+  return null;
+}
+
+// Extraer rol de metadata (private primero, luego public)
+function getMetadataRole(user: {
+  public_metadata?: Record<string, unknown> | null;
+  private_metadata?: Record<string, unknown> | null;
+}): rolDeUsuario | null {
+  return (
+    parseRole(user.private_metadata?.role) ??
+    parseRole(user.public_metadata?.role)
+  );
+}
+
 export async function POST(req: Request) {
   try {
     const headerPayload = await headers();
@@ -60,17 +80,15 @@ export async function POST(req: Request) {
 }
 
 async function handleUserCreated(data: any) {
-  try {
+   try {
     if (!data.id) throw new Error('Clerk ID no proporcionado');
 
     const email = data.email_addresses?.[0]?.email_address;
     if (!email) throw new Error('Email no proporcionado');
 
-    const role = data.public_metadata?.role as rolDeUsuario;
-    if (!Object.values(rolDeUsuario).includes(role)) {
-      throw new Error(`Rol inválido o no proporcionado: ${role}`);
-    }
-
+    // Si no hay rol, usar 'rider' como default
+    const role = getMetadataRole(data) ?? 'rider';
+    //Luego se actualiza
     const usuarioCreado = await prisma.usuario.create({
       data: {
         id: data.id,
@@ -109,11 +127,9 @@ async function handleUserUpdated(data: any) {
     if (data.first_name && data.first_name !== usuarioExistente.nombre) updateData.nombre = data.first_name;
     if (data.last_name && data.last_name !== usuarioExistente.apellido) updateData.apellido = data.last_name;
 
-    if (data.public_metadata?.role) {
-      const newRole = data.public_metadata.role as rolDeUsuario;
-      if (Object.values(rolDeUsuario).includes(newRole) && newRole !== usuarioExistente.rol) {
-        updateData.rol = newRole;
-      }
+    const newRole = getMetadataRole(data);
+    if (newRole && newRole !== usuarioExistente.rol) {
+      updateData.rol = newRole;
     }
 
     if (Object.keys(updateData).length > 0) {
