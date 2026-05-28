@@ -65,6 +65,7 @@ model Reporte {
   idTrabajo    String    @unique
   idReportado  String
   idReportante String
+  descripcion  String
   estaCompleto Boolean   @default(false)
   decision     Fallo?
   pruebas      Pruebas[]
