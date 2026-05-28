@@ -7,8 +7,8 @@ import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
-function validarID(value: unknown): value is number {
-    return typeof value === "number" && Number.isInteger(value) && value > 0;
+function validarStringID(value: unknown): value is string {
+    return typeof value === "string" && value.trim().length > 0;
 }
 
 function nombreCompleto(usuario: { nombre: string; apellido: string }) {
@@ -26,16 +26,15 @@ export async function POST(request: Request) {
         );
     }
 
-    let idTrabajo: string;
-    let idReportante: string;
-    let idReportado: string;
-    
     const ids = body;
+    const idTrabajo = ids.idTrabajo;
+    const idReportante = ids.idReportante;
+    const idReportado = ids.idReportado;
 
     if (
-        !validarID(ids.idTrabajo) ||
-        !validarID(ids.idReportante) ||
-        !validarID(ids.idReportado)
+        !validarStringID(idTrabajo) ||
+        !validarStringID(idReportante) ||
+        !validarStringID(idReportado)
     ) {
         return NextResponse.json(
             {
@@ -45,11 +44,6 @@ export async function POST(request: Request) {
             { status: 400 }
         );
     }
-
-    // Convertir IDs a string para Prisma
-    idTrabajo = ids.idTrabajo.toString();
-    idReportante = ids.idReportante.toString();
-    idReportado = ids.idReportado.toString();
 
     if (idReportante === idReportado) {
         return NextResponse.json(
