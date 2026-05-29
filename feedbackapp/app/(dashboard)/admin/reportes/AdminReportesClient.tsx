@@ -228,6 +228,7 @@ export default function AdminReportesClient({
               return (
                 <div
                   key={reporte.id}
+                  onClick={() => router.push(`/admin/reportes/${reporte.id}`)}
                   className="bg-[#3a1f52]/40 border border-[#8d62a5]/30 rounded-lg p-6 hover:border-[#f500f1]/50 transition-all duration-200 hover:shadow-lg hover:shadow-[#f500f1]/10 cursor-pointer"
                 >
                   {/* Encabezado del reporte */}
@@ -278,15 +279,9 @@ export default function AdminReportesClient({
 
                   {/* CTA: Botón para ver detalles */}
                   <div className="flex justify-end">
-                    <button
-                      onClick={() => {
-                        // TODO: Implementar navegación a página de detalles del reporte
-                        // router.push(`/admin/reportes/${reporte.id}`)
-                      }}
-                      className="px-4 py-2 bg-[#f500f1]/20 text-[#f500f1] rounded-lg text-sm font-medium hover:bg-[#f500f1]/30 transition-all duration-200"
-                    >
+                    <span className="px-4 py-2 bg-[#f500f1]/20 text-[#f500f1] rounded-lg text-sm font-medium">
                       Ver detalles
-                    </button>
+                    </span>
                   </div>
                 </div>
               )
