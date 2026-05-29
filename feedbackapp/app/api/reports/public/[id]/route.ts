@@ -7,8 +7,8 @@ import { NextResponse } from "next/server";
 import { prisma }  from "@/lib/prisma";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
-function validarID(value: unknown): value is number {
-    return typeof value === "number" && Number.isInteger(value) && value > 0;
+function validarStringID(value: unknown): value is string {
+    return typeof value === "string" && value.trim().length > 0;
 }
 
 function nombreCompleto(usuario: { nombre: string; apellido: string }) {
@@ -21,7 +21,7 @@ export async function GET(
 ) {
     // Esperamos a que los parámetros estén listos
     const { id } = await params;
-    if (!validarID(id)) {
+    if (!validarStringID(id)) {
         return NextResponse.json(
             { message: "el ID es un ID no válido." },
             { status: 400 }
