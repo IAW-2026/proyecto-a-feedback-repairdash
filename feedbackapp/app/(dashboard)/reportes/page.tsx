@@ -1,6 +1,5 @@
 import { Plus, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
-import PendingReviewGuard from '@/components/PendingReviewGuard';
 
 // Mock data para reportes enviados (que yo hice)
 const reportesEnviados = [
@@ -119,8 +118,7 @@ function EmptyState({ title }: { title: string }) {
 
 export default function ReportesPage() {
   return (
-    <PendingReviewGuard>
-      <div className="w-full">
+    <div className="w-full">
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(1rem,3vw,2rem)]">
@@ -177,6 +175,5 @@ export default function ReportesPage() {
         )}
       </section>
     </div>
-    </PendingReviewGuard>
   );
 }
