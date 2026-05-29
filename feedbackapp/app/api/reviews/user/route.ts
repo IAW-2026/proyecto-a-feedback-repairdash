@@ -4,7 +4,7 @@ EndPoint: POST feedback/api/reviews/user
 Request: { "idTrabajo": "trabajo-001" } 
 Response 201 Created: { "message": "Reviews creadas y trabajo finalizado", "reviews": [{ "idUsuario": "user_123" }, { "idUsuario": "user_456" }] }*/
 import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import prisma from '@/lib/prisma';
 
 export const dynamic = 'force-dynamic';
 
@@ -88,7 +88,7 @@ export async function POST(request: Request) {
     }),
     prisma.trabajo.update({
       where: { id: idTrabajo },
-      data: { activo: false },
+      data: { activo: false, fechaFin: new Date() },
     }),
   ]);
 
