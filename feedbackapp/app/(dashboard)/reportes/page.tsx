@@ -1,4 +1,4 @@
-import { Plus, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
 import { getCurrentUser } from '@/lib/getCurrentUser'
 import { prisma } from '@/lib/prisma'
@@ -139,13 +139,6 @@ export default async function ReportesPage() {
               Seguimiento de reportes enviados y recibidos
             </p>
           </div>
-          <Link
-            href="/reportes/nuevo"
-            className="flex items-center justify-center gap-2 bg-[#f500f1] hover:bg-[#f500f1]/90 text-white font-gilroy font-bold px-[clamp(1rem,3vw,1.5rem)] py-[clamp(0.75rem,2vw,1rem)] rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer min-h-[44px] whitespace-nowrap flex-shrink-0"
-          >
-            <Plus size={20} />
-            <span style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>Nuevo reporte</span>
-          </Link>
         </div>
       </div>
 
