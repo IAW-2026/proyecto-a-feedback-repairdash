@@ -1,6 +1,5 @@
 import Link from 'next/link';
 import { BarChart3, Star, User } from 'lucide-react';
-import PendingReviewGuard from '@/components/PendingReviewGuard';
 
 export default function Home() {
   // ESTADO 2: Sin review pendiente (Dashboard normal)
@@ -26,8 +25,7 @@ export default function Home() {
   ];
 
   return (
-    <PendingReviewGuard>
-      <div className="min-h-screen bg-[#271033] flex flex-col items-center justify-center px-[clamp(1rem,4vw,2rem)] py-[clamp(1rem,4vw,2rem)]">
+    <div className="min-h-screen bg-[#271033] flex flex-col items-center justify-center px-[clamp(1rem,4vw,2rem)] py-[clamp(1rem,4vw,2rem)]">
         <div className="w-full max-w-[1100px]">
           {/* Header */}
           <div className="mb-[clamp(2rem,6vw,4rem)]">
@@ -90,6 +88,5 @@ export default function Home() {
           </div>
         </div>
       </div>
-    </PendingReviewGuard>
   );
 }
