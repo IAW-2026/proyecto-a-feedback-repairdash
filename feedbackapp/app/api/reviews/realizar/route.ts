@@ -1,8 +1,11 @@
+//Se completa una review que el usuario tenia pendiente
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
-import { NextRequest, NextResponse } from 'next/server';
+import { NextResponse } from 'next/server';
 
-export async function PUT(request: NextRequest) {
+export const dynamic = 'force-dynamic';
+
+export async function PUT(request: Request) {
   try {
     // Verificar autenticación
     const { userId } = await auth();
@@ -41,6 +44,12 @@ export async function PUT(request: NextRequest) {
     if (typeof review !== 'string' || review.length > 1000) {
       return NextResponse.json(
         { error: 'La review no puede superar los 1000 caracteres' },
+        { status: 400 }
+      );
+    } 
+    if (review.length < 50){
+      return NextResponse.json(
+        { error: 'La review debe superar los 50 caracteres' },
         { status: 400 }
       );
     }
@@ -114,10 +123,12 @@ export async function PUT(request: NextRequest) {
       // PASO 5: Calcular el nuevo promedio
       const nuevoPromedio =
         reviewsRecibidas.length > 0
-          ? Math.round(
+          ? parseFloat(
+            (
               reviewsRecibidas.reduce((acc, r) => acc + r.valoracion!, 0) /
-                reviewsRecibidas.length
-            )
+              reviewsRecibidas.length
+            ).toFixed(1)
+          )
           : 0;
 
       // PASO 6: Actualizar valoracion del usuario evaluado
