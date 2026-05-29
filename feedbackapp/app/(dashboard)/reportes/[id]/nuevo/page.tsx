@@ -12,7 +12,7 @@ import ReportFormClient from '../ReportFormClient';
  * - El usuario debe estar autenticado
  * - El usuario debe ser el reportante (idReportante)
  * - El reporte debe existir
- * - El reporte debe estar incompleto (estaCompleto === false)
+ * - El reporte debe estar en estado CREADO (aún no se subieron pruebas)
  */
 export default async function ResolveReportPage({
   params,

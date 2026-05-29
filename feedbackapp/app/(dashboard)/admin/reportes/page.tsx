@@ -1,5 +1,6 @@
 import { getCurrentUser } from '@/lib/getCurrentUser'
 import { prisma } from '@/lib/prisma'
+import { Prisma, EstadoReporte } from '@/generated/prisma/client'
 import AdminReportesClient from './AdminReportesClient'
 
 export default async function AdminReportesPage({
@@ -30,28 +31,27 @@ export default async function AdminReportesPage({
   // 3. CONSTRUCCIÓN DEL WHERE CLAUSE
   // ============================================
   // Filtros:
-  // - Mostrar SOLO reportes incompletos (estaCompleto == false)
+  // - Mostrar SOLO reportes pendientes de revisión admin (estado == PRUEBAS_AGREGADAS)
   // - Si hay búsqueda, filtrar por nombre del reportante O reportado
-  const whereClause = {
-    estaCompleto: 'PRUEBAS_AGREGADAS', // Filtro principal: solo reportes incompletos
+  const whereClause: Prisma.ReporteWhereInput = {
+    estado: EstadoReporte.PRUEBAS_AGREGADAS,
     
-    // Si hay texto de búsqueda, filtrar por nombre del reportante o reportado
     ...(search
       ? {
           OR: [
             {
               reportante: {
                 OR: [
-                  { nombre: { contains: search, mode: 'insensitive' as const } },
-                  { apellido: { contains: search, mode: 'insensitive' as const } },
+                  { nombre: { contains: search, mode: 'insensitive' } },
+                  { apellido: { contains: search, mode: 'insensitive' } },
                 ],
               },
             },
             {
               reportado: {
                 OR: [
-                  { nombre: { contains: search, mode: 'insensitive' as const } },
-                  { apellido: { contains: search, mode: 'insensitive' as const } },
+                  { nombre: { contains: search, mode: 'insensitive' } },
+                  { apellido: { contains: search, mode: 'insensitive' } },
                 ],
               },
             },
@@ -64,19 +64,26 @@ export default async function AdminReportesPage({
   // 4. OBTENER REPORTES PAGINADOS Y ORDENADOS
   // ============================================
   // Ordenamiento: de más viejo a más nuevo (por fechaFin del trabajo)
-  const reportes = await prisma.reporte.findMany({
+  const reportesRaw = await prisma.reporte.findMany({
     where: whereClause,
     include: {
-      trabajo: true, // Incluir datos del trabajo para acceder a fechaFin
-      reportante: true, // Incluir datos de quién hizo el reporte
-      reportado: true, // Incluir datos de quién fue reportado
+      trabajo: true,
+      reportante: true,
+      reportado: true,
     },
     skip: (page - 1) * POR_PAGINA,
     take: POR_PAGINA,
     orderBy: {
-      trabajo: { fechaFin: 'asc' }, // Ordenar de más viejo (asc) a más nuevo (desc)
+      trabajo: { fechaFin: 'asc' },
     },
   })
+
+  const reportes = reportesRaw.map(r => ({
+    ...r,
+    resolucion: r.resolucion as string,
+    decision: r.decision as string | null,
+    estado: r.estado as string,
+  }))
 
   // ============================================
   // 5. CONTAR TOTAL DE REPORTES PARA PAGINACIÓN

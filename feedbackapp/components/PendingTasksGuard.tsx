@@ -7,7 +7,7 @@ import PendingTasksGuardRenderer from './PendingTasksGuardRenderer';
  * Obtiene datos de BD sobre tareas pendientes y pasa a renderer client.
  *
  * Orden de verificación:
- * 1. PRIMERO: Reportes pendientes (reporte.idReportante === userId && estaCompleto === false)
+ * 1. PRIMERO: Reportes pendientes (reporte.idReportante === userId && reporte.estado === CREADO)
  * 2. LUEGO: Reviews pendientes (review.idUsuario === userId && estaCompleta === false)
  *
  * El Cliente Component (PendingTasksGuardRenderer) decide si aplicar el bloqueo
