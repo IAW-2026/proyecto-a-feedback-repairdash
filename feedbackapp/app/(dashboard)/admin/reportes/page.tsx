@@ -33,7 +33,7 @@ export default async function AdminReportesPage({
   // - Mostrar SOLO reportes incompletos (estaCompleto == false)
   // - Si hay búsqueda, filtrar por nombre del reportante O reportado
   const whereClause = {
-    estaCompleto: false, // Filtro principal: solo reportes incompletos
+    estaCompleto: 'PRUEBAS_AGREGADAS', // Filtro principal: solo reportes incompletos
     
     // Si hay texto de búsqueda, filtrar por nombre del reportante o reportado
     ...(search

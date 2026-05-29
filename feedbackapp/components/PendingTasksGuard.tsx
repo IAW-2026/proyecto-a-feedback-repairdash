@@ -28,7 +28,7 @@ export default async function PendingTasksGuard({
     reportePendiente = await prisma.reporte.findFirst({
       where: {
         idReportante: user.id,
-        estaCompleto: false,
+        estado: 'CREADO',
       },
       include: {
         trabajo: {

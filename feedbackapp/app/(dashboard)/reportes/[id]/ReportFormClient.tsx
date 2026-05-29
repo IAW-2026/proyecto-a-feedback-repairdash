@@ -149,9 +149,10 @@ export default function ReportFormClient({
       // ÉXITO
       setSuccess(true);
 
-      // Redirigir después de 2 segundos (navegación completa para refrescar server components)
+      // Redirigir después de 2 segundos
       setTimeout(() => {
-        window.location.href = '/';
+        router.push('/reportes');
+        router.refresh();
       }, 2000);
     } catch (err: any) {
       setError(err.message || 'Error desconocido');

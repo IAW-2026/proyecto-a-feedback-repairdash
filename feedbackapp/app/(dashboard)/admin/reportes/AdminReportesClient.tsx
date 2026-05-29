@@ -28,7 +28,7 @@ interface Reporte {
   reportado: Usuario
   resolucion: string
   decision: string | null
-  estaCompleto: boolean
+  estado: string
 }
 
 interface AdminReportesClientProps {

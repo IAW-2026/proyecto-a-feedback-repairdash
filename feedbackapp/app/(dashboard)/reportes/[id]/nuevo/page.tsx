@@ -48,7 +48,7 @@ export default async function ResolveReportPage({
   }
 
   // VALIDACIÓN: El reporte está incompleto
-  if (reporte.estaCompleto) {
+  if (reporte.estado !== 'CREADO') {
     redirect('/reportes?error=already_completed');
   }
 

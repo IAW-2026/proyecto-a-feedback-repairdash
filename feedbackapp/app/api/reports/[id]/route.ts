@@ -71,7 +71,7 @@ export async function PUT(
     }
 
     // Verificar que el reporte aún no está completo
-    if (reporte.estaCompleto) {
+    if (reporte.estado !== 'CREADO') {
       return NextResponse.json(
         { message: 'El reporte ya fue completado' },
         { status: 400 }
@@ -90,7 +90,7 @@ export async function PUT(
     // Marcar el reporte como completo
     await prisma.reporte.update({
       where: { id },
-      data: { estaCompleto: true },
+      data: { estado: 'PRUEBAS_AGREGADAS' },
     });
 
     return NextResponse.json(
