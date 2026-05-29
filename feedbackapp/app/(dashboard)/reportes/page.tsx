@@ -1,37 +1,7 @@
 import { Plus, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
-
-// Mock data para reportes enviados (que yo hice)
-const reportesEnviados = [
-  {
-    id: '1',
-    nombreUsuario: 'Carlos Pérez',
-    tipoDeTrabajo: 'Plomería',
-    fecha: '2025-05-10',
-    resolucion: 'SinResolver' as const,
-    decision: null,
-  },
-  {
-    id: '2',
-    nombreUsuario: 'Laura Gómez',
-    tipoDeTrabajo: 'Electricidad',
-    fecha: '2025-04-20',
-    resolucion: 'Resuelto' as const,
-    decision: 'AFavor' as const,
-  },
-];
-
-// Mock data para reportes recibidos (que me hicieron a mí)
-const reportesRecibidos = [
-  {
-    id: '3',
-    nombreUsuario: 'Marcos Silva',
-    tipoDeTrabajo: 'Pintura',
-    fecha: '2025-05-01',
-    resolucion: 'Resuelto' as const,
-    decision: 'EnContra' as const,
-  },
-];
+import { getCurrentUser } from '@/lib/getCurrentUser'
+import { prisma } from '@/lib/prisma'
 
 interface ReporteCard {
   id: string;
@@ -116,7 +86,43 @@ function EmptyState({ title }: { title: string }) {
   );
 }
 
-export default function ReportesPage() {
+export default async function ReportesPage() {
+  const user = await getCurrentUser()
+  if (!user) {
+    throw new Error('Usuario no autenticado')
+  }
+
+  const [enviados, recibidos] = await Promise.all([
+    prisma.reporte.findMany({
+      where: { idReportante: user.id },
+      include: { trabajo: true, reportado: true },
+      orderBy: { trabajo: { fechaFin: 'desc' } },
+    }),
+    prisma.reporte.findMany({
+      where: { idReportado: user.id },
+      include: { trabajo: true, reportante: true },
+      orderBy: { trabajo: { fechaFin: 'desc' } },
+    }),
+  ])
+
+  const reportesEnviados = enviados.map(r => ({
+    id: r.id,
+    nombreUsuario: `${r.reportado.nombre} ${r.reportado.apellido}`,
+    tipoDeTrabajo: r.trabajo.tipoDeTrabajo,
+    fecha: r.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? r.trabajo.fechaInicio.toLocaleDateString('es-ES'),
+    resolucion: r.resolucion as 'SinResolver' | 'Resuelto',
+    decision: r.decision as 'AFavor' | 'EnContra' | null,
+  }))
+
+  const reportesRecibidos = recibidos.map(r => ({
+    id: r.id,
+    nombreUsuario: `${r.reportante.nombre} ${r.reportante.apellido}`,
+    tipoDeTrabajo: r.trabajo.tipoDeTrabajo,
+    fecha: r.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? r.trabajo.fechaInicio.toLocaleDateString('es-ES'),
+    resolucion: r.resolucion as 'SinResolver' | 'Resuelto',
+    decision: r.decision as 'AFavor' | 'EnContra' | null,
+  }))
+
   return (
     <div className="w-full">
       {/* Header */}
