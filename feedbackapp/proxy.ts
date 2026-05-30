@@ -9,8 +9,7 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/clerk(.*)",       // Webhook: Clerk → BD
   "/api/reports(.*)",              // API: otras apps consultan reportes 
   "/api/reviews(.*)",              // API: otras apps leen/agregan reviews  
-  "/api/trabajos(.*)",             // API: otras apps consultan trabajos  
-  "/api/usuarios(.*)",             // API: Webhook que inyecta usuarios nuevos 
+  "/api/trabajos(.*)",             // API: otras apps consultan trabajos   
 ]);
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)']);
