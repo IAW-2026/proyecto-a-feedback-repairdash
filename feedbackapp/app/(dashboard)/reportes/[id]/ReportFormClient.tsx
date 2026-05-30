@@ -40,9 +40,9 @@ export default function ReportFormClient({
   const [formData, setFormData] = useState({
     descripcion: '',
     pruebas: [] as Prueba[],
-    newPruebaUrl: '',
-    newPruebaTipo: 'imagen',
   });
+
+  const [uploading, setUploading] = useState(false);
 
   // Manejo de cambios en la descripción
   const handleDescripcionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -52,33 +52,46 @@ export default function ReportFormClient({
     }));
   };
 
-  // Agregar una prueba manual
-  const handleAddPrueba = () => {
-    if (!formData.newPruebaUrl.trim()) {
-      setError('Ingresa una URL válida');
-      return;
-    }
+  // Subir archivo a Cloudinary vía API
+  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+
+    setUploading(true);
+    setError(null);
 
     try {
-      new URL(formData.newPruebaUrl);
-    } catch {
-      setError('La URL no es válida');
-      return;
+      const body = new FormData();
+      body.append('file', file);
+
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        body,
+      });
+
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || 'Error al subir archivo');
+      }
+
+      const { url, tipo } = await res.json();
+
+      const newPrueba: Prueba = {
+        id: `temp-${Date.now()}`,
+        tipo,
+        url,
+      };
+
+      setFormData((prev) => ({
+        ...prev,
+        pruebas: [...prev.pruebas, newPrueba],
+      }));
+    } catch (err: any) {
+      setError(err.message || 'Error al subir archivo');
+    } finally {
+      setUploading(false);
+      e.target.value = '';
     }
-
-    const newPrueba: Prueba = {
-      id: `temp-${Date.now()}`,
-      tipo: formData.newPruebaTipo,
-      url: formData.newPruebaUrl,
-    };
-
-    setFormData((prev) => ({
-      ...prev,
-      pruebas: [...prev.pruebas, newPrueba],
-      newPruebaUrl: '',
-    }));
-
-    setError(null);
   };
 
   // Remover una prueba
@@ -229,82 +242,85 @@ export default function ReportFormClient({
               Pruebas / Evidencias *
             </label>
             <p className="text-xs text-[#c392dd] mb-3">
-              Ingresa URLs de tus evidencias (imágenes, videos, documentos). Mínimo 1 prueba requerida.
+              Sube imágenes o videos como evidencia. Mínimo 1 prueba requerida.
             </p>
 
-            {/* Agregar prueba */}
-            <div className="space-y-3 mb-4">
-              <div>
-                <label className="block text-xs text-[#c392dd] mb-2">Tipo de Prueba</label>
-                <select
-                  value={formData.newPruebaTipo}
-                  onChange={(e) =>
-                    setFormData((prev) => ({
-                      ...prev,
-                      newPruebaTipo: e.target.value,
-                    }))
-                  }
-                  disabled={isLoading}
-                  className="w-full bg-[#3a1f52] border border-[#8d62a5]/30 rounded-lg p-2 text-[#fbdaf9] focus:outline-none focus:border-[#f500f1] disabled:opacity-50"
-                >
-                  <option value="imagen">Imagen</option>
-                  <option value="video">Video</option>
-                  <option value="documento">Documento</option>
-                  <option value="otro">Otro</option>
-                </select>
-              </div>
-
-              <div>
-                <label className="block text-xs text-[#c392dd] mb-2">URL de la Prueba</label>
-                <div className="flex gap-2">
-                  <input
-                    type="url"
-                    value={formData.newPruebaUrl}
-                    onChange={(e) =>
-                      setFormData((prev) => ({
-                        ...prev,
-                        newPruebaUrl: e.target.value,
-                      }))
-                    }
-                    disabled={isLoading}
-                    placeholder="https://example.com/evidencia.jpg"
-                    className="flex-1 bg-[#3a1f52] border border-[#8d62a5]/30 rounded-lg p-2 text-[#fbdaf9] placeholder-[#8d62a5] focus:outline-none focus:border-[#f500f1] disabled:opacity-50"
-                  />
-                  <button
-                    type="button"
-                    onClick={handleAddPrueba}
-                    disabled={isLoading}
-                    className="bg-[#f500f1] text-white px-4 py-2 rounded-lg hover:bg-[#d400c9] transition-colors disabled:opacity-50"
-                  >
-                    Agregar
-                  </button>
-                </div>
-              </div>
+            {/* Zona de subida */}
+            <div className="mb-4">
+              <label
+                htmlFor="file-upload"
+                className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
+                  uploading
+                    ? 'border-[#f500f1]/50 bg-[#3a1f52]/50'
+                    : 'border-[#8d62a5]/30 bg-[#3a1f52] hover:border-[#f500f1]/40 hover:bg-[#3a1f52]/80'
+                }`}
+              >
+                <input
+                  id="file-upload"
+                  type="file"
+                  accept="image/*,video/*"
+                  onChange={handleFileUpload}
+                  disabled={uploading || isLoading}
+                  className="hidden"
+                />
+                {uploading ? (
+                  <div className="flex flex-col items-center gap-2">
+                    <Loader size={24} className="animate-spin text-[#f500f1]" />
+                    <span className="text-[#c392dd] text-sm">Subiendo archivo...</span>
+                  </div>
+                ) : (
+                  <div className="flex flex-col items-center gap-2">
+                    <Upload size={24} className="text-[#c392dd]" />
+                    <span className="text-[#c392dd] text-sm">
+                      Haz clic para seleccionar archivos
+                    </span>
+                    <span className="text-[#8d62a5] text-xs">
+                      Imágenes o videos
+                    </span>
+                  </div>
+                )}
+              </label>
             </div>
 
             {/* Lista de pruebas agregadas */}
             {formData.pruebas.length > 0 && (
-              <div className="space-y-2">
+              <div className="space-y-3">
                 <p className="text-sm text-[#fbdaf9] font-semibold">
                   Pruebas agregadas ({formData.pruebas.length})
                 </p>
-                {formData.pruebas.map((prueba, index) => (
+                {formData.pruebas.map((prueba) => (
                   <div
                     key={prueba.id}
-                    className="flex items-center justify-between bg-[#3a1f52] p-3 rounded-lg border border-[#8d62a5]/20"
+                    className="bg-[#3a1f52] p-3 rounded-lg border border-[#8d62a5]/20"
                   >
-                    <div className="flex-1 min-w-0">
-                      <p className="text-xs text-[#c392dd] uppercase">{prueba.tipo}</p>
-                      <p className="text-sm text-[#fbdaf9] truncate">{prueba.url}</p>
+                    <div className="flex items-start justify-between gap-2">
+                      <div className="flex-1 min-w-0">
+                        {prueba.tipo === 'imagen' ? (
+                          <img
+                            src={prueba.url}
+                            alt="Preview"
+                            className="w-full max-h-48 object-contain rounded-lg mb-2"
+                          />
+                        ) : prueba.tipo === 'video' ? (
+                          <video
+                            src={prueba.url}
+                            controls
+                            className="w-full max-h-48 rounded-lg mb-2"
+                          >
+                            Tu navegador no soporta la reproducción de video.
+                          </video>
+                        ) : null}
+                        <p className="text-xs text-[#c392dd] uppercase">{prueba.tipo}</p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleRemovePrueba(prueba.id)}
+                        disabled={isLoading}
+                        className="text-[#f500f1] hover:text-red-500 transition-colors disabled:opacity-50 flex-shrink-0"
+                      >
+                        <X size={18} />
+                      </button>
                     </div>
-                    <button
-                      type="button"
-                      onClick={() => handleRemovePrueba(prueba.id)}
-                      disabled={isLoading}
-                      className="text-[#f500f1] hover:text-red-500 transition-colors disabled:opacity-50 ml-2 flex-shrink-0"
-                    >
-                      <X size={18} />
-                    </button>
                   </div>
                 ))}
               </div>

@@ -37,6 +37,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
   }
 
   const imagenes = reporte.pruebas.filter(p => p.tipo === 'imagen')
+  const videos = reporte.pruebas.filter(p => p.tipo === 'video')
   const pdfs = reporte.pruebas.filter(p => p.tipo === 'pdf')
 
   const isResuelto = reporte.estado === 'RESUELTO'
@@ -176,6 +177,28 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                             alt={`Prueba ${img.id}`}
                             className="w-full h-full object-cover"
                           />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {videos.length > 0 && (
+                  <div>
+                    <h4 className="text-[#fbdaf9] font-bold mb-3">Videos</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      {videos.map((video) => (
+                        <div
+                          key={video.id}
+                          className="rounded-lg overflow-hidden border border-[#8d62a5]/30 hover:border-[#f500f1]/40 transition-all duration-300"
+                        >
+                          <video
+                            src={video.url}
+                            controls
+                            className="w-full h-full max-h-[300px]"
+                          >
+                            Tu navegador no soporta la reproducción de video.
+                          </video>
                         </div>
                       ))}
                     </div>

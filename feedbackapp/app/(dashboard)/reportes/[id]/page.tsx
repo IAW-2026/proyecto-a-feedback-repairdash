@@ -137,6 +137,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
   }
 
   const imagenesProof = reporte.pruebas.filter((p) => p.tipo === 'imagen');
+  const videosProof = reporte.pruebas.filter((p) => p.tipo === 'video');
   const pdfsProof = reporte.pruebas.filter((p) => p.tipo === 'pdf');
 
   const fechaInicio = reporte.trabajo.fechaInicio.toLocaleDateString('es-ES');
@@ -280,6 +281,29 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                             alt={`Prueba ${imagen.id}`}
                             className="w-full h-full object-cover"
                           />
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Videos */}
+                {videosProof.length > 0 && (
+                  <div>
+                    <h4 className="text-[#fbdaf9] font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Videos</h4>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(0.75rem,2vw,1rem)]">
+                      {videosProof.map((video) => (
+                        <div
+                          key={video.id}
+                          className="rounded-lg overflow-hidden border border-[#8d62a5]/30 hover:border-[#f500f1]/40 transition-all duration-300"
+                        >
+                          <video
+                            src={video.url}
+                            controls
+                            className="w-full h-full max-h-[300px]"
+                          >
+                            Tu navegador no soporta la reproducción de video.
+                          </video>
                         </div>
                       ))}
                     </div>
