@@ -1,38 +1,7 @@
-import { Plus, AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
+import { AlertTriangle, CheckCircle2, XCircle } from 'lucide-react';
 import Link from 'next/link';
-import PendingReviewGuard from '@/components/PendingReviewGuard';
-
-// Mock data para reportes enviados (que yo hice)
-const reportesEnviados = [
-  {
-    id: '1',
-    nombreUsuario: 'Carlos Pérez',
-    tipoDeTrabajo: 'Plomería',
-    fecha: '2025-05-10',
-    resolucion: 'SinResolver' as const,
-    decision: null,
-  },
-  {
-    id: '2',
-    nombreUsuario: 'Laura Gómez',
-    tipoDeTrabajo: 'Electricidad',
-    fecha: '2025-04-20',
-    resolucion: 'Resuelto' as const,
-    decision: 'AFavor' as const,
-  },
-];
-
-// Mock data para reportes recibidos (que me hicieron a mí)
-const reportesRecibidos = [
-  {
-    id: '3',
-    nombreUsuario: 'Marcos Silva',
-    tipoDeTrabajo: 'Pintura',
-    fecha: '2025-05-01',
-    resolucion: 'Resuelto' as const,
-    decision: 'EnContra' as const,
-  },
-];
+import { getCurrentUser } from '@/lib/getCurrentUser'
+import { prisma } from '@/lib/prisma'
 
 interface ReporteCard {
   id: string;
@@ -41,6 +10,7 @@ interface ReporteCard {
   fecha: string;
   resolucion: 'SinResolver' | 'Resuelto';
   decision: 'AFavor' | 'EnContra' | null;
+  soyReportante: boolean;
 }
 
 function ReporteCard({ reporte }: { reporte: ReporteCard }) {
@@ -74,12 +44,12 @@ function ReporteCard({ reporte }: { reporte: ReporteCard }) {
             {reporte.resolucion === 'Resuelto' && reporte.decision && (
               <span
                 className={`text-xs font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-1.5 whitespace-nowrap min-h-[28px] ${
-                  reporte.decision === 'AFavor'
+                  (reporte.soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra')
                     ? 'bg-green-500/20 text-green-300'
                     : 'bg-red-500/20 text-red-300'
                 }`}
               >
-                {reporte.decision === 'AFavor' ? (
+                {(reporte.soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra') ? (
                   <>
                     <CheckCircle2 size={14} />
                     A favor
@@ -117,10 +87,47 @@ function EmptyState({ title }: { title: string }) {
   );
 }
 
-export default function ReportesPage() {
+export default async function ReportesPage() {
+  const user = await getCurrentUser()
+  if (!user) {
+    throw new Error('Usuario no autenticado')
+  }
+
+  const [enviados, recibidos] = await Promise.all([
+    prisma.reporte.findMany({
+      where: { idReportante: user.id },
+      include: { trabajo: true, reportado: true },
+      orderBy: { trabajo: { fechaFin: 'desc' } },
+    }),
+    prisma.reporte.findMany({
+      where: { idReportado: user.id },
+      include: { trabajo: true, reportante: true },
+      orderBy: { trabajo: { fechaFin: 'desc' } },
+    }),
+  ])
+
+  const reportesEnviados = enviados.map(r => ({
+    id: r.id,
+    nombreUsuario: `${r.reportado.nombre} ${r.reportado.apellido}`,
+    tipoDeTrabajo: r.trabajo.tipoDeTrabajo,
+    fecha: r.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? r.trabajo.fechaInicio.toLocaleDateString('es-ES'),
+    resolucion: r.resolucion as 'SinResolver' | 'Resuelto',
+    decision: r.decision as 'AFavor' | 'EnContra' | null,
+    soyReportante: true,
+  }))
+
+  const reportesRecibidos = recibidos.map(r => ({
+    id: r.id,
+    nombreUsuario: `${r.reportante.nombre} ${r.reportante.apellido}`,
+    tipoDeTrabajo: r.trabajo.tipoDeTrabajo,
+    fecha: r.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? r.trabajo.fechaInicio.toLocaleDateString('es-ES'),
+    resolucion: r.resolucion as 'SinResolver' | 'Resuelto',
+    decision: r.decision as 'AFavor' | 'EnContra' | null,
+    soyReportante: false,
+  }))
+
   return (
-    <PendingReviewGuard>
-      <div className="w-full">
+    <div className="w-full">
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(1rem,3vw,2rem)]">
@@ -135,13 +142,6 @@ export default function ReportesPage() {
               Seguimiento de reportes enviados y recibidos
             </p>
           </div>
-          <Link
-            href="/reportes/nuevo"
-            className="flex items-center justify-center gap-2 bg-[#f500f1] hover:bg-[#f500f1]/90 text-white font-gilroy font-bold px-[clamp(1rem,3vw,1.5rem)] py-[clamp(0.75rem,2vw,1rem)] rounded-lg transition-all duration-200 hover:scale-[1.02] cursor-pointer min-h-[44px] whitespace-nowrap flex-shrink-0"
-          >
-            <Plus size={20} />
-            <span style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>Nuevo reporte</span>
-          </Link>
         </div>
       </div>
 
@@ -177,6 +177,5 @@ export default function ReportesPage() {
         )}
       </section>
     </div>
-    </PendingReviewGuard>
   );
 }

@@ -107,6 +107,7 @@ export async function POST(request: Request) {
             idTrabajo,
             idReportante,
             idReportado,
+            estado: 'CREADO',
         }
     });
 
