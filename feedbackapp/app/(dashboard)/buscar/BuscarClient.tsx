@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { Star, Search, AlertTriangle, Briefcase } from 'lucide-react'
 
@@ -135,9 +136,13 @@ export default function BuscarClient({
         <>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,2vw,1.75rem)] mb-8">
             {usuarios.map((usuario) => (
-              <div
+              <Link
                 key={usuario.id}
-                className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer group"
+                href={`/buscar/${usuario.id}`}
+                className="block group"
+              >
+              <div
+                className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
               >
                 <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(0.75rem,2vw,1rem)]">
                   <div className="min-w-0">
@@ -167,6 +172,7 @@ export default function BuscarClient({
                   </div>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
 
