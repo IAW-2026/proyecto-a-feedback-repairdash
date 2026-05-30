@@ -87,10 +87,17 @@ export async function PUT(
       },
     });
 
-    // Marcar el reporte como completo
+    // Actualizar descripción y marcar como completo
+    const updateData: { estado: string; descripcion?: string } = {
+      estado: 'PRUEBAS_AGREGADAS',
+    };
+    if (!reporte.descripcion) {
+      updateData.descripcion = descripcion;
+    }
+
     await prisma.reporte.update({
       where: { id },
-      data: { estado: 'PRUEBAS_AGREGADAS' },
+      data: updateData,
     });
 
     return NextResponse.json(
