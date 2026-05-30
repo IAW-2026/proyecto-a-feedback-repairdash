@@ -88,7 +88,7 @@ export async function PUT(
     });
 
     // Actualizar descripción y marcar como completo
-    const updateData: { estado: string; descripcion?: string } = {
+    const updateData: Parameters<typeof prisma.reporte.update>[0]['data'] = {
       estado: 'PRUEBAS_AGREGADAS',
     };
     if (!reporte.descripcion) {
