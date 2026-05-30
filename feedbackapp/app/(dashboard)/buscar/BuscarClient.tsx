@@ -138,7 +138,7 @@ export default function BuscarClient({
             {usuarios.map((usuario) => (
               <Link
                 key={usuario.id}
-                href={`/buscar/${usuario.id}`}
+                href={`/usuarios/${usuario.id}`}
                 className="block group"
               >
               <div
