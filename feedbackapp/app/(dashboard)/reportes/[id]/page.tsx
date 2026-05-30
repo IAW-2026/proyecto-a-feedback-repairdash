@@ -1,3 +1,4 @@
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import {
   ArrowLeft,
@@ -11,30 +12,11 @@ import {
   Shield,
   AlertTriangle,
 } from 'lucide-react';
+import { getCurrentUser } from '@/lib/getCurrentUser';
+import { prisma } from '@/lib/prisma';
 
-// Mock data
-const reporte = {
-  id: '1',
-  resolucion: 'SinResolver' as const,
-  decision: null as null,
-  trabajo: {
-    tipoDeTrabajo: 'Plomería',
-    fechaInicio: '2025-04-01',
-    fechaFin: '2025-05-10',
-  },
-  reportante: { nombre: 'Juan', apellido: 'García', tipo: 'Cliente' as const },
-  reportado: { nombre: 'Carlos', apellido: 'Pérez', tipo: 'Trabajador' as const },
-  descripcion:
-    'El trabajador no completó el trabajo acordado. Dejó las cañerías sin sellar y hubo una pérdida de agua que dañó el piso del baño. Se le avisó en varias ocasiones y no respondió.',
-  pruebas: [
-    { id: 'p1', tipo: 'imagen' as const, url: 'https://placehold.co/600x400/3a1f52/c392dd?text=Foto+1' },
-    { id: 'p2', tipo: 'imagen' as const, url: 'https://placehold.co/600x400/3a1f52/c392dd?text=Foto+2' },
-    { id: 'p3', tipo: 'pdf' as const, url: '#' },
-  ],
-};
-
-function VerdictoBadge() {
-  if (reporte.resolucion === 'SinResolver') {
+function VerdictoBadge({ resolucion, decision, soyReportante }: { resolucion: string; decision: string | null; soyReportante: boolean }) {
+  if (resolucion === 'SinResolver') {
     return (
       <span className="inline-flex items-center gap-2 bg-[#8d62a5]/20 text-[#c392dd] font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
         <Clock size={14} />
@@ -43,7 +25,9 @@ function VerdictoBadge() {
     );
   }
 
-  if (reporte.decision === 'AFavor') {
+  const aFavor = soyReportante ? decision === 'AFavor' : decision === 'EnContra';
+
+  if (aFavor) {
     return (
       <span className="inline-flex items-center gap-2 bg-green-500/20 text-green-300 font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
         <CheckCircle size={14} />
@@ -60,18 +44,18 @@ function VerdictoBadge() {
   );
 }
 
-function VerdictCard() {
-  const isSinResolver = reporte.resolucion === 'SinResolver';
-  const isAFavor = reporte.decision === 'AFavor';
+function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: string; decision: string | null; soyReportante: boolean }) {
+  const aFavor = soyReportante ? decision === 'AFavor' : decision === 'EnContra';
+  const isSinResolver = resolucion === 'SinResolver';
 
   let borderColor = 'border-[#c392dd]';
   let bgColorAccent = 'bg-[#c392dd]';
   let iconColor = 'text-[#c392dd]';
 
   if (!isSinResolver) {
-    borderColor = isAFavor ? 'border-green-500' : 'border-red-500';
-    bgColorAccent = isAFavor ? 'bg-green-500' : 'bg-red-500';
-    iconColor = isAFavor ? 'text-green-500' : 'text-red-500';
+    borderColor = aFavor ? 'border-green-500' : 'border-red-500';
+    bgColorAccent = aFavor ? 'bg-green-500' : 'bg-red-500';
+    iconColor = aFavor ? 'text-green-500' : 'text-red-500';
   }
 
   return (
@@ -90,29 +74,29 @@ function VerdictCard() {
             <p className="text-[#c392dd] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
               El administrador aún no ha revisado este reporte
             </p>
-            <VerdictoBadge />
+            <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
         )}
 
-        {!isSinResolver && isAFavor && (
+        {!isSinResolver && aFavor && (
           <>
             <CheckCircle size={56} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-green-500" />
             <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               Reporte aprobado
             </h3>
-            <p className="text-[#c392dd] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador falló a tu favor</p>
-            <VerdictoBadge />
+            <p className="text-[#c392dd] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador falló {soyReportante ? 'a' : 'en'}{' '}tu favor</p>
+            <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
         )}
 
-        {!isSinResolver && !isAFavor && (
+        {!isSinResolver && !aFavor && (
           <>
             <XCircle size={56} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-red-500" />
             <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               Reporte rechazado
             </h3>
             <p className="text-[#c392dd] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador falló en tu contra</p>
-            <VerdictoBadge />
+            <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
         )}
       </div>
@@ -124,10 +108,40 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
+const rolLabel: Record<string, string> = {
+  rider: 'Cliente',
+  driver: 'Trabajador',
+  feedbackAdmin: 'Administrador',
+};
+
 export default async function ReporteDetailPage({ params }: PageProps) {
-  // Los params son dinámicos pero usamos datos hardcodeados
+  const user = await getCurrentUser();
+  if (!user) {
+    throw new Error('Usuario no autenticado');
+  }
+
+  const { id } = await params;
+
+  const reporte = await prisma.reporte.findUnique({
+    where: { id },
+    include: {
+      trabajo: true,
+      reportante: true,
+      reportado: true,
+      pruebas: true,
+    },
+  });
+
+  if (!reporte) {
+    notFound();
+  }
+
   const imagenesProof = reporte.pruebas.filter((p) => p.tipo === 'imagen');
   const pdfsProof = reporte.pruebas.filter((p) => p.tipo === 'pdf');
+
+  const fechaInicio = reporte.trabajo.fechaInicio.toLocaleDateString('es-ES');
+  const fechaFin = reporte.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? 'Sin fecha fin';
+  const soyReportante = user.id === reporte.idReportante;
 
   return (
     <div className="p-[clamp(1rem,4vw,2rem)] max-w-full md:max-w-6xl lg:max-w-7xl mx-auto w-full">
@@ -147,7 +161,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               Detalle de Reporte
             </p>
             <h1 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
-              Reporte #{reporte.id}
+              Reporte #{reporte.id.slice(0, 8)}
             </h1>
           </div>
 
@@ -157,7 +171,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               <AlertTriangle size={16} />
               Sin resolver
             </span>
-          ) : reporte.decision === 'AFavor' ? (
+          ) : (soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra') ? (
             <span className="bg-green-500/20 text-green-300 font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-2 whitespace-nowrap min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               <CheckCircle size={16} />
               Resuelto
@@ -189,7 +203,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
                 <Calendar size={20} className="text-[#8d62a5] flex-shrink-0" />
                 <span>
-                  {reporte.trabajo.fechaInicio} — {reporte.trabajo.fechaFin}
+                  {fechaInicio} — {fechaFin}
                 </span>
               </div>
             </div>
@@ -205,7 +219,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                   <p className="text-[#fbdaf9] font-gilroy font-bold" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                     {reporte.reportante.nombre} {reporte.reportante.apellido}
                   </p>
-                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{reporte.reportante.tipo}</p>
+                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{rolLabel[reporte.reportante.rol] ?? reporte.reportante.rol}</p>
                 </div>
               </div>
 
@@ -218,7 +232,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                   <p className="text-[#fbdaf9] font-gilroy font-bold" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                     {reporte.reportado.nombre} {reporte.reportado.apellido}
                   </p>
-                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{reporte.reportado.tipo}</p>
+                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{rolLabel[reporte.reportado.rol] ?? reporte.reportado.rol}</p>
                 </div>
               </div>
             </div>
@@ -234,7 +248,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
             </div>
 
             <p className="text-[#fbdaf9] leading-relaxed whitespace-pre-wrap" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-              {reporte.descripcion}
+              {reporte.descripcion ?? 'Sin descripción'}
             </p>
           </div>
 
@@ -305,7 +319,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
 
         {/* Columna lateral (1/3) */}
         <div className="lg:col-span-1">
-          <VerdictCard />
+          <VerdictCard resolucion={reporte.resolucion} decision={reporte.decision} soyReportante={soyReportante} />
         </div>
       </div>
     </div>

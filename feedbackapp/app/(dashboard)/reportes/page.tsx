@@ -10,6 +10,7 @@ interface ReporteCard {
   fecha: string;
   resolucion: 'SinResolver' | 'Resuelto';
   decision: 'AFavor' | 'EnContra' | null;
+  soyReportante: boolean;
 }
 
 function ReporteCard({ reporte }: { reporte: ReporteCard }) {
@@ -43,12 +44,12 @@ function ReporteCard({ reporte }: { reporte: ReporteCard }) {
             {reporte.resolucion === 'Resuelto' && reporte.decision && (
               <span
                 className={`text-xs font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-1.5 whitespace-nowrap min-h-[28px] ${
-                  reporte.decision === 'AFavor'
+                  (reporte.soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra')
                     ? 'bg-green-500/20 text-green-300'
                     : 'bg-red-500/20 text-red-300'
                 }`}
               >
-                {reporte.decision === 'AFavor' ? (
+                {(reporte.soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra') ? (
                   <>
                     <CheckCircle2 size={14} />
                     A favor
@@ -112,6 +113,7 @@ export default async function ReportesPage() {
     fecha: r.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? r.trabajo.fechaInicio.toLocaleDateString('es-ES'),
     resolucion: r.resolucion as 'SinResolver' | 'Resuelto',
     decision: r.decision as 'AFavor' | 'EnContra' | null,
+    soyReportante: true,
   }))
 
   const reportesRecibidos = recibidos.map(r => ({
@@ -121,6 +123,7 @@ export default async function ReportesPage() {
     fecha: r.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? r.trabajo.fechaInicio.toLocaleDateString('es-ES'),
     resolucion: r.resolucion as 'SinResolver' | 'Resuelto',
     decision: r.decision as 'AFavor' | 'EnContra' | null,
+    soyReportante: false,
   }))
 
   return (
