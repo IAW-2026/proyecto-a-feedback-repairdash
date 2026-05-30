@@ -78,33 +78,29 @@ export async function PUT(
       );
     }
 
-    // Crear la prueba
-    const prueba = await prisma.pruebas.create({
-      data: {
-        idReporte: id,
-        tipo,
-        url,
-      },
-    });
-
-    // Actualizar descripción y marcar como completo
-    const updateData: Parameters<typeof prisma.reporte.update>[0]['data'] = {
-      estado: 'PRUEBAS_AGREGADAS',
-    };
-    if (!reporte.descripcion) {
-      updateData.descripcion = descripcion;
-    }
-
-    await prisma.reporte.update({
+    // Crear la prueba y actualizar el reporte en una sola query
+    const reporteActualizado = await prisma.reporte.update({
       where: { id },
-      data: updateData,
+      data: {
+        estado: 'PRUEBAS_AGREGADAS',
+        ...(!reporte.descripcion ? { descripcion } : {}),
+        pruebas: {
+          create: { tipo, url },
+        },
+      },
+      include: {
+        pruebas: {
+          take: 1,
+          orderBy: { id: 'desc' },
+        },
+      },
     });
 
     return NextResponse.json(
       {
         message: 'Prueba agregada al reporte',
-        idPrueba: prueba.id,
-        idReporte: reporte.id,
+        idPrueba: reporteActualizado.pruebas[0].id,
+        idReporte: reporteActualizado.id,
       },
       { status: 200 }
     );
