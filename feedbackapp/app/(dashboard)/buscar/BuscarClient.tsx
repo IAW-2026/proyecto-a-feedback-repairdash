@@ -133,44 +133,39 @@ export default function BuscarClient({
         </div>
       ) : (
         <>
-          <div className="space-y-6 mb-8">
-            {usuarios.map((usuario, index) => (
-              <div key={usuario.id}>
-                <div className="mb-6">
-                  <div className="flex items-start justify-between gap-4 mb-3">
-                    <div>
-                      <div className="text-lg font-bold text-[#fbdaf9] mb-2">
-                        {usuario.apellido}, {usuario.nombre}
-                      </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,2vw,1.75rem)] mb-8">
+            {usuarios.map((usuario) => (
+              <div
+                key={usuario.id}
+                className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer group"
+              >
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(0.75rem,2vw,1rem)]">
+                  <div className="min-w-0">
+                    <h3 className="font-gilroy font-bold text-[#fbdaf9] break-words" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
+                      {usuario.apellido}, {usuario.nombre}
+                    </h3>
+                    <div className="mt-1">
                       <StarRating rating={usuario.promedioEstrellas} />
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col gap-2 text-sm text-[#c392dd]">
-                    <div className="flex items-center gap-2">
-                      <AlertTriangle size={16} className="flex-shrink-0" />
-                      <span>
-                        Cantidad de reportes en los que se le falló en contra:{' '}
-                        <strong className="text-[#fbdaf9]">
-                          {usuario.reportesEnContra}
-                        </strong>
-                      </span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Briefcase size={16} className="flex-shrink-0" />
-                      <span>
-                        Cantidad de trabajos en los que se involucró:{' '}
-                        <strong className="text-[#fbdaf9]">
-                          {usuario.trabajosInvolucrado}
-                        </strong>
-                      </span>
                     </div>
                   </div>
                 </div>
 
-                {index < usuarios.length - 1 && (
-                  <div className="border-t border-[#8d62a5]/20 mb-6" />
-                )}
+                <div className="flex flex-col gap-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                  <div className="flex items-center gap-2 text-[#c392dd]">
+                    <AlertTriangle size={16} className="flex-shrink-0" />
+                    <span>
+                      Reportes en contra:{' '}
+                      <strong className="text-[#fbdaf9]">{usuario.reportesEnContra}</strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2 text-[#c392dd]">
+                    <Briefcase size={16} className="flex-shrink-0" />
+                    <span>
+                      Trabajos involucrado:{' '}
+                      <strong className="text-[#fbdaf9]">{usuario.trabajosInvolucrado}</strong>
+                    </span>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
