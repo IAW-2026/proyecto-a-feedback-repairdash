@@ -2,7 +2,6 @@ import { redirect } from 'next/navigation';
 import { User, Mail, Lock, Star, Briefcase, AlertCircle, Clock } from 'lucide-react';
 import { getCurrentUser } from '@/lib/getCurrentUser';
 import { prisma } from '@/lib/prisma';
-import PendingReviewGuard from '@/components/PendingReviewGuard';
 
 function StarRating({ rating, max = 5 }: { rating: number | null; max?: number }) {
   if (rating === null) {
@@ -63,8 +62,7 @@ export default async function PerfilPage() {
   const promedioCalificaciones = user.valoracion > 0 ? user.valoracion : null;
 
   return (
-    <PendingReviewGuard>
-      <div className="w-full">
+    <div className="w-full">
         {/* Header */}
         <div className="mb-[clamp(2rem,6vw,3rem)]">
           <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
@@ -217,6 +215,5 @@ export default async function PerfilPage() {
           </div>
         </div>
       </div>
-    </PendingReviewGuard>
   );
 }
