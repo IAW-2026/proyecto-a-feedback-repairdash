@@ -149,8 +149,11 @@ export default function BuscarClient({
                     <h3 className="font-gilroy font-bold text-[#fbdaf9] break-words" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
                       {usuario.apellido}, {usuario.nombre}
                     </h3>
-                    <div className="mt-1">
+                    <div className="mt-1 flex items-center gap-2">
                       <StarRating rating={usuario.promedioEstrellas} />
+                      <span className="text-[#8d62a5] text-sm font-medium">
+                        {usuario.promedioEstrellas}/5
+                      </span>
                     </div>
                   </div>
                 </div>
