@@ -77,7 +77,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
       {/* Sidebar Drawer */}
       <aside
-        className="fixed lg:sticky left-0 top-0 h-screen w-64 lg:w-[190px] lg:flex-shrink-0 bg-brand-card border-r border-brand-accent-soft/20 flex flex-col overflow-y-auto transition-transform duration-300 ease-out"
+        className="fixed lg:sticky left-0 top-0 h-screen w-64 lg:w-[190px] lg:flex-shrink-0 bg-[#271033] border-r border-[#3a1f52] flex flex-col overflow-y-auto transition-transform duration-300 ease-out"
         style={{
           transform: isMobile ? (isOpen ? 'translateX(0)' : 'translateX(-100%)') : 'translateX(0)',
           zIndex: isOpen && isMobile ? 1000 : 'auto',
@@ -86,10 +86,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         aria-label="Navegación principal"
       >
         {/* Close button - solo en mobile */}
-        <div className="lg:hidden p-[clamp(0.75rem,2vw,1rem)] flex justify-end border-b border-brand-accent-soft/20">
+        <div className="lg:hidden p-[clamp(0.75rem,2vw,1rem)] flex justify-end border-b border-[#3a1f52]">
           <button
             onClick={onClose}
-            className="p-2 text-brand-accent-mid hover:text-brand-text-light transition-colors"
+            className="p-2 text-[#c392dd] hover:text-[#fbdaf9] transition-colors"
             aria-label="Cerrar menú"
           >
             <X size={24} className="flex-shrink-0" />
@@ -97,12 +97,12 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </div>
 
         {/* Logo / App Name */}
-        <div className="p-[clamp(1rem,4vw,1.5rem)] border-b border-brand-accent-soft/20">
+        <div className="p-[clamp(1rem,4vw,1.5rem)] border-b border-[#3a1f52]">
           <div className="flex flex-col">
-            <span className="text-2xl font-bold text-white font-gilroy leading-tight">
+            <span className="text-2xl font-bold text-[#fbdaf9] font-gilroy leading-tight">
               RepairDash
             </span>
-            <span className="text-xs font-medium text-[#c392dd] tracking-wide pl-[45%]">
+            <span className="text-xs font-medium text-[#f500f1] tracking-wide pl-[45%]">
               Feedback App
             </span>
           </div>
@@ -122,8 +122,8 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
                   onClick={onClose}
                   className={`flex items-center gap-[clamp(0.75rem,2vw,1rem)] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg transition-all duration-200 ease-out min-h-[44px] ${
                     isActive
-                      ? 'bg-brand-accent-soft text-white'
-                      : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1'
+                      ? 'bg-[#f500f1] text-white font-semibold'
+                      : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52] hover:translate-x-1'
                   }`}
                 >
                   <Icon size={20} className="flex-shrink-0" />
@@ -138,10 +138,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
         </nav>
 
         {/* Logout */}
-        <div className="p-[clamp(0.75rem,2vw,1rem)] border-t border-brand-accent-soft/20">
+        <div className="p-[clamp(0.75rem,2vw,1rem)] border-t border-[#3a1f52]">
           <button
             onClick={() => { signOut({ redirectUrl: '/' }); onClose(); }}
-            className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] w-full px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg text-brand-accent-mid transition-all duration-200 ease-out hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1 min-h-[44px]"
+            className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] w-full px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg text-[#c392dd] transition-all duration-200 ease-out hover:text-[#fbdaf9] hover:bg-[#3a1f52] hover:translate-x-1 min-h-[44px]"
           >
             <LogOut size={20} className="flex-shrink-0" />
             <span className="font-medium text-sm md:text-base" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
