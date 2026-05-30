@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, LogOut, User, X, Star, Shield } from 'lucide-react';
+import { Home, BarChart3, LogOut, User, X, Star, Shield, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 interface SidebarProps {
@@ -30,6 +30,11 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
       label: 'Inicio',
       href: '/',
       icon: Home,
+    },
+    {
+      label: 'Buscar',
+      href: '/buscar',
+      icon: Search,
     },
     {
       label: 'Reviews',
