@@ -2,6 +2,15 @@
 
 @import "tailwindcss";
 
+@theme {
+  --color-brand-bg: #271033;
+  --color-brand-card: #3a1f52;
+  --color-brand-accent-soft: #8d62a5;
+  --color-brand-accent-mid: #c392dd;
+  --color-brand-accent-strong: #f500f1;
+  --color-brand-text-light: #fbdaf9;
+}
+
 :root {
   --brand-bg: #271033;
   --brand-card: #3a1f52;
