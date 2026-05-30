@@ -1,20 +1,11 @@
+import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Star, ArrowLeft, Calendar, Briefcase, ChevronRight } from 'lucide-react';
+import { Star, ArrowLeft, Calendar, Briefcase } from 'lucide-react';
+import { prisma } from '@/lib/prisma';
 
-// Mock data - una review específica
-const review = {
-  id: "1",
-  autor: {
-    id: "u1",
-    nombre: "Carlos",
-    apellido: "Pérez",
-    tipo: "Cliente" as const,
-  },
-  valoracion: 5,
-  review:
-    "Excelente trabajo, muy puntual y prolijo. Resolvió el problema rápidamente y dejó todo limpio. Sin dudas lo volvería a contratar.",
-  trabajo: { tipoDeTrabajo: "Plomería", fechaFin: "2025-05-10" },
-};
+interface PageProps {
+  params: Promise<{ id: string }>;
+}
 
 function StarRating({
   rating,
@@ -42,7 +33,28 @@ function StarRating({
   );
 }
 
-export default function ReviewDetailPage() {
+function formatDate(date: Date | null): string {
+  if (!date) return 'Fecha no disponible';
+  return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
+}
+
+export default async function ReviewDetailPage({ params }: PageProps) {
+  const { id } = await params;
+
+  const review = await prisma.review.findUnique({
+    where: { id },
+    include: {
+      autor: true,
+      trabajo: true,
+    },
+  });
+
+  if (!review) {
+    notFound();
+  }
+
+  const tipoLabel = review.autor.rol === 'rider' ? 'Cliente' : 'Trabajador';
+
   return (
     <div className="w-full">
       {/* Botón Volver */}
@@ -88,22 +100,26 @@ export default function ReviewDetailPage() {
               className="bg-[#8d62a5]/30 text-[#c392dd] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full font-medium whitespace-nowrap"
               style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
             >
-              {review.autor.tipo}
+              {tipoLabel}
             </span>
           </div>
         </div>
 
         {/* Puntaje */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
-          <div className="mb-[clamp(0.75rem,2vw,1rem)]">
-            <StarRating rating={review.valoracion} size={28} />
-          </div>
-          <div
-            className="font-gilroy font-bold text-[#f500f1]"
-            style={{ fontSize: "clamp(1.5rem, 4vw, 1.75rem)" }}
-          >
-            {review.valoracion} / 5
-          </div>
+          {review.valoracion !== null && (
+            <>
+              <div className="mb-[clamp(0.75rem,2vw,1rem)]">
+                <StarRating rating={review.valoracion} size={28} />
+              </div>
+              <div
+                className="font-gilroy font-bold text-[#f500f1]"
+                style={{ fontSize: "clamp(1.5rem, 4vw, 1.75rem)" }}
+              >
+                {review.valoracion} / 5
+              </div>
+            </>
+          )}
         </div>
 
         {/* Separador */}
@@ -115,7 +131,7 @@ export default function ReviewDetailPage() {
             className="text-[#fbdaf9] leading-relaxed"
             style={{ fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)" }}
           >
-            {review.review}
+            {review.review ?? 'Sin comentario'}
           </p>
         </div>
 
@@ -143,29 +159,11 @@ export default function ReviewDetailPage() {
             <div className="flex items-center gap-1 text-[#c392dd]">
               <Calendar size={18} />
               <span style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}>
-                {review.trabajo.fechaFin}
+                {formatDate(review.trabajo.fechaFin)}
               </span>
             </div>
           </div>
         </div>
-
-        {/* Separador */}
-        <div className="border-t border-[#8d62a5]/20 my-[clamp(1.5rem,4vw,2rem)]" />
-
-        {/* Link al perfil */}
-        <Link
-          href={`/reviews/usuario/${review.autor.id}`}
-          className="inline-flex items-center gap-2 text-[#f500f1] hover:text-[#f500f1]/80 transition-colors font-medium group"
-          style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}
-        >
-          <span>
-            Ver todas las reviews de {review.autor.nombre} {review.autor.apellido}
-          </span>
-          <ChevronRight
-            size={18}
-            className="group-hover:translate-x-1 transition-transform"
-          />
-        </Link>
       </div>
     </div>
   );

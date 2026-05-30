@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { Star, Search, Briefcase, Calendar } from 'lucide-react'
 
@@ -166,14 +167,18 @@ export default function ReviewsClient({
           {/* Lista de reviews */}
           <div className="space-y-6 mb-8">
             {reviews.map((review, index) => (
-              <div key={review.id}>
+              <Link
+                key={review.id}
+                href={`/reviews/${review.id}`}
+                className="block group"
+              >
                 {/* Review */}
                 <div className="mb-6">
                   {/* Header: Autor y detalles */}
                   <div className="mb-3">
                     <div className="flex items-start justify-between gap-4 mb-2">
                       <div className="flex-1">
-                        <div className="text-lg font-bold text-[#fbdaf9] mb-1">
+                        <div className="text-lg font-bold text-[#fbdaf9] mb-1 group-hover:text-[#f500f1] transition-colors">
                           {review.autor.nombre} {review.autor.apellido}
                         </div>
                         <div className="flex items-center gap-2 flex-wrap">
@@ -203,16 +208,16 @@ export default function ReviewsClient({
                   </div>
 
                   {/* Texto de la review */}
-                  <p className="text-[#fbdaf9] leading-relaxed">
+                  <p className="text-[#fbdaf9] leading-relaxed line-clamp-3">
                     {review.review}
                   </p>
                 </div>
 
                 {/* Separador */}
                 {index < reviews.length - 1 && (
-                  <div className="border-t border-[#8d62a5]/20" />
+                  <div className="border-t border-[#8d62a5]/20 mb-6" />
                 )}
-              </div>
+              </Link>
             ))}
           </div>
 
