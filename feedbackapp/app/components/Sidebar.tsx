@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BarChart3, LogOut, User, X, Star, Shield, Search } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { useClerk } from '@clerk/nextjs';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -12,6 +13,7 @@ interface SidebarProps {
 
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
+  const { signOut } = useClerk();
   const [isMobile, setIsMobile] = useState(true);
 
   // Detectar si estamos en pantalla mobile
@@ -137,7 +139,10 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* Logout */}
         <div className="p-[clamp(0.75rem,2vw,1rem)] border-t border-brand-accent-soft/20">
-          <button className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] w-full px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg text-brand-accent-mid transition-all duration-200 ease-out hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1 min-h-[44px]">
+          <button
+            onClick={() => { signOut({ redirectUrl: '/' }); onClose(); }}
+            className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] w-full px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg text-brand-accent-mid transition-all duration-200 ease-out hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1 min-h-[44px]"
+          >
             <LogOut size={20} className="flex-shrink-0" />
             <span className="font-medium text-sm md:text-base" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
               Cerrar sesión
