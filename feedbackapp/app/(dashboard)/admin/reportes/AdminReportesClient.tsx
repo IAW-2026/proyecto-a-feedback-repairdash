@@ -2,8 +2,9 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { AlertCircle, Search, User, FileText, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
+import { AlertCircle, Search, User, FileText, Calendar } from 'lucide-react'
 import DropdownFilter from '@/components/DropdownFilter'
+import Pagination from '@/components/Pagination'
 
 // ============================================
 // INTERFACES Y TIPOS
@@ -145,16 +146,8 @@ export default function AdminReportesClient({
   // HANDLERS: Navegación de paginación
   // ============================================
 
-  const handlePreviousPage = () => {
-    if (page > 1) {
-      router.push(buildUrl({ page: String(page - 1) }))
-    }
-  }
-
-  const handleNextPage = () => {
-    if (page < totalPaginas) {
-      router.push(buildUrl({ page: String(page + 1) }))
-    }
+  const handlePage = (p: number) => {
+    router.push(buildUrl({ page: String(p) }))
   }
 
   const handleEstadoFilter = (e: string) => {
@@ -311,39 +304,7 @@ export default function AdminReportesClient({
             })}
           </div>
 
-          {/* ========== PAGINACIÓN ========== */}
-          <div className="flex items-center justify-between">
-            <div className="text-[#c392dd] text-sm">
-              Página <span className="font-bold text-white">{page}</span> de{' '}
-              <span className="font-bold text-white">{totalPaginas}</span>
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                onClick={handlePreviousPage}
-                disabled={page === 1}
-                className={`p-2 rounded-lg border transition-all duration-200 ${
-                  page === 1
-                    ? 'border-[#8d62a5]/20 text-[#8d62a5]/50 cursor-not-allowed'
-                    : 'border-[#8d62a5] text-[#8d62a5] hover:bg-[#8d62a5]/20 hover:text-[#f500f1]'
-                }`}
-              >
-                <ChevronLeft size={20} />
-              </button>
-
-              <button
-                onClick={handleNextPage}
-                disabled={page === totalPaginas}
-                className={`p-2 rounded-lg border transition-all duration-200 ${
-                  page === totalPaginas
-                    ? 'border-[#8d62a5]/20 text-[#8d62a5]/50 cursor-not-allowed'
-                    : 'border-[#8d62a5] text-[#8d62a5] hover:bg-[#8d62a5]/20 hover:text-[#f500f1]'
-                }`}
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div>
+          <Pagination page={page} totalPaginas={totalPaginas} onPageChange={handlePage} />
         </>
       )}
     </div>
