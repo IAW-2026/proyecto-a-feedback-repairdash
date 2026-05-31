@@ -72,7 +72,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <p
-          className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2"
+          className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2"
           style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
         >
           Detalle de Review
@@ -97,7 +97,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
               {review.autor.nombre} {review.autor.apellido}
             </h2>
             <span
-              className="bg-[#8d62a5]/30 text-[#c392dd] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full font-medium whitespace-nowrap"
+              className="bg-[#8d62a5]/30 text-[#fbdaf9] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full font-medium whitespace-nowrap"
               style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
             >
               {tipoLabel}
@@ -141,7 +141,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         {/* Trabajo relacionado */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           <p
-            className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-[clamp(0.75rem,2vw,1rem)]"
+            className="text-[#c392dd] font-semibold uppercase tracking-wider mb-[clamp(0.75rem,2vw,1rem)]"
             style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
           >
             Trabajo relacionado

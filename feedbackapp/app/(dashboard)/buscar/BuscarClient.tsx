@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { Star, Search, AlertTriangle, Briefcase } from 'lucide-react'
+import Pagination from '@/components/Pagination'
 
 interface UserResult {
   id: string
@@ -72,20 +73,10 @@ export default function BuscarClient({
     }
   }, [searchValue, router, pathname])
 
-  const handlePreviousPage = () => {
-    if (page > 1) {
-      router.push(
-        `${pathname}?search=${encodeURIComponent(search)}&page=${page - 1}`
-      )
-    }
-  }
-
-  const handleNextPage = () => {
-    if (page < totalPaginas) {
-      router.push(
-        `${pathname}?search=${encodeURIComponent(search)}&page=${page + 1}`
-      )
-    }
+  const handlePage = (p: number) => {
+    router.push(
+      `${pathname}?search=${encodeURIComponent(search)}&page=${p}`
+    )
   }
 
   const hasNoUsers = usuarios.length === 0
@@ -142,12 +133,12 @@ export default function BuscarClient({
                 className="block group"
               >
               <div
-                className="bg-[#3a1f52] rounded-lg py-[clamp(0.75rem,2.5vw,1.25rem)] px-[clamp(0.75rem,2vw,1rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 cursor-pointer flex items-center justify-between gap-4"
+                className="bg-[#3a1f52] rounded-lg py-[clamp(0.75rem,2.5vw,1.25rem)] px-[clamp(0.75rem,2vw,1rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 cursor-pointer flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
               >
-                <div className="flex items-center gap-3 min-w-0">
-                  <h3 className="font-gilroy font-bold text-[#fbdaf9] whitespace-nowrap" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
+                <div className="flex items-center gap-3 flex-wrap">
+                  <h2 className="font-gilroy font-bold text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
                     {usuario.apellido}, {usuario.nombre}
-                  </h3>
+                  </h2>
                   <div className="flex items-center gap-2 flex-shrink-0">
                     <StarRating rating={usuario.promedioEstrellas} />
                     <span className="text-[#8d62a5] text-xs font-medium">
@@ -175,37 +166,7 @@ export default function BuscarClient({
             ))}
           </div>
 
-          {totalPaginas > 1 && (
-            <div className="flex items-center justify-between pt-6 border-t border-[#8d62a5]/20">
-              <button
-                onClick={handlePreviousPage}
-                disabled={page === 1}
-                className={`px-4 py-2 border border-[#8d62a5] rounded-lg font-semibold text-sm transition-all duration-200 ${
-                  page === 1
-                    ? 'opacity-40 cursor-not-allowed text-[#fbdaf9]'
-                    : 'bg-[#3a1f52] text-[#fbdaf9] hover:border-[#f500f1] hover:text-[#f500f1]'
-                }`}
-              >
-                ← Anterior
-              </button>
-
-              <span className="text-[#c392dd] text-sm">
-                Página {page} de {totalPaginas}
-              </span>
-
-              <button
-                onClick={handleNextPage}
-                disabled={page === totalPaginas}
-                className={`px-4 py-2 border border-[#8d62a5] rounded-lg font-semibold text-sm transition-all duration-200 ${
-                  page === totalPaginas
-                    ? 'opacity-40 cursor-not-allowed text-[#fbdaf9]'
-                    : 'bg-[#3a1f52] text-[#fbdaf9] hover:border-[#f500f1] hover:text-[#f500f1]'
-                }`}
-              >
-                Siguiente →
-              </button>
-            </div>
-          )}
+          <Pagination page={page} totalPaginas={totalPaginas} onPageChange={handlePage} />
         </>
       )}
     </div>
