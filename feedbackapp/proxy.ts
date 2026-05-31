@@ -33,7 +33,7 @@ export default clerkMiddleware(async (auth, req) => {
     }
 
     if (isAdmin && isUserRoute(req)) {
-      return NextResponse.redirect(new URL('/admin', req.url));
+      return NextResponse.redirect(new URL('/admin/usuarios', req.url));
     }
   }
 });

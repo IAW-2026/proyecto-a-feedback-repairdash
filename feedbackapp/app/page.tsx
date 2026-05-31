@@ -11,7 +11,7 @@ export default async function Home() {
 
   if (role === 'feedbackAdmin') {
     const adminSections = [
-      { label: 'Usuarios', href: '/admin', icon: Users, description: 'Listado de usuarios del sistema' },
+      { label: 'Usuarios', href: '/admin/usuarios', icon: Users, description: 'Listado de usuarios del sistema' },
       { label: 'Reportes', href: '/admin/reportes', icon: Shield, description: 'Gestionar reportes' },
     ]
 

@@ -33,7 +33,7 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const navItems = isAdmin
     ? [
         { label: 'Inicio', href: '/', icon: Home },
-        { label: 'Usuarios', href: '/admin', icon: Users },
+        { label: 'Usuarios', href: '/admin/usuarios', icon: Users },
         { label: 'Reportes', href: '/admin/reportes', icon: Shield },
       ]
     : [
