@@ -34,7 +34,6 @@ export default function AdminUsersClient({
   const router = useRouter()
   const pathname = usePathname()
   const [searchValue, setSearchValue] = useState(search)
-  const [togglingId, setTogglingId] = useState<string | null>(null)
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -61,23 +60,6 @@ export default function AdminUsersClient({
     if (rolFilter) params.set('rol', rolFilter)
     params.set('page', String(p))
     router.push(`${pathname}?${params.toString()}`)
-  }
-
-  const toggleActivo = async (id: string, activo: boolean) => {
-    setTogglingId(id)
-    try {
-      const res = await fetch(`/api/admin/users/${id}`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ activo: !activo }),
-      })
-      if (!res.ok) throw new Error()
-      router.refresh()
-    } catch {
-      alert('Error al cambiar estado del usuario')
-    } finally {
-      setTogglingId(null)
-    }
   }
 
   const rolLabels: Record<string, string> = {
@@ -158,8 +140,7 @@ export default function AdminUsersClient({
                   <th className="pb-3 pr-4 font-semibold">Email</th>
                   <th className="pb-3 pr-4 font-semibold">Rol</th>
                   <th className="pb-3 pr-4 font-semibold">Valoración</th>
-                  <th className="pb-3 pr-4 font-semibold">Estado</th>
-                  <th className="pb-3 font-semibold">Acción</th>
+                  <th className="pb-3 font-semibold">Estado</th>
                 </tr>
               </thead>
               <tbody>
@@ -182,24 +163,11 @@ export default function AdminUsersClient({
                         <span className="text-[#fbdaf9] text-sm font-medium">{u.valoracion}/5</span>
                       </div>
                     </td>
-                    <td className="py-4 pr-4">
+                    <td className="py-4">
                       <span className={`inline-flex items-center gap-1.5 text-sm font-medium ${u.activo ? 'text-green-400' : 'text-red-400'}`}>
                         <span className={`w-2 h-2 rounded-full ${u.activo ? 'bg-green-400' : 'bg-red-400'}`} />
                         {u.activo ? 'Activo' : 'Inactivo'}
                       </span>
-                    </td>
-                    <td className="py-4">
-                      <button
-                        onClick={() => toggleActivo(u.id, u.activo)}
-                        disabled={togglingId === u.id}
-                        className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all duration-200 ${
-                          u.activo
-                            ? 'bg-red-500/20 text-red-300 hover:bg-red-500/30'
-                            : 'bg-green-500/20 text-green-300 hover:bg-green-500/30'
-                        } ${togglingId === u.id ? 'opacity-50 cursor-not-allowed' : ''}`}
-                      >
-                        {togglingId === u.id ? '...' : u.activo ? 'Desactivar' : 'Reactivar'}
-                      </button>
                     </td>
                   </tr>
                 ))}

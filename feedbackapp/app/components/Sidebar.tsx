@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, LogOut, User, X, Star, Shield, Search } from 'lucide-react';
+import { Home, BarChart3, LogOut, User, X, Star, Shield, Search, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useClerk } from '@clerk/nextjs';
+import { useClerk, useAuth } from '@clerk/nextjs';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -14,6 +14,9 @@ interface SidebarProps {
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const { signOut } = useClerk();
+  const { sessionClaims } = useAuth();
+  const role = (sessionClaims?.metadata as any)?.role;
+  const isAdmin = role === 'feedbackAdmin';
   const [isMobile, setIsMobile] = useState(true);
 
   // Detectar si estamos en pantalla mobile
@@ -27,38 +30,19 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
-  const navItems = [
-    {
-      label: 'Inicio',
-      href: '/',
-      icon: Home,
-    },
-    {
-      label: 'Buscar',
-      href: '/buscar',
-      icon: Search,
-    },
-    {
-      label: 'Reviews',
-      href: '/reviews',
-      icon: Star,
-    },
-    {
-      label: 'Reportes',
-      href: '/reportes',
-      icon: BarChart3,
-    },
-    {
-      label: 'Perfil',
-      href: '/perfil',
-      icon: User,
-    },
-    {
-      label: 'Admin',
-      href: '/admin/reportes',
-      icon: Shield,
-    },
-  ];
+  const navItems = isAdmin
+    ? [
+        { label: 'Inicio', href: '/', icon: Home },
+        { label: 'Usuarios', href: '/admin', icon: Users },
+        { label: 'Reportes', href: '/admin/reportes', icon: Shield },
+      ]
+    : [
+        { label: 'Inicio', href: '/', icon: Home },
+        { label: 'Buscar', href: '/buscar', icon: Search },
+        { label: 'Reviews', href: '/reviews', icon: Star },
+        { label: 'Reportes', href: '/reportes', icon: BarChart3 },
+        { label: 'Perfil', href: '/perfil', icon: User },
+      ];
 
   return (
     <>
