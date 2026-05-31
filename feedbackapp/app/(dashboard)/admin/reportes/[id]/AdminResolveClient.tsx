@@ -3,8 +3,7 @@
 import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { CheckCircle, XCircle, Clock, AlertTriangle } from 'lucide-react'
-
-type Decision = 'AFavor' | 'EnContra'
+import { adminResolveSchema } from '@/lib/validation/adminResolve'
 
 interface Props {
   reporteId: string
@@ -129,7 +128,14 @@ export default function AdminResolveClient({ reporteId, estado, decision, resolu
     </div>
   )
 
-  async function handleResolve(decision: Decision) {
+  async function handleResolve(decision: string) {
+    // Validar con Zod antes de enviar
+    const result = adminResolveSchema.safeParse({ decision })
+    if (!result.success) {
+      setError(result.error.issues[0].message)
+      return
+    }
+
     setLoading(true)
     setError(null)
 
@@ -137,7 +143,7 @@ export default function AdminResolveClient({ reporteId, estado, decision, resolu
       const res = await fetch(`/api/reports/${reporteId}/resolve`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ decision }),
+        body: JSON.stringify(result.data),
       })
 
       if (!res.ok) {
