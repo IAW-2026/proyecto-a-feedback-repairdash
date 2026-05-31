@@ -24,7 +24,12 @@ export default async function BuscarPage({
   }
 
   const where = search
-    ? { nombre: { contains: search, mode: 'insensitive' as const } }
+    ? {
+        OR: [
+          { nombre: { contains: search, mode: 'insensitive' as const } },
+          { apellido: { contains: search, mode: 'insensitive' as const } },
+        ],
+      }
     : undefined
 
   const [usuarios, total] = await Promise.all([
