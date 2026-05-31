@@ -87,8 +87,8 @@ function getEstadoBadge(resolucion: string): { label: string; color: string } {
 function getDecisionBadge(decision: string | null): { label: string; color: string } | null {
   if (!decision) return null
   const decisiones: Record<string, { label: string; color: string }> = {
-    AFavor: { label: 'A Favor del Reportante', color: 'bg-[#4ade80]/20 text-[#6ba587]' },
-    EnContra: { label: 'En Contra del Reportante', color: 'bg-[#ef5350]/20 text-[#ff6b6b]' },
+    AFavor: { label: 'A Favor del Reportante', color: 'bg-[#4ade80]/20 text-[#8ae0a5]' },
+    EnContra: { label: 'En Contra del Reportante', color: 'bg-[#ef5350]/20 text-[#ff9999]' },
   }
   return decisiones[decision] || null
 }
@@ -255,7 +255,7 @@ export default function AdminReportesClient({
                         <User size={18} className="text-[#f500f1]" />
                         <span className="text-sm text-[#c392dd]">
                           <span className="font-semibold text-white">{reportanteNombre}</span>
-                          <span className="text-[#8d62a5]"> reportó a </span>
+                          <span className="text-[#c392dd]"> reportó a </span>
                           <span className="font-semibold text-white">{reportadoNombre}</span>
                         </span>
                       </div>
@@ -295,7 +295,7 @@ export default function AdminReportesClient({
 
                   {/* CTA: Botón para ver detalles */}
                   <div className="flex justify-end">
-                    <span className="px-4 py-2 bg-[#f500f1]/20 text-[#f500f1] rounded-lg text-sm font-medium">
+                    <span className="px-4 py-2 bg-[#f500f1]/20 text-[#ff66ff] rounded-lg text-sm font-medium">
                       Ver detalles
                     </span>
                   </div>
