@@ -20,7 +20,7 @@ export function TopBar() {
     ? [
         { label: 'Inicio', href: '/', icon: Home },
         { label: 'Usuarios', href: '/admin/usuarios', icon: Users },
-        { label: 'Reportes', href: '/admin/reportes', icon: Shield },
+        { label: 'Gestionar Reportes', href: '/admin/reportes', icon: Shield },
       ]
     : [
         { label: 'Inicio', href: '/', icon: Home },
@@ -83,9 +83,14 @@ export function TopBar() {
           </button>
 
           {/* Logo */}
-          <Link href="/" onClick={closeMenu} className="flex items-center gap-1 shrink-0">
-            <span className="text-xl font-bold text-white font-gilroy leading-tight">RepairDash</span>
-            <span className="text-xs text-brand-accent-mid tracking-wide hidden sm:inline">Feedback</span>
+          <Link href="/" onClick={closeMenu} className="flex flex-col items-center shrink-0 leading-tight">
+            <div className="flex items-baseline gap-1">
+              <span className="text-xl font-bold text-white font-gilroy">RepairDash</span>
+              <span className="text-xs text-brand-accent-mid tracking-wide hidden sm:inline">Feedback</span>
+            </div>
+            {isAdmin && (
+              <span className="text-[11px] font-bold text-[#e879f9] tracking-wide -mt-0.5">Admin View</span>
+            )}
           </Link>
 
           {/* Desktop nav */}
