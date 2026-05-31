@@ -11,7 +11,7 @@ export default async function AdminPage({
   const page = parseInt(params.page ?? '1')
   const search = params.search ?? ''
   const rolFilter = params.rol ?? ''
-  const POR_PAGINA = 10
+  const POR_PAGINA = 5
 
   const where: Prisma.UsuarioWhereInput = {}
 
