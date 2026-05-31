@@ -60,7 +60,7 @@ function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: stri
 
   return (
     <div className={`bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border-2 ${borderColor}`}>
-      <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+      <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
         Veredicto
       </p>
 
@@ -68,9 +68,9 @@ function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: stri
         {isSinResolver && (
           <>
             <Clock size={56} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-[#c392dd]" />
-            <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
+            <p className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               Pendiente de veredicto
-            </h3>
+            </p>
             <p className="text-[#c392dd] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
               El administrador aún no ha revisado este reporte
             </p>
@@ -81,9 +81,9 @@ function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: stri
         {!isSinResolver && aFavor && (
           <>
             <CheckCircle size={56} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-green-500" />
-            <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
+            <p className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               Reporte aprobado
-            </h3>
+            </p>
             <p className="text-[#c392dd] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador falló {soyReportante ? 'a' : 'en'}{' '}tu favor</p>
             <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
@@ -92,9 +92,9 @@ function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: stri
         {!isSinResolver && !aFavor && (
           <>
             <XCircle size={56} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-red-500" />
-            <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
+            <p className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               Reporte rechazado
-            </h3>
+            </p>
             <p className="text-[#c392dd] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador falló en tu contra</p>
             <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
@@ -158,7 +158,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
 
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-[clamp(1rem,3vw,2rem)]">
           <div>
-            <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+            <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Detalle de Reporte
             </p>
             <h1 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
@@ -192,13 +192,13 @@ export default async function ReporteDetailPage({ params }: PageProps) {
         <div className="lg:col-span-2 space-y-[clamp(1.5rem,4vw,2rem)]">
           {/* Card 1: Información del trabajo */}
           <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
-            <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+            <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Trabajo Relacionado
             </p>
 
-            <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
+            <h2 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               {reporte.trabajo.tipoDeTrabajo}
-            </h3>
+            </h2>
 
             <div className="space-y-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1.5rem,4vw,2rem)]">
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
@@ -216,7 +216,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                   <User size={20} className="text-[#c392dd]" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[#8d62a5] uppercase font-semibold" style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}>Reportante</p>
+                  <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}>Reportante</p>
                   <p className="text-[#fbdaf9] font-gilroy font-bold" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                     {reporte.reportante.nombre} {reporte.reportante.apellido}
                   </p>
@@ -229,7 +229,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                   <Shield size={20} className="text-[#c392dd]" />
                 </div>
                 <div className="min-w-0">
-                  <p className="text-[#8d62a5] uppercase font-semibold" style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}>Reportado</p>
+                  <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}>Reportado</p>
                   <p className="text-[#fbdaf9] font-gilroy font-bold" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                     {reporte.reportado.nombre} {reporte.reportado.apellido}
                   </p>
@@ -243,7 +243,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
           <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
-              <p className="text-[#8d62a5] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+              <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                 Descripción
               </p>
             </div>
@@ -257,7 +257,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
           <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
-              <p className="text-[#8d62a5] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+              <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                 Pruebas
               </p>
             </div>
@@ -269,12 +269,12 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                 {/* Imágenes */}
                 {imagenesProof.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Imágenes</h4>
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(0.75rem,2vw,1rem)]">
+                    <h3 className="text-[#fbdaf9] font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Imágenes</h3>
+                    <div className="flex flex-wrap justify-center gap-[clamp(0.75rem,2vw,1rem)]">
                       {imagenesProof.map((imagen) => (
                         <div
                           key={imagen.id}
-                          className="cursor-pointer rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 border border-[#8d62a5]/30 hover:border-[#f500f1]/40 min-h-[160px]"
+                          className="cursor-pointer rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 border border-[#8d62a5]/30 hover:border-[#f500f1]/40 min-h-[160px] flex-1 basis-[45%] max-w-[500px]"
                         >
                           <img
                             src={imagen.url}
@@ -290,7 +290,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                 {/* Videos */}
                 {videosProof.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Videos</h4>
+                    <h3 className="text-[#fbdaf9] font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Videos</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(0.75rem,2vw,1rem)]">
                       {videosProof.map((video) => (
                         <div
@@ -313,7 +313,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                 {/* PDFs */}
                 {pdfsProof.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Documentos</h4>
+                    <h3 className="text-[#fbdaf9] font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Documentos</h3>
                     <div className="space-y-[clamp(0.5rem,1vw,0.75rem)]">
                       {pdfsProof.map((pdf) => (
                         <div
