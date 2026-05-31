@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, LogOut, User, X, Star, Shield, Search } from 'lucide-react';
+import { Home, BarChart3, LogOut, User, X, Star, Shield, Search, Users } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { useClerk } from '@clerk/nextjs';
+import { useClerk, useAuth } from '@clerk/nextjs';
 
 interface SidebarProps {
   isOpen: boolean;
@@ -14,6 +14,9 @@ interface SidebarProps {
 export function Sidebar({ isOpen, onClose }: SidebarProps) {
   const pathname = usePathname();
   const { signOut } = useClerk();
+  const { sessionClaims } = useAuth();
+  const role = (sessionClaims?.metadata as any)?.role;
+  const isAdmin = role === 'feedbackAdmin';
   const [isMobile, setIsMobile] = useState(true);
 
   // Detectar si estamos en pantalla mobile
@@ -27,38 +30,19 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
     return () => window.removeEventListener('resize', checkIsMobile);
   }, []);
 
-  const navItems = [
-    {
-      label: 'Inicio',
-      href: '/',
-      icon: Home,
-    },
-    {
-      label: 'Buscar',
-      href: '/buscar',
-      icon: Search,
-    },
-    {
-      label: 'Reviews',
-      href: '/reviews',
-      icon: Star,
-    },
-    {
-      label: 'Reportes',
-      href: '/reportes',
-      icon: BarChart3,
-    },
-    {
-      label: 'Perfil',
-      href: '/perfil',
-      icon: User,
-    },
-    {
-      label: 'Admin',
-      href: '/admin/reportes',
-      icon: Shield,
-    },
-  ];
+  const navItems = isAdmin
+    ? [
+        { label: 'Inicio', href: '/', icon: Home },
+        { label: 'Usuarios', href: '/admin/usuarios', icon: Users },
+        { label: 'Reportes', href: '/admin/reportes', icon: Shield },
+      ]
+    : [
+        { label: 'Inicio', href: '/', icon: Home },
+        { label: 'Buscar', href: '/buscar', icon: Search },
+        { label: 'Reviews', href: '/reviews', icon: Star },
+        { label: 'Reportes', href: '/reportes', icon: BarChart3 },
+        { label: 'Perfil', href: '/perfil', icon: User },
+      ];
 
   return (
     <>
@@ -110,39 +94,40 @@ export function Sidebar({ isOpen, onClose }: SidebarProps) {
 
         {/* Navigation */}
         <nav className="flex-1 p-[clamp(0.75rem,2vw,1rem)]">
-        <ul className="space-y-[clamp(0.5rem,1vw,0.75rem)]">
-          {navItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
-            
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  onClick={onClose}
-                  className={`flex items-center gap-[clamp(0.75rem,2vw,1rem)] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg transition-all duration-200 ease-out min-h-[44px] ${
-                    isActive
-                      ? 'bg-brand-accent-soft text-white'
-                      : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1'
-                  }`}
-                >
-                  <Icon size={20} className="flex-shrink-0" />
-                  <span className="font-medium text-sm md:text-base" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
-                    {item.label}
-                  </span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
+          <ul className="space-y-[clamp(0.5rem,1vw,0.75rem)]">
+            {navItems.map((item) => {
+              const Icon = item.icon;
+              const isActive = pathname === item.href;
+
+              return (
+                <li key={item.href}>
+                  <Link
+                    href={item.href}
+                    onClick={onClose}
+                    className={`flex items-center gap-[clamp(0.75rem,2vw,1rem)] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg transition-all duration-200 ease-out min-h-[44px] ${isActive
+                        ? 'bg-brand-accent-soft text-white'
+                        : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1'
+                      }`}
+                  >
+                    <Icon size={20} className="flex-shrink-0" />
+                    <span className="font-medium text-sm md:text-base" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                      {item.label}
+                    </span>
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
         </nav>
 
         {/* Logout */}
         <div className="p-[clamp(0.75rem,2vw,1rem)] border-t border-brand-accent-soft/20">
           <button
-            onClick={() => { signOut({ redirectUrl: '/' }); onClose(); }}
-            className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] w-full px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg text-brand-accent-mid transition-all duration-200 ease-out hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1 min-h-[44px]"
-          >
+            onClick={() => {
+              signOut({ redirectUrl: '/' });
+              onClose();
+            }}
+            className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] w-full px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] rounded-lg text-brand-accent-mid transition-all duration-200 ease-out hover:text-brand-text-light hover:bg-brand-accent-soft/30 hover:translate-x-1 min-h-[44px]">
             <LogOut size={20} className="flex-shrink-0" />
             <span className="font-medium text-sm md:text-base" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
               Cerrar sesión

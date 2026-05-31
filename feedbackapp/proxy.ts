@@ -9,28 +9,31 @@ const isPublicRoute = createRouteMatcher([
   "/api/webhooks/clerk(.*)",       // Webhook: Clerk → BD
   "/api/reports(.*)",              // API: otras apps consultan reportes 
   "/api/reviews(.*)",              // API: otras apps leen/agregan reviews  
-  "/api/trabajos(.*)",             // API: otras apps consultan trabajos  
-  "/api/usuarios(.*)",             // API: Webhook que inyecta usuarios nuevos 
+  "/api/trabajos(.*)",             // API: otras apps consultan trabajos   
 ]);
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)']);
+const isUserRoute = createRouteMatcher(['/buscar(.*)', '/reviews(.*)', '/perfil(.*)']);
 export default clerkMiddleware(async (auth, req) => {
   if (req.nextUrl.pathname.startsWith('/sign-up')) {
     return NextResponse.redirect(new URL('/login', req.url))
   }
 
   if (!isPublicRoute(req)) {
-    const { userId } = await auth();
+    const { userId, sessionClaims } = await auth();
     if (!userId) {
       return NextResponse.redirect(new URL('/login', req.url))
     }
-  }
-  if (isAdminRoute(req)) {
-    const { sessionClaims } = await auth();
+
     const role = (sessionClaims?.metadata as any)?.role;
-    const isAdmin = role === 'feedbackAdmin' || role === "admin";
-    if (!isAdmin) {
+    const isAdmin = role === 'feedbackAdmin';
+
+    if (isAdminRoute(req) && !isAdmin) {
       return NextResponse.redirect(new URL('/', req.url));
+    }
+
+    if (isAdmin && isUserRoute(req)) {
+      return NextResponse.redirect(new URL('/admin/usuarios', req.url));
     }
   }
 });

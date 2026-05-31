@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { AlertCircle, Search, User, FileText, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
+import DropdownFilter from '@/components/DropdownFilter'
 
 // ============================================
 // INTERFACES Y TIPOS
@@ -37,6 +38,8 @@ interface AdminReportesClientProps {
   totalPaginas: number
   search: string
   total: number
+  totalPendientes: number
+  estado: string
 }
 
 // ============================================
@@ -99,11 +102,24 @@ export default function AdminReportesClient({
   totalPaginas,
   search,
   total,
+  totalPendientes,
+  estado,
 }: AdminReportesClientProps) {
   const router = useRouter()
   const pathname = usePathname()
   const [searchValue, setSearchValue] = useState(search)
   const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
+
+  const buildUrl = (overrides: Record<string, string>) => {
+    const params = new URLSearchParams()
+    const s = overrides.search ?? search
+    const e = overrides.estado ?? estado
+    const p = overrides.page ?? String(page)
+    if (s) params.set('search', s)
+    if (e) params.set('estado', e)
+    params.set('page', p)
+    return `${pathname}?${params.toString()}`
+  }
 
   // ============================================
   // EFECTO: Debounce de búsqueda
@@ -115,9 +131,7 @@ export default function AdminReportesClient({
 
     const timer = setTimeout(() => {
       const newSearch = searchValue.trim()
-      router.push(
-        `${pathname}?search=${encodeURIComponent(newSearch)}&page=1`
-      )
+      router.push(buildUrl({ search: newSearch, page: '1' }))
     }, 400)
 
     setDebounceTimer(timer)
@@ -125,7 +139,7 @@ export default function AdminReportesClient({
     return () => {
       if (timer) clearTimeout(timer)
     }
-  }, [searchValue, router, pathname])
+  }, [searchValue, router, pathname, estado])
 
   // ============================================
   // HANDLERS: Navegación de paginación
@@ -133,18 +147,18 @@ export default function AdminReportesClient({
 
   const handlePreviousPage = () => {
     if (page > 1) {
-      router.push(
-        `${pathname}?search=${encodeURIComponent(search)}&page=${page - 1}`
-      )
+      router.push(buildUrl({ page: String(page - 1) }))
     }
   }
 
   const handleNextPage = () => {
     if (page < totalPaginas) {
-      router.push(
-        `${pathname}?search=${encodeURIComponent(search)}&page=${page + 1}`
-      )
+      router.push(buildUrl({ page: String(page + 1) }))
     }
+  }
+
+  const handleEstadoFilter = (e: string) => {
+    router.push(buildUrl({ estado: e, page: '1' }))
   }
 
   // ============================================
@@ -170,7 +184,7 @@ export default function AdminReportesClient({
               Gestión de Conflictos
             </h1>
             <p className="text-[#c392dd]">
-              Revisa y resuelve los {total} reporte{total !== 1 ? 's' : ''} pendiente{total !== 1 ? 's' : ''}
+              Revisa y resuelve los {totalPendientes} reporte{totalPendientes !== 1 ? 's' : ''} pendiente{totalPendientes !== 1 ? 's' : ''}
             </p>
           </div>
 
@@ -179,24 +193,33 @@ export default function AdminReportesClient({
             <AlertCircle size={24} className="text-[#f500f1]" />
             <div>
               <div className="text-[#c392dd] text-sm">Pendientes</div>
-              <div className="text-[#f500f1] font-bold text-2xl">{total}</div>
+              <div className="text-[#f500f1] font-bold text-2xl">{totalPendientes}</div>
             </div>
           </div>
         </div>
       </div>
 
-      {/* ========== BARRA DE BÚSQUEDA ========== */}
-      <div className="mb-8 relative">
-        <Search
-          size={18}
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8d62a5]"
-        />
-        <input
-          type="text"
-          placeholder="Buscar por nombre del reportante o reportado..."
-          value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200"
+      {/* ========== BARRA DE BÚSQUEDA + FILTRO ========== */}
+      <div className="flex flex-col sm:flex-row gap-3 mb-8">
+        <div className="relative flex-1">
+          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8d62a5]" />
+          <input
+            type="text"
+            placeholder="Buscar por nombre del reportante o reportado..."
+            value={searchValue}
+            onChange={(e) => setSearchValue(e.target.value)}
+            className="w-full pl-10 pr-4 py-3 bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200"
+          />
+        </div>
+        <DropdownFilter
+          value={estado}
+          onChange={handleEstadoFilter}
+          options={[
+            { value: '', label: 'Todos' },
+            { value: 'CREADO', label: 'Creado' },
+            { value: 'PRUEBAS_AGREGADAS', label: 'Pruebas Agregadas' },
+            { value: 'RESUELTO', label: 'Resuelto' },
+          ]}
         />
       </div>
 
@@ -207,12 +230,12 @@ export default function AdminReportesClient({
             <FileText size={48} className="text-[#8d62a5] mx-auto" />
           </div>
           <h3 className="text-lg font-semibold text-[#c392dd] mb-2">
-            {hasSearch ? 'No se encontraron reportes' : 'No hay reportes pendientes'}
+            {hasSearch ? 'No se encontraron reportes' : 'No hay reportes en este estado'}
           </h3>
           <p className="text-[#8d62a5] text-sm">
             {hasSearch
               ? 'Intenta con otros criterios de búsqueda'
-              : 'Todos los conflictos han sido resueltos'}
+              : 'Prueba seleccionando otro filtro de estado'}
           </p>
         </div>
       ) : (

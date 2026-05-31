@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { User, Briefcase, Calendar, AlertCircle, ArrowRight, Flag } from 'lucide-react';
+import { User, Briefcase, Calendar, ArrowRight, Flag } from 'lucide-react';
 
 interface PendingReportScreenProps {
   reporte: any;
