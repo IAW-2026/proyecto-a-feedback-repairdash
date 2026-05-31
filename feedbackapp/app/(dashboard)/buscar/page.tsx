@@ -9,10 +9,27 @@ export default async function BuscarPage({
   const params = await searchParams
   const page = parseInt(params.page ?? '1')
   const search = params.search ?? ''
-  const POR_PAGINA = 10
+  const POR_PAGINA = 5
+
+  if (!search) {
+    return (
+      <BuscarClient
+        usuarios={[]}
+        page={1}
+        totalPaginas={0}
+        search=""
+        total={0}
+      />
+    )
+  }
 
   const where = search
-    ? { nombre: { contains: search, mode: 'insensitive' as const } }
+    ? {
+        OR: [
+          { nombre: { contains: search, mode: 'insensitive' as const } },
+          { apellido: { contains: search, mode: 'insensitive' as const } },
+        ],
+      }
     : undefined
 
   const [usuarios, total] = await Promise.all([

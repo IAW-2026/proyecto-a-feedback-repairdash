@@ -134,7 +134,7 @@ export default function BuscarClient({
         </div>
       ) : (
         <>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,2vw,1.75rem)] mb-8">
+          <div className="flex flex-col gap-3 mb-8">
             {usuarios.map((usuario) => (
               <Link
                 key={usuario.id}
@@ -142,35 +142,31 @@ export default function BuscarClient({
                 className="block group"
               >
               <div
-                className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer"
+                className="bg-[#3a1f52] rounded-lg py-[clamp(0.75rem,2.5vw,1.25rem)] px-[clamp(0.75rem,2vw,1rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 cursor-pointer flex items-center justify-between gap-4"
               >
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(0.75rem,2vw,1rem)]">
-                  <div className="min-w-0">
-                    <h3 className="font-gilroy font-bold text-[#fbdaf9] break-words" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
-                      {usuario.apellido}, {usuario.nombre}
-                    </h3>
-                    <div className="mt-1 flex items-center gap-2">
-                      <StarRating rating={usuario.promedioEstrellas} />
-                      <span className="text-[#8d62a5] text-sm font-medium">
-                        {usuario.promedioEstrellas}/5
-                      </span>
-                    </div>
+                <div className="flex items-center gap-3 min-w-0">
+                  <h3 className="font-gilroy font-bold text-[#fbdaf9] whitespace-nowrap" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
+                    {usuario.apellido}, {usuario.nombre}
+                  </h3>
+                  <div className="flex items-center gap-2 flex-shrink-0">
+                    <StarRating rating={usuario.promedioEstrellas} />
+                    <span className="text-[#8d62a5] text-xs font-medium">
+                      {usuario.promedioEstrellas}/5
+                    </span>
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                  <div className="flex items-center gap-2 text-[#c392dd]">
-                    <AlertTriangle size={16} className="flex-shrink-0" />
+                <div className="flex items-center gap-4 flex-shrink-0" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)' }}>
+                  <div className="flex items-center gap-1.5 text-[#c392dd]">
+                    <AlertTriangle size={14} className="flex-shrink-0" />
                     <span>
-                      Reportes en contra:{' '}
-                      <strong className="text-[#fbdaf9]">{usuario.reportesEnContra}</strong>
+                      Reportes: <strong className="text-[#fbdaf9]">{usuario.reportesEnContra}</strong>
                     </span>
                   </div>
-                  <div className="flex items-center gap-2 text-[#c392dd]">
-                    <Briefcase size={16} className="flex-shrink-0" />
+                  <div className="flex items-center gap-1.5 text-[#c392dd]">
+                    <Briefcase size={14} className="flex-shrink-0" />
                     <span>
-                      Trabajos involucrado:{' '}
-                      <strong className="text-[#fbdaf9]">{usuario.trabajosInvolucrado}</strong>
+                      Trabajos: <strong className="text-[#fbdaf9]">{usuario.trabajosInvolucrado}</strong>
                     </span>
                   </div>
                 </div>
