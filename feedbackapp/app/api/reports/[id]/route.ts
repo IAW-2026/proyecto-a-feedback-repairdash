@@ -6,12 +6,9 @@ Response 200 OK: { "message": "Prueba agregada al reporte", "idPrueba": "uuid", 
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { reportEvidenceSchema } from '@/lib/validation/reportEvidence';
 
 export const dynamic = 'force-dynamic';
-
-function validarStringID(value: unknown): value is string {
-  return typeof value === 'string' && value.trim().length > 0;
-}
 
 export async function PUT(
   request: Request,
@@ -20,8 +17,7 @@ export async function PUT(
   try {
     const { id } = await params;
 
-    // Validar que id sea un string no vacío
-    if (!validarStringID(id)) {
+    if (!id || typeof id !== 'string' || id.trim().length === 0) {
       return NextResponse.json(
         { message: 'El ID del reporte no es válido' },
         { status: 400 }
@@ -38,25 +34,16 @@ export async function PUT(
       );
     }
 
-    const { descripcion, url, tipo } = body;
-
-    // Validar que existan todos los datos
-    if (!validarStringID(descripcion) || !validarStringID(url) || !validarStringID(tipo)) {
+    // Validar con Zod
+    const result = reportEvidenceSchema.safeParse(body);
+    if (!result.success) {
       return NextResponse.json(
-        { message: 'descripcion, url y tipo deben ser strings válidos' },
+        { message: result.error.issues[0].message },
         { status: 400 }
       );
     }
 
-    // Validar que la URL sea válida
-    try {
-      new URL(url);
-    } catch {
-      return NextResponse.json(
-        { message: 'La URL no es válida' },
-        { status: 400 }
-      );
-    }
+    const { descripcion, url, tipo } = result.data;
 
     // Verificar que el reporte existe
     const reporte = await prisma.reporte.findUnique({

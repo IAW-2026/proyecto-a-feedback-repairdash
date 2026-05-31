@@ -1,8 +1,9 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Upload, AlertCircle, CheckCircle, Loader, X } from 'lucide-react';
+import { reportEvidenceSchema } from '@/lib/validation/reportEvidence';
 
 interface ReportFormClientProps {
   reporteId: string;
@@ -16,17 +17,8 @@ interface Prueba {
   url: string;
 }
 
-/**
- * Componente Client para el formulario de resolución de reporte.
- *
- * Funcionalidad:
- * - Permite al usuario ingresar una descripción del incidente
- * - Permite agregar múltiples pruebas/evidencias con URLs
- * - Valida el formulario antes de enviarlo
- * - Envía los datos al endpoint PUT /api/reports/[id]
- *
- * Cada prueba = 1 llamada a PUT /api/reports/[id] con { descripcion, url, tipo }
- */
+const STORAGE_KEY = (id: string) => `report_draft_${id}`;
+
 export default function ReportFormClient({
   reporteId,
   reportado,
@@ -44,7 +36,29 @@ export default function ReportFormClient({
 
   const [uploading, setUploading] = useState(false);
 
-  // Manejo de cambios en la descripción
+  // Restaurar borrador de localStorage al montar
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY(reporteId));
+    if (saved) {
+      try {
+        const parsed = JSON.parse(saved);
+        if (typeof parsed.descripcion === 'string') {
+          setFormData({
+            descripcion: parsed.descripcion,
+            pruebas: Array.isArray(parsed.pruebas) ? parsed.pruebas : [],
+          });
+        }
+      } catch { /* ignorar JSON inválido */ }
+    }
+  }, [reporteId]);
+
+  // Guardar borrador en localStorage al cambiar
+  useEffect(() => {
+    if (!success) {
+      localStorage.setItem(STORAGE_KEY(reporteId), JSON.stringify(formData));
+    }
+  }, [formData, reporteId, success]);
+
   const handleDescripcionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setFormData((prev) => ({
       ...prev,
@@ -52,7 +66,6 @@ export default function ReportFormClient({
     }));
   };
 
-  // Subir archivo a Cloudinary vía API
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -94,7 +107,6 @@ export default function ReportFormClient({
     }
   };
 
-  // Remover una prueba
   const handleRemovePrueba = (id: string) => {
     setFormData((prev) => ({
       ...prev,
@@ -102,39 +114,44 @@ export default function ReportFormClient({
     }));
   };
 
-  // Submit del formulario
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setError(null);
+
+    if (!formData.descripcion.trim()) {
+      setError('La descripción del reporte es obligatoria');
+      return;
+    }
+
+    if (formData.descripcion.trim().length < 20) {
+      setError('La descripción debe tener al menos 20 caracteres');
+      return;
+    }
+
+    if (formData.pruebas.length === 0) {
+      setError('Debes agregar al menos una prueba');
+      return;
+    }
+
     setIsLoading(true);
 
     try {
-      // VALIDACIÓN LOCAL
-      if (!formData.descripcion.trim()) {
-        throw new Error('La descripción del reporte es obligatoria');
-      }
-
-      if (formData.descripcion.trim().length < 20) {
-        throw new Error('La descripción debe tener al menos 20 caracteres');
-      }
-
-      if (formData.pruebas.length === 0) {
-        throw new Error('Debes agregar al menos una prueba');
-      }
-
-      // Enviar primera prueba con descripción
+      // Validar primera prueba con Zod
       const firstPrueba = formData.pruebas[0];
+      const result = reportEvidenceSchema.safeParse({
+        descripcion: formData.descripcion,
+        url: firstPrueba.url,
+        tipo: firstPrueba.tipo,
+      });
+
+      if (!result.success) {
+        throw new Error(result.error.issues[0].message);
+      }
 
       const response = await fetch(`/api/reports/${reporteId}`, {
         method: 'PUT',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          descripcion: formData.descripcion,
-          url: firstPrueba.url,
-          tipo: firstPrueba.tipo,
-        }),
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(result.data),
       });
 
       const data = await response.json();
@@ -148,9 +165,7 @@ export default function ReportFormClient({
         const prueba = formData.pruebas[i];
         await fetch(`/api/reports/${reporteId}`, {
           method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
+          headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
             descripcion: `Prueba adicional`,
             url: prueba.url,
@@ -159,10 +174,10 @@ export default function ReportFormClient({
         });
       }
 
-      // ÉXITO
+      // Limpiar borrador
+      localStorage.removeItem(STORAGE_KEY(reporteId));
       setSuccess(true);
 
-      // Redirigir después de 2 segundos
       setTimeout(() => {
         router.push('/reportes');
         router.refresh();
@@ -190,13 +205,11 @@ export default function ReportFormClient({
   return (
     <div className="min-h-screen bg-[#271033] py-[clamp(1.5rem,4vw,3rem)] px-[clamp(1rem,4vw,2rem)]">
       <div className="w-full max-w-[700px] mx-auto">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-[#fbdaf9] mb-2">Resolver Reporte</h1>
           <p className="text-[#c392dd]">Proporciona detalles sobre el incidente y adjunta evidencias</p>
         </div>
 
-        {/* Resumen de la situación */}
         <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20 mb-6 text-[#fbdaf9]">
           <h3 className="text-lg font-semibold mb-4">Información del Reporte</h3>
           <div className="space-y-3 text-sm">
@@ -213,9 +226,7 @@ export default function ReportFormClient({
           </div>
         </div>
 
-        {/* Formulario */}
         <form onSubmit={handleSubmit} className="space-y-6">
-          {/* Descripción */}
           <div>
             <label className="block text-[#fbdaf9] font-semibold mb-2">
               Descripción del Incidente *
@@ -236,7 +247,6 @@ export default function ReportFormClient({
             </p>
           </div>
 
-          {/* Pruebas/Evidencias */}
           <div>
             <label className="block text-[#fbdaf9] font-semibold mb-2">
               Pruebas / Evidencias *
@@ -245,7 +255,6 @@ export default function ReportFormClient({
               Sube imágenes o videos como evidencia. Mínimo 1 prueba requerida.
             </p>
 
-            {/* Zona de subida */}
             <div className="mb-4">
               <label
                 htmlFor="file-upload"
@@ -282,7 +291,6 @@ export default function ReportFormClient({
               </label>
             </div>
 
-            {/* Lista de pruebas agregadas */}
             {formData.pruebas.length > 0 && (
               <div className="space-y-3">
                 <p className="text-sm text-[#fbdaf9] font-semibold">
@@ -327,7 +335,6 @@ export default function ReportFormClient({
             )}
           </div>
 
-          {/* Errores */}
           {error && (
             <div className="flex items-center gap-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4">
               <AlertCircle className="text-red-500 flex-shrink-0" size={20} />
@@ -335,7 +342,6 @@ export default function ReportFormClient({
             </div>
           )}
 
-          {/* Botones de acción */}
           <div className="flex gap-4 pt-4">
             <button
               type="submit"
