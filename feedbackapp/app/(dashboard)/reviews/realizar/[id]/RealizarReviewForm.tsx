@@ -1,10 +1,10 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Star, Briefcase, Calendar, Send, AlertCircle, CheckCircle } from 'lucide-react';
+import { reviewFormSchema } from '@/lib/validation/reviewForm';
 
-// Rating labels
 const ratingLabels: Record<number, string> = {
   1: 'Muy malo',
   2: 'Malo',
@@ -18,7 +18,6 @@ function formatDate(dateString: string): string {
   return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
 }
 
-// Extract initials from name
 function getInitials(nombre: string, apellido: string): string {
   return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase();
 }
@@ -43,6 +42,8 @@ interface RealizarReviewFormProps {
   usuarioAEvaluar: UsuarioAEvaluar;
 }
 
+const STORAGE_KEY = (id: string) => `review_draft_${id}`;
+
 export default function RealizarReviewForm({
   reviewId,
   trabajo,
@@ -61,70 +62,76 @@ export default function RealizarReviewForm({
     api?: string;
   }>({});
 
-  // Validar y enviar
-  const handleEnviar = async () => {
-    const nuevosErrores: { puntaje?: string; review?: string; api?: string } =
-      {};
-
-    if (puntaje === null) {
-      nuevosErrores.puntaje = 'Seleccioná un puntaje para continuar';
-    }
-
-    if (review.length < 10) {
-      nuevosErrores.review =
-        'La opinión debe tener al menos 10 caracteres';
-    }
-
-    setErrores(nuevosErrores);
-
-    if (Object.keys(nuevosErrores).length === 0) {
-      setEnviando(true);
-      setErrores({});
-
+  // Restaurar borrador de localStorage al montar
+  useEffect(() => {
+    const saved = localStorage.getItem(STORAGE_KEY(reviewId));
+    if (saved) {
       try {
-        const response = await fetch(`/api/reviews/realizar`, {
-          method: 'PUT',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            reviewId,
-            valoracion: puntaje,
-            review,
-          }),
-        });
+        const { puntaje: savedPuntaje, review: savedReview } = JSON.parse(saved);
+        if (typeof savedPuntaje === 'number') setPuntaje(savedPuntaje);
+        if (typeof savedReview === 'string') setReview(savedReview);
+      } catch { /* ignorar JSON inválido */ }
+    }
+  }, [reviewId]);
 
-        const data = await response.json();
+  // Guardar borrador en localStorage al cambiar
+  useEffect(() => {
+    if (!enviado) {
+      localStorage.setItem(STORAGE_KEY(reviewId), JSON.stringify({ puntaje, review }));
+    }
+  }, [puntaje, review, reviewId, enviado]);
 
-        if (!response.ok) {
-          if (response.status === 400) {
-            setErrores({ api: data.error || 'Error de validación' });
-          } else {
-            setErrores({
-              api: data.error || 'Hubo un error al enviar la review',
-            });
-          }
-          setEnviando(false);
-          return;
-        }
+  const handleEnviar = async () => {
+    const result = reviewFormSchema.safeParse({
+      reviewId,
+      valoracion: puntaje,
+      review,
+    });
 
+    if (!result.success) {
+      const fieldErrors: Record<string, string> = {};
+      result.error.issues.forEach((issue) => {
+        const field = issue.path[0] as string;
+        if (field === 'valoracion') fieldErrors.puntaje = issue.message;
+        if (field === 'review') fieldErrors.review = issue.message;
+      });
+      setErrores({ ...fieldErrors });
+      return;
+    }
+
+    setEnviando(true);
+    setErrores({});
+
+    try {
+      const response = await fetch(`/api/reviews/realizar`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(result.data),
+      });
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        setErrores({ api: data.error || 'Hubo un error al enviar la review' });
         setEnviando(false);
-        setEnviado(true);
-
-        // Redirigir después de 2 segundos
-        setTimeout(() => {
-          router.push('/');
-          router.refresh();
-        }, 2000);
-      } catch (error) {
-        console.error('Error enviando review:', error);
-        setErrores({ api: 'Hubo un error al enviar la review' });
-        setEnviando(false);
+        return;
       }
+
+      // Limpiar borrador
+      localStorage.removeItem(STORAGE_KEY(reviewId));
+      setEnviado(true);
+
+      setTimeout(() => {
+        router.push('/');
+        router.refresh();
+      }, 2000);
+    } catch (error) {
+      console.error('Error enviando review:', error);
+      setErrores({ api: 'Hubo un error al enviar la review' });
+      setEnviando(false);
     }
   };
 
-  // Pantalla de éxito
   if (enviado) {
     return (
       <div className="p-8">
@@ -152,7 +159,6 @@ export default function RealizarReviewForm({
 
   return (
     <div className="p-8">
-      {/* Header de sección — FUERA de la card */}
       <div className="mb-8">
         <div className="flex items-center gap-2 mb-3">
           <AlertCircle size={16} className="text-[#f500f1]" />
@@ -168,24 +174,16 @@ export default function RealizarReviewForm({
         </p>
       </div>
 
-      {/* Card con formulario */}
       <div className="max-w-2xl">
         <div className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 p-6">
-          {/* Sección 1: Usuario a evaluar */}
           <div className="mb-6">
             <label className="text-xs uppercase tracking-widest font-semibold text-[#8d62a5] mb-4 block">
               Estás evaluando a
             </label>
-
             <div className="flex flex-col items-center gap-4">
-              {/* Avatar */}
               <div className="w-16 h-16 rounded-full bg-[#8d62a5] flex items-center justify-center">
-                <span className="text-xl font-bold text-white">
-                  {initials}
-                </span>
+                <span className="text-xl font-bold text-white">{initials}</span>
               </div>
-
-              {/* Nombre */}
               <div className="text-center">
                 <h2 className="text-lg font-bold text-[#fbdaf9]">
                   {usuarioAEvaluar.nombre} {usuarioAEvaluar.apellido}
@@ -197,25 +195,17 @@ export default function RealizarReviewForm({
             </div>
           </div>
 
-          {/* Separator */}
           <div className="h-px bg-[#8d62a5]/20 mb-6" />
 
-          {/* Sección 2: Trabajo realizado */}
           <div className="mb-6">
             <label className="text-xs uppercase tracking-widest font-semibold text-[#8d62a5] mb-4 block">
               Trabajo realizado
             </label>
-
             <div className="space-y-3">
-              {/* Tipo de trabajo */}
               <div className="flex items-center gap-3">
                 <Briefcase size={18} className="text-[#c392dd] flex-shrink-0" />
-                <span className="text-sm text-[#fbdaf9]">
-                  {trabajo.tipoDeTrabajo}
-                </span>
+                <span className="text-sm text-[#fbdaf9]">{trabajo.tipoDeTrabajo}</span>
               </div>
-
-              {/* Rango de fechas */}
               <div className="flex items-center gap-3">
                 <Calendar size={18} className="text-[#c392dd] flex-shrink-0" />
                 <span className="text-sm text-[#fbdaf9]">
@@ -226,24 +216,17 @@ export default function RealizarReviewForm({
             </div>
           </div>
 
-          {/* Separator */}
           <div className="h-px bg-[#8d62a5]/20 mb-6" />
 
-          {/* Sección 3: Formulario */}
           <div className="space-y-6">
-            {/* Campo 1: Puntaje */}
             <div>
               <label className="text-sm font-semibold text-[#fbdaf9] mb-3 block">
                 Calificación
               </label>
-
-              {/* Estrellas interactivas */}
               <div className="flex gap-3 mb-3 justify-center">
                 {[1, 2, 3, 4, 5].map((star) => {
                   const isSelected = puntaje !== null && star <= puntaje;
-                  const isHovered =
-                    hoverPuntaje !== null && star <= hoverPuntaje;
-
+                  const isHovered = hoverPuntaje !== null && star <= hoverPuntaje;
                   return (
                     <button
                       key={star}
@@ -268,34 +251,22 @@ export default function RealizarReviewForm({
                   );
                 })}
               </div>
-
-              {/* Texto dinámico del puntaje */}
               <p className="text-center text-sm font-medium">
                 {puntaje !== null ? (
-                  <span className="text-[#c392dd]">
-                    {ratingLabels[puntaje]}
-                  </span>
+                  <span className="text-[#c392dd]">{ratingLabels[puntaje]}</span>
                 ) : (
-                  <span className="text-[#8d62a5]">
-                    Seleccioná un puntaje
-                  </span>
+                  <span className="text-[#8d62a5]">Seleccioná un puntaje</span>
                 )}
               </p>
-
-              {/* Error puntaje */}
               {errores.puntaje && (
-                <p className="text-red-400 text-xs mt-2 text-center">
-                  {errores.puntaje}
-                </p>
+                <p className="text-red-400 text-xs mt-2 text-center">{errores.puntaje}</p>
               )}
             </div>
 
-            {/* Campo 2: Textarea */}
             <div>
               <label className="text-sm font-semibold text-[#fbdaf9] mb-2 block">
                 Tu opinión
               </label>
-
               <textarea
                 value={review}
                 onChange={(e) => {
@@ -306,14 +277,10 @@ export default function RealizarReviewForm({
                 rows={5}
                 className="w-full bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200 resize-none"
               />
-
-              {/* Contador y error */}
               <div className="flex items-center justify-between mt-2">
                 <div>
                   {errores.review && (
-                    <p className="text-red-400 text-xs">
-                      {errores.review}
-                    </p>
+                    <p className="text-red-400 text-xs">{errores.review}</p>
                   )}
                   {errores.api && (
                     <p className="text-red-400 text-xs">{errores.api}</p>
@@ -323,7 +290,7 @@ export default function RealizarReviewForm({
                   className={`text-xs ${
                     review.length > 1000
                       ? 'text-red-400 font-semibold'
-                      : review.length < 10
+                      : review.length > 0 && review.length < 20
                       ? 'text-red-400'
                       : 'text-[#8d62a5]'
                   }`}
@@ -333,18 +300,17 @@ export default function RealizarReviewForm({
               </div>
             </div>
 
-            {/* Botón enviar */}
             <button
               onClick={handleEnviar}
               disabled={
                 puntaje === null ||
-                review.length < 10 ||
+                review.length < 20 ||
                 review.length > 1000 ||
                 enviando
               }
               className={`w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
                 puntaje !== null &&
-                review.length >= 10 &&
+                review.length >= 20 &&
                 review.length <= 1000 &&
                 !enviando
                   ? 'bg-[#f500f1] text-white cursor-pointer hover:scale-[1.02]'

@@ -2,6 +2,7 @@
 import { auth } from '@clerk/nextjs/server';
 import { prisma } from '@/lib/prisma';
 import { NextResponse } from 'next/server';
+import { reviewFormSchema } from '@/lib/validation/reviewForm';
 
 export const dynamic = 'force-dynamic';
 
@@ -18,41 +19,17 @@ export async function PUT(request: Request) {
 
     // Leer del body
     const body = await request.json();
-    const { reviewId, valoracion, review } = body;
 
-    // Validar que existan todos los datos
-    if (!reviewId || valoracion === undefined || review === undefined) {
+    // Validar con Zod
+    const result = reviewFormSchema.safeParse(body);
+    if (!result.success) {
       return NextResponse.json(
-        { error: 'Faltan datos' },
+        { error: result.error.issues[0].message },
         { status: 400 }
       );
     }
 
-    // Validar valoracion
-    if (
-      typeof valoracion !== 'number' ||
-      valoracion < 1 ||
-      valoracion > 5
-    ) {
-      return NextResponse.json(
-        { error: 'Valoración inválida' },
-        { status: 400 }
-      );
-    }
-
-    // Validar review
-    if (typeof review !== 'string' || review.length > 1000) {
-      return NextResponse.json(
-        { error: 'La review no puede superar los 1000 caracteres' },
-        { status: 400 }
-      );
-    } 
-    if (review.length < 50){
-      return NextResponse.json(
-        { error: 'La review debe superar los 50 caracteres' },
-        { status: 400 }
-      );
-    }
+    const { reviewId, valoracion, review } = result.data;
 
     // Obtener la review para verificaciones
     const reviewRecord = await prisma.review.findUnique({

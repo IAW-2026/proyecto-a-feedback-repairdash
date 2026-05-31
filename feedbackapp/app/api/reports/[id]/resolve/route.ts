@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { prisma } from '@/lib/prisma'
 import { getCurrentUser } from '@/lib/getCurrentUser'
 import { EstadoReporte } from '@/generated/prisma/client'
+import { adminResolveSchema } from '@/lib/validation/adminResolve'
 
 export const dynamic = 'force-dynamic'
 
@@ -27,12 +28,23 @@ export async function PATCH(
     }
 
     const body = await request.json().catch(() => null)
-    if (!body || !body.decision || !['AFavor', 'EnContra'].includes(body.decision)) {
+    if (!body) {
       return NextResponse.json(
-        { message: 'decision debe ser "AFavor" o "EnContra"' },
+        { message: 'El cuerpo de la solicitud no es un JSON válido' },
         { status: 400 }
       )
     }
+
+    // Validar con Zod
+    const result = adminResolveSchema.safeParse(body)
+    if (!result.success) {
+      return NextResponse.json(
+        { message: result.error.issues[0].message },
+        { status: 400 }
+      )
+    }
+
+    const { decision } = result.data
 
     const reporte = await prisma.reporte.findUnique({ where: { id } })
     if (!reporte) {
@@ -52,7 +64,7 @@ export async function PATCH(
     const actualizado = await prisma.reporte.update({
       where: { id },
       data: {
-        decision: body.decision,
+        decision,
         resolucion: 'Resuelto',
         estado: EstadoReporte.RESUELTO,
       },
