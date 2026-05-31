@@ -1,8 +1,9 @@
 'use client'
 
+import Link from 'next/link'
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { Search, Star, User } from 'lucide-react'
+import { Search, Star, User, Mail } from 'lucide-react'
 import DropdownFilter from '@/components/DropdownFilter'
 
 interface UserRow {
@@ -115,47 +116,49 @@ export default function AdminUsersClient({
         </div>
       ) : (
         <>
-          <div className="overflow-x-auto">
-            <table className="w-full text-left">
-              <thead>
-                <tr className="text-[#c392dd] text-xs uppercase tracking-wider border-b border-[#8d62a5]/20">
-                  <th className="pb-3 pr-4 font-semibold">Usuario</th>
-                  <th className="pb-3 pr-4 font-semibold">Email</th>
-                  <th className="pb-3 pr-4 font-semibold">Rol</th>
-                  <th className="pb-3 pr-4 font-semibold">Valoración</th>
-                  <th className="pb-3 font-semibold">Estado</th>
-                </tr>
-              </thead>
-              <tbody>
-                {usuarios.map((u) => (
-                  <tr key={u.id} className="border-b border-[#8d62a5]/10 hover:bg-[#3a1f52]/50 transition-colors">
-                    <td className="py-4 pr-4">
-                      <span className="text-[#fbdaf9] font-medium">
-                        {u.apellido}, {u.nombre}
-                      </span>
-                    </td>
-                    <td className="py-4 pr-4 text-[#c392dd] text-sm">{u.mail}</td>
-                    <td className="py-4 pr-4">
-                      <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-[#8d62a5]/20 text-[#c392dd]">
-                        {rolLabels[u.rol] || u.rol}
-                      </span>
-                    </td>
-                    <td className="py-4 pr-4">
-                      <div className="flex items-center gap-1.5">
-                        <Star size={14} className={u.valoracion > 0 ? 'fill-[#f500f1] text-[#f500f1]' : 'text-[#8d62a5] opacity-30'} />
-                        <span className="text-[#fbdaf9] text-sm font-medium">{u.valoracion}/5</span>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+            {usuarios.map((u) => (
+              <Link
+                key={u.id}
+                href={`/usuarios/${u.id}`}
+                className="block group"
+              >
+                <div className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02]">
+                  <div className="mb-3">
+                    <div className="flex items-start justify-between gap-4 mb-2">
+                      <div className="flex-1">
+                        <div className="text-lg font-bold text-[#fbdaf9] mb-1 transition-colors">
+                          {u.apellido}, {u.nombre}
+                        </div>
+                        <div className="flex items-center gap-2 flex-wrap">
+                          <span className="inline-block px-3 py-1 bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium rounded-full">
+                            {rolLabels[u.rol] || u.rol}
+                          </span>
+                        </div>
                       </div>
-                    </td>
-                    <td className="py-4">
-                      <span className={`inline-flex items-center gap-1.5 text-sm font-medium ${u.activo ? 'text-green-400' : 'text-red-400'}`}>
-                        <span className={`w-2 h-2 rounded-full ${u.activo ? 'bg-green-400' : 'bg-red-400'}`} />
-                        {u.activo ? 'Activo' : 'Inactivo'}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
+                      <div className="flex-shrink-0">
+                        <div className="flex items-center gap-1.5">
+                          <Star size={14} className={u.valoracion > 0 ? 'fill-[#f500f1] text-[#f500f1]' : 'text-[#8d62a5] opacity-30'} />
+                          <span className="text-[#fbdaf9] text-sm font-medium">{u.valoracion}/5</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex items-center gap-4 text-sm text-[#c392dd]">
+                      <div className="flex items-center gap-2">
+                        <Mail size={16} />
+                        <span>{u.mail}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <span className={`inline-flex items-center gap-1.5 font-medium ${u.activo ? 'text-green-400' : 'text-red-400'}`}>
+                          <span className={`w-2 h-2 rounded-full ${u.activo ? 'bg-green-400' : 'bg-red-400'}`} />
+                          {u.activo ? 'Activo' : 'Inactivo'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Link>
+            ))}
           </div>
 
           {totalPaginas > 1 && (
