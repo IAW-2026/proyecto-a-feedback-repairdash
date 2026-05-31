@@ -11,6 +11,18 @@ export default async function BuscarPage({
   const search = params.search ?? ''
   const POR_PAGINA = 10
 
+  if (!search) {
+    return (
+      <BuscarClient
+        usuarios={[]}
+        page={1}
+        totalPaginas={0}
+        search=""
+        total={0}
+      />
+    )
+  }
+
   const where = search
     ? { nombre: { contains: search, mode: 'insensitive' as const } }
     : undefined
