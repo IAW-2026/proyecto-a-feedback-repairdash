@@ -9,7 +9,7 @@ export default async function BuscarPage({
   const params = await searchParams
   const page = parseInt(params.page ?? '1')
   const search = params.search ?? ''
-  const POR_PAGINA = 10
+  const POR_PAGINA = 5
 
   if (!search) {
     return (

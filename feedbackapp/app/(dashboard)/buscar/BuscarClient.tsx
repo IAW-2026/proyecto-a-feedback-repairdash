@@ -142,7 +142,7 @@ export default function BuscarClient({
                 className="block group"
               >
               <div
-                className="bg-[#3a1f52] rounded-lg p-[clamp(0.75rem,2vw,1rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 cursor-pointer flex items-center justify-between gap-4"
+                className="bg-[#3a1f52] rounded-lg py-[clamp(0.75rem,2.5vw,1.25rem)] px-[clamp(0.75rem,2vw,1rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 cursor-pointer flex items-center justify-between gap-4"
               >
                 <div className="flex items-center gap-3 min-w-0">
                   <h3 className="font-gilroy font-bold text-[#fbdaf9] whitespace-nowrap" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
