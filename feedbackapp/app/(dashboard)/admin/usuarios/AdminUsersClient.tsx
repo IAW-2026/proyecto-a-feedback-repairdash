@@ -73,7 +73,7 @@ export default function AdminUsersClient({
   return (
     <div className="w-full">
       <div className="mb-8">
-        <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2 text-sm">
+        <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2 text-sm">
           Administración
         </p>
         <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
