@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 import { AlertCircle, User, FileText, Calendar } from 'lucide-react'
+import EstadoBadge from '@/components/EstadoBadge'
+import DecisionBadge from '@/components/DecisionBadge'
 import DropdownFilter from '@/components/DropdownFilter'
 import Pagination from '@/components/Pagination'
 import SearchInput from '@/components/SearchInput'
@@ -37,28 +39,7 @@ function getNombreCompleto(usuario: UsuarioBase): string {
   return `${nombre} ${apellido}`.trim()
 }
 
-/**
- * Obtiene el badge de estado del reporte
- */
-function getEstadoBadge(resolucion: string): { label: string; color: string } {
-  const estados: Record<string, { label: string; color: string }> = {
-    SinResolver: { label: 'Sin Resolver', color: 'bg-[#8d62a5]/20 text-[#f500f1]' },
-    Resuelto: { label: 'Resuelto', color: 'bg-[#6ba587]/20 text-[#4ade80]' },
-  }
-  return estados[resolucion] || { label: 'Desconocido', color: 'bg-[#8d62a5]/20 text-[#c392dd]' }
-}
 
-/**
- * Obtiene el badge de decisión (si existe)
- */
-function getDecisionBadge(decision: string | null): { label: string; color: string } | null {
-  if (!decision) return null
-  const decisiones: Record<string, { label: string; color: string }> = {
-    AFavor: { label: 'A Favor del Reportante', color: 'bg-[#4ade80]/20 text-[#8ae0a5]' },
-    EnContra: { label: 'En Contra del Reportante', color: 'bg-[#ef5350]/20 text-[#ff9999]' },
-  }
-  return decisiones[decision] || null
-}
 
 // ============================================
 // COMPONENTE PRINCIPAL
@@ -200,8 +181,6 @@ export default function AdminReportesClient({
           {/* ========== LISTA DE REPORTES ========== */}
           <div className="space-y-4 mb-8">
             {reportes.map((reporte) => {
-              const estadoBadge = getEstadoBadge(reporte.resolucion)
-              const decisionBadge = getDecisionBadge(reporte.decision)
               const reportanteNombre = getNombreCompleto(reporte.reportante)
               const reportadoNombre = getNombreCompleto(reporte.reportado)
 
@@ -243,13 +222,9 @@ export default function AdminReportesClient({
 
                     {/* Badges de estado y decisión */}
                     <div className="flex flex-col gap-2 items-end">
-                      <span className={`px-3 py-1 rounded-full text-xs font-medium ${estadoBadge.color}`}>
-                        {estadoBadge.label}
-                      </span>
-                      {decisionBadge && (
-                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${decisionBadge.color}`}>
-                          {decisionBadge.label}
-                        </span>
+                      <EstadoBadge estado={reporte.resolucion as 'SinResolver' | 'Resuelto'} />
+                      {reporte.decision && (
+                        <DecisionBadge favorable={reporte.decision === 'AFavor'} />
                       )}
                     </div>
                   </div>

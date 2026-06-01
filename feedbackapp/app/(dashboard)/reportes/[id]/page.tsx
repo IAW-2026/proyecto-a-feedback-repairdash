@@ -10,8 +10,9 @@ import {
   XCircle,
   ExternalLink,
   Shield,
-  AlertTriangle,
 } from 'lucide-react';
+import EstadoBadge from '@/components/EstadoBadge';
+import DecisionBadge from '@/components/DecisionBadge';
 import { getCurrentUser } from '@/lib/getCurrentUser';
 import { prisma } from '@/lib/prisma';
 
@@ -26,22 +27,7 @@ function VerdictoBadge({ resolucion, decision, soyReportante }: { resolucion: st
   }
 
   const aFavor = soyReportante ? decision === 'AFavor' : decision === 'EnContra';
-
-  if (aFavor) {
-    return (
-      <span className="inline-flex items-center gap-2 bg-green-500/20 text-green-300 font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-        <CheckCircle size={14} />
-        A favor
-      </span>
-    );
-  }
-
-  return (
-    <span className="inline-flex items-center gap-2 bg-red-500/20 text-red-300 font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-      <XCircle size={14} />
-      En contra
-    </span>
-  );
+  return <DecisionBadge favorable={aFavor} />;
 }
 
 function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: string; decision: string | null; soyReportante: boolean }) {
@@ -163,22 +149,12 @@ export default async function ReporteDetailPage({ params }: PageProps) {
           </div>
 
           {/* Badge de estado */}
-          {reporte.resolucion === 'SinResolver' ? (
-            <span className="bg-[#8d62a5]/20 text-[#c392dd] font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-2 whitespace-nowrap min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-              <AlertTriangle size={16} />
-              Sin resolver
-            </span>
-          ) : (soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra') ? (
-            <span className="bg-green-500/20 text-green-300 font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-2 whitespace-nowrap min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-              <CheckCircle size={16} />
-              Resuelto
-            </span>
-          ) : (
-            <span className="bg-red-500/20 text-red-300 font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-2 whitespace-nowrap min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-              <XCircle size={16} />
-              Resuelto
-            </span>
-          )}
+          <div className="flex gap-2 flex-wrap">
+            <EstadoBadge estado={reporte.resolucion} />
+            {reporte.resolucion === 'Resuelto' && reporte.decision && (
+              <DecisionBadge favorable={soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra'} />
+            )}
+          </div>
         </div>
       </div>
 

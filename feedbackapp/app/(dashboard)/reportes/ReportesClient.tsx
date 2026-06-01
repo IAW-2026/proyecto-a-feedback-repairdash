@@ -1,7 +1,9 @@
 'use client'
 
 import { useRouter, usePathname } from 'next/navigation'
-import { AlertTriangle, CheckCircle2, XCircle, Calendar } from 'lucide-react'
+import { AlertTriangle, Calendar } from 'lucide-react'
+import EstadoBadge from '@/components/EstadoBadge'
+import DecisionBadge from '@/components/DecisionBadge'
 import Link from 'next/link'
 import Pagination from '@/components/Pagination'
 import type { ReporteCardData } from '@/types'
@@ -29,38 +31,9 @@ function ReporteCard({ reporte }: { reporte: ReporteCardData }) {
             </p>
           </div>
           <div className="flex gap-[clamp(0.5rem,1vw,0.75rem)] flex-wrap sm:flex-nowrap">
-            {reporte.resolucion === 'SinResolver' ? (
-              <span className="bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-1.5 whitespace-nowrap min-h-[28px]">
-                <AlertTriangle size={14} />
-                Sin resolver
-              </span>
-            ) : (
-              <span className="bg-green-500/20 text-green-300 text-xs font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-1.5 whitespace-nowrap min-h-[28px]">
-                <CheckCircle2 size={14} />
-                Resuelto
-              </span>
-            )}
-
+            <EstadoBadge estado={reporte.resolucion} />
             {reporte.resolucion === 'Resuelto' && reporte.decision && (
-              <span
-                className={`text-xs font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full flex items-center gap-1.5 whitespace-nowrap min-h-[28px] ${
-                  (reporte.soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra')
-                    ? 'bg-green-500/20 text-green-300'
-                    : 'bg-red-500/20 text-red-300'
-                }`}
-              >
-                {(reporte.soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra') ? (
-                  <>
-                    <CheckCircle2 size={14} />
-                    A favor
-                  </>
-                ) : (
-                  <>
-                    <XCircle size={14} />
-                    En contra
-                  </>
-                )}
-              </span>
+              <DecisionBadge favorable={reporte.soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra'} />
             )}
           </div>
         </div>
