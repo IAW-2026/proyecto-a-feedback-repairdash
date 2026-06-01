@@ -69,7 +69,6 @@ export async function POST(request: Request) {
         include: {
             rider: true,
             driver: true,
-            reporte: true,
         },
     });
 
@@ -80,9 +79,13 @@ export async function POST(request: Request) {
         );
     }
 
-    if (trabajo.reporte) {
+    const reporteExistente = await prisma.reporte.findUnique({
+        where: { idTrabajo_idReportante: { idTrabajo, idReportante } }
+    });
+
+    if (reporteExistente) {
         return NextResponse.json(
-            { message: "El trabajo ya tiene un reporte creado" },
+            { message: "Ya creaste un reporte para este trabajo" },
             { status: 409 }
         );
     }
@@ -117,12 +120,12 @@ export async function POST(request: Request) {
             data: { activo: false, fechaFin: new Date() },
         });
 
-        const reviewsPendientes = await tx.review.count({
-            where: { idTrabajo, estaCompleta: false },
+        const reviewReportante = await tx.review.findFirst({
+            where: { idTrabajo, idUsuario: idReportante, estaCompleta: false },
         });
-        if (reviewsPendientes > 0) {
-            await tx.review.updateMany({
-                where: { idTrabajo, estaCompleta: false },
+        if (reviewReportante) {
+            await tx.review.update({
+                where: { id: reviewReportante.id },
                 data: { estaCompleta: true, valoracion: null, review: null },
             });
         }
