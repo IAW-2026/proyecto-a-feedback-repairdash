@@ -1,8 +1,8 @@
 'use client'
 
-import { Star, AlertCircle, Briefcase, Calendar } from 'lucide-react'
+import { Star, AlertCircle } from 'lucide-react'
 import StatCard from '@/components/StatCard'
-import StarRating from '@/components/StarRating'
+import ReviewCard from '@/components/ReviewCard'
 import type { Review } from '@/types'
 
 interface UserDetailClientProps {
@@ -15,9 +15,6 @@ interface UserDetailClientProps {
   reportesEnContra: number
   reviews: Review[]
 }
-
-import { formatDate } from '@/lib/dates'
-import { getRolLabel } from '@/lib/roles'
 
 export default function UserDetailClient({
   usuario,
@@ -78,45 +75,13 @@ export default function UserDetailClient({
         ) : (
           <div className="space-y-6">
             {reviews.map((review) => (
-              <div
+              <ReviewCard
                 key={review.id}
-                className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02]"
-              >
-                <div className="mb-3">
-                  <div className="flex items-start justify-between gap-4 mb-2">
-                    <div className="flex-1">
-                      <div className="text-lg font-bold text-[#fbdaf9] mb-1 transition-colors">
-                        {review.autor.nombre} {review.autor.apellido}
-                      </div>
-                      <div className="flex items-center gap-2 flex-wrap">
-                        <span className="inline-block px-3 py-1 bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium rounded-full">
-                          {getRolLabel(review.autor.rol)}
-                        </span>
-                      </div>
-                    </div>
-                    {review.valoracion !== null && (
-                      <div className="flex-shrink-0">
-                        <StarRating valoracion={review.valoracion} />
-                      </div>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-4 text-sm text-[#c392dd]">
-                    <div className="flex items-center gap-2">
-                      <Briefcase size={16} />
-                      <span>{review.trabajo.tipoDeTrabajo}</span>
-                    </div>
-                    <div className="flex items-center gap-2">
-                      <Calendar size={16} />
-                      <span>{formatDate(review.trabajo.fechaFin)}</span>
-                    </div>
-                  </div>
-                </div>
-
-                <p className="text-[#fbdaf9] leading-relaxed line-clamp-3">
-                  {review.review}
-                </p>
-              </div>
+                autor={review.autor}
+                valoracion={review.valoracion}
+                trabajo={review.trabajo}
+                review={review.review}
+              />
             ))}
           </div>
         )}
