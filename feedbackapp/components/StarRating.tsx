@@ -18,7 +18,7 @@ export default function StarRating({ valoracion, max = 5, size = 18 }: StarRatin
           key={i}
           size={size}
           className={
-            i < Math.floor(valoracion)
+            i < Math.round(valoracion)
               ? 'fill-[#f500f1] text-[#f500f1]'
               : 'text-[#8d62a5] opacity-30'
           }
