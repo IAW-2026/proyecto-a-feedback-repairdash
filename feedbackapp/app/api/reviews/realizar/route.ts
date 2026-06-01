@@ -60,6 +60,24 @@ export async function PUT(request: Request) {
       );
     }
 
+    // Verificar que el usuario no tenga un reporte activo para este trabajo
+    const reporteDelUsuario = await prisma.reporte.findFirst({
+      where: {
+        idTrabajo: reviewRecord.idTrabajo,
+        idReportante: userId,
+      },
+    });
+
+    if (reporteDelUsuario) {
+      return NextResponse.json(
+        {
+          error:
+            'No puedes completar esta review porque tienes un reporte activo para este trabajo.',
+        },
+        { status: 403 }
+      );
+    }
+
     // Actualizar la review
     const reviewActualizada = await prisma.review.update({
       where: { id: reviewId },
