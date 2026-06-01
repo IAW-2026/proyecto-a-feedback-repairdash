@@ -1,6 +1,7 @@
 'use client'
 
 import { Star, AlertCircle, Briefcase, Calendar } from 'lucide-react'
+import StatCard from '@/components/StatCard'
 
 interface Review {
   id: string
@@ -86,20 +87,13 @@ export default function UserDetailClient({
       </div>
 
       <div className="mb-[clamp(2rem,6vw,3rem)]">
-        <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-red-500/30 hover:border-red-500/60 transition-all max-w-md">
-          <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] mb-[clamp(0.75rem,2vw,1rem)]">
-            <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
-            <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-              Reportes en contra
-            </p>
-          </div>
-          <div className="font-gilroy font-bold text-red-400" style={{ fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-            {reportesEnContra}
-          </div>
-          <p className="text-red-300/70" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-            reportes resueltos desfavorablemente
-          </p>
-        </div>
+        <StatCard
+          icon={AlertCircle}
+          title="Reportes en contra"
+          value={reportesEnContra}
+          description="reportes resueltos desfavorablemente"
+          variant="danger"
+        />
       </div>
 
       <div>

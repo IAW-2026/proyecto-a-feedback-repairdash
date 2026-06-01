@@ -2,6 +2,7 @@ import { redirect } from 'next/navigation';
 import { User, Mail, Lock, Star, Briefcase, AlertCircle, Clock } from 'lucide-react';
 import { getCurrentUser } from '@/lib/getCurrentUser';
 import { prisma } from '@/lib/prisma';
+import StatCard from '@/components/StatCard';
 
 function StarRating({ rating, max = 5 }: { rating: number | null; max?: number }) {
   if (rating === null) {
@@ -182,37 +183,20 @@ export default async function PerfilPage() {
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,1.5rem)]">
-              {/* Reportes fallados en tu contra */}
-              <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-red-500/30 hover:border-red-500/60 transition-all">
-                <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] mb-[clamp(0.75rem,2vw,1rem)]">
-                  <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
-                  <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                    Fallados en tu contra
-                  </p>
-                </div>
-                <div className="font-gilroy font-bold text-red-400" style={{ fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-                  {reportesEnContra}
-                </div>
-                <p className="text-red-300/70" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                  reportes resueltos desfavorablemente
-                </p>
-              </div>
-
-              {/* Reportes pendientes */}
-              <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-[#c392dd]/30 hover:border-[#c392dd]/60 transition-all">
-                <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] mb-[clamp(0.75rem,2vw,1rem)]">
-                  <Clock size={20} className="text-[#c392dd] flex-shrink-0" />
-                  <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                    Reportes pendientes
-                  </p>
-                </div>
-                <div className="font-gilroy font-bold text-[#c392dd]" style={{ fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-                  {reportesPendientes}
-                </div>
-                <p className="text-[#c392dd]/90" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                  en evaluación o realizados por ti
-                </p>
-              </div>
+              <StatCard
+                icon={AlertCircle}
+                title="Fallados en tu contra"
+                value={reportesEnContra}
+                description="reportes resueltos desfavorablemente"
+                variant="danger"
+              />
+              <StatCard
+                icon={Clock}
+                title="Reportes pendientes"
+                value={reportesPendientes}
+                description="en evaluación o realizados por ti"
+                variant="info"
+              />
             </div>
           </div>
         </div>
