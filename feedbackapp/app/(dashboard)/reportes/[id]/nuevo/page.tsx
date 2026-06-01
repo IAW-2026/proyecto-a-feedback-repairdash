@@ -4,7 +4,7 @@ import { prisma } from '@/lib/prisma';
 import ReportFormClient from '../ReportFormClient';
 
 /**
- * Página Server Component para resolver un reporte pendiente.
+ * Página Server Component para terminar un reporte pendiente.
  *
  * Ruta: /reportes/[id]/nuevo
  *

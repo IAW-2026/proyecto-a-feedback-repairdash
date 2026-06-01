@@ -74,9 +74,6 @@ export default async function Home() {
           <p className="text-[#c392dd] mb-4">
             Accedé a las principales funciones de la app
           </p>
-          <div className="bg-[#3a1f52] p-4 rounded-xl border border-[#8d62a5]/20 inline-block mb-4">
-            <p className="text-[#fbdaf9]">No tenés reviews pendientes. Dashboard en construcción.</p>
-          </div>
         </div>
 
         <div className="w-full grid [grid-template-columns:repeat(auto-fit,minmax(200px,1fr))] gap-[clamp(1rem,2vw,1.5rem)]">

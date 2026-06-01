@@ -1,9 +1,8 @@
 'use client'
 
-import { useState } from 'react'
 import { useRouter } from 'next/navigation'
 import { CheckCircle, XCircle, Clock, AlertTriangle } from 'lucide-react'
-import { adminResolveSchema } from '@/lib/validation/adminResolve'
+import { useResolveReport } from '@/hooks/useResolveReport'
 
 interface Props {
   reporteId: string
@@ -12,19 +11,16 @@ interface Props {
   resolucion: string
 }
 
-export default function AdminResolveClient({ reporteId, estado, decision, resolucion }: Props) {
+export default function AdminResolveClient({ reporteId, estado, decision }: Props) {
   const router = useRouter()
-  const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string | null>(null)
-  const [success, setSuccess] = useState(false)
+  const { loading, error, success, handleResolve } = useResolveReport(reporteId)
 
   const isResuelto = estado === 'RESUELTO'
-  const isPendiente = estado === 'PRUEBAS_AGREGADAS'
 
-  if (isResuelto && success === false) {
+  if (isResuelto && !success) {
     return (
       <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
-        <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-4 text-sm">
+        <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
           Veredicto
         </p>
         <div className="text-center">
@@ -64,7 +60,7 @@ export default function AdminResolveClient({ reporteId, estado, decision, resolu
 
   return (
     <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
-      <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-4 text-sm">
+      <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
         Resolver Reporte
       </p>
 
@@ -127,36 +123,4 @@ export default function AdminResolveClient({ reporteId, estado, decision, resolu
       )}
     </div>
   )
-
-  async function handleResolve(decision: string) {
-    // Validar con Zod antes de enviar
-    const result = adminResolveSchema.safeParse({ decision })
-    if (!result.success) {
-      setError(result.error.issues[0].message)
-      return
-    }
-
-    setLoading(true)
-    setError(null)
-
-    try {
-      const res = await fetch(`/api/reports/${reporteId}/resolve`, {
-        method: 'PATCH',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result.data),
-      })
-
-      if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.message || 'Error al resolver el reporte')
-      }
-
-      setSuccess(true)
-      router.refresh()
-    } catch (err) {
-      setError(err instanceof Error ? err.message : 'Error inesperado')
-    } finally {
-      setLoading(false)
-    }
-  }
 }
