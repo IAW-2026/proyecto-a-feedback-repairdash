@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { Star, Briefcase, Calendar, Send, AlertCircle, CheckCircle } from 'lucide-react';
 import { reviewFormSchema } from '@/lib/validation/reviewForm';
+import type { Trabajo, UsuarioBase } from '@/types';
 
 const ratingLabels: Record<number, string> = {
   1: 'Muy malo',
@@ -22,24 +23,10 @@ function getInitials(nombre: string, apellido: string): string {
   return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase();
 }
 
-interface Trabajo {
-  id: string;
-  tipoDeTrabajo: string;
-  fechaInicio: Date;
-  fechaFin: Date | null;
-}
-
-interface UsuarioAEvaluar {
-  id: string;
-  nombre: string | null;
-  apellido: string | null;
-  rol: string;
-}
-
 interface RealizarReviewFormProps {
   reviewId: string;
   trabajo: Trabajo;
-  usuarioAEvaluar: UsuarioAEvaluar;
+  usuarioAEvaluar: UsuarioBase;
 }
 
 const STORAGE_KEY = (id: string) => `review_draft_${id}`;

@@ -4,16 +4,7 @@ import { useRouter, usePathname } from 'next/navigation'
 import { AlertTriangle, CheckCircle2, XCircle, Calendar } from 'lucide-react'
 import Link from 'next/link'
 import Pagination from '@/components/Pagination'
-
-interface ReporteCardData {
-  id: string
-  nombreUsuario: string
-  tipoDeTrabajo: string
-  fecha: string
-  resolucion: 'SinResolver' | 'Resuelto'
-  decision: 'AFavor' | 'EnContra' | null
-  soyReportante: boolean
-}
+import type { ReporteCardData } from '@/types'
 
 interface ReportesClientProps {
   reportesEnviados: ReporteCardData[]

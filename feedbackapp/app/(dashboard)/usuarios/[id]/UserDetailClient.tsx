@@ -3,23 +3,7 @@
 import { Star, AlertCircle, Briefcase, Calendar } from 'lucide-react'
 import StatCard from '@/components/StatCard'
 import StarRating from '@/components/StarRating'
-
-interface Review {
-  id: string
-  valoracion: number | null
-  review: string | null
-  autor: {
-    id: string
-    nombre: string | null
-    apellido: string | null
-    rol: string
-  }
-  trabajo: {
-    id: string
-    tipoDeTrabajo: string
-    fechaFin: Date | null
-  }
-}
+import type { Review } from '@/types'
 
 interface UserDetailClientProps {
   usuario: {

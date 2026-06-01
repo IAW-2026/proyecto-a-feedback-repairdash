@@ -8,16 +8,7 @@ import Pagination from '@/components/Pagination'
 import UserCard from '@/components/UserCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
-
-interface UserRow {
-  id: string
-  nombre: string
-  apellido: string
-  mail: string
-  rol: string
-  valoracion: number
-  activo: boolean
-}
+import type { UserRow } from '@/types'
 
 interface AdminUsersClientProps {
   usuarios: UserRow[]

@@ -7,15 +7,7 @@ import Pagination from '@/components/Pagination'
 import UserCard from '@/components/UserCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
-
-interface UserResult {
-  id: string
-  nombre: string
-  apellido: string
-  promedioEstrellas: number
-  reportesEnContra: number
-  trabajosInvolucrado: number
-}
+import type { UserResult } from '@/types'
 
 interface BuscarClientProps {
   usuarios: UserResult[]

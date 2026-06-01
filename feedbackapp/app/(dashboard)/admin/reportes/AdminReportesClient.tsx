@@ -6,33 +6,7 @@ import { AlertCircle, User, FileText, Calendar } from 'lucide-react'
 import DropdownFilter from '@/components/DropdownFilter'
 import Pagination from '@/components/Pagination'
 import SearchInput from '@/components/SearchInput'
-
-// ============================================
-// INTERFACES Y TIPOS
-// ============================================
-
-interface Usuario {
-  id: string
-  nombre: string | null
-  apellido: string | null
-  rol: string
-}
-
-interface Trabajo {
-  id: string
-  tipoDeTrabajo: string
-  fechaFin: Date | null
-}
-
-interface Reporte {
-  id: string
-  trabajo: Trabajo
-  reportante: Usuario
-  reportado: Usuario
-  resolucion: string
-  decision: string | null
-  estado: string
-}
+import type { Reporte, UsuarioBase } from '@/types'
 
 interface AdminReportesClientProps {
   reportes: Reporte[]
@@ -64,7 +38,7 @@ function formatDate(date: Date | null): string {
 /**
  * Obtiene el nombre completo de un usuario
  */
-function getNombreCompleto(usuario: Usuario): string {
+function getNombreCompleto(usuario: UsuarioBase): string {
   if (!usuario) return 'Usuario desconocido'
   const nombre = usuario.nombre || ''
   const apellido = usuario.apellido || ''

@@ -7,23 +7,7 @@ import { Star, Search, Briefcase, Calendar } from 'lucide-react'
 import StarRating from '@/components/StarRating'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
-
-interface Review {
-  id: string
-  valoracion: number | null
-  review: string | null
-  autor: {
-    id: string
-    nombre: string | null
-    apellido: string | null
-    rol: string
-  }
-  trabajo: {
-    id: string
-    tipoDeTrabajo: string
-    fechaFin: Date | null
-  }
-}
+import type { Review } from '@/types'
 
 interface ReviewsClientProps {
   reviews: Review[]
