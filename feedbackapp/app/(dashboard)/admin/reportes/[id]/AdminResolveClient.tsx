@@ -24,7 +24,7 @@ export default function AdminResolveClient({ reporteId, estado, decision, resolu
   if (isResuelto && success === false) {
     return (
       <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
-        <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-4 text-sm">
+        <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
           Veredicto
         </p>
         <div className="text-center">
@@ -64,7 +64,7 @@ export default function AdminResolveClient({ reporteId, estado, decision, resolu
 
   return (
     <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
-      <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-4 text-sm">
+      <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
         Resolver Reporte
       </p>
 
