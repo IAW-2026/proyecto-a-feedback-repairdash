@@ -17,7 +17,7 @@ model Usuario {
   mail               String       @unique
   nombre             String
   apellido           String
-  valoracion         Int
+  valoracion         Float
   rol                rolDeUsuario
   activo             Boolean      @default(true)
   trabajosComoRider  Trabajo[]    @relation("TrabajoRider") //Esto son nombres a las relaciones
