@@ -25,7 +25,7 @@ export default function UserCard({ id, nombre, apellido, valoracion, badge, chil
               <Star
                 key={i}
                 size={18}
-                className={i < Math.floor(valoracion) ? 'fill-[#f500f1] text-[#f500f1]' : 'text-[#8d62a5] opacity-30'}
+                className={i < Math.round(valoracion) ? 'fill-[#f500f1] text-[#f500f1]' : 'text-[#8d62a5] opacity-30'}
               />
             ))}
             <span className="text-[#c392dd] text-xs font-medium ml-1">{valoracion}/5</span>
