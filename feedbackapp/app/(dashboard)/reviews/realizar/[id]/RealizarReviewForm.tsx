@@ -12,10 +12,8 @@ const ratingLabels: Record<number, string> = {
   5: 'Excelente',
 };
 
-function formatDate(dateString: string): string {
-  const date = new Date(dateString);
-  return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
-}
+import { formatDate } from '@/lib/dates'
+import { getRolLabel } from '@/lib/roles'
 
 function getInitials(nombre: string, apellido: string): string {
   return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase();
@@ -103,7 +101,7 @@ export default function RealizarReviewForm({
                   {usuarioAEvaluar.nombre} {usuarioAEvaluar.apellido}
                 </h2>
                 <span className="inline-block mt-2 px-3 py-1 bg-[#8d62a5]/20 rounded-full text-xs text-[#c392dd] font-medium">
-                  {usuarioAEvaluar.rol === 'rider' ? 'Rider' : 'Driver'}
+                  {getRolLabel(usuarioAEvaluar.rol)}
                 </span>
               </div>
             </div>
@@ -123,8 +121,8 @@ export default function RealizarReviewForm({
               <div className="flex items-center gap-3">
                 <Calendar size={18} className="text-[#c392dd] flex-shrink-0" />
                 <span className="text-sm text-[#fbdaf9]">
-                  {trabajo.fechaInicio ? formatDate(trabajo.fechaInicio.toString()) : 'Fecha no definida'} →{' '}
-                  {trabajo.fechaFin ? formatDate(trabajo.fechaFin.toString()) : 'Fecha no definida'}
+                  {trabajo.fechaInicio ? formatDate(trabajo.fechaInicio) : 'Fecha no definida'} →{' '}
+                  {trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Fecha no definida'}
                 </span>
               </div>
             </div>

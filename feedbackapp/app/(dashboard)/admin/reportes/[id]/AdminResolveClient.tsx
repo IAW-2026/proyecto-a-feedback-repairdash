@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { CheckCircle, XCircle, Clock, AlertTriangle } from 'lucide-react'
+import DecisionBadge from '@/components/DecisionBadge'
 import { useResolveReport } from '@/hooks/useResolveReport'
 
 interface Props {
@@ -33,10 +34,7 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
               <p className="text-[#c392dd] mb-4">
                 El administrador falló a favor del reportante
               </p>
-              <span className="inline-flex items-center gap-2 bg-green-500/20 text-green-300 font-medium px-3 py-1.5 rounded-full text-sm">
-                <CheckCircle size={14} />
-                A favor
-              </span>
+              <DecisionBadge favorable={true} />
             </>
           ) : (
             <>
@@ -47,10 +45,7 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
               <p className="text-[#c392dd] mb-4">
                 El administrador falló en contra del reportante
               </p>
-              <span className="inline-flex items-center gap-2 bg-red-500/20 text-red-300 font-medium px-3 py-1.5 rounded-full text-sm">
-                <XCircle size={14} />
-                En contra
-              </span>
+              <DecisionBadge favorable={false} />
             </>
           )}
         </div>

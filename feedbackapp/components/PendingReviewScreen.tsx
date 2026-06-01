@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import { User, Briefcase, Calendar, AlertCircle, ArrowRight } from 'lucide-react';
+import { formatDate } from '@/lib/dates';
 
 export default function PendingReviewScreen({ trabajo, userId }: { trabajo: any, userId: string }) {
   const otroUsuario = trabajo.idRider === userId ? trabajo.driver : trabajo.rider;
@@ -30,7 +31,7 @@ export default function PendingReviewScreen({ trabajo, userId }: { trabajo: any,
           <div className="flex items-center gap-3 mb-8">
             <Calendar className="text-[#8d62a5]" size={20} />
             <span className="capitalize">
-              {trabajo.fechaFin?.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}
+              {formatDate(trabajo.fechaFin)}
             </span>
           </div>
 

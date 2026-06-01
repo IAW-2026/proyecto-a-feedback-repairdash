@@ -18,11 +18,8 @@ interface ReviewsClientProps {
   promedio: string | null
 }
 
-function formatDate(date: Date | null): string {
-  if (!date) return 'Fecha no disponible'
-  const d = new Date(date)
-  return d.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
-}
+import { formatDate } from '@/lib/dates'
+import { getRolLabel } from '@/lib/roles'
 
 export default function ReviewsClient({
   reviews,
@@ -134,7 +131,7 @@ export default function ReviewsClient({
                         </div>
                         <div className="flex items-center gap-2 flex-wrap">
                           <span className="inline-block px-3 py-1 bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium rounded-full">
-                            {review.autor.rol === 'rider' ? 'Rider' : 'Driver'}
+                            {getRolLabel(review.autor.rol)}
                           </span>
                         </div>
                       </div>

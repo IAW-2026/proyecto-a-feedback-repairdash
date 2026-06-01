@@ -1,6 +1,9 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import { ArrowLeft, Calendar, User, FileText, Shield, AlertTriangle, CheckCircle, XCircle } from 'lucide-react'
+import { ArrowLeft, Calendar, User, FileText, Shield } from 'lucide-react'
+import EstadoBadge from '@/components/EstadoBadge'
+import DecisionBadge from '@/components/DecisionBadge'
+import { getRolLabel } from '@/lib/roles'
 import { prisma } from '@/lib/prisma'
 import { getCurrentUser } from '@/lib/getCurrentUser'
 import AdminResolveClient from './AdminResolveClient'
@@ -65,24 +68,12 @@ export default async function AdminReporteDetallePage({ params }: Props) {
             </h1>
           </div>
 
-          {isResuelto ? (
-            reporte.decision === 'AFavor' ? (
-              <span className="inline-flex items-center gap-2 bg-green-500/20 text-green-300 font-medium px-3 py-1.5 rounded-full text-sm whitespace-nowrap">
-                <CheckCircle size={16} />
-                Resuelto - A favor
-              </span>
-            ) : (
-              <span className="inline-flex items-center gap-2 bg-red-500/20 text-red-300 font-medium px-3 py-1.5 rounded-full text-sm whitespace-nowrap">
-                <XCircle size={16} />
-                Resuelto - En contra
-              </span>
-            )
-          ) : (
-            <span className="inline-flex items-center gap-2 bg-[#8d62a5]/20 text-[#c392dd] font-medium px-3 py-1.5 rounded-full text-sm whitespace-nowrap">
-              <AlertTriangle size={16} />
-              Pendiente de revisión
-            </span>
-          )}
+          <div className="flex gap-2 flex-wrap">
+            <EstadoBadge estado={isResuelto ? 'Resuelto' : 'SinResolver'} />
+            {isResuelto && reporte.decision && (
+              <DecisionBadge favorable={reporte.decision === 'AFavor'} />
+            )}
+          </div>
         </div>
       </div>
 
@@ -118,7 +109,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                   <p className="text-[#fbdaf9] font-bold">
                     {reporte.reportante.nombre} {reporte.reportante.apellido}
                   </p>
-                  <p className="text-[#c392dd] text-sm">{reporte.reportante.rol}</p>
+                  <p className="text-[#c392dd] text-sm">{getRolLabel(reporte.reportante.rol)}</p>
                 </div>
               </div>
 
@@ -131,7 +122,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                   <p className="text-[#fbdaf9] font-bold">
                     {reporte.reportado.nombre} {reporte.reportado.apellido}
                   </p>
-                  <p className="text-[#c392dd] text-sm">{reporte.reportado.rol}</p>
+                  <p className="text-[#c392dd] text-sm">{getRolLabel(reporte.reportado.rol)}</p>
                 </div>
               </div>
             </div>

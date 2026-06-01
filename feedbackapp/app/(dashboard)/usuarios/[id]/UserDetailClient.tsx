@@ -16,10 +16,8 @@ interface UserDetailClientProps {
   reviews: Review[]
 }
 
-function formatDate(date: Date | null): string {
-  if (!date) return 'Fecha no disponible'
-  return new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
-}
+import { formatDate } from '@/lib/dates'
+import { getRolLabel } from '@/lib/roles'
 
 export default function UserDetailClient({
   usuario,
@@ -92,7 +90,7 @@ export default function UserDetailClient({
                       </div>
                       <div className="flex items-center gap-2 flex-wrap">
                         <span className="inline-block px-3 py-1 bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium rounded-full">
-                          {review.autor.rol === 'rider' ? 'Rider' : 'Driver'}
+                          {getRolLabel(review.autor.rol)}
                         </span>
                       </div>
                     </div>

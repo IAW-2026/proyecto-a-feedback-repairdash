@@ -20,11 +20,16 @@ export default function ReportFormClient({
     error,
     success,
     uploading,
+    isDragOver,
     formData,
     handleDescripcionChange,
-    handleFileUpload,
+    handleFileSelect,
     handleRemovePrueba,
     handleSubmit,
+    handleDragOver,
+    handleDragEnter,
+    handleDragLeave,
+    handleDrop,
   } = useReportForm(reporteId);
 
   if (success) {
@@ -50,7 +55,7 @@ export default function ReportFormClient({
         </div>
 
         <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20 mb-6 text-[#fbdaf9]">
-          <h3 className="text-lg font-semibold mb-4">Información del Reporte</h3>
+          <h2 className="text-lg font-semibold mb-4">Información del Reporte</h2>
           <div className="space-y-3 text-sm">
             <p>
               <span className="text-[#c392dd]">Usuario reportado:</span> {reportado?.nombre}{' '}
@@ -81,7 +86,7 @@ export default function ReportFormClient({
               rows={6}
               placeholder="Describe el incidente de forma clara y detallada..."
             />
-            <p className="text-xs text-[#8d62a5] mt-2">
+            <p className="text-xs text-[#c392dd] mt-2">
               {formData.descripcion.length} / 500 caracteres
             </p>
           </div>
@@ -91,43 +96,51 @@ export default function ReportFormClient({
               Pruebas / Evidencias *
             </label>
             <p className="text-xs text-[#c392dd] mb-3">
-              Sube imágenes o videos como evidencia. Mínimo 1 prueba requerida.
+              Arrastrá archivos o hacé clic para seleccionar. Mínimo 1 prueba requerida.
             </p>
 
             <div className="mb-4">
-              <label
-                htmlFor="file-upload"
+              <div
+                onDragOver={handleDragOver}
+                onDragEnter={handleDragEnter}
+                onDragLeave={handleDragLeave}
+                onDrop={handleDrop}
                 className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
                   uploading
                     ? 'border-[#f500f1]/50 bg-[#3a1f52]/50'
-                    : 'border-[#8d62a5]/30 bg-[#3a1f52] hover:border-[#f500f1]/40 hover:bg-[#3a1f52]/80'
+                    : isDragOver
+                      ? 'border-[#f500f1] bg-[#3a1f52]/80'
+                      : 'border-[#8d62a5]/30 bg-[#3a1f52] hover:border-[#f500f1]/40 hover:bg-[#3a1f52]/80'
                 }`}
               >
-                <input
-                  id="file-upload"
-                  type="file"
-                  accept="image/*,video/*"
-                  onChange={handleFileUpload}
-                  disabled={uploading || isLoading}
-                  className="hidden"
-                />
-                {uploading ? (
-                  <div className="flex flex-col items-center gap-2">
-                    <Loader size={24} className="animate-spin text-[#f500f1]" />
-                    <span className="text-[#c392dd] text-sm">Subiendo archivo...</span>
-                  </div>
-                ) : (
-                  <div className="flex flex-col items-center gap-2">
-                    <Upload size={24} className="text-[#c392dd]" />
-                    <span className="text-[#c392dd] text-sm">
-                      Haz clic para seleccionar archivos
-                    </span>
-                    <span className="text-[#8d62a5] text-xs">
-                      Imágenes o videos
-                    </span>
-                  </div>
-                )}
-              </label>
+                <label htmlFor="file-upload" className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
+                  <input
+                    id="file-upload"
+                    type="file"
+                    accept="image/*,video/*"
+                    multiple
+                    onChange={handleFileSelect}
+                    disabled={uploading || isLoading}
+                    className="hidden"
+                  />
+                  {uploading ? (
+                    <div className="flex flex-col items-center gap-2">
+                      <Loader size={24} className="animate-spin text-[#f500f1]" />
+                      <span className="text-[#c392dd] text-sm">Subiendo archivos...</span>
+                    </div>
+                  ) : (
+                    <div className="flex flex-col items-center gap-2">
+                      <Upload size={24} className="text-[#c392dd]" />
+                      <span className="text-[#c392dd] text-sm">
+                        Arrastrá archivos o hacé clic
+                      </span>
+                      <span className="text-[#c392dd] text-xs">
+                        Imágenes o videos
+                      </span>
+                    </div>
+                  )}
+                </label>
+              </div>
             </div>
 
             {formData.pruebas.length > 0 && (
@@ -185,7 +198,7 @@ export default function ReportFormClient({
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 flex items-center justify-center gap-2 bg-[#f500f1] text-white py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold"
+              className="flex-1 flex items-center justify-center gap-2 bg-[#f500f1] text-[#1a0a2e] py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold"
             >
               {isLoading ? (
                 <>
