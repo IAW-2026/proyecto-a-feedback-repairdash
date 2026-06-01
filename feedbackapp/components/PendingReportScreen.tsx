@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { User, Briefcase, Calendar, ArrowRight, Flag } from 'lucide-react';
+import { formatDate } from '@/lib/dates';
 
 interface PendingReportScreenProps {
   reporte: any;
@@ -74,13 +75,7 @@ export default function PendingReportScreen({
             <div>
               <p className="text-xs text-[#c392dd] uppercase">Fecha</p>
               <span className="capitalize">
-                {trabajo.fechaFin
-                  ? new Date(trabajo.fechaFin).toLocaleDateString('es-ES', {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric',
-                    })
-                  : 'Por confirmar'}
+                {trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Por confirmar'}
               </span>
             </div>
           </div>
