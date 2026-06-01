@@ -20,6 +20,7 @@ export default async function ReviewsPage({
   // Construir el where clause para reviews recibidas
   const whereClause = {
     estaCompleta: true,
+    valoracion: { not: null },
     trabajo: {
       OR: [
         { idRider: user.id },
