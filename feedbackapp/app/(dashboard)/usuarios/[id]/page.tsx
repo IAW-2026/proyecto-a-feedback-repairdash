@@ -17,7 +17,7 @@ export default async function UserDetailPage({
       where: { idReportado: id, decision: 'EnContra' },
     }),
     prisma.review.findMany({
-      where: { idUsuario: id, estaCompleta: true },
+      where: { idUsuario: id, estaCompleta: true, valoracion: { not: null } },
       include: {
         autor: { select: { id: true, nombre: true, apellido: true, rol: true } },
         trabajo: { select: { id: true, tipoDeTrabajo: true, fechaFin: true } },
