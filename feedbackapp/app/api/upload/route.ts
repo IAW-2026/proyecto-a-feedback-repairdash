@@ -13,6 +13,13 @@ export async function POST(request: Request) {
       )
     }
 
+    if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+      return NextResponse.json(
+        { message: 'Solo se permiten imágenes y videos' },
+        { status: 400 }
+      )
+    }
+
     const bytes = await file.arrayBuffer()
     const buffer = Buffer.from(bytes)
 
@@ -43,8 +50,13 @@ export async function POST(request: Request) {
     )
   } catch (error) {
     console.error('Error al subir archivo a Cloudinary:', error)
+    const message = typeof error === 'string'
+      ? error
+      : error instanceof Error
+        ? error.message
+        : 'Error desconocido al subir archivo'
     return NextResponse.json(
-      { message: 'Error al subir el archivo' },
+      { message },
       { status: 500 }
     )
   }

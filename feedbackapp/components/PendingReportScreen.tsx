@@ -83,7 +83,7 @@ export default function PendingReportScreen({
           {/* Botón CTA */}
           <Link
             href={linkHref}
-            className="w-full flex items-center justify-center gap-2 bg-[#f500f1] text-white py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] shadow-lg font-semibold"
+            className="w-full flex items-center justify-center gap-2 bg-[#f500f1] text-[#1a0a2e] py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] shadow-lg font-semibold"
           >
             Resolver reporte
             <ArrowRight size={20} />
@@ -91,7 +91,7 @@ export default function PendingReportScreen({
         </div>
 
         {/* Pie de página informativo */}
-        <p className="text-[#8d62a5] text-sm mt-6 text-center max-w-sm">
+        <p className="text-[#c392dd] text-sm mt-6 text-center max-w-sm">
           Necesitamos que resuelvas este reporte para poder continuar usando la plataforma.
         </p>
       </div>
