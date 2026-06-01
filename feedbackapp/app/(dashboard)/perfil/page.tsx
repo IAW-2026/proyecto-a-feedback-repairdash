@@ -21,14 +21,19 @@ export default async function PerfilPage() {
     }),
     prisma.reporte.count({
       where: {
-        idReportado: user.id,
-        decision: 'EnContra',
+        OR: [
+          { idReportante: user.id, decision: 'EnContra' },
+          { idReportado: user.id, decision: 'AFavor' },
+        ],
       },
     }),
     prisma.reporte.count({
       where: {
-        idReportado: user.id,
         resolucion: 'SinResolver',
+        OR: [
+          { idReportante: user.id },
+          { idReportado: user.id },
+        ],
       },
     }),
   ]);
