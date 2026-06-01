@@ -1,9 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Upload, AlertCircle, CheckCircle, Loader, X } from 'lucide-react';
-import { reportEvidenceSchema } from '@/lib/validation/reportEvidence';
+import { useReportForm } from '@/hooks/useReportForm';
+import type { Prueba } from '@/hooks/useReportForm';
 
 interface ReportFormClientProps {
   reporteId: string;
@@ -11,182 +10,22 @@ interface ReportFormClientProps {
   trabajo: any;
 }
 
-interface Prueba {
-  id: string;
-  tipo: string;
-  url: string;
-}
-
-const STORAGE_KEY = (id: string) => `report_draft_${id}`;
-
 export default function ReportFormClient({
   reporteId,
   reportado,
   trabajo,
 }: ReportFormClientProps) {
-  const router = useRouter();
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setError] = useState<string | null>(null);
-  const [success, setSuccess] = useState(false);
-
-  const [formData, setFormData] = useState({
-    descripcion: '',
-    pruebas: [] as Prueba[],
-  });
-
-  const [uploading, setUploading] = useState(false);
-
-  // Restaurar borrador de localStorage al montar
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY(reporteId));
-    if (saved) {
-      try {
-        const parsed = JSON.parse(saved);
-        if (typeof parsed.descripcion === 'string') {
-          setFormData({
-            descripcion: parsed.descripcion,
-            pruebas: Array.isArray(parsed.pruebas) ? parsed.pruebas : [],
-          });
-        }
-      } catch { /* ignorar JSON inválido */ }
-    }
-  }, [reporteId]);
-
-  // Guardar borrador en localStorage al cambiar
-  useEffect(() => {
-    if (!success) {
-      localStorage.setItem(STORAGE_KEY(reporteId), JSON.stringify(formData));
-    }
-  }, [formData, reporteId, success]);
-
-  const handleDescripcionChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      descripcion: e.target.value,
-    }));
-  };
-
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (!file) return;
-
-    setUploading(true);
-    setError(null);
-
-    try {
-      const body = new FormData();
-      body.append('file', file);
-
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body,
-      });
-
-      if (!res.ok) {
-        const data = await res.json();
-        throw new Error(data.error || 'Error al subir archivo');
-      }
-
-      const { url, tipo } = await res.json();
-
-      const newPrueba: Prueba = {
-        id: `temp-${Date.now()}`,
-        tipo,
-        url,
-      };
-
-      setFormData((prev) => ({
-        ...prev,
-        pruebas: [...prev.pruebas, newPrueba],
-      }));
-    } catch (err: any) {
-      setError(err.message || 'Error al subir archivo');
-    } finally {
-      setUploading(false);
-      e.target.value = '';
-    }
-  };
-
-  const handleRemovePrueba = (id: string) => {
-    setFormData((prev) => ({
-      ...prev,
-      pruebas: prev.pruebas.filter((p) => p.id !== id),
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setError(null);
-
-    if (!formData.descripcion.trim()) {
-      setError('La descripción del reporte es obligatoria');
-      return;
-    }
-
-    if (formData.descripcion.trim().length < 20) {
-      setError('La descripción debe tener al menos 20 caracteres');
-      return;
-    }
-
-    if (formData.pruebas.length === 0) {
-      setError('Debes agregar al menos una prueba');
-      return;
-    }
-
-    setIsLoading(true);
-
-    try {
-      // Validar primera prueba con Zod
-      const firstPrueba = formData.pruebas[0];
-      const result = reportEvidenceSchema.safeParse({
-        descripcion: formData.descripcion,
-        url: firstPrueba.url,
-        tipo: firstPrueba.tipo,
-      });
-
-      if (!result.success) {
-        throw new Error(result.error.issues[0].message);
-      }
-
-      const response = await fetch(`/api/reports/${reporteId}`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result.data),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Error al resolver el reporte');
-      }
-
-      // Enviar pruebas adicionales
-      for (let i = 1; i < formData.pruebas.length; i++) {
-        const prueba = formData.pruebas[i];
-        await fetch(`/api/reports/${reporteId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            descripcion: `Prueba adicional`,
-            url: prueba.url,
-            tipo: prueba.tipo,
-          }),
-        });
-      }
-
-      // Limpiar borrador
-      localStorage.removeItem(STORAGE_KEY(reporteId));
-      setSuccess(true);
-
-      setTimeout(() => {
-        router.push('/reportes');
-        router.refresh();
-      }, 2000);
-    } catch (err: any) {
-      setError(err.message || 'Error desconocido');
-      setIsLoading(false);
-    }
-  };
+  const {
+    isLoading,
+    error,
+    success,
+    uploading,
+    formData,
+    handleDescripcionChange,
+    handleFileUpload,
+    handleRemovePrueba,
+    handleSubmit,
+  } = useReportForm(reporteId);
 
   if (success) {
     return (
@@ -296,7 +135,7 @@ export default function ReportFormClient({
                 <p className="text-sm text-[#fbdaf9] font-semibold">
                   Pruebas agregadas ({formData.pruebas.length})
                 </p>
-                {formData.pruebas.map((prueba) => (
+                {formData.pruebas.map((prueba: Prueba) => (
                   <div
                     key={prueba.id}
                     className="bg-[#3a1f52] p-3 rounded-lg border border-[#8d62a5]/20"
