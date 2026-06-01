@@ -1,10 +1,10 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { Star, Search, AlertTriangle, Briefcase } from 'lucide-react'
+import { Search, AlertTriangle, Briefcase } from 'lucide-react'
 import Pagination from '@/components/Pagination'
+import UserCard from '@/components/UserCard'
 
 interface UserResult {
   id: string
@@ -21,25 +21,6 @@ interface BuscarClientProps {
   totalPaginas: number
   search: string
   total: number
-}
-
-function StarRating({ rating }: { rating: number }) {
-  const rounded = Math.round(rating)
-  return (
-    <div className="flex gap-0.5">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={18}
-          className={
-            i < rounded
-              ? 'fill-[#f500f1] text-[#f500f1]'
-              : 'text-[#8d62a5] opacity-30'
-          }
-        />
-      ))}
-    </div>
-  )
 }
 
 export default function BuscarClient({
@@ -127,27 +108,14 @@ export default function BuscarClient({
         <>
           <div className="flex flex-col gap-3 mb-8">
             {usuarios.map((usuario) => (
-              <Link
+              <UserCard
                 key={usuario.id}
-                href={`/usuarios/${usuario.id}`}
-                className="block group"
+                id={usuario.id}
+                nombre={usuario.nombre}
+                apellido={usuario.apellido}
+                valoracion={usuario.promedioEstrellas}
               >
-              <div
-                className="bg-[#3a1f52] rounded-lg py-[clamp(0.75rem,2.5vw,1.25rem)] px-[clamp(0.75rem,2vw,1rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 cursor-pointer flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
-              >
-                <div className="flex items-center gap-3 flex-wrap">
-                  <h2 className="font-gilroy font-bold text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-                    {usuario.apellido}, {usuario.nombre}
-                  </h2>
-                  <div className="flex items-center gap-2 flex-shrink-0">
-                    <StarRating rating={usuario.promedioEstrellas} />
-                    <span className="text-[#8d62a5] text-xs font-medium">
-                      {usuario.promedioEstrellas}/5
-                    </span>
-                  </div>
-                </div>
-
-                <div className="flex items-center gap-4 flex-shrink-0" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)' }}>
+                <div className="flex items-center gap-4" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)' }}>
                   <div className="flex items-center gap-1.5 text-[#c392dd]">
                     <AlertTriangle size={14} className="flex-shrink-0" />
                     <span>
@@ -161,8 +129,7 @@ export default function BuscarClient({
                     </span>
                   </div>
                 </div>
-              </div>
-              </Link>
+              </UserCard>
             ))}
           </div>
 
