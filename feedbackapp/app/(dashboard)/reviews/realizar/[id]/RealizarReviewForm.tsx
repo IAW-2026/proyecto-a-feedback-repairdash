@@ -123,7 +123,7 @@ export default function RealizarReviewForm({
               <div className="flex items-center gap-3">
                 <Calendar size={18} className="text-[#c392dd] flex-shrink-0" />
                 <span className="text-sm text-[#fbdaf9]">
-                  {formatDate(trabajo.fechaInicio.toString())} →{' '}
+                  {trabajo.fechaInicio ? formatDate(trabajo.fechaInicio.toString()) : 'Fecha no definida'} →{' '}
                   {trabajo.fechaFin ? formatDate(trabajo.fechaFin.toString()) : 'Fecha no definida'}
                 </span>
               </div>
