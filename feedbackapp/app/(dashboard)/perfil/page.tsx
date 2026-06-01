@@ -3,33 +3,7 @@ import { User, Mail, Lock, Star, Briefcase, AlertCircle, Clock } from 'lucide-re
 import { getCurrentUser } from '@/lib/getCurrentUser';
 import { prisma } from '@/lib/prisma';
 import StatCard from '@/components/StatCard';
-
-function StarRating({ rating, max = 5 }: { rating: number | null; max?: number }) {
-  if (rating === null) {
-    return (
-      <div className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
-        Sin calificaciones
-      </div>
-    );
-  }
-
-  return (
-    <div className="flex flex-wrap items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
-      <div className="flex gap-[clamp(0.25rem,0.5vw,0.5rem)]">
-        {Array.from({ length: max }).map((_, i) => (
-          <Star
-            key={i}
-            size={20}
-            className={i < Math.floor(rating) ? 'fill-[#f500f1] text-[#f500f1]' : 'text-[#8d62a5]'}
-          />
-        ))}
-      </div>
-      <span className="font-gilroy font-bold text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
-        {rating} / {max}
-      </span>
-    </div>
-  );
-}
+import StarRating from '@/components/StarRating';
 
 export default async function PerfilPage() {
   // Obtener usuario autenticado
@@ -168,7 +142,18 @@ export default async function PerfilPage() {
                 Calificación promedio recibida
               </p>
               <div className="flex items-center justify-center">
-                <StarRating rating={promedioCalificaciones} />
+                {promedioCalificaciones === null ? (
+                  <div className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                    Sin calificaciones
+                  </div>
+                ) : (
+                  <div className="flex flex-wrap items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
+                    <StarRating rating={promedioCalificaciones} size={20} />
+                    <span className="font-gilroy font-bold text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                      {promedioCalificaciones} / 5
+                    </span>
+                  </div>
+                )}
               </div>
             </div>
           </div>

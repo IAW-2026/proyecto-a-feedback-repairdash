@@ -2,6 +2,7 @@
 
 import { Star, AlertCircle, Briefcase, Calendar } from 'lucide-react'
 import StatCard from '@/components/StatCard'
+import StarRating from '@/components/StarRating'
 
 interface Review {
   id: string
@@ -34,25 +35,6 @@ interface UserDetailClientProps {
 function formatDate(date: Date | null): string {
   if (!date) return 'Fecha no disponible'
   return new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
-}
-
-function StarRating({ rating }: { rating: number | null }) {
-  if (rating === null) return null
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={16}
-          className={
-            i < rating
-              ? 'fill-[#f500f1] text-[#f500f1]'
-              : 'text-[#8d62a5] opacity-30'
-          }
-        />
-      ))}
-    </div>
-  )
 }
 
 export default function UserDetailClient({

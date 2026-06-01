@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
 import { Star, Search, Briefcase, Calendar } from 'lucide-react'
+import StarRating from '@/components/StarRating'
+import EmptyState from '@/components/EmptyState'
+import SearchInput from '@/components/SearchInput'
 
 interface Review {
   id: string
@@ -35,25 +38,6 @@ function formatDate(date: Date | null): string {
   if (!date) return 'Fecha no disponible'
   const d = new Date(date)
   return d.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
-}
-
-function StarRating({ rating }: { rating: number | null }) {
-  if (rating === null) return null
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={16}
-          className={
-            i < rating
-              ? 'fill-[#f500f1] text-[#f500f1]'
-              : 'text-[#8d62a5] opacity-30'
-          }
-        />
-      ))}
-    </div>
-  )
 }
 
 export default function ReviewsClient({
@@ -131,37 +115,20 @@ export default function ReviewsClient({
         )}
       </div>
 
-      {/* Input búsqueda */}
-      <div className="mb-6 relative">
-        <Search
-          size={18}
-          className="absolute left-3 top-1/2 transform -translate-y-1/2 text-[#8d62a5]"
-        />
-        <input
-          type="text"
+      <div className="mb-6">
+        <SearchInput
           placeholder="Buscar por tipo de trabajo..."
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
-          className="w-full pl-10 pr-4 py-3 bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200"
+          onChange={setSearchValue}
         />
       </div>
 
       {/* Estado vacío */}
       {hasNoReviews ? (
-        <div className="flex flex-col items-center justify-center py-12 text-center">
-          <div className="mb-4">
-            {hasSearch ? (
-              <Search size={48} className="text-[#8d62a5] mx-auto opacity-50" />
-            ) : (
-              <Star size={48} className="text-[#8d62a5] mx-auto opacity-50" />
-            )}
-          </div>
-          <p className="text-[#c392dd] text-lg">
-            {hasSearch
-              ? 'No se encontraron reviews para tu búsqueda'
-              : 'Todavía no recibiste ninguna review'}
-          </p>
-        </div>
+        <EmptyState
+          icon={hasSearch ? Search : Star}
+          title={hasSearch ? 'No se encontraron reviews para tu búsqueda' : 'Todavía no recibiste ninguna review'}
+        />
       ) : (
         <>
           {/* Lista de reviews */}

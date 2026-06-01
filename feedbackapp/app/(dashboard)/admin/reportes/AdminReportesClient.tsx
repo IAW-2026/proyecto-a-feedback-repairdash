@@ -2,9 +2,10 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { AlertCircle, Search, User, FileText, Calendar } from 'lucide-react'
+import { AlertCircle, User, FileText, Calendar } from 'lucide-react'
 import DropdownFilter from '@/components/DropdownFilter'
 import Pagination from '@/components/Pagination'
+import SearchInput from '@/components/SearchInput'
 
 // ============================================
 // INTERFACES Y TIPOS
@@ -194,14 +195,11 @@ export default function AdminReportesClient({
 
       {/* ========== BARRA DE BÚSQUEDA + FILTRO ========== */}
       <div className="flex flex-col sm:flex-row gap-3 mb-8">
-        <div className="relative flex-1">
-          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8d62a5]" />
-          <input
-            type="text"
+        <div className="flex-1">
+          <SearchInput
             placeholder="Buscar por nombre del reportante o reportado..."
             value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200"
+            onChange={setSearchValue}
           />
         </div>
         <DropdownFilter

@@ -1,36 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Star, ArrowLeft, Calendar, Briefcase } from 'lucide-react';
+import { ArrowLeft, Calendar, Briefcase } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
+import StarRating from '@/components/StarRating';
 
 interface PageProps {
   params: Promise<{ id: string }>;
-}
-
-function StarRating({
-  rating,
-  max = 5,
-  size = 24,
-}: {
-  rating: number;
-  max?: number;
-  size?: number;
-}) {
-  return (
-    <div className="flex gap-[clamp(0.5rem,1vw,0.75rem)]">
-      {Array.from({ length: max }).map((_, i) => (
-        <Star
-          key={i}
-          size={size}
-          className={
-            i < Math.floor(rating)
-              ? "fill-[#f500f1] text-[#f500f1]"
-              : "text-[#8d62a5] opacity-30"
-          }
-        />
-      ))}
-    </div>
-  );
 }
 
 function formatDate(date: Date | null): string {
