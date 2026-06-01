@@ -1,0 +1,119 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import { useRouter, usePathname } from 'next/navigation'
+import { Search, AlertTriangle, Briefcase } from 'lucide-react'
+import Pagination from '@/components/Pagination'
+import UserCard from '@/components/UserCard'
+import EmptyState from '@/components/EmptyState'
+import SearchInput from '@/components/SearchInput'
+import type { UserResult } from '@/types'
+
+interface BuscarClientProps {
+  usuarios: UserResult[]
+  page: number
+  totalPaginas: number
+  search: string
+  total: number
+}
+
+export default function BuscarClient({
+  usuarios,
+  page,
+  totalPaginas,
+  search,
+  total,
+}: BuscarClientProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+  const [searchValue, setSearchValue] = useState(search)
+  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
+
+  useEffect(() => {
+    if (debounceTimer) {
+      clearTimeout(debounceTimer)
+    }
+
+    const timer = setTimeout(() => {
+      const newSearch = searchValue.trim()
+      router.push(
+        `${pathname}?search=${encodeURIComponent(newSearch)}&page=1`
+      )
+    }, 400)
+
+    setDebounceTimer(timer)
+
+    return () => {
+      if (timer) clearTimeout(timer)
+    }
+  }, [searchValue, router, pathname])
+
+  const handlePage = (p: number) => {
+    router.push(
+      `${pathname}?search=${encodeURIComponent(search)}&page=${p}`
+    )
+  }
+
+  const hasNoUsers = usuarios.length === 0
+  const hasSearch = search.trim() !== ''
+
+  return (
+    <div className="p-8">
+      <div className="mb-8">
+        <div className="text-xs uppercase tracking-widest text-[#c392dd] mb-2">
+          BUSCAR USUARIOS
+        </div>
+        <h1 className="text-4xl font-bold text-white mb-3">Buscar usuarios</h1>
+        <p className="text-[#c392dd]">
+          Buscá por nombre de usuario registrado en la plataforma
+        </p>
+      </div>
+
+      <div className="mb-6">
+        <SearchInput
+          placeholder="Buscar por nombre de usuario..."
+          value={searchValue}
+          onChange={setSearchValue}
+        />
+      </div>
+
+      {hasNoUsers ? (
+        <EmptyState
+          icon={hasSearch ? Search : AlertTriangle}
+          title={hasSearch ? 'No se encontraron usuarios para tu búsqueda' : 'Ingresa un nombre para buscar usuarios'}
+        />
+      ) : (
+        <>
+          <div className="flex flex-col gap-3 mb-8">
+            {usuarios.map((usuario) => (
+              <UserCard
+                key={usuario.id}
+                id={usuario.id}
+                nombre={usuario.nombre}
+                apellido={usuario.apellido}
+                valoracion={usuario.promedioEstrellas}
+              >
+                <div className="flex items-center gap-4" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)' }}>
+                  <div className="flex items-center gap-1.5 text-[#c392dd]">
+                    <AlertTriangle size={14} className="flex-shrink-0" />
+                    <span>
+                      Reportes: <strong className="text-[#fbdaf9]">{usuario.reportesEnContra}</strong>
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 text-[#c392dd]">
+                    <Briefcase size={14} className="flex-shrink-0" />
+                    <span>
+                      Trabajos: <strong className="text-[#fbdaf9]">{usuario.trabajosInvolucrado}</strong>
+                    </span>
+                  </div>
+                </div>
+              </UserCard>
+            ))}
+          </div>
+
+          <Pagination page={page} totalPaginas={totalPaginas} onPageChange={handlePage} />
+        </>
+      )}
+    </div>
+  )
+}
