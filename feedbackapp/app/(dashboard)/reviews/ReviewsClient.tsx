@@ -1,10 +1,9 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import Link from 'next/link'
 import { useRouter, usePathname } from 'next/navigation'
-import { Star, Search, Briefcase, Calendar } from 'lucide-react'
-import StarRating from '@/components/StarRating'
+import { Star, Search } from 'lucide-react'
+import ReviewCard from '@/components/ReviewCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
 import type { Review } from '@/types'
@@ -17,9 +16,6 @@ interface ReviewsClientProps {
   total: number
   promedio: string | null
 }
-
-import { formatDate } from '@/lib/dates'
-import { getRolLabel } from '@/lib/roles'
 
 export default function ReviewsClient({
   reviews,
@@ -114,58 +110,15 @@ export default function ReviewsClient({
         <>
           {/* Lista de reviews */}
           <div className="space-y-6 mb-8">
-            {reviews.map((review, index) => (
-              <Link
+            {reviews.map((review) => (
+              <ReviewCard
                 key={review.id}
+                autor={review.autor}
+                valoracion={review.valoracion}
+                trabajo={review.trabajo}
+                review={review.review}
                 href={`/reviews/${review.id}`}
-                className="block group"
-              >
-                {/* Review */}
-                <div className="mb-6">
-                  {/* Header: Autor y detalles */}
-                  <div className="mb-3">
-                    <div className="flex items-start justify-between gap-4 mb-2">
-                      <div className="flex-1">
-                        <div className="text-lg font-bold text-[#fbdaf9] mb-1 group-hover:text-[#f500f1] transition-colors">
-                          {review.autor.nombre} {review.autor.apellido}
-                        </div>
-                        <div className="flex items-center gap-2 flex-wrap">
-                          <span className="inline-block px-3 py-1 bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium rounded-full">
-                            {getRolLabel(review.autor.rol)}
-                          </span>
-                        </div>
-                      </div>
-                      {review.valoracion !== null && (
-                        <div className="flex-shrink-0">
-                          <StarRating valoracion={review.valoracion} />
-                        </div>
-                      )}
-                    </div>
-
-                    {/* Tipo de trabajo y fecha */}
-                    <div className="flex items-center gap-4 text-sm text-[#c392dd]">
-                      <div className="flex items-center gap-2">
-                        <Briefcase size={16} />
-                        <span>{review.trabajo.tipoDeTrabajo}</span>
-                      </div>
-                      <div className="flex items-center gap-2">
-                        <Calendar size={16} />
-                        <span>{formatDate(review.trabajo.fechaFin)}</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Texto de la review */}
-                  <p className="text-[#fbdaf9] leading-relaxed line-clamp-3">
-                    {review.review}
-                  </p>
-                </div>
-
-                {/* Separador */}
-                {index < reviews.length - 1 && (
-                  <div className="border-t border-[#8d62a5]/20 mb-6" />
-                )}
-              </Link>
+              />
             ))}
           </div>
 
