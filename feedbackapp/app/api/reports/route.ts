@@ -90,6 +90,24 @@ export async function POST(request: Request) {
         );
     }
 
+    const reviewCompletada = await prisma.review.findFirst({
+        where: {
+            idTrabajo,
+            idUsuario: idReportante,
+            estaCompleta: true,
+        },
+    });
+
+    if (reviewCompletada) {
+        return NextResponse.json(
+            {
+                message:
+                    "Ya has completado tu review para este trabajo. No puedes crear un reporte después de haber realizado una review.",
+            },
+            { status: 409 }
+        );
+    }
+
     const usuariosDelTrabajo = [trabajo.idRider, trabajo.idDriver];
     const usuariosValidos =
         usuariosDelTrabajo.includes(idReportante) &&
