@@ -152,7 +152,7 @@ export default function AdminReportesClient({
               Gestión de Conflictos
             </h1>
             <p className="text-[#c392dd]">
-              Revisa y resuelve los {totalPendientes} reporte{totalPendientes !== 1 ? 's' : ''} pendiente{totalPendientes !== 1 ? 's' : ''}
+              Revisá y resolvé los {totalPendientes} reporte{totalPendientes !== 1 ? 's' : ''} pendiente{totalPendientes !== 1 ? 's' : ''}
             </p>
           </div>
 

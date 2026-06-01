@@ -109,8 +109,8 @@ interface PageProps {
 }
 
 const rolLabel: Record<string, string> = {
-  rider: 'Cliente',
-  driver: 'Trabajador',
+  rider: 'Rider',
+  driver: 'Driver',
   feedbackAdmin: 'Administrador',
 };
 

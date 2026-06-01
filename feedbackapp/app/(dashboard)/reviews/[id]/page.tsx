@@ -28,7 +28,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const tipoLabel = review.autor.rol === 'rider' ? 'Cliente' : 'Trabajador';
+  const tipoLabel = review.autor.rol === 'rider' ? 'Rider' : 'Driver';
 
   return (
     <div className="w-full">
@@ -80,12 +80,12 @@ export default async function ReviewDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Puntaje */}
+        {/* Valoración */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           {review.valoracion !== null && (
             <>
               <div className="mb-[clamp(0.75rem,2vw,1rem)]">
-                <StarRating rating={review.valoracion} size={28} />
+                <StarRating valoracion={review.valoracion} size={28} />
               </div>
               <div
                 className="font-gilroy font-bold text-[#f500f1]"

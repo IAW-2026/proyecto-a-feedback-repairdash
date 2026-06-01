@@ -128,18 +128,18 @@ export default async function PerfilPage() {
             </div>
           </div>
 
-          {/* Card 3: Rating Promedio */}
+          {/* Card 3: Valoración Promedio */}
           <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <Star size={24} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                Rating Promedio
+                Valoración Promedio
               </p>
             </div>
 
             <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/30">
               <p className="text-[#c392dd] uppercase font-semibold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                Calificación promedio recibida
+                Valoración promedio recibida
               </p>
               <div className="flex items-center justify-center">
                 {promedioCalificaciones === null ? (
@@ -148,7 +148,7 @@ export default async function PerfilPage() {
                   </div>
                 ) : (
                   <div className="flex flex-wrap items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
-                    <StarRating rating={promedioCalificaciones} size={20} />
+                    <StarRating valoracion={promedioCalificaciones} size={20} />
                     <span className="font-gilroy font-bold text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                       {promedioCalificaciones} / 5
                     </span>

@@ -46,7 +46,7 @@ export default function ReportFormClient({
       <div className="w-full max-w-[700px] mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-[#fbdaf9] mb-2">Resolver Reporte</h1>
-          <p className="text-[#c392dd]">Proporciona detalles sobre el incidente y adjunta evidencias</p>
+          <p className="text-[#c392dd]">Proporcioná detalles sobre el incidente y adjuntá evidencias</p>
         </div>
 
         <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20 mb-6 text-[#fbdaf9]">

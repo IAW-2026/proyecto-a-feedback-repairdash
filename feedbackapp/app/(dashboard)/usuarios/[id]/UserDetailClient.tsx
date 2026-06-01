@@ -98,7 +98,7 @@ export default function UserDetailClient({
                     </div>
                     {review.valoracion !== null && (
                       <div className="flex-shrink-0">
-                        <StarRating rating={review.valoracion} />
+                        <StarRating valoracion={review.valoracion} />
                       </div>
                     )}
                   </div>

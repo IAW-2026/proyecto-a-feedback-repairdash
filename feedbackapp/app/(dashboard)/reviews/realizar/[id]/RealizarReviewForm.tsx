@@ -103,7 +103,7 @@ export default function RealizarReviewForm({
                   {usuarioAEvaluar.nombre} {usuarioAEvaluar.apellido}
                 </h2>
                 <span className="inline-block mt-2 px-3 py-1 bg-[#8d62a5]/20 rounded-full text-xs text-[#c392dd] font-medium">
-                  {usuarioAEvaluar.rol}
+                  {usuarioAEvaluar.rol === 'rider' ? 'Rider' : 'Driver'}
                 </span>
               </div>
             </div>
@@ -135,7 +135,7 @@ export default function RealizarReviewForm({
           <div className="space-y-6">
             <div>
               <label className="text-sm font-semibold text-[#fbdaf9] mb-3 block">
-                Calificación
+                Valoración
               </label>
               <div className="flex gap-3 mb-3 justify-center">
                 {[1, 2, 3, 4, 5].map((star) => {
@@ -166,7 +166,7 @@ export default function RealizarReviewForm({
                 {puntaje !== null ? (
                   <span className="text-[#c392dd]">{ratingLabels[puntaje]}</span>
                 ) : (
-                  <span className="text-[#8d62a5]">Seleccioná un puntaje</span>
+                  <span className="text-[#8d62a5]">Seleccioná una valoración</span>
                 )}
               </p>
               {errores.puntaje && (

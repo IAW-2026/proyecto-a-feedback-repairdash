@@ -3,13 +3,13 @@
 import { Star } from 'lucide-react'
 
 interface StarRatingProps {
-  rating: number | null
+  valoracion: number | null
   max?: number
   size?: number
 }
 
-export default function StarRating({ rating, max = 5, size = 18 }: StarRatingProps) {
-  if (rating === null) return null
+export default function StarRating({ valoracion, max = 5, size = 18 }: StarRatingProps) {
+  if (valoracion === null) return null
 
   return (
     <div className="flex gap-1">
@@ -18,7 +18,7 @@ export default function StarRating({ rating, max = 5, size = 18 }: StarRatingPro
           key={i}
           size={size}
           className={
-            i < Math.floor(rating)
+            i < Math.floor(valoracion)
               ? 'fill-[#f500f1] text-[#f500f1]'
               : 'text-[#8d62a5] opacity-30'
           }

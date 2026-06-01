@@ -65,7 +65,7 @@ export default function BuscarClient({
         </div>
         <h1 className="text-4xl font-bold text-white mb-3">Buscar usuarios</h1>
         <p className="text-[#c392dd]">
-          Busca por nombre de usuario registrado en la plataforma
+          Buscá por nombre de usuario registrado en la plataforma
         </p>
       </div>
 
