@@ -184,14 +184,14 @@ export default async function PerfilPage() {
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,1.5rem)]">
               <StatCard
-                icon={AlertCircle}
+                icon={<AlertCircle size={20} className="text-red-400 flex-shrink-0" />}
                 title="Fallados en tu contra"
                 value={reportesEnContra}
                 description="reportes resueltos desfavorablemente"
                 variant="danger"
               />
               <StatCard
-                icon={Clock}
+                icon={<Clock size={20} className="text-[#c392dd] flex-shrink-0" />}
                 title="Reportes pendientes"
                 value={reportesPendientes}
                 description="en evaluación o realizados por ti"

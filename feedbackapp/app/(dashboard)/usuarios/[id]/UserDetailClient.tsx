@@ -88,7 +88,7 @@ export default function UserDetailClient({
 
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <StatCard
-          icon={AlertCircle}
+          icon={<AlertCircle size={20} className="text-red-400 flex-shrink-0" />}
           title="Reportes en contra"
           value={reportesEnContra}
           description="reportes resueltos desfavorablemente"
