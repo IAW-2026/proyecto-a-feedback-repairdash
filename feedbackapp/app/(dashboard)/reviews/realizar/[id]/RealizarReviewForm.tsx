@@ -1,10 +1,8 @@
 'use client';
 
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { Star, Briefcase, Calendar, Send, AlertCircle, CheckCircle } from 'lucide-react';
-import { reviewFormSchema } from '@/lib/validation/reviewForm';
 import type { Trabajo, UsuarioBase } from '@/types';
+import { useReviewForm } from '@/hooks/useReviewForm';
 
 const ratingLabels: Record<number, string> = {
   1: 'Muy malo',
@@ -29,95 +27,24 @@ interface RealizarReviewFormProps {
   usuarioAEvaluar: UsuarioBase;
 }
 
-const STORAGE_KEY = (id: string) => `review_draft_${id}`;
-
 export default function RealizarReviewForm({
   reviewId,
   trabajo,
   usuarioAEvaluar,
 }: RealizarReviewFormProps) {
-  const router = useRouter();
-
-  const [puntaje, setPuntaje] = useState<number | null>(null);
-  const [hoverPuntaje, setHoverPuntaje] = useState<number | null>(null);
-  const [review, setReview] = useState('');
-  const [enviando, setEnviando] = useState(false);
-  const [enviado, setEnviado] = useState(false);
-  const [errores, setErrores] = useState<{
-    puntaje?: string;
-    review?: string;
-    api?: string;
-  }>({});
-
-  // Restaurar borrador de localStorage al montar
-  useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY(reviewId));
-    if (saved) {
-      try {
-        const { puntaje: savedPuntaje, review: savedReview } = JSON.parse(saved);
-        if (typeof savedPuntaje === 'number') setPuntaje(savedPuntaje);
-        if (typeof savedReview === 'string') setReview(savedReview);
-      } catch { /* ignorar JSON inválido */ }
-    }
-  }, [reviewId]);
-
-  // Guardar borrador en localStorage al cambiar
-  useEffect(() => {
-    if (!enviado) {
-      localStorage.setItem(STORAGE_KEY(reviewId), JSON.stringify({ puntaje, review }));
-    }
-  }, [puntaje, review, reviewId, enviado]);
-
-  const handleEnviar = async () => {
-    const result = reviewFormSchema.safeParse({
-      reviewId,
-      valoracion: puntaje,
-      review,
-    });
-
-    if (!result.success) {
-      const fieldErrors: Record<string, string> = {};
-      result.error.issues.forEach((issue) => {
-        const field = issue.path[0] as string;
-        if (field === 'valoracion') fieldErrors.puntaje = issue.message;
-        if (field === 'review') fieldErrors.review = issue.message;
-      });
-      setErrores({ ...fieldErrors });
-      return;
-    }
-
-    setEnviando(true);
-    setErrores({});
-
-    try {
-      const response = await fetch(`/api/reviews/realizar`, {
-        method: 'PUT',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result.data),
-      });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        setErrores({ api: data.error || 'Hubo un error al enviar la review' });
-        setEnviando(false);
-        return;
-      }
-
-      // Limpiar borrador
-      localStorage.removeItem(STORAGE_KEY(reviewId));
-      setEnviado(true);
-
-      setTimeout(() => {
-        router.push('/');
-        router.refresh();
-      }, 2000);
-    } catch (error) {
-      console.error('Error enviando review:', error);
-      setErrores({ api: 'Hubo un error al enviar la review' });
-      setEnviando(false);
-    }
-  };
+  const {
+    puntaje,
+    hoverPuntaje,
+    review,
+    enviando,
+    enviado,
+    errores,
+    onPuntajeClick,
+    onPuntajeEnter,
+    onPuntajeLeave,
+    onReviewChange,
+    onSubmit,
+  } = useReviewForm(reviewId);
 
   if (enviado) {
     return (
@@ -218,12 +145,9 @@ export default function RealizarReviewForm({
                     <button
                       key={star}
                       type="button"
-                      onClick={() => {
-                        setPuntaje(star);
-                        setErrores({ ...errores, puntaje: undefined });
-                      }}
-                      onMouseEnter={() => setHoverPuntaje(star)}
-                      onMouseLeave={() => setHoverPuntaje(null)}
+                      onClick={() => onPuntajeClick(star)}
+                      onMouseEnter={() => onPuntajeEnter(star)}
+                      onMouseLeave={onPuntajeLeave}
                       className="transition-all duration-200 focus:outline-none"
                     >
                       <Star
@@ -256,10 +180,7 @@ export default function RealizarReviewForm({
               </label>
               <textarea
                 value={review}
-                onChange={(e) => {
-                  setReview(e.target.value.slice(0, 1000));
-                  setErrores({ ...errores, review: undefined });
-                }}
+                onChange={onReviewChange}
                 placeholder="Contá tu experiencia con este usuario..."
                 rows={5}
                 className="w-full bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200 resize-none"
@@ -288,7 +209,7 @@ export default function RealizarReviewForm({
             </div>
 
             <button
-              onClick={handleEnviar}
+              onClick={onSubmit}
               disabled={
                 puntaje === null ||
                 review.length < 20 ||
