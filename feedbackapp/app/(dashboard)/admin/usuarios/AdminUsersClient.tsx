@@ -9,6 +9,7 @@ import UserCard from '@/components/UserCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
 import type { UserRow } from '@/types'
+import { getRolLabel } from '@/lib/roles'
 
 interface AdminUsersClientProps {
   usuarios: UserRow[]
@@ -56,12 +57,6 @@ export default function AdminUsersClient({
     if (rolFilter) params.set('rol', rolFilter)
     params.set('page', String(p))
     router.push(`${pathname}?${params.toString()}`)
-  }
-
-  const rolLabels: Record<string, string> = {
-    rider: 'Rider',
-    driver: 'Driver',
-    feedbackAdmin: 'Admin',
   }
 
   return (
@@ -113,7 +108,7 @@ export default function AdminUsersClient({
                 nombre={u.nombre}
                 apellido={u.apellido}
                 valoracion={u.valoracion}
-                badge={rolLabels[u.rol] || u.rol}
+                badge={getRolLabel(u.rol)}
               >
                 <div className="flex items-center gap-1.5 text-[#c392dd] text-xs whitespace-nowrap">
                   <Mail size={13} className="flex-shrink-0" />

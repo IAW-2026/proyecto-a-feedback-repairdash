@@ -25,15 +25,7 @@ interface AdminReportesClientProps {
 /**
  * Formatea una fecha al formato "12 de Marzo de 2026"
  */
-function formatDate(date: Date | null): string {
-  if (!date) return 'Fecha no disponible'
-  const d = new Date(date)
-  return d.toLocaleDateString('es-ES', { 
-    year: 'numeric', 
-    month: 'long', 
-    day: 'numeric' 
-  })
-}
+import { formatDate } from '@/lib/dates'
 
 /**
  * Obtiene el nombre completo de un usuario

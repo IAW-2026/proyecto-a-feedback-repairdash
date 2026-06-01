@@ -108,11 +108,7 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-const rolLabel: Record<string, string> = {
-  rider: 'Rider',
-  driver: 'Driver',
-  feedbackAdmin: 'Administrador',
-};
+import { getRolLabel } from '@/lib/roles';
 
 export default async function ReporteDetailPage({ params }: PageProps) {
   const user = await getCurrentUser();
@@ -220,7 +216,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                   <p className="text-[#fbdaf9] font-gilroy font-bold" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                     {reporte.reportante.nombre} {reporte.reportante.apellido}
                   </p>
-                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{rolLabel[reporte.reportante.rol] ?? reporte.reportante.rol}</p>
+                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{getRolLabel(reporte.reportante.rol)}</p>
                 </div>
               </div>
 
@@ -233,7 +229,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                   <p className="text-[#fbdaf9] font-gilroy font-bold" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                     {reporte.reportado.nombre} {reporte.reportado.apellido}
                   </p>
-                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{rolLabel[reporte.reportado.rol] ?? reporte.reportado.rol}</p>
+                  <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>{getRolLabel(reporte.reportado.rol)}</p>
                 </div>
               </div>
             </div>

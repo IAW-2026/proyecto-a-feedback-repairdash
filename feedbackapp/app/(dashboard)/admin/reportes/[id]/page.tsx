@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import { ArrowLeft, Calendar, User, FileText, Shield, AlertTriangle, CheckCircle, XCircle } from 'lucide-react'
+import { getRolLabel } from '@/lib/roles'
 import { prisma } from '@/lib/prisma'
 import { getCurrentUser } from '@/lib/getCurrentUser'
 import AdminResolveClient from './AdminResolveClient'
@@ -118,7 +119,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                   <p className="text-[#fbdaf9] font-bold">
                     {reporte.reportante.nombre} {reporte.reportante.apellido}
                   </p>
-                  <p className="text-[#c392dd] text-sm">{reporte.reportante.rol}</p>
+                  <p className="text-[#c392dd] text-sm">{getRolLabel(reporte.reportante.rol)}</p>
                 </div>
               </div>
 
@@ -131,7 +132,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                   <p className="text-[#fbdaf9] font-bold">
                     {reporte.reportado.nombre} {reporte.reportado.apellido}
                   </p>
-                  <p className="text-[#c392dd] text-sm">{reporte.reportado.rol}</p>
+                  <p className="text-[#c392dd] text-sm">{getRolLabel(reporte.reportado.rol)}</p>
                 </div>
               </div>
             </div>

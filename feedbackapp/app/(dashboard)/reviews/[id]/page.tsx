@@ -8,10 +8,8 @@ interface PageProps {
   params: Promise<{ id: string }>;
 }
 
-function formatDate(date: Date | null): string {
-  if (!date) return 'Fecha no disponible';
-  return date.toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' });
-}
+import { formatDate } from '@/lib/dates';
+import { getRolLabel } from '@/lib/roles';
 
 export default async function ReviewDetailPage({ params }: PageProps) {
   const { id } = await params;
@@ -28,7 +26,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const tipoLabel = review.autor.rol === 'rider' ? 'Rider' : 'Driver';
+  const tipoLabel = getRolLabel(review.autor.rol);
 
   return (
     <div className="w-full">
