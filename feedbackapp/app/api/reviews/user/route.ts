@@ -52,12 +52,19 @@ export async function POST(request: Request) {
     );
   }
 
-  // Verificar que el trabajo está activo
+  // Verificar que el trabajo está activo o que existe un reporte
   if (!trabajo.activo) {
-    return NextResponse.json(
-      { error: 'El trabajo ya fue finalizado' },
-      { status: 400 }
-    );
+    const reporteActivo = await prisma.reporte.findFirst({
+      where: { idTrabajo },
+      select: { id: true },
+    });
+
+    if (!reporteActivo) {
+      return NextResponse.json(
+        { error: 'El trabajo ya fue finalizado' },
+        { status: 400 }
+      );
+    }
   }
 
   // Verificar que no existen reviews para este trabajo
