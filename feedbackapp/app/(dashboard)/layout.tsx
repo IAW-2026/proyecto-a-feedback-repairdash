@@ -1,3 +1,4 @@
+import UserRegistrationGuard from '@/components/UserRegistrationGuard';
 import PendingTasksGuard from '@/components/PendingTasksGuard';
 import DashboardLayoutInner from './DashboardLayoutInner';
 
@@ -7,8 +8,10 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <PendingTasksGuard>
-      <DashboardLayoutInner>{children}</DashboardLayoutInner>
-    </PendingTasksGuard>
+    <UserRegistrationGuard>
+      <PendingTasksGuard>
+        <DashboardLayoutInner>{children}</DashboardLayoutInner>
+      </PendingTasksGuard>
+    </UserRegistrationGuard>
   );
 }

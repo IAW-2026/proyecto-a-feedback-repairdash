@@ -1,9 +1,19 @@
 import Link from 'next/link'
 import { auth, currentUser } from '@clerk/nextjs/server'
+import { prisma } from '@/lib/prisma'
 import { BarChart3, Star, User, Shield, Users } from 'lucide-react'
+import UnregisteredUserScreen from '@/components/UnregisteredUserScreen'
 
 export default async function Home() {
-  const { sessionClaims } = await auth()
+  const { userId, sessionClaims } = await auth()
+
+  if (userId) {
+    const user = await prisma.usuario.findUnique({ where: { id: userId } })
+    if (!user) {
+      return <UnregisteredUserScreen />
+    }
+  }
+
   const clerkUser = await currentUser()
   const role = (sessionClaims?.metadata as any)?.role
   const nombre = clerkUser?.firstName ?? ''
