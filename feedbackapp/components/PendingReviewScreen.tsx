@@ -37,7 +37,7 @@ export default function PendingReviewScreen({ trabajo, userId }: { trabajo: any,
 
           <Link
             href={`/reviews/realizar/${trabajo.id}`}
-            className="w-full flex items-center justify-center gap-2 bg-[#f500f1] text-white py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] shadow-lg font-semibold"
+            className="w-full flex items-center justify-center gap-2 bg-[#f500f1] text-[#1a0a2e] py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] shadow-lg font-semibold"
           >
             Hacer review
             <ArrowRight size={20} />
