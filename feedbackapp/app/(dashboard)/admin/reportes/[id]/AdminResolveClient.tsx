@@ -16,7 +16,27 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
   const router = useRouter()
   const { loading, error, success, handleResolve } = useResolveReport(reporteId)
 
+  const isCreado = estado === 'CREADO'
   const isResuelto = estado === 'RESUELTO'
+
+  if (isCreado && !success) {
+    return (
+      <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
+        <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
+          Reporte
+        </p>
+        <div className="text-center">
+          <Clock size={48} className="mx-auto mb-3 text-[#c392dd]" />
+          <h3 className="font-bold text-[#fbdaf9] mb-2 text-lg">
+            Pendiente de pruebas
+          </h3>
+          <p className="text-[#c392dd] text-sm">
+            El usuario aún no ha cargado las pruebas. No se puede resolver hasta que se agreguen.
+          </p>
+        </div>
+      </div>
+    )
+  }
 
   if (isResuelto && !success) {
     return (
