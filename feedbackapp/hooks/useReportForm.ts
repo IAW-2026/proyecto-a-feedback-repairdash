@@ -17,11 +17,16 @@ interface UseReportFormReturn {
   error: string | null
   success: boolean
   uploading: boolean
+  isDragOver: boolean
   formData: { descripcion: string; pruebas: Prueba[] }
   handleDescripcionChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
-  handleFileUpload: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>
+  handleFileSelect: (e: React.ChangeEvent<HTMLInputElement>) => Promise<void>
   handleRemovePrueba: (id: string) => void
   handleSubmit: (e: React.FormEvent<HTMLFormElement>) => Promise<void>
+  handleDragOver: (e: React.DragEvent) => void
+  handleDragEnter: (e: React.DragEvent) => void
+  handleDragLeave: (e: React.DragEvent) => void
+  handleDrop: (e: React.DragEvent) => Promise<void>
 }
 
 export function useReportForm(reporteId: string): UseReportFormReturn {
@@ -30,6 +35,7 @@ export function useReportForm(reporteId: string): UseReportFormReturn {
   const [error, setError] = useState<string | null>(null)
   const [success, setSuccess] = useState(false)
   const [uploading, setUploading] = useState(false)
+  const [isDragOver, setIsDragOver] = useState(false)
 
   const [formData, setFormData] = useState<{ descripcion: string; pruebas: Prueba[] }>(() => {
     try {
@@ -55,46 +61,89 @@ export function useReportForm(reporteId: string): UseReportFormReturn {
     setFormData((prev) => ({ ...prev, descripcion: e.target.value }))
   }
 
-  const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0]
-    if (!file) return
-
+  const uploadFiles = async (files: File[]) => {
     setUploading(true)
     setError(null)
 
-    try {
-      const body = new FormData()
-      body.append('file', file)
+    const newPruebas: Prueba[] = []
 
-      const res = await fetch('/api/upload', {
-        method: 'POST',
-        body,
-      })
-
-      if (!res.ok) {
-        const data = await res.json()
-        throw new Error(data.error || 'Error al subir archivo')
+    for (const file of files) {
+      if (file.size > 10 * 1024 * 1024) {
+        setError(`${file.name} supera el límite de 10MB`)
+        continue
       }
 
-      const { url, tipo } = await res.json()
-
-      const newPrueba: Prueba = {
-        id: `temp-${Date.now()}`,
-        tipo,
-        url,
+      if (!file.type.startsWith('image/') && !file.type.startsWith('video/')) {
+        setError(`"${file.name}" no es una imagen o video válido`)
+        continue
       }
 
-      setFormData((prev) => ({
-        ...prev,
-        pruebas: [...prev.pruebas, newPrueba],
-      }))
-    } catch (err: unknown) {
-      const message = err instanceof Error ? err.message : 'Error al subir archivo'
-      setError(message)
-    } finally {
-      setUploading(false)
-      e.target.value = ''
+      try {
+        const body = new FormData()
+        body.append('file', file)
+
+        const res = await fetch('/api/upload', {
+          method: 'POST',
+          body,
+        })
+
+        if (!res.ok) {
+          const data = await res.json()
+          throw new Error(data.message || `Error al subir ${file.name}`)
+        }
+
+        const { url, tipo } = await res.json()
+
+        newPruebas.push({
+          id: `temp-${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+          tipo,
+          url,
+        })
+      } catch (err: unknown) {
+        const message = err instanceof Error ? err.message : `Error al subir ${file.name}`
+        setError(message)
+      }
     }
+
+    if (newPruebas.length > 0) {
+      setFormData((prev) => ({ ...prev, pruebas: [...prev.pruebas, ...newPruebas] }))
+    }
+
+    setUploading(false)
+  }
+
+  const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files
+    if (!files || files.length === 0) return
+    await uploadFiles(Array.from(files))
+    e.target.value = ''
+  }
+
+  const handleDragOver = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+  }
+
+  const handleDragEnter = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragOver(true)
+  }
+
+  const handleDragLeave = (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragOver(false)
+  }
+
+  const handleDrop = async (e: React.DragEvent) => {
+    e.preventDefault()
+    e.stopPropagation()
+    setIsDragOver(false)
+
+    const files = e.dataTransfer.files
+    if (!files || files.length === 0) return
+    await uploadFiles(Array.from(files))
   }
 
   const handleRemovePrueba = (id: string) => {
@@ -181,10 +230,15 @@ export function useReportForm(reporteId: string): UseReportFormReturn {
     error,
     success,
     uploading,
+    isDragOver,
     formData,
     handleDescripcionChange,
-    handleFileUpload,
+    handleFileSelect,
     handleRemovePrueba,
     handleSubmit,
+    handleDragOver,
+    handleDragEnter,
+    handleDragLeave,
+    handleDrop,
   }
 }
