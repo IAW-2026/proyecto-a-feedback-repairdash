@@ -29,8 +29,11 @@ export default async function PerfilPage() {
     }),
     prisma.reporte.count({
       where: {
-        idReportado: user.id,
         resolucion: 'SinResolver',
+        OR: [
+          { idReportante: user.id },
+          { idReportado: user.id },
+        ],
       },
     }),
   ]);
