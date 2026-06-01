@@ -1,23 +1,9 @@
 'use client'
 
 import { Star, AlertCircle, Briefcase, Calendar } from 'lucide-react'
-
-interface Review {
-  id: string
-  valoracion: number | null
-  review: string | null
-  autor: {
-    id: string
-    nombre: string | null
-    apellido: string | null
-    rol: string
-  }
-  trabajo: {
-    id: string
-    tipoDeTrabajo: string
-    fechaFin: Date | null
-  }
-}
+import StatCard from '@/components/StatCard'
+import StarRating from '@/components/StarRating'
+import type { Review } from '@/types'
 
 interface UserDetailClientProps {
   usuario: {
@@ -35,25 +21,6 @@ function formatDate(date: Date | null): string {
   return new Date(date).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })
 }
 
-function StarRating({ rating }: { rating: number | null }) {
-  if (rating === null) return null
-  return (
-    <div className="flex gap-1">
-      {Array.from({ length: 5 }).map((_, i) => (
-        <Star
-          key={i}
-          size={16}
-          className={
-            i < rating
-              ? 'fill-[#f500f1] text-[#f500f1]'
-              : 'text-[#8d62a5] opacity-30'
-          }
-        />
-      ))}
-    </div>
-  )
-}
-
 export default function UserDetailClient({
   usuario,
   promedio,
@@ -65,7 +32,7 @@ export default function UserDetailClient({
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(1rem,3vw,2rem)]">
           <div className="min-w-0">
-            <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+            <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Perfil de usuario
             </p>
             <h1 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
@@ -86,20 +53,13 @@ export default function UserDetailClient({
       </div>
 
       <div className="mb-[clamp(2rem,6vw,3rem)]">
-        <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-red-500/30 hover:border-red-500/60 transition-all max-w-md">
-          <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] mb-[clamp(0.75rem,2vw,1rem)]">
-            <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
-            <p className="text-[#8d62a5] uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-              Reportes en contra
-            </p>
-          </div>
-          <div className="font-gilroy font-bold text-red-400" style={{ fontSize: 'clamp(2rem, 6vw, 2.5rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-            {reportesEnContra}
-          </div>
-          <p className="text-red-300/70" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-            reportes resueltos desfavorablemente
-          </p>
-        </div>
+        <StatCard
+          icon={<AlertCircle size={20} className="text-red-400 flex-shrink-0" />}
+          title="Reportes en contra"
+          value={reportesEnContra}
+          description="reportes resueltos desfavorablemente"
+          variant="danger"
+        />
       </div>
 
       <div>
@@ -110,9 +70,9 @@ export default function UserDetailClient({
         {reviews.length === 0 ? (
           <div className="bg-[#3a1f52]/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-[#8d62a5]/30 text-center">
             <Star size={48} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-[#8d62a5]" />
-            <h4 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
+            <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
               Sin reviews
-            </h4>
+            </h3>
             <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
               Este usuario no ha recibido reviews todavía
             </p>
@@ -138,7 +98,7 @@ export default function UserDetailClient({
                     </div>
                     {review.valoracion !== null && (
                       <div className="flex-shrink-0">
-                        <StarRating rating={review.valoracion} />
+                        <StarRating valoracion={review.valoracion} />
                       </div>
                     )}
                   </div>

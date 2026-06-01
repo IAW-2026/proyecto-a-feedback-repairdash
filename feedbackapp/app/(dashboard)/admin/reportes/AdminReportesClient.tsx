@@ -2,35 +2,11 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
-import { AlertCircle, Search, User, FileText, Calendar, ChevronLeft, ChevronRight } from 'lucide-react'
+import { AlertCircle, User, FileText, Calendar } from 'lucide-react'
 import DropdownFilter from '@/components/DropdownFilter'
-
-// ============================================
-// INTERFACES Y TIPOS
-// ============================================
-
-interface Usuario {
-  id: string
-  nombre: string | null
-  apellido: string | null
-  rol: string
-}
-
-interface Trabajo {
-  id: string
-  tipoDeTrabajo: string
-  fechaFin: Date | null
-}
-
-interface Reporte {
-  id: string
-  trabajo: Trabajo
-  reportante: Usuario
-  reportado: Usuario
-  resolucion: string
-  decision: string | null
-  estado: string
-}
+import Pagination from '@/components/Pagination'
+import SearchInput from '@/components/SearchInput'
+import type { Reporte, UsuarioBase } from '@/types'
 
 interface AdminReportesClientProps {
   reportes: Reporte[]
@@ -62,7 +38,7 @@ function formatDate(date: Date | null): string {
 /**
  * Obtiene el nombre completo de un usuario
  */
-function getNombreCompleto(usuario: Usuario): string {
+function getNombreCompleto(usuario: UsuarioBase): string {
   if (!usuario) return 'Usuario desconocido'
   const nombre = usuario.nombre || ''
   const apellido = usuario.apellido || ''
@@ -86,8 +62,8 @@ function getEstadoBadge(resolucion: string): { label: string; color: string } {
 function getDecisionBadge(decision: string | null): { label: string; color: string } | null {
   if (!decision) return null
   const decisiones: Record<string, { label: string; color: string }> = {
-    AFavor: { label: 'A Favor del Reportante', color: 'bg-[#4ade80]/20 text-[#6ba587]' },
-    EnContra: { label: 'En Contra del Reportante', color: 'bg-[#ef5350]/20 text-[#ff6b6b]' },
+    AFavor: { label: 'A Favor del Reportante', color: 'bg-[#4ade80]/20 text-[#8ae0a5]' },
+    EnContra: { label: 'En Contra del Reportante', color: 'bg-[#ef5350]/20 text-[#ff9999]' },
   }
   return decisiones[decision] || null
 }
@@ -145,16 +121,8 @@ export default function AdminReportesClient({
   // HANDLERS: Navegación de paginación
   // ============================================
 
-  const handlePreviousPage = () => {
-    if (page > 1) {
-      router.push(buildUrl({ page: String(page - 1) }))
-    }
-  }
-
-  const handleNextPage = () => {
-    if (page < totalPaginas) {
-      router.push(buildUrl({ page: String(page + 1) }))
-    }
+  const handlePage = (p: number) => {
+    router.push(buildUrl({ page: String(p) }))
   }
 
   const handleEstadoFilter = (e: string) => {
@@ -184,7 +152,7 @@ export default function AdminReportesClient({
               Gestión de Conflictos
             </h1>
             <p className="text-[#c392dd]">
-              Revisa y resuelve los {totalPendientes} reporte{totalPendientes !== 1 ? 's' : ''} pendiente{totalPendientes !== 1 ? 's' : ''}
+              Revisá y resolvé los {totalPendientes} reporte{totalPendientes !== 1 ? 's' : ''} pendiente{totalPendientes !== 1 ? 's' : ''}
             </p>
           </div>
 
@@ -201,14 +169,11 @@ export default function AdminReportesClient({
 
       {/* ========== BARRA DE BÚSQUEDA + FILTRO ========== */}
       <div className="flex flex-col sm:flex-row gap-3 mb-8">
-        <div className="relative flex-1">
-          <Search size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8d62a5]" />
-          <input
-            type="text"
+        <div className="flex-1">
+          <SearchInput
             placeholder="Buscar por nombre del reportante o reportado..."
             value={searchValue}
-            onChange={(e) => setSearchValue(e.target.value)}
-            className="w-full pl-10 pr-4 py-3 bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200"
+            onChange={setSearchValue}
           />
         </div>
         <DropdownFilter
@@ -262,7 +227,7 @@ export default function AdminReportesClient({
                         <User size={18} className="text-[#f500f1]" />
                         <span className="text-sm text-[#c392dd]">
                           <span className="font-semibold text-white">{reportanteNombre}</span>
-                          <span className="text-[#8d62a5]"> reportó a </span>
+                          <span className="text-[#c392dd]"> reportó a </span>
                           <span className="font-semibold text-white">{reportadoNombre}</span>
                         </span>
                       </div>
@@ -302,7 +267,7 @@ export default function AdminReportesClient({
 
                   {/* CTA: Botón para ver detalles */}
                   <div className="flex justify-end">
-                    <span className="px-4 py-2 bg-[#f500f1]/20 text-[#f500f1] rounded-lg text-sm font-medium">
+                    <span className="px-4 py-2 bg-[#f500f1]/20 text-[#ff66ff] rounded-lg text-sm font-medium">
                       Ver detalles
                     </span>
                   </div>
@@ -311,39 +276,7 @@ export default function AdminReportesClient({
             })}
           </div>
 
-          {/* ========== PAGINACIÓN ========== */}
-          <div className="flex items-center justify-between">
-            <div className="text-[#c392dd] text-sm">
-              Página <span className="font-bold text-white">{page}</span> de{' '}
-              <span className="font-bold text-white">{totalPaginas}</span>
-            </div>
-
-            <div className="flex gap-2">
-              <button
-                onClick={handlePreviousPage}
-                disabled={page === 1}
-                className={`p-2 rounded-lg border transition-all duration-200 ${
-                  page === 1
-                    ? 'border-[#8d62a5]/20 text-[#8d62a5]/50 cursor-not-allowed'
-                    : 'border-[#8d62a5] text-[#8d62a5] hover:bg-[#8d62a5]/20 hover:text-[#f500f1]'
-                }`}
-              >
-                <ChevronLeft size={20} />
-              </button>
-
-              <button
-                onClick={handleNextPage}
-                disabled={page === totalPaginas}
-                className={`p-2 rounded-lg border transition-all duration-200 ${
-                  page === totalPaginas
-                    ? 'border-[#8d62a5]/20 text-[#8d62a5]/50 cursor-not-allowed'
-                    : 'border-[#8d62a5] text-[#8d62a5] hover:bg-[#8d62a5]/20 hover:text-[#f500f1]'
-                }`}
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
-          </div>
+          <Pagination page={page} totalPaginas={totalPaginas} onPageChange={handlePage} />
         </>
       )}
     </div>

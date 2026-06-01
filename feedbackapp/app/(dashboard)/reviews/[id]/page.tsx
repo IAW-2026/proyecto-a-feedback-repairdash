@@ -1,36 +1,11 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { Star, ArrowLeft, Calendar, Briefcase } from 'lucide-react';
+import { ArrowLeft, Calendar, Briefcase } from 'lucide-react';
 import { prisma } from '@/lib/prisma';
+import StarRating from '@/components/StarRating';
 
 interface PageProps {
   params: Promise<{ id: string }>;
-}
-
-function StarRating({
-  rating,
-  max = 5,
-  size = 24,
-}: {
-  rating: number;
-  max?: number;
-  size?: number;
-}) {
-  return (
-    <div className="flex gap-[clamp(0.5rem,1vw,0.75rem)]">
-      {Array.from({ length: max }).map((_, i) => (
-        <Star
-          key={i}
-          size={size}
-          className={
-            i < Math.floor(rating)
-              ? "fill-[#f500f1] text-[#f500f1]"
-              : "text-[#8d62a5] opacity-30"
-          }
-        />
-      ))}
-    </div>
-  );
 }
 
 function formatDate(date: Date | null): string {
@@ -53,7 +28,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
     notFound();
   }
 
-  const tipoLabel = review.autor.rol === 'rider' ? 'Cliente' : 'Trabajador';
+  const tipoLabel = review.autor.rol === 'rider' ? 'Rider' : 'Driver';
 
   return (
     <div className="w-full">
@@ -72,7 +47,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <p
-          className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2"
+          className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2"
           style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
         >
           Detalle de Review
@@ -97,7 +72,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
               {review.autor.nombre} {review.autor.apellido}
             </h2>
             <span
-              className="bg-[#8d62a5]/30 text-[#c392dd] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full font-medium whitespace-nowrap"
+              className="bg-[#8d62a5]/30 text-[#fbdaf9] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full font-medium whitespace-nowrap"
               style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
             >
               {tipoLabel}
@@ -105,12 +80,12 @@ export default async function ReviewDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Puntaje */}
+        {/* Valoración */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           {review.valoracion !== null && (
             <>
               <div className="mb-[clamp(0.75rem,2vw,1rem)]">
-                <StarRating rating={review.valoracion} size={28} />
+                <StarRating valoracion={review.valoracion} size={28} />
               </div>
               <div
                 className="font-gilroy font-bold text-[#f500f1]"
@@ -141,7 +116,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         {/* Trabajo relacionado */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           <p
-            className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-[clamp(0.75rem,2vw,1rem)]"
+            className="text-[#c392dd] font-semibold uppercase tracking-wider mb-[clamp(0.75rem,2vw,1rem)]"
             style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
           >
             Trabajo relacionado

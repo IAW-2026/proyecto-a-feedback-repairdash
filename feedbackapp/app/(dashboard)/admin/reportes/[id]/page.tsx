@@ -57,7 +57,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
 
         <div className="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6">
           <div>
-            <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2 text-sm">
+            <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2 text-sm">
               Detalle de Reporte
             </p>
             <h1 className="font-bold text-[#fbdaf9] mb-2 text-2xl">
@@ -92,15 +92,15 @@ export default async function AdminReporteDetallePage({ params }: Props) {
         <div className="lg:col-span-2 space-y-6">
           {/* Trabajo info */}
           <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20">
-            <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-4 text-sm">
+            <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
               Trabajo Relacionado
             </p>
-            <h3 className="font-bold text-[#fbdaf9] mb-4 text-xl">
+            <h2 className="font-bold text-[#fbdaf9] mb-4 text-xl">
               {reporte.trabajo.tipoDeTrabajo}
-            </h3>
+            </h2>
             <div className="space-y-3 mb-4">
               <div className="flex items-center gap-3 text-[#c392dd]">
-                <Calendar size={20} className="text-[#8d62a5] flex-shrink-0" />
+                <Calendar size={20} className="text-[#c392dd] flex-shrink-0" />
                 <span>
                   {reporte.trabajo.fechaInicio.toLocaleDateString('es-ES')} —{' '}
                   {reporte.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? 'Sin fecha fin'}
@@ -114,7 +114,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                   <User size={20} className="text-[#c392dd]" />
                 </div>
                 <div>
-                  <p className="text-[#8d62a5] uppercase font-semibold text-xs">Reportante</p>
+                  <p className="text-[#c392dd] uppercase font-semibold text-xs">Reportante</p>
                   <p className="text-[#fbdaf9] font-bold">
                     {reporte.reportante.nombre} {reporte.reportante.apellido}
                   </p>
@@ -127,7 +127,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                   <Shield size={20} className="text-[#c392dd]" />
                 </div>
                 <div>
-                  <p className="text-[#8d62a5] uppercase font-semibold text-xs">Reportado</p>
+                  <p className="text-[#c392dd] uppercase font-semibold text-xs">Reportado</p>
                   <p className="text-[#fbdaf9] font-bold">
                     {reporte.reportado.nombre} {reporte.reportado.apellido}
                   </p>
@@ -141,7 +141,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
           <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20">
             <div className="flex items-center gap-3 mb-4">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
-              <p className="text-[#8d62a5] font-semibold uppercase tracking-wider text-sm">
+              <p className="text-[#c392dd] font-semibold uppercase tracking-wider text-sm">
                 Descripción
               </p>
             </div>
@@ -154,7 +154,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
           <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20">
             <div className="flex items-center gap-3 mb-4">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
-              <p className="text-[#8d62a5] font-semibold uppercase tracking-wider text-sm">
+              <p className="text-[#c392dd] font-semibold uppercase tracking-wider text-sm">
                 Pruebas Aportadas
               </p>
             </div>
@@ -165,7 +165,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
               <div className="space-y-6">
                 {imagenes.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-bold mb-3">Imágenes</h4>
+                    <h3 className="text-[#fbdaf9] font-bold mb-3">Imágenes</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {imagenes.map((img) => (
                         <div
@@ -185,7 +185,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
 
                 {videos.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-bold mb-3">Videos</h4>
+                    <h3 className="text-[#fbdaf9] font-bold mb-3">Videos</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {videos.map((video) => (
                         <div
@@ -207,7 +207,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
 
                 {pdfs.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-bold mb-3">Documentos</h4>
+                    <h3 className="text-[#fbdaf9] font-bold mb-3">Documentos</h3>
                     <div className="space-y-2">
                       {pdfs.map((pdf) => (
                         <a
