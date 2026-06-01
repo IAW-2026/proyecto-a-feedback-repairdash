@@ -102,13 +102,32 @@ export async function POST(request: Request) {
         );
     }
 
-    const reporte = await prisma.reporte.create({
-        data: {
-            idTrabajo,
-            idReportante,
-            idReportado,
-            estado: 'CREADO',
+    const reporte = await prisma.$transaction(async (tx) => {
+        const nuevoReporte = await tx.reporte.create({
+            data: {
+                idTrabajo,
+                idReportante,
+                idReportado,
+                estado: 'CREADO',
+            },
+        });
+
+        await tx.trabajo.update({
+            where: { id: idTrabajo },
+            data: { activo: false, fechaFin: new Date() },
+        });
+
+        const reviewsPendientes = await tx.review.count({
+            where: { idTrabajo, estaCompleta: false },
+        });
+        if (reviewsPendientes > 0) {
+            await tx.review.updateMany({
+                where: { idTrabajo, estaCompleta: false },
+                data: { estaCompleta: true, valoracion: null, review: null },
+            });
         }
+
+        return nuevoReporte;
     });
 
 
