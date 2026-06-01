@@ -95,9 +95,9 @@ export default async function AdminReporteDetallePage({ params }: Props) {
             <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-4 text-sm">
               Trabajo Relacionado
             </p>
-            <h3 className="font-bold text-[#fbdaf9] mb-4 text-xl">
+            <h2 className="font-bold text-[#fbdaf9] mb-4 text-xl">
               {reporte.trabajo.tipoDeTrabajo}
-            </h3>
+            </h2>
             <div className="space-y-3 mb-4">
               <div className="flex items-center gap-3 text-[#c392dd]">
                 <Calendar size={20} className="text-[#8d62a5] flex-shrink-0" />
@@ -165,7 +165,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
               <div className="space-y-6">
                 {imagenes.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-bold mb-3">Imágenes</h4>
+                    <h3 className="text-[#fbdaf9] font-bold mb-3">Imágenes</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {imagenes.map((img) => (
                         <div
@@ -185,7 +185,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
 
                 {videos.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-bold mb-3">Videos</h4>
+                    <h3 className="text-[#fbdaf9] font-bold mb-3">Videos</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {videos.map((video) => (
                         <div
@@ -207,7 +207,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
 
                 {pdfs.length > 0 && (
                   <div>
-                    <h4 className="text-[#fbdaf9] font-bold mb-3">Documentos</h4>
+                    <h3 className="text-[#fbdaf9] font-bold mb-3">Documentos</h3>
                     <div className="space-y-2">
                       {pdfs.map((pdf) => (
                         <a

@@ -65,7 +65,7 @@ export default function UserDetailClient({
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(1rem,3vw,2rem)]">
           <div className="min-w-0">
-            <p className="text-[#8d62a5] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+            <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Perfil de usuario
             </p>
             <h1 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
@@ -89,7 +89,7 @@ export default function UserDetailClient({
         <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-red-500/30 hover:border-red-500/60 transition-all max-w-md">
           <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] mb-[clamp(0.75rem,2vw,1rem)]">
             <AlertCircle size={20} className="text-red-400 flex-shrink-0" />
-            <p className="text-[#8d62a5] uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+            <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Reportes en contra
             </p>
           </div>
@@ -110,9 +110,9 @@ export default function UserDetailClient({
         {reviews.length === 0 ? (
           <div className="bg-[#3a1f52]/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-[#8d62a5]/30 text-center">
             <Star size={48} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-[#8d62a5]" />
-            <h4 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
+            <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
               Sin reviews
-            </h4>
+            </h3>
             <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
               Este usuario no ha recibido reviews todavía
             </p>
