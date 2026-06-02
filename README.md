@@ -55,24 +55,37 @@ Esta app corresponde al módulo de reseñas y calificaciones en los proyectos de
 
 | Email | Contraseña |
 | ----- | ---------- |
-| feedback+clerk_test@example.com | admin$2026 |
+| <adminfeedback+clerk_test@iaw.com> | proporcionada por la catedra | 
 
 ### Driver
 
-| Email | Contraseña |
-| ----- | ---------- |
-| macarena+clerk_test@example.com | contraseña$2026 |
-| federico+clerk_test@gmail.com | contraseña$2026 |
-| giuli+clerk_test@gmail.com | contraseña$2026 |
+| Email | Contraseña | Notas |
+| ----- | ---------- | ----- |
+|<rider+clerk_test@iaw.com> |proporcionada por la catedra  | Flujo de un reporte pendiente. |
 
 ### Rider
 
 | Email | Contraseña | Notas |
 | ----- | ---------- | ----- |
-| recalde+clerk_test@example.com | contraseña$2026 | tiene 2 reviews pendientes. |
-| agustin+clerk_test@example.com |contraseña$2026| tiene flujo de 2 reportes pendientes. |
-| tiagodriver2+clerk_test@gmail.com | contraseña$2026 | tiene una review y un reporte por hacer. |
+| <driver+clerk_test@iaw.com> |proporcionada por la catedra  | Flujo de una reviews pendientes. |
 
+## Otros Usuarios
+
+### Driver
+
+| Email | Contraseña |
+| ----- | ---------- |
+| <macarena+clerk_test@example.com> | contraseña$2026 |
+| <federico+clerk_test@gmail.com> | contraseña$2026 |
+| <giuli+clerk_test@gmail.com> | contraseña$2026 |
+
+### Rider
+
+| Email | Contraseña | Notas |
+| ----- | ---------- | ----- |
+| <recalde+clerk_test@example.com> | contraseña$2026 | tiene 2 reviews pendientes. |
+| <agustin+clerk_test@example.com> |contraseña$2026| tiene flujo de 2 reportes pendientes. |
+| <tiagodriver2+clerk_test@gmail.com> | contraseña$2026 | tiene una review y un reporte por hacer. |
 
 > Las contraseñas corresponden a las configuradas en Clerk.
 
@@ -84,7 +97,6 @@ npm run build     # Build de producción
 ```
 
 ## Variables de entorno
-
 
 | Variable | Descripción |
 |----------|-------------|
