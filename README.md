@@ -51,11 +51,27 @@ Esta app corresponde al módulo de reseñas y calificaciones en los proyectos de
 
 ## Credenciales de prueba
 
-| Tipo  | Email                     | Contraseña   | Rol           |
-| ----- | ------------------------- | ------------ | ------------- |
-| Admin | feedback+clerk_test@example.com     |admin$2026 | feedbackAdmin |
-| Rider | rider@repairdash.com      | (ver Clerk)  | rider         |
-| Driver| driver@repairdash.com     | (ver Clerk)  | driver        |
+### Admin
+
+| Email | Contraseña |
+| ----- | ---------- |
+| feedback+clerk_test@example.com | admin$2026 |
+
+### Driver
+
+| Email | Contraseña |
+| ----- | ---------- |
+| macarena+clerk_test@example.com | contraseña$2026 |
+| federico+clerk_test@gmail.com | contraseña$2026 |
+| giuli+clerk_test@gmail.com | contraseña$2026 |
+
+### Rider
+
+| Email | Contraseña | Notas |
+| ----- | ---------- | ----- |
+| recalde+clerk_test@example.com | contraseña$2026 | tiene 2 reviews pendientes. |
+| agustin+clerk_test@example.com |contraseña$2026| tiene flujo de 2 reportes pendientes. |
+| tiagodriver2+clerk_test@gmail.com | contraseña$2026 | tiene una review y un reporte por hacer. |
 
 
 > Las contraseñas corresponden a las configuradas en Clerk.

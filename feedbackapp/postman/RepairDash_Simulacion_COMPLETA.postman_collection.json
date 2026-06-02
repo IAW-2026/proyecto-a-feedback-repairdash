@@ -1,0 +1,4937 @@
+{
+  "info": {
+    "_postman_id": "d33d3d5a-c6a2-4d66-97b7-70256fcf23d3",
+    "name": "RepairDash - Simulación",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "55105056",
+    "_collection_link": "https://go.postman.co/collection/55105056-d33d3d5a-c6a2-4d66-97b7-70256fcf23d3?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Trabajos",
+      "item": [
+        {
+          "name": "Crear trabajo - Valentin + Macarena (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-007\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Macarena (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-008\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Macarena (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-009\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Macarena (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-010\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Macarena (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-011\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Federico (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-012\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Federico (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-013\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Federico (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-014\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Federico (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-015\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Federico (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-016\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Giuliano (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-017\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Giuliano (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-018\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Giuliano (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-019\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Giuliano (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-020\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Giuliano (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-021\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Macarena (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Macarena (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Macarena (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Macarena (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Macarena (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Federico (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Federico (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Federico (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Federico (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Federico (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Giuliano (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Giuliano (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Giuliano (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Giuliano (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Giuliano (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Macarena (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Macarena (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Macarena (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Macarena (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Macarena (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Federico (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Federico (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Federico (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Federico (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Federico (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Giuliano (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Giuliano (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Giuliano (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Giuliano (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Giuliano (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reviews",
+      "item": [
+        {
+          "name": "Crear reviews pendientes - trabajo-007",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-007\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-008",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-008\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-009",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-009\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-010",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-010\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-011",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-011\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-012",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-012\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-013",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-013\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-014",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-014\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-015",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-015\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-016",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-016\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-017",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-017\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-018",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-018\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-019",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-019\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-020",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-020\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-021",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-021\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-022",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-022\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-023",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-023\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-024",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-024\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-025",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-025\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-026",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-026\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-027",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-027\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-028",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-028\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-029",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-029\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-030",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-030\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-031",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-031\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-032",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-032\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-033",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-033\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-034",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-034\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-035",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-035\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-036",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-036\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-037",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-037\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-038",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-038\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-039",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-039\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-040",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-040\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-041",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-041\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-042",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-042\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-043",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-043\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-044",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-044\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-045",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-045\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-046",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-046\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-047",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-047\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-048",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-048\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-049",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-049\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-050",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-050\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-051",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-051\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Reportes",
+      "item": [
+        {
+          "name": "Crear reporte - Valentin reporta a Macarena (trabajo-007)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-007\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Valentin (trabajo-007)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-007\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Macarena (trabajo-008)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-008\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Valentin (trabajo-008)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-008\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Macarena (trabajo-009)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-009\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Valentin (trabajo-009)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-009\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Macarena (trabajo-010)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-010\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Valentin (trabajo-010)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-010\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Macarena (trabajo-011)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-011\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Valentin (trabajo-011)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-011\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Federico (trabajo-012)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-012\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Valentin (trabajo-012)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-012\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Federico (trabajo-013)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-013\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Valentin (trabajo-013)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-013\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Federico (trabajo-014)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-014\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Valentin (trabajo-014)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-014\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Federico (trabajo-015)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-015\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Valentin (trabajo-015)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-015\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Federico (trabajo-016)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-016\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Valentin (trabajo-016)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-016\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Giuliano (trabajo-017)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-017\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Valentin (trabajo-017)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-017\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Giuliano (trabajo-018)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-018\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Valentin (trabajo-018)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-018\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Giuliano (trabajo-019)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-019\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Valentin (trabajo-019)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-019\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Giuliano (trabajo-020)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-020\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Valentin (trabajo-020)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-020\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Valentin reporta a Giuliano (trabajo-021)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-021\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Valentin (trabajo-021)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-021\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-022)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-022)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-023)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-023)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-024)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-024)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-025)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-025)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-026)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-026)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-027)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-027)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-028)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-028)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-029)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-029)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-030)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-030)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-031)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-031)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-032)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-032)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-033)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-033)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-034)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-034)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-035)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-035)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-036)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-036)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-037)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-037)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-038)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-038)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-039)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-039)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-040)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-040)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-041)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-041)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-042)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-042)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-043)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-043)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-044)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-044)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-045)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-045)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-046)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-046)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-047)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-047)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-048)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-048)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-049)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-049)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-050)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-050)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-051)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-051)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "base_url",
+      "value": "https://proyecto-a-feedback-repairdash.vercel.app"
+    }
+  ]
+}
