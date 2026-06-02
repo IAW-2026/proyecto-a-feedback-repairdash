@@ -416,6 +416,141 @@
           "response": []
         },
         {
+          "name": "Crear trabajo - Valentin + Driver (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Driver (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Driver (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Driver (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Valentin + Driver (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idRider\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
           "name": "Crear trabajo - Agustin + Macarena (Plomería)",
           "request": {
             "method": "POST",
@@ -427,7 +562,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -454,7 +589,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -481,7 +616,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -508,7 +643,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -535,7 +670,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -562,7 +697,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -589,7 +724,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -616,7 +751,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -643,7 +778,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -670,7 +805,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -697,7 +832,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -724,7 +859,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -751,7 +886,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -778,7 +913,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -805,7 +940,142 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Driver (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Driver (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Driver (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Driver (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Agustin + Driver (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idRider\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -832,7 +1102,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -859,7 +1129,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -886,7 +1156,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -913,7 +1183,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -940,7 +1210,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -967,7 +1237,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-052\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -994,7 +1264,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-053\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1021,7 +1291,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-054\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1048,7 +1318,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-055\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1075,7 +1345,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-056\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1102,7 +1372,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-057\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1129,7 +1399,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-058\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1156,7 +1426,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-059\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1183,7 +1453,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-060\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -1210,7 +1480,682 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-061\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Driver (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-062\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Driver (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-063\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Driver (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-064\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Driver (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-065\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Tiago + Driver (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-066\",\n  \"idRider\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Macarena (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-067\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Macarena (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-068\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Macarena (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-069\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Macarena (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-070\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Macarena (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-071\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Federico (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-072\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Federico (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-073\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Federico (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-074\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Federico (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-075\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Federico (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-076\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Giuliano (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-077\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Giuliano (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-078\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Giuliano (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-079\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Giuliano (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-080\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Giuliano (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-081\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Driver (Plomería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-082\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Plomería\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Driver (Electricidad)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-083\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Electricidad\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Driver (Pintura)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-084\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Pintura\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Driver (Gasista)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-085\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Gasista\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/trabajos",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "trabajos"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear trabajo - Rider + Driver (Carpintería)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-086\",\n  \"idRider\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idDriver\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"tipoDeTrabajo\": \"Carpintería\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/trabajos",
@@ -2489,6 +3434,986 @@
             }
           },
           "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-052",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-052\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-053",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-053\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-054",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-054\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-055",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-055\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-056",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-056\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-057",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-057\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-058",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-058\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-059",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-059\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-060",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-060\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-061",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-061\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-062",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-062\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-063",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-063\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-064",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-064\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-065",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-065\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-066",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-066\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-067",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-067\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-068",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-068\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-069",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-069\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-070",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-070\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-071",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-071\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-072",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-072\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-073",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-073\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-074",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-074\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-075",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-075\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-076",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-076\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-077",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-077\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-078",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-078\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-079",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-079\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-080",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-080\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-081",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-081\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-082",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-082\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-083",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-083\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-084",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-084\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-085",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-085\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reviews pendientes - trabajo-086",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-086\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reviews/user",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reviews",
+                "user"
+              ]
+            }
+          },
+          "response": []
         }
       ]
     },
@@ -3306,7 +5231,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-022)",
+          "name": "Crear reporte - Valentin reporta a Driver (trabajo-022)",
           "request": {
             "method": "POST",
             "header": [
@@ -3317,7 +5242,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3333,7 +5258,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-022)",
+          "name": "Crear reporte - Driver reporta a Valentin (trabajo-022)",
           "request": {
             "method": "POST",
             "header": [
@@ -3344,7 +5269,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-022\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3360,7 +5285,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-023)",
+          "name": "Crear reporte - Valentin reporta a Driver (trabajo-023)",
           "request": {
             "method": "POST",
             "header": [
@@ -3371,7 +5296,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3387,7 +5312,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-023)",
+          "name": "Crear reporte - Driver reporta a Valentin (trabajo-023)",
           "request": {
             "method": "POST",
             "header": [
@@ -3398,7 +5323,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-023\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3414,7 +5339,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-024)",
+          "name": "Crear reporte - Valentin reporta a Driver (trabajo-024)",
           "request": {
             "method": "POST",
             "header": [
@@ -3425,7 +5350,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3441,7 +5366,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-024)",
+          "name": "Crear reporte - Driver reporta a Valentin (trabajo-024)",
           "request": {
             "method": "POST",
             "header": [
@@ -3452,7 +5377,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-024\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3468,7 +5393,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-025)",
+          "name": "Crear reporte - Valentin reporta a Driver (trabajo-025)",
           "request": {
             "method": "POST",
             "header": [
@@ -3479,7 +5404,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3495,7 +5420,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-025)",
+          "name": "Crear reporte - Driver reporta a Valentin (trabajo-025)",
           "request": {
             "method": "POST",
             "header": [
@@ -3506,7 +5431,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-025\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3522,7 +5447,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-026)",
+          "name": "Crear reporte - Valentin reporta a Driver (trabajo-026)",
           "request": {
             "method": "POST",
             "header": [
@@ -3533,7 +5458,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idReportante\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3549,7 +5474,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-026)",
+          "name": "Crear reporte - Driver reporta a Valentin (trabajo-026)",
           "request": {
             "method": "POST",
             "header": [
@@ -3560,7 +5485,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-026\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEVEczP7obIyHhgyM9MDxwLVhv\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3576,7 +5501,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Federico (trabajo-027)",
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-027)",
           "request": {
             "method": "POST",
             "header": [
@@ -3587,7 +5512,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3603,7 +5528,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Agustin (trabajo-027)",
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-027)",
           "request": {
             "method": "POST",
             "header": [
@@ -3614,7 +5539,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-027\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3630,7 +5555,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Federico (trabajo-028)",
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-028)",
           "request": {
             "method": "POST",
             "header": [
@@ -3641,7 +5566,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3657,7 +5582,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Agustin (trabajo-028)",
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-028)",
           "request": {
             "method": "POST",
             "header": [
@@ -3668,7 +5593,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-028\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3684,7 +5609,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Federico (trabajo-029)",
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-029)",
           "request": {
             "method": "POST",
             "header": [
@@ -3695,7 +5620,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3711,7 +5636,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Agustin (trabajo-029)",
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-029)",
           "request": {
             "method": "POST",
             "header": [
@@ -3722,7 +5647,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-029\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3738,7 +5663,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Federico (trabajo-030)",
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-030)",
           "request": {
             "method": "POST",
             "header": [
@@ -3749,7 +5674,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3765,7 +5690,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Agustin (trabajo-030)",
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-030)",
           "request": {
             "method": "POST",
             "header": [
@@ -3776,7 +5701,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-030\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3792,7 +5717,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Federico (trabajo-031)",
+          "name": "Crear reporte - Agustin reporta a Macarena (trabajo-031)",
           "request": {
             "method": "POST",
             "header": [
@@ -3803,7 +5728,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3819,7 +5744,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Agustin (trabajo-031)",
+          "name": "Crear reporte - Macarena reporta a Agustin (trabajo-031)",
           "request": {
             "method": "POST",
             "header": [
@@ -3830,7 +5755,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-031\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3846,7 +5771,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-032)",
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-032)",
           "request": {
             "method": "POST",
             "header": [
@@ -3857,7 +5782,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3873,7 +5798,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-032)",
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-032)",
           "request": {
             "method": "POST",
             "header": [
@@ -3884,7 +5809,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-032\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3900,7 +5825,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-033)",
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-033)",
           "request": {
             "method": "POST",
             "header": [
@@ -3911,7 +5836,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3927,7 +5852,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-033)",
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-033)",
           "request": {
             "method": "POST",
             "header": [
@@ -3938,7 +5863,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-033\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3954,7 +5879,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-034)",
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-034)",
           "request": {
             "method": "POST",
             "header": [
@@ -3965,7 +5890,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -3981,7 +5906,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-034)",
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-034)",
           "request": {
             "method": "POST",
             "header": [
@@ -3992,7 +5917,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-034\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4008,7 +5933,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-035)",
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-035)",
           "request": {
             "method": "POST",
             "header": [
@@ -4019,7 +5944,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4035,7 +5960,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-035)",
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-035)",
           "request": {
             "method": "POST",
             "header": [
@@ -4046,7 +5971,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-035\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4062,7 +5987,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-036)",
+          "name": "Crear reporte - Agustin reporta a Federico (trabajo-036)",
           "request": {
             "method": "POST",
             "header": [
@@ -4073,7 +5998,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4089,7 +6014,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-036)",
+          "name": "Crear reporte - Federico reporta a Agustin (trabajo-036)",
           "request": {
             "method": "POST",
             "header": [
@@ -4100,7 +6025,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-036\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4116,7 +6041,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-037)",
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-037)",
           "request": {
             "method": "POST",
             "header": [
@@ -4127,7 +6052,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4143,7 +6068,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-037)",
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-037)",
           "request": {
             "method": "POST",
             "header": [
@@ -4154,7 +6079,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-037\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4170,7 +6095,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-038)",
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-038)",
           "request": {
             "method": "POST",
             "header": [
@@ -4181,7 +6106,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4197,7 +6122,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-038)",
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-038)",
           "request": {
             "method": "POST",
             "header": [
@@ -4208,7 +6133,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-038\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4224,7 +6149,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-039)",
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-039)",
           "request": {
             "method": "POST",
             "header": [
@@ -4235,7 +6160,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4251,7 +6176,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-039)",
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-039)",
           "request": {
             "method": "POST",
             "header": [
@@ -4262,7 +6187,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-039\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4278,7 +6203,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-040)",
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-040)",
           "request": {
             "method": "POST",
             "header": [
@@ -4289,7 +6214,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4305,7 +6230,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-040)",
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-040)",
           "request": {
             "method": "POST",
             "header": [
@@ -4316,7 +6241,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-040\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4332,7 +6257,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-041)",
+          "name": "Crear reporte - Agustin reporta a Giuliano (trabajo-041)",
           "request": {
             "method": "POST",
             "header": [
@@ -4343,7 +6268,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4359,7 +6284,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-041)",
+          "name": "Crear reporte - Giuliano reporta a Agustin (trabajo-041)",
           "request": {
             "method": "POST",
             "header": [
@@ -4370,7 +6295,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-041\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4386,7 +6311,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Federico (trabajo-042)",
+          "name": "Crear reporte - Agustin reporta a Driver (trabajo-042)",
           "request": {
             "method": "POST",
             "header": [
@@ -4397,7 +6322,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4413,7 +6338,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Tiago (trabajo-042)",
+          "name": "Crear reporte - Driver reporta a Agustin (trabajo-042)",
           "request": {
             "method": "POST",
             "header": [
@@ -4424,7 +6349,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-042\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4440,7 +6365,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Federico (trabajo-043)",
+          "name": "Crear reporte - Agustin reporta a Driver (trabajo-043)",
           "request": {
             "method": "POST",
             "header": [
@@ -4451,7 +6376,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4467,7 +6392,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Tiago (trabajo-043)",
+          "name": "Crear reporte - Driver reporta a Agustin (trabajo-043)",
           "request": {
             "method": "POST",
             "header": [
@@ -4478,7 +6403,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-043\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4494,7 +6419,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Federico (trabajo-044)",
+          "name": "Crear reporte - Agustin reporta a Driver (trabajo-044)",
           "request": {
             "method": "POST",
             "header": [
@@ -4505,7 +6430,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4521,7 +6446,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Tiago (trabajo-044)",
+          "name": "Crear reporte - Driver reporta a Agustin (trabajo-044)",
           "request": {
             "method": "POST",
             "header": [
@@ -4532,7 +6457,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-044\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4548,7 +6473,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Federico (trabajo-045)",
+          "name": "Crear reporte - Agustin reporta a Driver (trabajo-045)",
           "request": {
             "method": "POST",
             "header": [
@@ -4559,7 +6484,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4575,7 +6500,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Tiago (trabajo-045)",
+          "name": "Crear reporte - Driver reporta a Agustin (trabajo-045)",
           "request": {
             "method": "POST",
             "header": [
@@ -4586,7 +6511,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-045\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4602,7 +6527,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Federico (trabajo-046)",
+          "name": "Crear reporte - Agustin reporta a Driver (trabajo-046)",
           "request": {
             "method": "POST",
             "header": [
@@ -4613,7 +6538,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idReportante\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4629,7 +6554,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Federico reporta a Tiago (trabajo-046)",
+          "name": "Crear reporte - Driver reporta a Agustin (trabajo-046)",
           "request": {
             "method": "POST",
             "header": [
@@ -4640,7 +6565,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-046\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EEeRGeD4P531ZmnJLu9EH0JhQ9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4656,7 +6581,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-047)",
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-047)",
           "request": {
             "method": "POST",
             "header": [
@@ -4667,7 +6592,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4683,7 +6608,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-047)",
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-047)",
           "request": {
             "method": "POST",
             "header": [
@@ -4694,7 +6619,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-047\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4710,7 +6635,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-048)",
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-048)",
           "request": {
             "method": "POST",
             "header": [
@@ -4721,7 +6646,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4737,7 +6662,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-048)",
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-048)",
           "request": {
             "method": "POST",
             "header": [
@@ -4748,7 +6673,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-048\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4764,7 +6689,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-049)",
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-049)",
           "request": {
             "method": "POST",
             "header": [
@@ -4775,7 +6700,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4791,7 +6716,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-049)",
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-049)",
           "request": {
             "method": "POST",
             "header": [
@@ -4802,7 +6727,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-049\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4818,7 +6743,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-050)",
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-050)",
           "request": {
             "method": "POST",
             "header": [
@@ -4829,7 +6754,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4845,7 +6770,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-050)",
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-050)",
           "request": {
             "method": "POST",
             "header": [
@@ -4856,7 +6781,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-050\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4872,7 +6797,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-051)",
+          "name": "Crear reporte - Tiago reporta a Macarena (trabajo-051)",
           "request": {
             "method": "POST",
             "header": [
@@ -4883,7 +6808,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
@@ -4899,7 +6824,7 @@
           "response": []
         },
         {
-          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-051)",
+          "name": "Crear reporte - Macarena reporta a Tiago (trabajo-051)",
           "request": {
             "method": "POST",
             "header": [
@@ -4910,7 +6835,1897 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+              "raw": "{\n  \"idTrabajo\": \"trabajo-051\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-052)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-052\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-052)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-052\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-053)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-053\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-053)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-053\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-054)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-054\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-054)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-054\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-055)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-055\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-055)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-055\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Federico (trabajo-056)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-056\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Tiago (trabajo-056)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-056\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-057)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-057\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-057)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-057\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-058)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-058\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-058)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-058\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-059)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-059\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-059)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-059\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-060)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-060\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-060)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-060\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Giuliano (trabajo-061)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-061\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Tiago (trabajo-061)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-061\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Driver (trabajo-062)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-062\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Tiago (trabajo-062)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-062\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Driver (trabajo-063)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-063\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Tiago (trabajo-063)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-063\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Driver (trabajo-064)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-064\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Tiago (trabajo-064)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-064\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Driver (trabajo-065)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-065\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Tiago (trabajo-065)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-065\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Tiago reporta a Driver (trabajo-066)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-066\",\n  \"idReportante\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Tiago (trabajo-066)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-066\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EKcaw0o9W60cIZ0HiEO4yk8IuI\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Macarena (trabajo-067)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-067\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Rider (trabajo-067)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-067\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Macarena (trabajo-068)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-068\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Rider (trabajo-068)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-068\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Macarena (trabajo-069)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-069\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Rider (trabajo-069)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-069\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Macarena (trabajo-070)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-070\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Rider (trabajo-070)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-070\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Macarena (trabajo-071)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-071\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Macarena reporta a Rider (trabajo-071)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-071\",\n  \"idReportante\": \"user_3EHHGLc3DjONkLGPvbFXmmWGMD9\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Federico (trabajo-072)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-072\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Rider (trabajo-072)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-072\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Federico (trabajo-073)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-073\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Rider (trabajo-073)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-073\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Federico (trabajo-074)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-074\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Rider (trabajo-074)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-074\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Federico (trabajo-075)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-075\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Rider (trabajo-075)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-075\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Federico (trabajo-076)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-076\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Federico reporta a Rider (trabajo-076)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-076\",\n  \"idReportante\": \"user_3EN8mw4phSTK8SbGLmJ6v3BPmQL\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Giuliano (trabajo-077)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-077\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Rider (trabajo-077)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-077\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Giuliano (trabajo-078)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-078\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Rider (trabajo-078)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-078\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Giuliano (trabajo-079)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-079\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Rider (trabajo-079)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-079\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Giuliano (trabajo-080)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-080\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Rider (trabajo-080)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-080\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Giuliano (trabajo-081)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-081\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Giuliano reporta a Rider (trabajo-081)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-081\",\n  \"idReportante\": \"user_3EN8R0sbnFNW8lWe0jTbmLzUkDO\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Driver (trabajo-082)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-082\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Rider (trabajo-082)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-082\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Driver (trabajo-083)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-083\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Rider (trabajo-083)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-083\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Driver (trabajo-084)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-084\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Rider (trabajo-084)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-084\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Driver (trabajo-085)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-085\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Rider (trabajo-085)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-085\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Rider reporta a Driver (trabajo-086)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-086\",\n  \"idReportante\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\",\n  \"idReportado\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\"\n}"
+            },
+            "url": {
+              "raw": "{{base_url}}/api/reports",
+              "host": [
+                "{{base_url}}"
+              ],
+              "path": [
+                "api",
+                "reports"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Crear reporte - Driver reporta a Rider (trabajo-086)",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"idTrabajo\": \"trabajo-086\",\n  \"idReportante\": \"user_3EXSt7dGVU0sFfpFpq3Km8OjGzq\",\n  \"idReportado\": \"user_3EXfyLM8wrzQ1cdYVEDJe4Dbdax\"\n}"
             },
             "url": {
               "raw": "{{base_url}}/api/reports",
