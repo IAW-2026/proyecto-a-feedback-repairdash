@@ -11,8 +11,8 @@ function validarStringID(value: unknown): value is string {
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => null);
-   // const authError = validateInternalApiKey(request);
-   // if (authError) return authError;
+    // const authError = validateInternalApiKey(request);
+    // if (authError) return authError;
     if (!body) {
       return NextResponse.json(
         { message: 'El cuerpo de la solicitud no es un JSON válido' },
@@ -20,7 +20,10 @@ export async function POST(request: Request) {
       );
     }
 
-    const { idTrabajo, idRider, idDriver, tipoDeTrabajo } = body;
+    const idRider = body.idRider ?? body.id_rider;
+    const idDriver = body.idDriver ?? body.id_driver;
+    const idTrabajo = body.idTrabajo ?? body.id_trabajo;
+    const tipoDeTrabajo = body.tipoDeTrabajo ?? body.tipo_de_trabajo;
 
     // Validar que todos los campos sean strings no vacíos
     /*if (
@@ -40,11 +43,11 @@ export async function POST(request: Request) {
 
     // Verificar que idRider !== idDriver
     if (idRider === idDriver) {
-      console.log(idRider, idDriver); 
+      console.log(idRider, idDriver);
       return NextResponse.json(
         { message: 'El rider y el driver no pueden ser el mismo usuario' },
         { status: 403 }
-        
+
       );
     }
 
