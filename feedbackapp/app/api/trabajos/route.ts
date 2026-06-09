@@ -67,7 +67,7 @@ export async function POST(request: Request) {
     // Verificar que idRider !== idDriver
 
     // Verificar que ambos usuarios existen y tienen los roles correctos
-    /*const [riderUser, driverUser] = await Promise.all([
+    const [riderUser, driverUser] = await Promise.all([
       prisma.usuario.findUnique({
         where: { id: idRider },
       }),
@@ -75,21 +75,21 @@ export async function POST(request: Request) {
         where: { id: idDriver },
       }),
     ]);
-
-    if (!riderUser || !driverUser) {
-      return NextResponse.json(
-        { message: 'Uno o ambos usuarios no existen en el sistema' },
-        { status: 404 }
-      );
-    }
-
-    // Verificar que los roles son correctos
-    if (riderUser.rol !== 'rider' || driverUser.rol !== 'driver') {
-      return NextResponse.json(
-        { message: 'Los roles de los usuarios no son correctos' },
-        { status: 405 }
-      );
-    }*/
+    /*
+        if (!riderUser || !driverUser) {
+          return NextResponse.json(
+            { message: 'Uno o ambos usuarios no existen en el sistema' },
+            { status: 404 }
+          );
+        }
+    /*
+        // Verificar que los roles son correctos
+        if (riderUser.rol !== 'rider' || driverUser.rol !== 'driver') {
+          return NextResponse.json(
+            { message: 'Los roles de los usuarios no son correctos' },
+            { status: 405 }
+          );
+        }*/
 
     // Verificar que no existe un trabajo con ese idTrabajo
     const trabajoExistente = await prisma.trabajo.findUnique({
