@@ -1,7 +1,6 @@
 //api para recibir trabajos. Cuando se confirma, que me mande toda la data
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { validateInternalApiKey } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
