@@ -1,51 +1,64 @@
-//api para recibir trabajos. Cuando se confirma, que me mande toda la data
-import { NextResponse } from 'next/server';
-import { prisma } from '@/lib/prisma';
+import { NextResponse } from "next/server";
+import { prisma } from "@/lib/prisma";
+import { validateInternalApiKey } from "@/lib/auth";
+export const dynamic = "force-dynamic";
 
-export const dynamic = 'force-dynamic';
+function isValidString(value: unknown): value is string {
+  return typeof value === "string" && value.trim().length > 0;
+}
 
-function validarStringID(value: unknown): value is string {
-  return typeof value === 'string' && value.trim().length > 0;
+function normalizeString(value: unknown) {
+  return typeof value === "string" ? value.trim() : undefined;
 }
 
 export async function POST(request: Request) {
   try {
+    const apiKey = request.headers.get("x-api-key");
+
+    const authError = validateInternalApiKey(request);
+    if (authError) return authError;
+
+
     const body = await request.json().catch(() => null);
 
-    // const authError = validateInternalApiKey(request);
-    // if (authError) return authError;
     if (!body) {
       return NextResponse.json(
-        { message: 'El cuerpo de la solicitud no es un JSON válido' },
-        { status: 401 }
+        { message: "El cuerpo de la solicitud no es un JSON valido" },
+        { status: 400 },
       );
     }
 
-    const idTrabajo =
+    const idTrabajo = normalizeString(
       body.idTrabajo ??
       body.id_trabajo ??
-      body.Idtrabajo;
+      body.Idtrabajo,
+    );
 
-    const idRider =
+    const idRider = normalizeString(
       body.idRider ??
       body.id_rider ??
-      body.IdCliente;
+      body.idCliente ??
+      body.IdCliente,
+    );
 
-    const idDriver =
+    const idDriver = normalizeString(
       body.idDriver ??
       body.id_driver ??
-      body.IdTrabajador;
+      body.idTrabajador ??
+      body.IdTrabajador,
+    );
 
-    const tipoDeTrabajo =
+    const tipoDeTrabajo = normalizeString(
       body.tipoDeTrabajo ??
       body.tipo_de_trabajo ??
-      body.tipodeTrabajo;
+      body.tipodeTrabajo,
+    );
 
     if (
-      !validarStringID(idTrabajo) ||
-      !validarStringID(idRider) ||
-      !validarStringID(idDriver) ||
-      !validarStringID(tipoDeTrabajo)
+      !isValidString(idTrabajo) ||
+      !isValidString(idRider) ||
+      !isValidString(idDriver) ||
+      !isValidString(tipoDeTrabajo)
     ) {
       return NextResponse.json(
         {
@@ -64,46 +77,61 @@ export async function POST(request: Request) {
       );
     }
 
-    // Verificar que idRider !== idDriver
-
-    // Verificar que ambos usuarios existen y tienen los roles correctos
     const [riderUser, driverUser] = await Promise.all([
       prisma.usuario.findUnique({
-        where: { id: idRider },
+        where: {
+          id: idRider,
+        },
       }),
       prisma.usuario.findUnique({
-        where: { id: idDriver },
+        where: {
+          id: idDriver,
+        },
       }),
     ]);
-    /*
-        if (!riderUser || !driverUser) {
-          return NextResponse.json(
-            { message: 'Uno o ambos usuarios no existen en el sistema' },
-            { status: 404 }
-          );
-        }
-    /*
-        // Verificar que los roles son correctos
-        if (riderUser.rol !== 'rider' || driverUser.rol !== 'driver') {
-          return NextResponse.json(
-            { message: 'Los roles de los usuarios no son correctos' },
-            { status: 405 }
-          );
-        }*/
 
-    // Verificar que no existe un trabajo con ese idTrabajo
+    if (!riderUser || !driverUser) {
+      return NextResponse.json(
+        {
+          message: "Uno o ambos usuarios no existen en el sistema",
+          ids: {
+            idRider,
+            idDriver,
+          },
+        },
+        { status: 404 },
+      );
+    }
+
+    if (
+      riderUser.rol?.toLowerCase() !== "rider" ||
+      driverUser.rol?.toLowerCase() !== "driver"
+    ) {
+      return NextResponse.json(
+        {
+          message: "Los roles de los usuarios no son correctos",
+          roles: {
+            rider: riderUser.rol,
+            driver: driverUser.rol,
+          },
+        },
+        { status: 405 },
+      );
+    }
+
     const trabajoExistente = await prisma.trabajo.findUnique({
-      where: { id: idTrabajo },
+      where: {
+        id: idTrabajo,
+      },
     });
 
     if (trabajoExistente) {
       return NextResponse.json(
-        { message: 'Ya existe un trabajo con ese ID' },
-        { status: 409 }
+        { message: "Ya existe un trabajo con ese ID" },
+        { status: 409 },
       );
     }
 
-    // Crear el trabajo
     const nuevoTrabajo = await prisma.trabajo.create({
       data: {
         id: idTrabajo,
@@ -117,28 +145,20 @@ export async function POST(request: Request) {
 
     return NextResponse.json(
       {
-        message: 'Trabajo creado exitosamente',
         idTrabajo: nuevoTrabajo.id,
+        idCliente: idRider,
+        idTrabajador: idDriver,
         tipoDeTrabajo: nuevoTrabajo.tipoDeTrabajo,
-        rider: {
-          id: riderUser.id,
-          nombre: riderUser.nombre,
-          apellido: riderUser.apellido,
-        },
-        driver: {
-          id: driverUser.id,
-          nombre: driverUser.nombre,
-          apellido: driverUser.apellido,
-        },
-        estado: 'activo',
+        fechaDeInicio: nuevoTrabajo.fechaInicio,
       },
-      { status: 201 }
+      { status: 200 },
     );
   } catch (error) {
-    console.error('Error al registrar el trabajo externo:', error);
+    console.error("Error al registrar el trabajo externo:", error);
+
     return NextResponse.json(
-      { error: 'Error al mapear el trabajo en el sistema de feedback' },
-      { status: 500 }
+      { message: "Error interno al registrar el trabajo" },
+      { status: 500 },
     );
   }
 }
