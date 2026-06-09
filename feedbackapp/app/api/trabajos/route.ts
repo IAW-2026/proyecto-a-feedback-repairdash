@@ -1,6 +1,7 @@
 //api para recibir trabajos. Cuando se confirma, que me mande toda la data
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
+import { validateInternalApiKey } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -11,11 +12,12 @@ function validarStringID(value: unknown): value is string {
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => null);
-
+   // const authError = validateInternalApiKey(request);
+   // if (authError) return authError;
     if (!body) {
       return NextResponse.json(
         { message: 'El cuerpo de la solicitud no es un JSON válido' },
-        { status: 400 }
+        { status: 401 }
       );
     }
 
@@ -33,7 +35,7 @@ export async function POST(request: Request) {
           message:
             'idTrabajo, idRider, idDriver y tipoDeTrabajo deben ser strings válidos',
         },
-        { status: 400 }
+        { status: 402 }
       );
     }
 
@@ -41,7 +43,7 @@ export async function POST(request: Request) {
     if (idRider === idDriver) {
       return NextResponse.json(
         { message: 'El rider y el driver no pueden ser el mismo usuario' },
-        { status: 400 }
+        { status: 403 }
       );
     }
 
@@ -66,7 +68,7 @@ export async function POST(request: Request) {
     if (riderUser.rol !== 'rider' || driverUser.rol !== 'driver') {
       return NextResponse.json(
         { message: 'Los roles de los usuarios no son correctos' },
-        { status: 400 }
+        { status: 405 }
       );
     }
 
