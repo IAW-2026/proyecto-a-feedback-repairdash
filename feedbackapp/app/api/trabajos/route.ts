@@ -11,6 +11,7 @@ function validarStringID(value: unknown): value is string {
 export async function POST(request: Request) {
   try {
     const body = await request.json().catch(() => null);
+
     // const authError = validateInternalApiKey(request);
     // if (authError) return authError;
     if (!body) {
@@ -20,13 +21,27 @@ export async function POST(request: Request) {
       );
     }
 
-    const idRider = body.idRider ?? body.id_rider;
-    const idDriver = body.idDriver ?? body.id_driver;
-    const idTrabajo = body.idTrabajo ?? body.id_trabajo;
-    const tipoDeTrabajo = body.tipoDeTrabajo ?? body.tipo_de_trabajo;
+    const idTrabajo =
+      body.idTrabajo ??
+      body.id_trabajo ??
+      body.Idtrabajo;
 
-    // Validar que todos los campos sean strings no vacíos
-    /*if (
+    const idRider =
+      body.idRider ??
+      body.id_rider ??
+      body.IdCliente;
+
+    const idDriver =
+      body.idDriver ??
+      body.id_driver ??
+      body.IdTrabajador;
+
+    const tipoDeTrabajo =
+      body.tipoDeTrabajo ??
+      body.tipo_de_trabajo ??
+      body.tipodeTrabajo;
+
+    if (
       !validarStringID(idTrabajo) ||
       !validarStringID(idRider) ||
       !validarStringID(idDriver) ||
@@ -35,24 +50,24 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           message:
-            'idTrabajo, idRider, idDriver y tipoDeTrabajo deben ser strings válidos',
+            "idTrabajo, idRider/idCliente, idDriver/idTrabajador y tipoDeTrabajo son obligatorios",
+          recibido: body,
         },
-        { status: 402 }
-      );
-    }*/
-
-    // Verificar que idRider !== idDriver
-    if (idRider === idDriver) {
-      console.log(idRider, idDriver);
-      return NextResponse.json(
-        { message: 'El rider y el driver no pueden ser el mismo usuario' },
-        { status: 403 }
-
+        { status: 400 },
       );
     }
 
+    if (idRider === idDriver) {
+      return NextResponse.json(
+        { message: "El rider y el driver no pueden ser el mismo usuario" },
+        { status: 403 },
+      );
+    }
+
+    // Verificar que idRider !== idDriver
+
     // Verificar que ambos usuarios existen y tienen los roles correctos
-    const [riderUser, driverUser] = await Promise.all([
+    /*const [riderUser, driverUser] = await Promise.all([
       prisma.usuario.findUnique({
         where: { id: idRider },
       }),
@@ -74,7 +89,7 @@ export async function POST(request: Request) {
         { message: 'Los roles de los usuarios no son correctos' },
         { status: 405 }
       );
-    }
+    }*/
 
     // Verificar que no existe un trabajo con ese idTrabajo
     const trabajoExistente = await prisma.trabajo.findUnique({
