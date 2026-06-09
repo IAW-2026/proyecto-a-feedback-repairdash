@@ -58,7 +58,7 @@ export function validateAnyInternalApiKey(
       },
     );
   }
-
+ 
   const apiKey = req.headers.get("x-api-key");
 
   if (!apiKey || !configuredApiKeys.includes(apiKey)) {
