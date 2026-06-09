@@ -5,6 +5,7 @@ Response 200 OK:
  { "idUsuario": 1, "reportesAbiertos": 1, "reportesConFalloEnContra": 0 }*/
 import { NextResponse } from "next/server";
 import { prisma }  from "@/lib/prisma";
+import { validateInternalApiKey } from "@/lib/auth";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
 function validarStringID(value: unknown): value is string {
@@ -19,6 +20,9 @@ export async function GET(
     request: Request,
     { params }: { params: Promise<{ id: string }> }
 ) {
+    const authError = validateInternalApiKey(request);
+    if (authError) return authError;
+
     // Esperamos a que los parámetros estén listos
     const { id } = await params;
     if (!validarStringID(id)) {

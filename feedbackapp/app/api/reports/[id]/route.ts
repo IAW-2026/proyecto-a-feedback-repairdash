@@ -7,6 +7,7 @@ Response 200 OK: { "message": "Prueba agregada al reporte", "idPrueba": "uuid", 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { reportEvidenceSchema } from '@/lib/validation/reportEvidence';
+import { validateInternalApiKey } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
 
@@ -15,6 +16,9 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = validateInternalApiKey(request);
+    if (authError) return authError;
+
     const { id } = await params;
 
     if (!id || typeof id !== 'string' || id.trim().length === 0) {
