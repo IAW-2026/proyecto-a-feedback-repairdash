@@ -39,7 +39,7 @@ export function validateInternalApiKey(
 
 
 export function validateAnyInternalApiKey(
-  req: NextRequest,
+  req: Request,
   expectedApiKeys: Array<string | undefined>,
 ): NextResponse | null {
   const configuredApiKeys = expectedApiKeys.filter(

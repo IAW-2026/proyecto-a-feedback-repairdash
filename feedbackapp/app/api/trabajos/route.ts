@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
-import { validateInternalApiKey } from "@/lib/auth";
+import { validateAnyInternalApiKey } from "@/lib/auth";
 export const dynamic = "force-dynamic";
 
 function isValidString(value: unknown): value is string {
@@ -13,11 +13,10 @@ function normalizeString(value: unknown) {
 
 export async function POST(request: Request) {
   try {
-    const authError = validateInternalApiKey(
-      request,
-      //esto es para recibir de driver.
+    const authError = validateAnyInternalApiKey(request, [
+      process.env.FEEDBACK_API_KEY,
       process.env.DRIVER_INTERNAL_API_KEY,
-    );
+    ]);
     if (authError) return authError;
 
 
