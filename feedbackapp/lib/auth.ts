@@ -1,44 +1,45 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 function unauthorized() {
-  return NextResponse.json(
-    {
-      message: "Unauthorized",
-    },
-    {
-      status: 401,
-    },
-  );
+    return NextResponse.json(
+        {
+            message: "Unauthorized",
+        },
+        {
+            status: 401,
+        },
+    );
 }
 
 export function validateInternalApiKey(
-  req: Request,
-  expectedApiKey = process.env.FEEDBACK_API_KEY,
+    req: Request,
+    expectedApiKey = process.env.FEEDBACK_API_KEY,
 ): NextResponse | null {
-  if (!expectedApiKey) {
-    console.error("INTERNAL_AUTH_NOT_CONFIGURED");
+    if (!expectedApiKey) {
+        console.error("INTERNAL_AUTH_NOT_CONFIGURED");
 
-    return NextResponse.json(
-      {
-        message: "Internal auth not configured",
-      },
-      {
-        status: 500,
-      },
-    );
-  }
+        return NextResponse.json(
+            {
+                message: "Internal auth not configured",
+            },
+            {
+                status: 500,
+            },
+        );
+    }
 
-  const apiKey = req.headers.get("x-api-key");
+    const apiKey = req.headers.get("x-api-key");
 
-  if (!apiKey || apiKey !== expectedApiKey) {
-    return unauthorized();
-  }
+    if (!apiKey || apiKey !== expectedApiKey) {
+        return unauthorized();
+    }
 
-  return null;
+    return null;
 }
 
+
 export function validateAnyInternalApiKey(
-  req: Request,
+  req: NextRequest,
   expectedApiKeys: Array<string | undefined>,
 ): NextResponse | null {
   const configuredApiKeys = expectedApiKeys.filter(

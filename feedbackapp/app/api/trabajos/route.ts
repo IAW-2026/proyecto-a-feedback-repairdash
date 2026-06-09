@@ -13,9 +13,11 @@ function normalizeString(value: unknown) {
 
 export async function POST(request: Request) {
   try {
-    const apiKey = request.headers.get("x-api-key");
-
-    const authError = validateInternalApiKey(request);
+    const authError = validateInternalApiKey(
+      request,
+      //esto es para recibir de driver.
+      process.env.DRIVER_INTERNAL_API_KEY,
+    );
     if (authError) return authError;
 
 
