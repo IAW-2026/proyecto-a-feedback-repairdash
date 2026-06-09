@@ -67,7 +67,7 @@ export async function POST(request: Request) {
 
     if (!reporteActivo) {
       return NextResponse.json(
-        { error: 'El trabajo ya fue finalizado' },
+        { message: 'El trabajo ya fue finalizado' },
         { status: 400 }
       );
     }
@@ -80,7 +80,7 @@ export async function POST(request: Request) {
 
   if (reviewsExistentes.length > 0) {
     return NextResponse.json(
-      { error: 'Ya existen reviews para este trabajo' },
+      { message: 'Ya existen reviews para este trabajo' },
       { status: 409 }
     );
   }
