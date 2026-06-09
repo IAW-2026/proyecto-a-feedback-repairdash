@@ -23,7 +23,7 @@ export async function POST(request: Request) {
     const { idTrabajo, idRider, idDriver, tipoDeTrabajo } = body;
 
     // Validar que todos los campos sean strings no vacíos
-    if (
+    /*if (
       !validarStringID(idTrabajo) ||
       !validarStringID(idRider) ||
       !validarStringID(idDriver) ||
@@ -36,7 +36,7 @@ export async function POST(request: Request) {
         },
         { status: 402 }
       );
-    }
+    }*/
 
     // Verificar que idRider !== idDriver
     if (idRider === idDriver) {
