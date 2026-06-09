@@ -40,9 +40,11 @@ export async function POST(request: Request) {
 
     // Verificar que idRider !== idDriver
     if (idRider === idDriver) {
+      console.log(idRider, idDriver); 
       return NextResponse.json(
         { message: 'El rider y el driver no pueden ser el mismo usuario' },
         { status: 403 }
+        
       );
     }
 
