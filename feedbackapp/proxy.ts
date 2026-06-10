@@ -5,6 +5,7 @@ import { NextResponse } from 'next/server'
  * 
  */
 const isPublicRoute = createRouteMatcher([
+  "/bienvenida",                   // UI: Página de bienvenida pública
   "/login(.*)",                    // UI: Página de login
   "/api/webhooks/clerk(.*)",       // Webhook: Clerk → BD
   "/api/reports(.*)",              // API: otras apps consultan reportes 
@@ -22,7 +23,7 @@ export default clerkMiddleware(async (auth, req) => {
   if (!isPublicRoute(req)) {
     const { userId, sessionClaims } = await auth();
     if (!userId) {
-      return NextResponse.redirect(new URL('/login', req.url))
+      return NextResponse.redirect(new URL('/bienvenida', req.url))
     }
 
     const role = (sessionClaims?.metadata as any)?.role;
