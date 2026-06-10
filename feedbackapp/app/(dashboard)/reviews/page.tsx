@@ -60,12 +60,11 @@ export default async function ReviewsPage({
     }
   })
 
-  // Obtener el total de reviews (con filtro de búsqueda)
-  const total = await prisma.review.count({
-    where: searchWhereClause
-  })
-
-  const totalPaginas = Math.ceil(total / POR_PAGINA)
+  // Obtener total filtrado (para paginación)
+  const totalFiltrado = await prisma.review.count({ where: searchWhereClause })
+  // Obtener total sin filtro (para el badge)
+  const totalSinFiltro = await prisma.review.count({ where: baseWhereClause })
+  const totalPaginas = Math.ceil(totalFiltrado / POR_PAGINA)
 
   // Obtener promedio del atributo del usuario
   const promedio = user.valoracion > 0 ? user.valoracion.toString() : null
@@ -76,7 +75,7 @@ export default async function ReviewsPage({
       page={page}
       totalPaginas={totalPaginas}
       search={search}
-      total={total}
+      total={totalSinFiltro}
       promedio={promedio}
     />
   )
