@@ -30,14 +30,21 @@ export default async function ReviewsPage({
     NOT: { idUsuario: user.id }  // Reviews escritas por otros, no por mí
   }
 
-  // Where clause con filtro de búsqueda para la paginación
-  const searchWhereClause = {
-    ...baseWhereClause,
-    ...(search
-      ? { trabajo: { ...baseWhereClause.trabajo, tipoDeTrabajo: { contains: search, mode: 'insensitive' as const } } }
-      : {}
-    ),
-  }
+  // Where clause con filtro de búsqueda
+  const searchWhereClause = search
+    ? {
+        AND: [
+          baseWhereClause,
+          {
+            OR: [
+              { autor: { nombre: { contains: search, mode: 'insensitive' as const } } },
+              { autor: { apellido: { contains: search, mode: 'insensitive' as const } } },
+              { trabajo: { tipoDeTrabajo: { contains: search, mode: 'insensitive' as const } } },
+            ],
+          },
+        ],
+      }
+    : baseWhereClause
 
   // Obtener reviews paginadas
   const reviews = await prisma.review.findMany({
@@ -53,9 +60,9 @@ export default async function ReviewsPage({
     }
   })
 
-  // Obtener el total de reviews (sin filtro de búsqueda)
+  // Obtener el total de reviews (con filtro de búsqueda)
   const total = await prisma.review.count({
-    where: baseWhereClause
+    where: searchWhereClause
   })
 
   const totalPaginas = Math.ceil(total / POR_PAGINA)
