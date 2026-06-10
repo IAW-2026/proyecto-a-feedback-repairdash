@@ -12,42 +12,62 @@ export function TopBar() {
   const { sessionClaims } = useAuth();
   const role = (sessionClaims?.metadata as any)?.role;
   const isAdmin = role === 'feedbackAdmin';
+  const isRider = role === 'rider';
+  const isDriver = role === 'driver';
+  const appUrl = isRider ? process.env.NEXT_PUBLIC_RIDER_APP_URL : isDriver ? process.env.NEXT_PUBLIC_DRIVER_APP_URL : null;
+  const appLabel = isRider ? 'Volver a Rider App' : 'Volver a Driver App';
   const [menuOpen, setMenuOpen] = useState(false);
 
   const closeMenu = () => setMenuOpen(false);
 
   const navItems = isAdmin
     ? [
-        { label: 'Inicio', href: '/', icon: Home },
-        { label: 'Usuarios', href: '/admin/usuarios', icon: Users },
-        { label: 'Gestionar Reportes', href: '/admin/reportes', icon: Shield },
-      ]
+      { label: 'Inicio', href: '/', icon: Home },
+      { label: 'Usuarios', href: '/admin/usuarios', icon: Users },
+      { label: 'Gestionar Reportes', href: '/admin/reportes', icon: Shield },
+    ]
     : [
-        { label: 'Inicio', href: '/', icon: Home },
-        { label: 'Reviews', href: '/reviews', icon: Star },
-        { label: 'Reportes', href: '/reportes', icon: BarChart3 },
-        { label: 'Perfil', href: '/perfil', icon: User },
-      ];
+      { label: appLabel, href: appUrl ?? '/', icon: Home },
+      { label: 'Reviews', href: '/reviews', icon: Star },
+      { label: 'Reportes', href: '/reportes', icon: BarChart3 },
+      { label: 'Perfil', href: '/perfil', icon: User },
+    ];
 
   const rightItems = !isAdmin
     ? [
-        { label: 'Buscar', href: '/buscar', icon: Search },
-      ]
+      { label: 'Buscar', href: '/buscar', icon: Search },
+    ]
     : [];
 
   const renderNavLink = (item: { label: string; href: string; icon: React.ComponentType<{ size?: number }> }) => {
     const Icon = item.icon;
     const isActive = pathname === item.href;
+    const isExternal = item.href.startsWith('http');
+    if (isExternal) {
+      return (
+        <a
+          key={item.href}
+          href={item.href}
+          onClick={closeMenu}
+          className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${isActive
+            ? 'bg-brand-accent-soft text-white'
+            : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+            }`}
+        >
+          <Icon size={18} />
+          <span className="text-sm font-medium whitespace-nowrap">{item.label}</span>
+        </a>
+      );
+    }
     return (
       <Link
         key={item.href}
         href={item.href}
         onClick={closeMenu}
-        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-          isActive
-            ? 'bg-brand-accent-soft text-white'
-            : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-        }`}
+        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${isActive
+          ? 'bg-brand-accent-soft text-white'
+          : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+          }`}
       >
         <Icon size={18} />
         <span className="text-sm font-medium whitespace-nowrap">{item.label}</span>
@@ -83,7 +103,7 @@ export function TopBar() {
           </button>
 
           {/* Logo */}
-          <Link href="/" onClick={closeMenu} className="flex flex-col items-center shrink-0 leading-tight">
+          <Link href={appUrl ?? '/'} onClick={closeMenu} className="flex flex-col items-center shrink-0 leading-tight">
             <div className="flex items-baseline gap-1">
               <span className="text-xl font-bold text-white font-gilroy">RepairDash</span>
               <span className="text-xs text-brand-accent-mid tracking-wide hidden sm:inline">Feedback</span>
