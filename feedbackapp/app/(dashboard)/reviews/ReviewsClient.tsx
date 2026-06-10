@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
 import { Star, Search } from 'lucide-react'
 import ReviewCard from '@/components/ReviewCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
 import Pagination from '@/components/Pagination'
+import { useSearch } from '@/hooks/useSearch'
 import type { Review } from '@/types'
 
 interface ReviewsClientProps {
@@ -26,36 +25,7 @@ export default function ReviewsClient({
   total,
   promedio,
 }: ReviewsClientProps) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const [searchValue, setSearchValue] = useState(search)
-  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
-
-  // Debounce de búsqueda
-  useEffect(() => {
-    if (debounceTimer) {
-      clearTimeout(debounceTimer)
-    }
-
-    const timer = setTimeout(() => {
-      const newSearch = searchValue.trim()
-      router.push(
-        `${pathname}?search=${encodeURIComponent(newSearch)}&page=1`
-      )
-    }, 400)
-
-    setDebounceTimer(timer)
-
-    return () => {
-      if (timer) clearTimeout(timer)
-    }
-  }, [searchValue, router, pathname])
-
-  const handlePage = (p: number) => {
-    router.push(
-      `${pathname}?search=${encodeURIComponent(search)}&page=${p}`
-    )
-  }
+  const { searchValue, setSearchValue, handlePage } = useSearch({ search })
 
   const hasNoReviews = reviews.length === 0
   const hasSearch = search.trim() !== ''
