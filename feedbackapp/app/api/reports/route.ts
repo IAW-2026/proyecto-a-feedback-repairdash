@@ -5,6 +5,7 @@ EndPoint: POST feedback/api/report */
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { validateAnyInternalApiKey } from "@/lib/auth";
 export const dynamic = 'force-dynamic'; //Linea para forzar que vercel no optimice estaticamente (IA)
 //Esto es VALIDAR EL ID, debo consultar a clerk?
 function validarStringID(value: unknown): value is string {
@@ -18,7 +19,11 @@ function nombreCompleto(usuario: { nombre: string; apellido: string }) {
 export async function POST(request: Request) {
     //Si no se envía un JSON. Catch()  vuelve nulo a body
     const body = await request.json().catch(() => null);
-
+    const authError = validateAnyInternalApiKey(request, [
+        process.env.FEEDBACK_API_KEY,
+        process.env.DRIVER_INTERNAL_API_KEY,
+    ]);
+    if (authError) return authError;
     if (!body) {
         return NextResponse.json(
             { message: "El cuerpo de la solicitud no es un JSON valido" },
@@ -155,7 +160,7 @@ export async function POST(request: Request) {
                     data: { estaCompleta: true, valoracion: null, review: null },
                 });
             }
-        }   
+        }
         return nuevoReporte;
     });
 
