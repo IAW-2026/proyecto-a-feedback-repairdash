@@ -1,8 +1,10 @@
 'use client'
 
+import { useRouter, usePathname } from 'next/navigation'
 import { Star, AlertCircle } from 'lucide-react'
 import StatCard from '@/components/StatCard'
 import ReviewCard from '@/components/ReviewCard'
+import Pagination from '@/components/Pagination'
 import type { Review } from '@/types'
 
 interface UserDetailClientProps {
@@ -14,6 +16,8 @@ interface UserDetailClientProps {
   promedio: number | null
   reportesEnContra: number
   reviews: Review[]
+  page: number
+  totalPaginas: number
 }
 
 export default function UserDetailClient({
@@ -21,7 +25,16 @@ export default function UserDetailClient({
   promedio,
   reportesEnContra,
   reviews,
+  page,
+  totalPaginas,
 }: UserDetailClientProps) {
+  const router = useRouter()
+  const pathname = usePathname()
+
+  const handlePage = (p: number) => {
+    router.push(`${pathname}?page=${p}`)
+  }
+
   return (
     <div className="w-full">
       <div className="mb-[clamp(2rem,6vw,3rem)]">
@@ -85,6 +98,8 @@ export default function UserDetailClient({
             ))}
           </div>
         )}
+
+        <Pagination page={page} totalPaginas={totalPaginas} onPageChange={handlePage} />
       </div>
     </div>
   )

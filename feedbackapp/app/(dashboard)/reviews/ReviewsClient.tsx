@@ -1,11 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
 import { Star, Search } from 'lucide-react'
 import ReviewCard from '@/components/ReviewCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
+import Pagination from '@/components/Pagination'
+import { useSearch } from '@/hooks/useSearch'
 import type { Review } from '@/types'
 
 interface ReviewsClientProps {
@@ -25,46 +25,7 @@ export default function ReviewsClient({
   total,
   promedio,
 }: ReviewsClientProps) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const [searchValue, setSearchValue] = useState(search)
-  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
-
-  // Debounce de búsqueda
-  useEffect(() => {
-    if (debounceTimer) {
-      clearTimeout(debounceTimer)
-    }
-
-    const timer = setTimeout(() => {
-      const newSearch = searchValue.trim()
-      router.push(
-        `${pathname}?search=${encodeURIComponent(newSearch)}&page=1`
-      )
-    }, 400)
-
-    setDebounceTimer(timer)
-
-    return () => {
-      if (timer) clearTimeout(timer)
-    }
-  }, [searchValue, router, pathname])
-
-  const handlePreviousPage = () => {
-    if (page > 1) {
-      router.push(
-        `${pathname}?search=${encodeURIComponent(search)}&page=${page - 1}`
-      )
-    }
-  }
-
-  const handleNextPage = () => {
-    if (page < totalPaginas) {
-      router.push(
-        `${pathname}?search=${encodeURIComponent(search)}&page=${page + 1}`
-      )
-    }
-  }
+  const { searchValue, setSearchValue, handlePage } = useSearch({ search })
 
   const hasNoReviews = reviews.length === 0
   const hasSearch = search.trim() !== ''
@@ -122,38 +83,7 @@ export default function ReviewsClient({
             ))}
           </div>
 
-          {/* Paginación */}
-          {totalPaginas > 1 && (
-            <div className="flex items-center justify-between pt-6 border-t border-[#8d62a5]/20">
-              <button
-                onClick={handlePreviousPage}
-                disabled={page === 1}
-                className={`px-4 py-2 border border-[#8d62a5] rounded-lg font-semibold text-sm transition-all duration-200 ${
-                  page === 1
-                    ? 'opacity-40 cursor-not-allowed text-[#fbdaf9]'
-                    : 'bg-[#3a1f52] text-[#fbdaf9] hover:border-[#f500f1] hover:text-[#f500f1]'
-                }`}
-              >
-                ← Anterior
-              </button>
-
-              <span className="text-[#c392dd] text-sm">
-                Página {page} de {totalPaginas}
-              </span>
-
-              <button
-                onClick={handleNextPage}
-                disabled={page === totalPaginas}
-                className={`px-4 py-2 border border-[#8d62a5] rounded-lg font-semibold text-sm transition-all duration-200 ${
-                  page === totalPaginas
-                    ? 'opacity-40 cursor-not-allowed text-[#fbdaf9]'
-                    : 'bg-[#3a1f52] text-[#fbdaf9] hover:border-[#f500f1] hover:text-[#f500f1]'
-                }`}
-              >
-                Siguiente →
-              </button>
-            </div>
-          )}
+          <Pagination page={page} totalPaginas={totalPaginas} onPageChange={handlePage} />
         </>
       )}
     </div>
