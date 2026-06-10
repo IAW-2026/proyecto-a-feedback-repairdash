@@ -3,10 +3,15 @@ import { SignIn } from "@clerk/nextjs";
 export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-brand-bg p-4">
-      <div className="w-full max-w-md">
+      <div className="flex flex-col items-center w-full max-w-md">
         {/* Header fuera del card de Clerk */}
-        <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold text-white mb-2">Feedback App</h1>
+        <div className="w-full text-center mb-8">
+          <div className="text-xs uppercase tracking-widest text-brand-accent-mid font-semibold mb-2">
+            Feedback App
+          </div>
+          <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
+            RepairDash
+          </h1>
           <p className="text-brand-accent-mid">Iniciá sesión en tu cuenta</p>
         </div>
 
