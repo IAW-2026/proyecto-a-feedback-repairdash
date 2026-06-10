@@ -3,7 +3,7 @@ GET feedback/api/reviews/user/:userID Request: nada, el ID ya viaja en la URL.
 Response 200 OK: { "idUsuario": "user_123", "nombre": "Juan", "apellido": "Pérez", "valoracion": 4.5 }*/
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-
+import { validateAnyInternalApiKey } from "@/lib/auth";
 export const dynamic = 'force-dynamic';
 
 function validarStringID(value: unknown): value is string {
@@ -15,6 +15,11 @@ export async function GET(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const authError = validateAnyInternalApiKey(request, [
+      process.env.FEEDBACK_API_KEY,
+      process.env.DRIVER_INTERNAL_API_KEY,
+    ]);
+    if (authError) return authError;
     // Esperamos a que los parámetros estén listos
     const { id } = await params;
 
