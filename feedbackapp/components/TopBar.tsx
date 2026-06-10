@@ -105,7 +105,7 @@ export function TopBar() {
           </button>
 
           {/* Logo */}
-          <Link href={appUrl ?? '/'} onClick={closeMenu} className="flex flex-col items-center shrink-0 leading-tight">
+          <Link href="/" onClick={closeMenu} className="flex flex-col items-center shrink-0 leading-tight">
             <div className="flex items-baseline gap-1">
               <span className="text-xl font-bold text-white font-gilroy">RepairDash</span>
               <span className="text-xs text-brand-accent-mid tracking-wide hidden sm:inline">Feedback</span>
