@@ -1,0 +1,1 @@
+ALTER TABLE "Reporte" ADD COLUMN     "descripcion" TEXT NOT NULL;
