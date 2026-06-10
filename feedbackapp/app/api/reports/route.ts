@@ -1,7 +1,7 @@
 //POST feedback/api/report
 /*Origen: Rider app o driver app 
 Objetivo: Comenzar un reporte dada una situación que no puede ser resuelta entre ambos usuarios 
-EndPoint: POST feedback/api/report */ 
+EndPoint: POST feedback/api/report */
 
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
@@ -137,17 +137,25 @@ export async function POST(request: Request) {
             where: { id: idTrabajo },
             data: { activo: false, fechaFin: new Date() },
         });
-
-        const reviewReportante = await tx.review.findFirst({
-            where: { idTrabajo, idUsuario: idReportante, estaCompleta: false },
-        });
-        if (reviewReportante) {
-            await tx.review.update({
-                where: { id: reviewReportante.id },
-                data: { estaCompleta: true, valoracion: null, review: null },
+        if (reportante.rol === 'driver') {
+            // Driver reporta: crear ambas reviews ya anuladas
+            await tx.review.createMany({
+                data: [
+                    { idTrabajo, idUsuario: trabajo.idRider, estaCompleta: true, valoracion: null, review: null },
+                    { idTrabajo, idUsuario: trabajo.idDriver, estaCompleta: true, valoracion: null, review: null },
+                ],
             });
-        }
-
+        } else {
+            const reviewReportante = await tx.review.findFirst({
+                where: { idTrabajo, idUsuario: idReportante, estaCompleta: false },
+            });
+            if (reviewReportante) {
+                await tx.review.update({
+                    where: { id: reviewReportante.id },
+                    data: { estaCompleta: true, valoracion: null, review: null },
+                });
+            }
+        }   
         return nuevoReporte;
     });
 
