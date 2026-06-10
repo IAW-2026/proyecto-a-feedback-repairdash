@@ -1,12 +1,11 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
 import { Search, AlertTriangle, Briefcase } from 'lucide-react'
 import Pagination from '@/components/Pagination'
 import UserCard from '@/components/UserCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
+import { useSearch } from '@/hooks/useSearch'
 import type { UserResult } from '@/types'
 
 interface BuscarClientProps {
@@ -24,35 +23,7 @@ export default function BuscarClient({
   search,
   total,
 }: BuscarClientProps) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const [searchValue, setSearchValue] = useState(search)
-  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
-
-  useEffect(() => {
-    if (debounceTimer) {
-      clearTimeout(debounceTimer)
-    }
-
-    const timer = setTimeout(() => {
-      const newSearch = searchValue.trim()
-      router.push(
-        `${pathname}?search=${encodeURIComponent(newSearch)}&page=1`
-      )
-    }, 400)
-
-    setDebounceTimer(timer)
-
-    return () => {
-      if (timer) clearTimeout(timer)
-    }
-  }, [searchValue, router, pathname])
-
-  const handlePage = (p: number) => {
-    router.push(
-      `${pathname}?search=${encodeURIComponent(search)}&page=${p}`
-    )
-  }
+  const { searchValue, setSearchValue, handlePage } = useSearch({ search })
 
   const hasNoUsers = usuarios.length === 0
   const hasSearch = search.trim() !== ''

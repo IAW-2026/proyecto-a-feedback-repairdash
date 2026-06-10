@@ -1,13 +1,12 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
 import { User, Mail } from 'lucide-react'
 import DropdownFilter from '@/components/DropdownFilter'
 import Pagination from '@/components/Pagination'
 import UserCard from '@/components/UserCard'
 import EmptyState from '@/components/EmptyState'
 import SearchInput from '@/components/SearchInput'
+import { useSearch } from '@/hooks/useSearch'
 import type { UserRow } from '@/types'
 import { getRolLabel } from '@/lib/roles'
 
@@ -28,36 +27,10 @@ export default function AdminUsersClient({
   total,
   rolFilter,
 }: AdminUsersClientProps) {
-  const router = useRouter()
-  const pathname = usePathname()
-  const [searchValue, setSearchValue] = useState(search)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      const params = new URLSearchParams()
-      if (searchValue.trim()) params.set('search', searchValue.trim())
-      if (rolFilter) params.set('rol', rolFilter)
-      params.set('page', '1')
-      router.push(`${pathname}?${params.toString()}`)
-    }, 400)
-    return () => clearTimeout(timer)
-  }, [searchValue, rolFilter, router, pathname])
-
-  const handleRoleFilter = (rol: string) => {
-    const params = new URLSearchParams()
-    if (search.trim()) params.set('search', search.trim())
-    if (rol) params.set('rol', rol)
-    params.set('page', '1')
-    router.push(`${pathname}?${params.toString()}`)
-  }
-
-  const handlePage = (p: number) => {
-    const params = new URLSearchParams()
-    if (search.trim()) params.set('search', search.trim())
-    if (rolFilter) params.set('rol', rolFilter)
-    params.set('page', String(p))
-    router.push(`${pathname}?${params.toString()}`)
-  }
+  const { searchValue, setSearchValue, handlePage, handleFilterChange } = useSearch({
+    search,
+    filters: { rol: rolFilter },
+  })
 
   return (
     <div className="w-full">
@@ -83,7 +56,7 @@ export default function AdminUsersClient({
         </div>
         <DropdownFilter
           value={rolFilter}
-          onChange={handleRoleFilter}
+          onChange={(rol) => handleFilterChange('rol', rol)}
           options={[
             { value: '', label: 'Todos' },
             { value: 'rider', label: 'Rider' },

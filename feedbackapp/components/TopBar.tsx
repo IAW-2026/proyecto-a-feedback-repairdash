@@ -4,12 +4,14 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Home, BarChart3, LogOut, User, Star, Shield, Search, Users, Menu, X } from 'lucide-react';
 import { useState } from 'react';
-import { useClerk, useAuth } from '@clerk/nextjs';
+import { useClerk, useAuth, useUser } from '@clerk/nextjs';
 
 export function TopBar() {
   const pathname = usePathname();
   const { signOut } = useClerk();
   const { sessionClaims } = useAuth();
+  const { user } = useUser();
+  const nombreCompleto = user ? `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() : 'Perfil';
   const role = (sessionClaims?.metadata as any)?.role;
   const isAdmin = role === 'feedbackAdmin';
   const isRider = role === 'rider';
@@ -30,7 +32,7 @@ export function TopBar() {
       { label: appLabel, href: appUrl ?? '/', icon: Home },
       { label: 'Reviews', href: '/reviews', icon: Star },
       { label: 'Reportes', href: '/reportes', icon: BarChart3 },
-      { label: 'Perfil', href: '/perfil', icon: User },
+      { label: nombreCompleto, href: '/perfil', icon: User },
     ];
 
   const rightItems = !isAdmin

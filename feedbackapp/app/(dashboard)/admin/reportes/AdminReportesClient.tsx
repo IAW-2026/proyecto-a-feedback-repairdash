@@ -1,13 +1,13 @@
 'use client'
 
-import { useState, useEffect } from 'react'
-import { useRouter, usePathname } from 'next/navigation'
+import { useRouter } from 'next/navigation'
 import { AlertCircle, User, FileText, Calendar } from 'lucide-react'
 import EstadoBadge from '@/components/EstadoBadge'
 import DecisionBadge from '@/components/DecisionBadge'
 import DropdownFilter from '@/components/DropdownFilter'
 import Pagination from '@/components/Pagination'
 import SearchInput from '@/components/SearchInput'
+import { useSearch } from '@/hooks/useSearch'
 import type { Reporte, UsuarioBase } from '@/types'
 
 interface AdminReportesClientProps {
@@ -55,52 +55,11 @@ export default function AdminReportesClient({
   estado,
 }: AdminReportesClientProps) {
   const router = useRouter()
-  const pathname = usePathname()
-  const [searchValue, setSearchValue] = useState(search)
-  const [debounceTimer, setDebounceTimer] = useState<NodeJS.Timeout | null>(null)
 
-  const buildUrl = (overrides: Record<string, string>) => {
-    const params = new URLSearchParams()
-    const s = overrides.search ?? search
-    const e = overrides.estado ?? estado
-    const p = overrides.page ?? String(page)
-    if (s) params.set('search', s)
-    if (e) params.set('estado', e)
-    params.set('page', p)
-    return `${pathname}?${params.toString()}`
-  }
-
-  // ============================================
-  // EFECTO: Debounce de búsqueda
-  // ============================================
-  useEffect(() => {
-    if (debounceTimer) {
-      clearTimeout(debounceTimer)
-    }
-
-    const timer = setTimeout(() => {
-      const newSearch = searchValue.trim()
-      router.push(buildUrl({ search: newSearch, page: '1' }))
-    }, 400)
-
-    setDebounceTimer(timer)
-
-    return () => {
-      if (timer) clearTimeout(timer)
-    }
-  }, [searchValue, router, pathname, estado])
-
-  // ============================================
-  // HANDLERS: Navegación de paginación
-  // ============================================
-
-  const handlePage = (p: number) => {
-    router.push(buildUrl({ page: String(p) }))
-  }
-
-  const handleEstadoFilter = (e: string) => {
-    router.push(buildUrl({ estado: e, page: '1' }))
-  }
+  const { searchValue, setSearchValue, handlePage, handleFilterChange } = useSearch({
+    search,
+    filters: { estado },
+  })
 
   // ============================================
   // ESTADO: Determinar si hay resultados
@@ -151,7 +110,7 @@ export default function AdminReportesClient({
         </div>
         <DropdownFilter
           value={estado}
-          onChange={handleEstadoFilter}
+          onChange={(e) => handleFilterChange('estado', e)}
           options={[
             { value: '', label: 'Todos' },
             { value: 'CREADO', label: 'Creado' },

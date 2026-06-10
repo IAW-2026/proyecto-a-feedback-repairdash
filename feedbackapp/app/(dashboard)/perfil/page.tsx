@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import { User, Mail, Lock, Star, Briefcase, AlertCircle, Clock } from 'lucide-react';
+import { User, Star, AlertCircle, Clock } from 'lucide-react';
 import { getCurrentUser } from '@/lib/getCurrentUser';
 import { prisma } from '@/lib/prisma';
 import StatCard from '@/components/StatCard';
@@ -13,12 +13,7 @@ export default async function PerfilPage() {
   }
 
   // Realizar todas las consultas en paralelo
-  const [totalTrabajos, reportesEnContra, reportesPendientes] = await Promise.all([
-    prisma.trabajo.count({
-      where: {
-        OR: [{ idRider: user.id }, { idDriver: user.id }],
-      },
-    }),
+  const [reportesEnContra, reportesPendientes] = await Promise.all([
     prisma.reporte.count({
       where: {
         OR: [
@@ -58,82 +53,7 @@ export default async function PerfilPage() {
 
         {/* Contenido principal */}
         <div className="space-y-[clamp(1rem,3vw,2rem)]">
-          {/* Card 1: Datos del usuario */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
-            <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
-              <User size={24} className="text-[#c392dd] flex-shrink-0" />
-              <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                Datos Personales
-              </p>
-            </div>
-
-            <div className="space-y-[clamp(1rem,3vw,1.5rem)]">
-              <div>
-                <label htmlFor="nombre" className="block text-[#c392dd] uppercase font-semibold mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                  Nombre Completo
-                </label>
-                <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
-                  <input
-                    id="nombre"
-                    type="text"
-                    value={`${user.nombre} ${user.apellido}`}
-                    disabled
-                    className="flex-1 bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] cursor-not-allowed opacity-60 min-h-[44px]"
-                    style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}
-                  />
-                  <Lock size={20} className="text-[#8d62a5] flex-shrink-0" />
-                </div>
-                <p className="text-[#c392dd] mt-[clamp(0.375rem,1vw,0.5rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                  Campo no editable
-                </p>
-              </div>
-
-              {/* Email */}
-              <div>
-                <label htmlFor="email" className="block text-[#c392dd] uppercase font-semibold mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                  Email
-                </label>
-                <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
-                  <input
-                    id="email"
-                    type="email"
-                    value={user.mail}
-                    disabled
-                    className="flex-1 bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)] cursor-not-allowed opacity-60 min-h-[44px]"
-                    style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}
-                  />
-                  <Mail size={20} className="text-[#8d62a5] flex-shrink-0" />
-                </div>
-                <p className="text-[#c392dd] mt-[clamp(0.375rem,1vw,0.5rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                  Campo no editable
-                </p>
-              </div>
-            </div>
-          </div>
-
-          {/* Card 2: Actividad Laboral */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
-            <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
-              <Briefcase size={24} className="text-[#c392dd] flex-shrink-0" />
-              <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                Actividad Laboral
-              </p>
-            </div>
-
-            <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/30 text-center">
-              <p className="text-[#c392dd] uppercase font-semibold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                Trabajos en los que te viste involucrado
-              </p>
-              <div className="font-gilroy font-bold text-[#f500f1]" style={{ fontSize: 'clamp(2.5rem, 8vw, 3rem)', marginBottom: 'clamp(0.5rem, 1vw, 0.75rem)' }}>
-                {totalTrabajos}
-              </div>
-              <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                proyectos completados
-              </p>
-            </div>
-          </div>
-
-          {/* Card 3: Valoración Promedio */}
+          {/* Valoración Promedio */}
           <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <Star size={24} className="text-[#c392dd] flex-shrink-0" />
@@ -163,7 +83,37 @@ export default async function PerfilPage() {
             </div>
           </div>
 
-          {/* Card 4: Reportes */}
+          {/* Datos Personales */}
+          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
+            <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
+              <User size={24} className="text-[#c392dd] flex-shrink-0" />
+              <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                Datos Personales
+              </p>
+            </div>
+
+            <div className="space-y-[clamp(1rem,3vw,1.5rem)]">
+              <div>
+                <label className="block text-[#c392dd] uppercase font-semibold mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                  Nombre Completo
+                </label>
+                <div className="bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                  {user.nombre} {user.apellido}
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-[#c392dd] uppercase font-semibold mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                  Email
+                </label>
+                <div className="bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                  {user.mail}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Reportes */}
           <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <AlertCircle size={24} className="text-[#c392dd] flex-shrink-0" />
