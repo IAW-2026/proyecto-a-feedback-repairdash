@@ -16,8 +16,7 @@ export async function PUT(
   { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const authError = validateInternalApiKey(request);
-    if (authError) return authError;
+    
 
     const { id } = await params;
 
