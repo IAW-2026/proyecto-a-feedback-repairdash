@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { Star, Bell, MessageSquare, ArrowRight } from 'lucide-react'
+import { Star, Bell, MessageSquare } from 'lucide-react'
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from '@/lib/getCurrentUser'
@@ -14,15 +14,14 @@ export default async function HomePage() {
     redirect('/login')
   }
 
-  const reportesPendientes = await prisma.reporte.count({
-    where: {
-      resolucion: 'SinResolver',
-      OR: [
-        { idReportante: user.id },
-        { idReportado: user.id },
-      ],
-    },
-  })
+  const [reportesReportado, reportesReportante] = await Promise.all([
+    prisma.reporte.count({
+      where: { idReportado: user.id, resolucion: 'SinResolver' },
+    }),
+    prisma.reporte.count({
+      where: { idReportante: user.id, resolucion: 'SinResolver' },
+    }),
+  ])
 
   const reviewsPendientes = await prisma.review.count({
     where: {
@@ -43,18 +42,24 @@ export default async function HomePage() {
         >
           Hola, {firstName}
         </h1>
+        <p className="text-[#c392dd] mt-1" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+          Bienvenido a Feedback
+        </p>
       </div>
 
-      {/* Metrics grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-[clamp(1rem,3vw,2rem)]">
+      {/* First row: 2 cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,2rem)] mb-[clamp(1rem,3vw,2rem)]">
         {/* Card: Valoración promedio */}
-        <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20">
+        <Link
+          href="/reviews"
+          className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+        >
           <div className="flex justify-between items-start mb-3">
             <p
               className="text-[#c392dd] font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
-              VALORACIÓN PROMEDIO
+              Valoración promedio
             </p>
             <div className="bg-[#f500f1]/10 p-2 rounded-lg">
               <Star size={20} className="text-[#f500f1]" />
@@ -72,7 +77,7 @@ export default async function HomePage() {
               className="font-gilroy font-bold text-[#fbdaf9] text-center"
               style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
             >
-              ⭐ {promedioCalificaciones}
+              {promedioCalificaciones}
             </div>
           )}
           <p
@@ -81,34 +86,7 @@ export default async function HomePage() {
           >
             Promedio de tus reseñas.
           </p>
-        </div>
-
-        {/* Card: Reportes pendientes */}
-        <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20">
-          <div className="flex justify-between items-start mb-3">
-            <p
-              className="text-[#c392dd] font-semibold uppercase tracking-wider"
-              style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
-            >
-              REPORTES EN EVALUACIÓN
-            </p>
-            <div className="bg-[#f500f1]/10 p-2 rounded-lg">
-              <Bell size={20} className="text-[#f500f1]" />
-            </div>
-          </div>
-          <div
-            className="font-gilroy font-bold text-[#fbdaf9] text-center"
-            style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
-          >
-            {reportesPendientes}
-          </div>
-          <p
-            className="text-[#c392dd] mt-1 text-center"
-            style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
-          >
-            Reportes que involucran tu cuenta.
-          </p>
-        </div>
+        </Link>
 
         {/* Card: Reviews pendientes */}
         <Link
@@ -120,7 +98,7 @@ export default async function HomePage() {
               className="text-[#c392dd] font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
-              REVIEWS PENDIENTES
+              Reviews pendientes
             </p>
             <div className="bg-[#f500f1]/10 p-2 rounded-lg">
               <MessageSquare size={20} className="text-[#f500f1]" />
@@ -132,12 +110,64 @@ export default async function HomePage() {
           >
             {reviewsPendientes}
           </div>
-          <div className="flex items-center justify-center gap-1 text-[#c392dd] mt-1 text-sm hover:text-[#f500f1] transition-colors">
-            Ver pendientes
-            <ArrowRight size={16} />
-          </div>
+          <p
+            className="text-[#c392dd] mt-1 text-center"
+            style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
+          >
+            Reviews que tenés pendientes de completar.
+          </p>
         </Link>
       </div>
+
+      {/* Second row: full-width reports card */}
+      <Link
+        href="/reportes"
+        className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+      >
+        <div className="flex justify-between items-start p-[clamp(1rem,3vw,1.5rem)] pb-0">
+          <p
+            className="text-[#c392dd] font-semibold uppercase tracking-wider"
+            style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
+          >
+            Reportes en evaluación
+          </p>
+          <div className="bg-[#f500f1]/10 p-2 rounded-lg">
+            <Bell size={20} className="text-[#f500f1]" />
+          </div>
+        </div>
+        <div className="flex flex-col sm:flex-row p-[clamp(1rem,3vw,1.5rem)] pt-[clamp(1rem,3vw,1rem)]">
+          <div className="flex-1 flex flex-col items-center justify-center py-4 sm:py-6">
+            <div
+              className="font-gilroy font-bold text-[#fbdaf9]"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}
+            >
+              {reportesReportado}
+            </div>
+            <p
+              className="text-[#c392dd] mt-1 text-center"
+              style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}
+            >
+              Reportes activos donde fuiste denunciado
+            </p>
+          </div>
+          <div className="hidden sm:block w-px bg-[#8d62a5]/20 mx-4 self-stretch" />
+          <div className="block sm:hidden h-px bg-[#8d62a5]/20 my-4 mx-8" />
+          <div className="flex-1 flex flex-col items-center justify-center py-4 sm:py-6">
+            <div
+              className="font-gilroy font-bold text-[#fbdaf9]"
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}
+            >
+              {reportesReportante}
+            </div>
+            <p
+              className="text-[#c392dd] mt-1 text-center"
+              style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}
+            >
+              Reportes que abriste y están en evaluación
+            </p>
+          </div>
+        </div>
+      </Link>
     </div>
   )
 }
