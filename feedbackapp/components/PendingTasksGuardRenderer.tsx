@@ -1,43 +1,31 @@
 'use client';
 
+import { useState } from 'react';
 import { usePathname } from 'next/navigation';
 import PendingReportScreen from './PendingReportScreen';
 import PendingReviewScreen from './PendingReviewScreen';
 
 interface PendingTasksGuardRendererProps {
   reportePendiente: any;
-  reviewPendiente: any;
+  reviewPendientes: any[];
   children: React.ReactNode;
 }
 
-/**
- * Componente Cliente que renderiza el guard o el contenido normal.
- * 
- * Decide si bloquear al usuario basándose en:
- * 1. Si hay tareas pendientes (reportes o reviews)
- * 2. Si el usuario está en una ruta de resolución (bypass)
- * 
- * Rutas que permiten bypass (usuario puede resolver sin bloqueo):
- * - /reportes/[id]/nuevo - formulario de resolución de reportes
- * - /reviews/realizar/[id] - formulario de resolución de reviews
- */
 export default function PendingTasksGuardRenderer({
   reportePendiente,
-  reviewPendiente,
+  reviewPendientes,
   children,
 }: PendingTasksGuardRendererProps) {
   const pathname = usePathname();
+  const [showReviewModal, setShowReviewModal] = useState(true);
 
-  // ✅ BYPASS: Si estamos en rutas de resolución, permitir acceso sin bloquear
   const isResolvingReport = pathname.includes('/reportes/') && pathname.includes('/nuevo');
   const isResolvingReview = pathname.includes('/reviews/realizar/');
 
   if (isResolvingReport || isResolvingReview) {
-    // Permitir acceso directo a las páginas de resolución
     return <>{children}</>;
   }
 
-  // ✅ BLOQUEO: Si hay reporte pendiente, mostrar pantalla de bloqueo
   if (reportePendiente) {
     return (
       <PendingReportScreen
@@ -49,16 +37,18 @@ export default function PendingTasksGuardRenderer({
     );
   }
 
-  // ✅ BLOQUEO: Si hay review pendiente, mostrar pantalla de bloqueo
-  if (reviewPendiente) {
+  if (reviewPendientes.length > 0 && showReviewModal) {
     return (
-      <PendingReviewScreen
-        trabajo={reviewPendiente.trabajo}
-        userId={reviewPendiente.idUsuario}
-      />
+      <>
+        {children}
+        <PendingReviewScreen
+          reviewCount={reviewPendientes.length}
+          primerTrabajoId={reviewPendientes[0].idTrabajo}
+          onClose={() => setShowReviewModal(false)}
+        />
+      </>
     );
   }
 
-  // ✅ SIN TAREAS: Permitir acceso normal al dashboard
   return <>{children}</>;
 }

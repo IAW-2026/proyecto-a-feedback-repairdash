@@ -1,4 +1,5 @@
-import { Star, Bell } from 'lucide-react'
+import Link from 'next/link'
+import { Star, Bell, MessageSquare, ArrowRight } from 'lucide-react'
 import { currentUser } from '@clerk/nextjs/server'
 import { redirect } from 'next/navigation'
 import { getCurrentUser } from '@/lib/getCurrentUser'
@@ -20,6 +21,13 @@ export default async function HomePage() {
         { idReportante: user.id },
         { idReportado: user.id },
       ],
+    },
+  })
+
+  const reviewsPendientes = await prisma.review.count({
+    where: {
+      idUsuario: user.id,
+      estaCompleta: false,
     },
   })
 
@@ -102,33 +110,33 @@ export default async function HomePage() {
           </p>
         </div>
 
-        {/* Card placeholder */}
-        <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 opacity-50 transition-all duration-300 ease-out hover:scale-[1.02] hover:border-[#8d62a5]/40 hover:shadow-xl hover:shadow-[#8d62a5]/10">
+        {/* Card: Reviews pendientes */}
+        <Link
+          href="/reviews/pendientes"
+          className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+        >
           <div className="flex justify-between items-start mb-3">
             <p
               className="text-[#c392dd] font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
-              PRÓXIMA MÉTRICA
+              REVIEWS PENDIENTES
             </p>
-            <div className="bg-[#8d62a5]/10 p-2 rounded-lg">
-              <span className="text-[#8d62a5] text-lg font-bold">?</span>
+            <div className="bg-[#f500f1]/10 p-2 rounded-lg">
+              <MessageSquare size={20} className="text-[#f500f1]" />
             </div>
           </div>
           <div
-            className="font-gilroy font-bold text-[#8d62a5] text-center"
+            className="font-gilroy font-bold text-[#fbdaf9] text-center"
             style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
           >
-            --
+            {reviewsPendientes}
           </div>
-          <p
-            className="text-[#c392dd] mt-1 text-center"
-            style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
-          >
-            {/* TODO: agregar métrica adicional aquí */}
-            Más estadísticas próximamente.
-          </p>
-        </div>
+          <div className="flex items-center justify-center gap-1 text-[#c392dd] mt-1 text-sm hover:text-[#f500f1] transition-colors">
+            Ver pendientes
+            <ArrowRight size={16} />
+          </div>
+        </Link>
       </div>
     </div>
   )

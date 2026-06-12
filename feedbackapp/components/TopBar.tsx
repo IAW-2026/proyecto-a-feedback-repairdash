@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, LogOut, User, Star, Shield, Search, Users, Menu, X } from 'lucide-react';
+import { Home, BarChart3, LogOut, User, Star, Shield, Search, Users, Menu, X, ChevronDown, Clock } from 'lucide-react';
 import { useState } from 'react';
 import { useClerk, useAuth, useUser } from '@clerk/nextjs';
 
@@ -19,8 +19,9 @@ export function TopBar() {
   const appUrl = isRider ? process.env.NEXT_PUBLIC_RIDER_APP_URL : isDriver ? process.env.NEXT_PUBLIC_DRIVER_APP_URL : null;
   const appLabel = isRider ? 'Volver a Rider App' : 'Volver a Driver App';
   const [menuOpen, setMenuOpen] = useState(false);
+  const [reviewsOpen, setReviewsOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => { setMenuOpen(false); setReviewsOpen(false); };
 
   const navItems = isAdmin
     ? [
@@ -30,7 +31,6 @@ export function TopBar() {
     ]
     : [
       { label: appLabel, href: appUrl ?? '/', icon: Home },
-      { label: 'Reviews', href: '/reviews', icon: Star },
       { label: 'Reportes', href: '/reportes', icon: BarChart3 },
       { label: nombreCompleto, href: '/perfil', icon: User },
     ];
@@ -118,6 +118,54 @@ export function TopBar() {
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center ml-6 gap-1" aria-label="Navegación principal">
             {navItems.map((item) => renderNavLink(item))}
+
+            {/* Reviews dropdown */}
+            <div
+              className="relative"
+              onMouseEnter={() => setReviewsOpen(true)}
+              onMouseLeave={() => setReviewsOpen(false)}
+            >
+              <button
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                  pathname.startsWith('/reviews')
+                    ? 'bg-brand-accent-soft text-white'
+                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                }`}
+              >
+                <Star size={18} />
+                <span className="text-sm font-medium whitespace-nowrap">Reviews</span>
+                <ChevronDown size={14} className={`transition-transform duration-200 ${reviewsOpen ? 'rotate-180' : ''}`} />
+              </button>
+
+              {reviewsOpen && (
+                <div className="absolute top-full left-0 mt-1 w-52 bg-[#271033] border border-[#8d62a5]/20 rounded-xl shadow-2xl py-2 z-50">
+                  <Link
+                    href="/reviews"
+                    onClick={closeMenu}
+                    className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
+                      pathname === '/reviews'
+                        ? 'text-[#f500f1] bg-[#f500f1]/10'
+                        : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
+                    }`}
+                  >
+                    <Star size={16} />
+                    Reviews recibidas
+                  </Link>
+                  <Link
+                    href="/reviews/pendientes"
+                    onClick={closeMenu}
+                    className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
+                      pathname === '/reviews/pendientes'
+                        ? 'text-[#f500f1] bg-[#f500f1]/10'
+                        : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
+                    }`}
+                  >
+                    <Clock size={16} />
+                    Reviews pendientes
+                  </Link>
+                </div>
+              )}
+            </div>
           </nav>
 
           {/* Spacer */}
@@ -157,6 +205,35 @@ export function TopBar() {
         >
           <div className="p-4 space-y-2">
             {navItems.map((item) => renderNavLink(item))}
+
+            <div className="pl-3 border-l-2 border-brand-accent-soft/20 space-y-1">
+              <p className="text-xs uppercase tracking-widest text-brand-accent-mid px-3 pt-1">Reviews</p>
+              <Link
+                href="/reviews"
+                onClick={closeMenu}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                  pathname === '/reviews'
+                    ? 'bg-brand-accent-soft text-white'
+                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                }`}
+              >
+                <Star size={18} />
+                <span className="text-sm font-medium">Recibidas</span>
+              </Link>
+              <Link
+                href="/reviews/pendientes"
+                onClick={closeMenu}
+                className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                  pathname === '/reviews/pendientes'
+                    ? 'bg-brand-accent-soft text-white'
+                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                }`}
+              >
+                <Clock size={18} />
+                <span className="text-sm font-medium">Pendientes</span>
+              </Link>
+            </div>
+
             <hr className="border-brand-accent-soft/20 my-2" />
             {rightItems.map((item) => renderNavLink(item))}
             <button
