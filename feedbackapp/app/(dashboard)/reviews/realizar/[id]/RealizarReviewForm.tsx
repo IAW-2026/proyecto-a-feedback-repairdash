@@ -79,10 +79,10 @@ export default function RealizarReviewForm({
           </span>
         </div>
         <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
-          Antes de continuar...
+          Completá tu review
         </h1>
         <p className="text-[#c392dd]">
-          Tenés una review pendiente. Completala para seguir usando la app.
+          Valorá tu experiencia con este usuario
         </p>
       </div>
 

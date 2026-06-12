@@ -124,7 +124,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               onClick={closeMenu}
               className="flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30"
             >
-              <ExternalLink size={13} className="text-brand-accent-mid/60" />
+              <ExternalLink size={16} className="text-brand-accent-mid/60" />
               <span className="text-sm font-medium whitespace-nowrap">{navItems[1].label}</span>
             </a>
 
@@ -252,7 +252,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               onClick={closeMenu}
               className="flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30"
             >
-              <ExternalLink size={14} className="text-brand-accent-mid/60" />
+              <ExternalLink size={16} className="text-brand-accent-mid/60" />
               <span className="text-sm font-medium">{navItems[1].label}</span>
             </a>
 
