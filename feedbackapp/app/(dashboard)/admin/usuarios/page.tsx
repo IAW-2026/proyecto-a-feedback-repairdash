@@ -31,7 +31,7 @@ export default async function AdminPage({
       where,
       skip: (page - 1) * POR_PAGINA,
       take: POR_PAGINA,
-      orderBy: { apellido: 'asc' },
+      orderBy: { valoracion: 'desc' },
       select: {
         id: true,
         nombre: true,
