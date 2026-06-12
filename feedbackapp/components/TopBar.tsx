@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, LogOut, User, Star, Shield, Search, Users, Menu, X, ChevronDown, Clock, ExternalLink } from 'lucide-react';
+import { Home, Flag, LogOut, User, Star, Shield, Search, Users, Menu, X, ChevronDown, Clock, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import { useClerk, useAuth, useUser } from '@clerk/nextjs';
 
@@ -12,12 +12,13 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
   const { sessionClaims } = useAuth();
   const { user } = useUser();
   const nombreCompleto = user ? `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() : 'Perfil';
+  const inicial = user?.firstName?.charAt(0)?.toUpperCase() || '?';
   const role = (sessionClaims?.metadata as any)?.role;
   const isAdmin = role === 'feedbackAdmin';
   const isRider = role === 'rider';
   const isDriver = role === 'driver';
   const appUrl = isRider ? process.env.NEXT_PUBLIC_RIDER_APP_URL : isDriver ? process.env.NEXT_PUBLIC_DRIVER_APP_URL : null;
-  const appLabel = isRider ? 'Ir a Rider App' : 'Ir a Driver App';
+  const appLabel = isRider ? 'Panel Rider' : 'Panel Driver';
   const [menuOpen, setMenuOpen] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
 
@@ -32,8 +33,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
     : [
       { label: 'Inicio', href: '/', icon: Home },
       { label: appLabel, href: appUrl ?? '#', icon: ExternalLink },
-      { label: 'Reportes', href: '/reportes', icon: BarChart3 },
-      { label: nombreCompleto, href: '/perfil', icon: User },
+      { label: 'Reportes', href: '/reportes', icon: Flag },
     ];
 
   const rightItems = !isAdmin
@@ -119,7 +119,14 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center ml-6 gap-1" aria-label="Navegación principal">
             {renderNavLink(navItems[0])}
-            {renderNavLink(navItems[1])}
+            <a
+              href={navItems[1].href}
+              onClick={closeMenu}
+              className="flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30"
+            >
+              <ExternalLink size={13} className="text-brand-accent-mid/60" />
+              <span className="text-sm font-medium whitespace-nowrap">{navItems[1].label}</span>
+            </a>
 
             {/* Reviews dropdown */}
             <div
@@ -177,7 +184,22 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               )}
             </div>
             {renderNavLink(navItems[2])}
-            {renderNavLink(navItems[3])}
+
+            {/* Perfil con avatar */}
+            <Link
+              href="/perfil"
+              onClick={closeMenu}
+              className={`flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                pathname === '/perfil'
+                  ? 'bg-brand-accent-soft text-white'
+                  : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+              }`}
+            >
+              <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                {inicial}
+              </div>
+              <span className="text-sm font-medium whitespace-nowrap">{nombreCompleto}</span>
+            </Link>
           </nav>
 
           {/* Spacer */}
@@ -185,13 +207,20 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
 
           {/* Desktop right items */}
           <div className="hidden lg:flex items-center gap-1">
-            {rightItems.map((item) => renderNavLink(item))}
+            <Link
+              href="/buscar"
+              onClick={closeMenu}
+              className="flex items-center justify-center w-9 h-9 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
+              aria-label="Buscar"
+            >
+              <Search size={18} />
+            </Link>
             <button
               onClick={() => signOut({ redirectUrl: '/' })}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-brand-accent-mid transition-all duration-200 hover:text-brand-text-light hover:bg-brand-accent-soft/30 min-h-[44px]"
+              className="flex items-center justify-center w-9 h-9 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
+              aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
-              <span className="text-sm font-medium whitespace-nowrap">Cerrar sesión</span>
             </button>
           </div>
 
@@ -217,7 +246,15 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
         >
           <div className="p-4 space-y-2">
             {renderNavLink(navItems[0])}
-            {renderNavLink(navItems[1])}
+
+            <a
+              href={navItems[1].href}
+              onClick={closeMenu}
+              className="flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30"
+            >
+              <ExternalLink size={14} className="text-brand-accent-mid/60" />
+              <span className="text-sm font-medium">{navItems[1].label}</span>
+            </a>
 
             <div className="pl-3 border-l-2 border-brand-accent-soft/20 space-y-1">
               <p className="text-xs uppercase tracking-widest text-brand-accent-mid px-3 pt-1">Reviews</p>
@@ -251,19 +288,41 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
             </div>
 
             {renderNavLink(navItems[2])}
-            {renderNavLink(navItems[3])}
+
+            <Link
+              href="/perfil"
+              onClick={closeMenu}
+              className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                pathname === '/perfil'
+                  ? 'bg-brand-accent-soft text-white'
+                  : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+              }`}
+            >
+              <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                {inicial}
+              </div>
+              <span className="text-sm font-medium">{nombreCompleto}</span>
+            </Link>
 
             <hr className="border-brand-accent-soft/20 my-2" />
-            {rightItems.map((item) => renderNavLink(item))}
+            <Link
+              href="/buscar"
+              onClick={closeMenu}
+              className="flex items-center gap-2 px-2 py-2 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200 min-h-[44px]"
+              aria-label="Buscar"
+            >
+              <Search size={18} />
+              <span className="text-sm font-medium">Buscar</span>
+            </Link>
             <button
               onClick={() => {
                 signOut({ redirectUrl: '/' });
                 closeMenu();
               }}
-              className="flex items-center gap-2 w-full px-3 py-3 rounded-lg text-brand-accent-mid transition-all duration-200 hover:text-brand-text-light hover:bg-brand-accent-soft/30 min-h-[44px]"
+              className="flex items-center gap-2 w-full px-3 py-3 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200 min-h-[44px]"
+              aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
-              <span className="text-sm font-medium">Cerrar sesión</span>
             </button>
           </div>
         </div>
