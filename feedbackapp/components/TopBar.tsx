@@ -2,25 +2,28 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, BarChart3, LogOut, User, Star, Shield, Search, Users, Menu, X } from 'lucide-react';
+import { Home, Flag, LogOut, User, Star, Shield, Search, Users, Menu, X, ChevronDown, Clock, ExternalLink } from 'lucide-react';
 import { useState } from 'react';
 import { useClerk, useAuth, useUser } from '@clerk/nextjs';
 
-export function TopBar() {
+export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: number }) {
   const pathname = usePathname();
   const { signOut } = useClerk();
   const { sessionClaims } = useAuth();
   const { user } = useUser();
   const nombreCompleto = user ? `${user.firstName ?? ''} ${user.lastName ?? ''}`.trim() : 'Perfil';
+  const inicial = user?.firstName?.charAt(0)?.toUpperCase() || '?';
   const role = (sessionClaims?.metadata as any)?.role;
   const isAdmin = role === 'feedbackAdmin';
   const isRider = role === 'rider';
   const isDriver = role === 'driver';
   const appUrl = isRider ? process.env.NEXT_PUBLIC_RIDER_APP_URL : isDriver ? process.env.NEXT_PUBLIC_DRIVER_APP_URL : null;
-  const appLabel = isRider ? 'Volver a Rider App' : 'Volver a Driver App';
+  const appLabel = isRider ? 'Panel Rider' : 'Panel Driver';
   const [menuOpen, setMenuOpen] = useState(false);
+  const [reviewsOpen, setReviewsOpen] = useState(false);
+  const [mobileReviewsOpen, setMobileReviewsOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => { setMenuOpen(false); setReviewsOpen(false); setMobileReviewsOpen(false); };
 
   const navItems = isAdmin
     ? [
@@ -29,10 +32,9 @@ export function TopBar() {
       { label: 'Gestionar Reportes', href: '/admin/reportes', icon: Shield },
     ]
     : [
-      { label: appLabel, href: appUrl ?? '/', icon: Home },
-      { label: 'Reviews', href: '/reviews', icon: Star },
-      { label: 'Reportes', href: '/reportes', icon: BarChart3 },
-      { label: nombreCompleto, href: '/perfil', icon: User },
+      { label: 'Inicio', href: '/', icon: Home },
+      { label: appLabel, href: appUrl ?? '#', icon: ExternalLink },
+      { label: 'Reportes', href: '/reportes', icon: Flag },
     ];
 
   const rightItems = !isAdmin
@@ -51,12 +53,12 @@ export function TopBar() {
           key={item.href}
           href={item.href}
           onClick={closeMenu}
-          className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${isActive
+          className={`flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${isActive
             ? 'bg-brand-accent-soft text-white'
             : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
             }`}
         >
-          <Icon size={18} />
+          <Icon size={16} />
           <span className="text-sm font-medium whitespace-nowrap">{item.label}</span>
         </a>
       );
@@ -66,7 +68,7 @@ export function TopBar() {
         key={item.href}
         href={item.href}
         onClick={closeMenu}
-        className={`flex items-center gap-2 px-3 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${isActive
+        className={`flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${isActive
           ? 'bg-brand-accent-soft text-white'
           : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
           }`}
@@ -117,7 +119,85 @@ export function TopBar() {
 
           {/* Desktop nav */}
           <nav className="hidden lg:flex items-center ml-6 gap-1" aria-label="Navegación principal">
-            {navItems.map((item) => renderNavLink(item))}
+            {renderNavLink(navItems[0])}
+            {renderNavLink(navItems[1])}
+
+            {!isAdmin && (
+              /* Reviews dropdown */
+              <div
+                className="relative"
+                onMouseEnter={() => setReviewsOpen(true)}
+                onMouseLeave={() => setReviewsOpen(false)}
+              >
+                <button
+                  className={`relative flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                    pathname.startsWith('/reviews')
+                      ? 'bg-brand-accent-soft text-white'
+                      : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                  }`}
+                >
+                  <Star size={16} />
+                  <span className="text-sm font-medium whitespace-nowrap">Reviews</span>
+                  {pendingReviewsCount > 0 && (
+                    <span className="absolute -top-0.5 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f500f1] px-1 text-[10px] font-bold text-[#1a0a2e] animate-pulse">
+                      {pendingReviewsCount}
+                    </span>
+                  )}
+                  <ChevronDown size={14} className={`transition-transform duration-200 ${reviewsOpen ? 'rotate-180' : ''}`} />
+                </button>
+
+                {reviewsOpen && (
+                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#271033] border border-[#8d62a5]/20 rounded-xl shadow-2xl py-2 z-50">
+                    <Link
+                      href="/reviews"
+                      onClick={closeMenu}
+                      className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
+                        pathname === '/reviews'
+                          ? 'text-[#f500f1] bg-[#f500f1]/10'
+                          : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
+                      }`}
+                    >
+                      <Star size={16} />
+                      Reviews recibidas
+                    </Link>
+                    <Link
+                      href="/reviews/pendientes"
+                      onClick={closeMenu}
+                      className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
+                        pathname === '/reviews/pendientes'
+                          ? 'text-[#f500f1] bg-[#f500f1]/10'
+                          : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
+                      }`}
+                    >
+                      <Clock size={16} />
+                      Reviews pendientes
+                      {pendingReviewsCount > 0 && (
+                        <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
+                      )}
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
+            {renderNavLink(navItems[2])}
+
+            {!isAdmin && (
+              /* Perfil con avatar */
+              <Link
+                href="/perfil"
+                onClick={closeMenu}
+                className={`flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                  pathname === '/perfil'
+                    ? 'bg-brand-accent-soft text-white'
+                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                }`}
+              >
+                <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                  {inicial}
+                </div>
+                <span className="text-sm font-medium whitespace-nowrap">{nombreCompleto}</span>
+              </Link>
+            )}
           </nav>
 
           {/* Spacer */}
@@ -125,13 +205,22 @@ export function TopBar() {
 
           {/* Desktop right items */}
           <div className="hidden lg:flex items-center gap-1">
-            {rightItems.map((item) => renderNavLink(item))}
+            {!isAdmin && (
+              <Link
+                href="/buscar"
+                onClick={closeMenu}
+                className="flex items-center justify-center w-9 h-9 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
+                aria-label="Buscar"
+              >
+                <Search size={18} />
+              </Link>
+            )}
             <button
               onClick={() => signOut({ redirectUrl: '/' })}
-              className="flex items-center gap-2 px-3 py-2 rounded-lg text-brand-accent-mid transition-all duration-200 hover:text-brand-text-light hover:bg-brand-accent-soft/30 min-h-[44px]"
+              className="flex items-center justify-center w-9 h-9 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
+              aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
-              <span className="text-sm font-medium whitespace-nowrap">Cerrar sesión</span>
             </button>
           </div>
 
@@ -156,18 +245,100 @@ export function TopBar() {
           aria-label="Navegación principal"
         >
           <div className="p-4 space-y-2">
-            {navItems.map((item) => renderNavLink(item))}
+            {renderNavLink(navItems[0])}
+            {renderNavLink(navItems[1])}
+
+            {!isAdmin && (
+              <div>
+                <button
+                  onClick={() => setMobileReviewsOpen(!mobileReviewsOpen)}
+                  className="flex items-center justify-between w-full px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30"
+                >
+                  <div className="flex items-center gap-2 relative">
+                    <Star size={16} />
+                    <span className="text-sm font-medium">Reviews</span>
+                    {pendingReviewsCount > 0 && (
+                      <span className="absolute -top-2 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f500f1] px-1 text-[10px] font-bold text-[#1a0a2e]">
+                        {pendingReviewsCount}
+                      </span>
+                    )}
+                  </div>
+                  <ChevronDown size={14} className={`transition-transform duration-200 ${mobileReviewsOpen ? 'rotate-180' : ''}`} />
+                </button>
+                {mobileReviewsOpen && (
+                  <div className="pl-3 border-l-2 border-brand-accent-soft/20 space-y-1 mt-1">
+                    <Link
+                      href="/reviews"
+                      onClick={closeMenu}
+                      className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                        pathname === '/reviews'
+                          ? 'bg-brand-accent-soft text-white'
+                          : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                      }`}
+                    >
+                      <Star size={16} />
+                      <span className="text-sm font-medium">Recibidas</span>
+                    </Link>
+                    <Link
+                      href="/reviews/pendientes"
+                      onClick={closeMenu}
+                      className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                        pathname === '/reviews/pendientes'
+                          ? 'bg-brand-accent-soft text-white'
+                          : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                      }`}
+                    >
+                      <Clock size={16} />
+                      <span className="text-sm font-medium">Pendientes</span>
+                      {pendingReviewsCount > 0 && (
+                        <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
+                      )}
+                    </Link>
+                  </div>
+                )}
+              </div>
+            )}
+
+            {renderNavLink(navItems[2])}
+
+            {!isAdmin && (
+              <Link
+                href="/perfil"
+                onClick={closeMenu}
+                className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                  pathname === '/perfil'
+                    ? 'bg-brand-accent-soft text-white'
+                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                }`}
+              >
+                <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                  {inicial}
+                </div>
+                <span className="text-sm font-medium">{nombreCompleto}</span>
+              </Link>
+            )}
+
             <hr className="border-brand-accent-soft/20 my-2" />
-            {rightItems.map((item) => renderNavLink(item))}
+            {!isAdmin && (
+              <Link
+                href="/buscar"
+                onClick={closeMenu}
+                className="flex items-center gap-2 px-2 py-2 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200 min-h-[44px]"
+                aria-label="Buscar"
+              >
+                <Search size={18} />
+                <span className="text-sm font-medium">Buscar</span>
+              </Link>
+            )}
             <button
               onClick={() => {
                 signOut({ redirectUrl: '/' });
                 closeMenu();
               }}
-              className="flex items-center gap-2 w-full px-3 py-3 rounded-lg text-brand-accent-mid transition-all duration-200 hover:text-brand-text-light hover:bg-brand-accent-soft/30 min-h-[44px]"
+              className="flex items-center gap-2 w-full px-3 py-3 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200 min-h-[44px]"
+              aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
-              <span className="text-sm font-medium">Cerrar sesión</span>
             </button>
           </div>
         </div>
