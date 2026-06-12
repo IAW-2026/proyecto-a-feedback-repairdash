@@ -28,27 +28,28 @@ export default function PendingTasksGuardRenderer({
 
   if (reportePendiente) {
     return (
-      <PendingReportScreen
-        reporte={reportePendiente}
-        trabajo={reportePendiente.trabajo}
-        reportado={reportePendiente.reportado}
-        userId={reportePendiente.idReportante}
-      />
-    );
-  }
-
-  if (reviewPendientes.length > 0 && showReviewModal) {
-    return (
       <>
         {children}
-        <PendingReviewScreen
-          reviewCount={reviewPendientes.length}
-          primerTrabajoId={reviewPendientes[0].idTrabajo}
-          onClose={() => setShowReviewModal(false)}
+        <PendingReportScreen
+          reporte={reportePendiente}
+          trabajo={reportePendiente.trabajo}
+          reportado={reportePendiente.reportado}
+          userId={reportePendiente.idReportante}
         />
       </>
     );
   }
 
-  return <>{children}</>;
+  return (
+    <>
+      {children}
+      {reviewPendientes.length > 0 && showReviewModal && (
+        <PendingReviewScreen
+          reviewCount={reviewPendientes.length}
+          primerTrabajoId={reviewPendientes[0].idTrabajo}
+          onClose={() => setShowReviewModal(false)}
+        />
+      )}
+    </>
+  );
 }

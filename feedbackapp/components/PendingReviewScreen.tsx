@@ -18,7 +18,10 @@ export default function PendingReviewScreen({
       : `Tienes ${reviewCount} reviews pendientes`;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
+      onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
+    >
       <div className="bg-[#271033] rounded-2xl p-8 max-w-md w-full mx-4 border border-[#8d62a5]/20 shadow-2xl">
         <div className="flex items-center gap-2 mb-4">
           <AlertCircle className="text-[#f500f1]" size={24} />
