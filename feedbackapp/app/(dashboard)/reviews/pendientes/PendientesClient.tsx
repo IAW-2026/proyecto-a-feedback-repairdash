@@ -60,7 +60,7 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
               return (
                 <div
                   key={review.id}
-                  className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20"
+                  className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 space-y-3">

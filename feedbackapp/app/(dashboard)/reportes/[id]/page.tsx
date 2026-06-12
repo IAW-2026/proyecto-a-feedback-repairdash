@@ -3,13 +3,11 @@ import Link from 'next/link';
 import {
   ArrowLeft,
   Calendar,
-  User,
   FileText,
   Clock,
   CheckCircle,
   XCircle,
   ExternalLink,
-  Shield,
 } from 'lucide-react';
 import EstadoBadge from '@/components/EstadoBadge';
 import DecisionBadge from '@/components/DecisionBadge';
@@ -28,6 +26,17 @@ function VerdictoBadge({ resolucion, decision, soyReportante }: { resolucion: st
 
   const aFavor = soyReportante ? decision === 'AFavor' : decision === 'EnContra';
   return <DecisionBadge favorable={aFavor} />;
+}
+
+function sameDay(a: Date | string | null | undefined, b: Date | string | null | undefined): boolean {
+  if (!a || !b) return false
+  const da = typeof a === 'string' ? new Date(a) : a
+  const db = typeof b === 'string' ? new Date(b) : b
+  return da.toDateString() === db.toDateString()
+}
+
+function getInitials(nombre: string, apellido: string): string {
+  return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase();
 }
 
 function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: string; decision: string | null; soyReportante: boolean }) {
@@ -124,12 +133,13 @@ export default async function ReporteDetailPage({ params }: PageProps) {
 
   const fechaInicio = reporte.trabajo.fechaInicio.toLocaleDateString('es-ES');
   const fechaFin = reporte.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? 'Sin fecha fin';
+  const mismasFechas = reporte.trabajo.fechaInicio && reporte.trabajo.fechaFin && sameDay(reporte.trabajo.fechaInicio, reporte.trabajo.fechaFin);
   const soyReportante = user.id === reporte.idReportante;
 
   return (
-    <div className="p-[clamp(1rem,4vw,2rem)] max-w-full md:max-w-6xl lg:max-w-7xl mx-auto w-full">
+    <div className="max-w-full md:max-w-6xl lg:max-w-7xl mx-auto w-full">
       {/* Header */}
-      <div className="mb-[clamp(2rem,6vw,3rem)]">
+      <div className="mb-6">
         <Link
           href="/reportes"
           className="flex items-center gap-2 text-[#c392dd] hover:text-[#f500f1] transition-colors mb-[clamp(1rem,3vw,2rem)] w-fit group"
@@ -144,16 +154,13 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               Detalle de Reporte
             </p>
             <h1 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
-              Reporte #{reporte.id.slice(0, 8)}
+              Reporte #<span className="font-mono">{reporte.id.slice(0, 8)}</span>
             </h1>
           </div>
 
           {/* Badge de estado */}
           <div className="flex gap-2 flex-wrap">
             <EstadoBadge estado={reporte.resolucion} />
-            {reporte.resolucion === 'Resuelto' && reporte.decision && (
-              <DecisionBadge favorable={soyReportante ? reporte.decision === 'AFavor' : reporte.decision === 'EnContra'} />
-            )}
           </div>
         </div>
       </div>
@@ -176,7 +183,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
                 <Calendar size={20} className="text-[#8d62a5] flex-shrink-0" />
                 <span>
-                  {fechaInicio} — {fechaFin}
+                  {mismasFechas ? fechaInicio : `${fechaInicio} — ${fechaFin}`}
                 </span>
               </div>
             </div>
@@ -185,7 +192,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
             <div className="space-y-[clamp(0.75rem,2vw,1rem)] pt-6 border-t border-[#8d62a5]/20">
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] py-2">
                 <div className="w-10 h-10 rounded-full bg-[#8d62a5]/30 flex items-center justify-center flex-shrink-0">
-                  <User size={20} className="text-[#c392dd]" />
+                  <span className="text-sm font-bold text-[#fbdaf9]">{getInitials(reporte.reportante.nombre, reporte.reportante.apellido)}</span>
                 </div>
                 <div className="min-w-0">
                   <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}>Reportante</p>
@@ -198,7 +205,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
 
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] py-2">
                 <div className="w-10 h-10 rounded-full bg-[#8d62a5]/30 flex items-center justify-center flex-shrink-0">
-                  <Shield size={20} className="text-[#c392dd]" />
+                  <span className="text-sm font-bold text-[#fbdaf9]">{getInitials(reporte.reportado.nombre, reporte.reportado.apellido)}</span>
                 </div>
                 <div className="min-w-0">
                   <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}>Reportado</p>
