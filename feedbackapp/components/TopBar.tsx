@@ -21,8 +21,9 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
   const appLabel = isRider ? 'Panel Rider' : 'Panel Driver';
   const [menuOpen, setMenuOpen] = useState(false);
   const [reviewsOpen, setReviewsOpen] = useState(false);
+  const [mobileReviewsOpen, setMobileReviewsOpen] = useState(false);
 
-  const closeMenu = () => { setMenuOpen(false); setReviewsOpen(false); };
+  const closeMenu = () => { setMenuOpen(false); setReviewsOpen(false); setMobileReviewsOpen(false); };
 
   const navItems = isAdmin
     ? [
@@ -256,35 +257,53 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               <span className="text-sm font-medium">{navItems[1].label}</span>
             </a>
 
-            <div className="pl-3 border-l-2 border-brand-accent-soft/20 space-y-1">
-              <p className="text-xs uppercase tracking-widest text-brand-accent-mid px-3 pt-1">Reviews</p>
-              <Link
-                href="/reviews"
-                onClick={closeMenu}
-                className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-                  pathname === '/reviews'
-                    ? 'bg-brand-accent-soft text-white'
-                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-                }`}
+            <div>
+              <button
+                onClick={() => setMobileReviewsOpen(!mobileReviewsOpen)}
+                className="flex items-center justify-between w-full px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30"
               >
-                <Star size={16} />
-                <span className="text-sm font-medium">Recibidas</span>
-              </Link>
-              <Link
-                href="/reviews/pendientes"
-                onClick={closeMenu}
-                className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-                  pathname === '/reviews/pendientes'
-                    ? 'bg-brand-accent-soft text-white'
-                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-                }`}
-              >
-                <Clock size={16} />
-                <span className="text-sm font-medium">Pendientes</span>
-                {pendingReviewsCount > 0 && (
-                  <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
-                )}
-              </Link>
+                <div className="flex items-center gap-2 relative">
+                  <Star size={16} />
+                  <span className="text-sm font-medium">Reviews</span>
+                  {pendingReviewsCount > 0 && (
+                    <span className="absolute -top-2 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f500f1] px-1 text-[10px] font-bold text-[#1a0a2e]">
+                      {pendingReviewsCount}
+                    </span>
+                  )}
+                </div>
+                <ChevronDown size={14} className={`transition-transform duration-200 ${mobileReviewsOpen ? 'rotate-180' : ''}`} />
+              </button>
+              {mobileReviewsOpen && (
+                <div className="pl-3 border-l-2 border-brand-accent-soft/20 space-y-1 mt-1">
+                  <Link
+                    href="/reviews"
+                    onClick={closeMenu}
+                    className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                      pathname === '/reviews'
+                        ? 'bg-brand-accent-soft text-white'
+                        : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                    }`}
+                  >
+                    <Star size={16} />
+                    <span className="text-sm font-medium">Recibidas</span>
+                  </Link>
+                  <Link
+                    href="/reviews/pendientes"
+                    onClick={closeMenu}
+                    className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
+                      pathname === '/reviews/pendientes'
+                        ? 'bg-brand-accent-soft text-white'
+                        : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                    }`}
+                  >
+                    <Clock size={16} />
+                    <span className="text-sm font-medium">Pendientes</span>
+                    {pendingReviewsCount > 0 && (
+                      <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
+                    )}
+                  </Link>
+                </div>
+              )}
             </div>
 
             {renderNavLink(navItems[2])}

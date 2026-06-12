@@ -37,7 +37,7 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
           REVIEWS PENDIENTES
         </div>
         <h1 className="text-4xl font-bold text-white mb-3">Reviews pendientes</h1>
-        <p className="text-[#c392dd]">{total} reviews que tenés que completar sobre otros usuarios</p>
+        <p className="text-[#c392dd]">{total} {total === 1 ? 'review que tenés' : 'reviews que tenés'} que completar sobre otros usuarios</p>
       </div>
 
       {reviews.length === 0 ? (
@@ -72,7 +72,7 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
                           <p className="text-[#c392dd] text-xs uppercase tracking-wider">
                             Usuario a evaluar
                           </p>
-                          <p className="text-[#fbdaf9] font-semibold">
+                          <p className="text-[#fbdaf9] font-semibold truncate max-w-[120px] sm:max-w-none">
                             {usuarioAEvaluar?.nombre} {usuarioAEvaluar?.apellido}
                           </p>
                         </div>
@@ -93,10 +93,10 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
 
                     <Link
                       href={`/reviews/realizar/${review.idTrabajo}`}
-                      className="flex items-center gap-2 bg-[#f500f1] text-[#1a0a2e] py-3 px-5 rounded-lg hover:scale-[1.02] transition-transform duration-300 shadow-lg font-semibold shrink-0"
+                      className="flex items-center gap-2 max-sm:gap-1 bg-[#f500f1] text-[#1a0a2e] py-3 max-sm:py-1.5 px-5 max-sm:px-2.5 rounded-lg hover:scale-[1.02] transition-transform duration-300 shadow-lg font-semibold text-sm max-sm:text-xs shrink-0"
                     >
                       Hacer review
-                      <ArrowRight size={20} />
+                      <ArrowRight size={20} className="max-sm:hidden" />
                     </Link>
                   </div>
                 </div>
