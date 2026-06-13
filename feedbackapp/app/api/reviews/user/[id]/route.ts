@@ -18,6 +18,7 @@ export async function GET(
     const authError = validateAnyInternalApiKey(request, [
       process.env.FEEDBACK_API_KEY,
       process.env.DRIVER_INTERNAL_API_KEY,
+      process.env.ANALYTICS_API_KEY,
     ]);
     if (authError) return authError;
     // Esperamos a que los parámetros estén listos
