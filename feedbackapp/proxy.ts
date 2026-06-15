@@ -11,6 +11,8 @@ const isPublicRoute = createRouteMatcher([
   "/api/reports(.*)",              // API: otras apps consultan reportes 
   "/api/reviews(.*)",              // API: otras apps leen/agregan reviews  
   "/api/trabajos(.*)",             // API: otras apps consultan trabajos   
+  "/api/control-plane(.*)", 
+  "/api/analytics(.*)", 
 ]);
 
 const isAdminRoute = createRouteMatcher(['/admin(.*)']);
