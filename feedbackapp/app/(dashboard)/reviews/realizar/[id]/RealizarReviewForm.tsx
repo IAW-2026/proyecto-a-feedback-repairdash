@@ -1,8 +1,9 @@
 'use client';
 
-import { Star, Briefcase, Calendar, Send, AlertCircle, CheckCircle } from 'lucide-react';
+import { Star, Briefcase, Calendar, Send, AlertCircle, CheckCircle, ArrowLeft } from 'lucide-react';
 import type { Trabajo, UsuarioBase } from '@/types';
 import { useReviewForm } from '@/hooks/useReviewForm';
+import { useRouter } from 'next/navigation';
 
 const ratingLabels: Record<number, string> = {
   1: 'Muy malo',
@@ -17,6 +18,13 @@ import { getRolLabel } from '@/lib/roles'
 
 function getInitials(nombre: string, apellido: string): string {
   return `${nombre.charAt(0)}${apellido.charAt(0)}`.toUpperCase();
+}
+
+function sameDay(a: Date | string | null | undefined, b: Date | string | null | undefined): boolean {
+  if (!a || !b) return false
+  const da = typeof a === 'string' ? new Date(a) : a
+  const db = typeof b === 'string' ? new Date(b) : b
+  return da.toDateString() === db.toDateString()
 }
 
 interface RealizarReviewFormProps {
@@ -43,11 +51,19 @@ export default function RealizarReviewForm({
     onReviewChange,
     onSubmit,
   } = useReviewForm(reviewId);
+  const router = useRouter();
 
   if (enviado) {
     return (
-              <div className="min-h-screen bg-[#271033] py-[clamp(1.5rem,4vw,3rem)] px-[clamp(1rem,4vw,2rem)]">
-        <div className="flex items-center justify-center min-h-[60vh]">
+              <div className="bg-[#271033] px-[clamp(1rem,4vw,2rem)]">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-1 text-[#c392dd] hover:text-[#fbdaf9] transition-colors duration-200 mb-4"
+        >
+          <ArrowLeft size={18} />
+          <span className="text-sm">Volver</span>
+        </button>
+      <div className="flex items-center justify-center min-h-[60vh]">
           <div className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 p-8 max-w-xl w-full text-center">
             <div className="flex justify-center mb-6">
               <CheckCircle size={64} className="text-[#f500f1]" />
@@ -70,8 +86,15 @@ export default function RealizarReviewForm({
   );
 
   return (
-    <div className="min-h-screen bg-[#271033] py-[clamp(1.5rem,4vw,3rem)] px-[clamp(1rem,4vw,2rem)]">
-      <div className="mb-8">
+    <div className="bg-[#271033] px-[clamp(1rem,4vw,2rem)]">
+      <div className="mb-6">
+        <button
+          onClick={() => router.back()}
+          className="flex items-center gap-1 text-[#c392dd] hover:text-[#fbdaf9] transition-colors duration-200 mb-4"
+        >
+          <ArrowLeft size={18} />
+          <span className="text-sm">Volver</span>
+        </button>
         <div className="flex items-center gap-2 mb-3">
           <AlertCircle size={16} className="text-[#f500f1]" />
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c392dd]">
@@ -79,10 +102,10 @@ export default function RealizarReviewForm({
           </span>
         </div>
         <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
-          Antes de continuar...
+          Completá tu review
         </h1>
         <p className="text-[#c392dd]">
-          Tenés una review pendiente. Completala para seguir usando la app.
+          Valorá tu experiencia con este usuario
         </p>
       </div>
 
@@ -121,8 +144,10 @@ export default function RealizarReviewForm({
               <div className="flex items-center gap-3">
                 <Calendar size={18} className="text-[#c392dd] flex-shrink-0" />
                 <span className="text-sm text-[#fbdaf9]">
-                  {trabajo.fechaInicio ? formatDate(trabajo.fechaInicio) : 'Fecha no definida'} →{' '}
-                  {trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Fecha no definida'}
+                  {trabajo.fechaInicio && trabajo.fechaFin && sameDay(trabajo.fechaInicio, trabajo.fechaFin)
+                    ? formatDate(trabajo.fechaInicio)
+                    : `${trabajo.fechaInicio ? formatDate(trabajo.fechaInicio) : 'Fecha no definida'} → ${trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Fecha no definida'}`
+                  }
                 </span>
               </div>
             </div>
@@ -175,7 +200,7 @@ export default function RealizarReviewForm({
 
             <div>
               <label className="text-sm font-semibold text-[#fbdaf9] mb-2 block">
-                Tu opinión
+                Tu experiencia
               </label>
               <textarea
                 value={review}
@@ -193,37 +218,19 @@ export default function RealizarReviewForm({
                     <p className="text-red-400 text-xs">{errores.api}</p>
                   )}
                 </div>
-                <span
-                  className={`text-xs ${
-                    review.length > 1000
-                      ? 'text-red-400 font-semibold'
-                      : review.length > 0 && review.length < 20
-                      ? 'text-red-400'
-                      : 'text-[#c392dd]'
-                  }`}
-                >
-                  {review.length} / 1000
-                </span>
+                <span className="text-xs text-[#c392dd]">{review.length} / 1000</span>
               </div>
             </div>
 
-            <button
-              onClick={onSubmit}
-              disabled={
-                puntaje === null ||
-                review.length < 20 ||
-                review.length > 1000 ||
-                enviando
-              }
-              className={`w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
-                puntaje !== null &&
-                review.length >= 20 &&
-                review.length <= 1000 &&
-                !enviando
-                  ? 'bg-[#f500f1] text-[#1a0a2e] cursor-pointer hover:scale-[1.02]'
-                  : 'bg-[#f500f1] text-[#1a0a2e] opacity-50 cursor-not-allowed'
-              }`}
-            >
+              <button
+                onClick={onSubmit}
+                disabled={puntaje === null || enviando}
+                className={`w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
+                  puntaje !== null && !enviando
+                    ? 'bg-[#f500f1] text-[#1a0a2e] cursor-pointer hover:scale-[1.02]'
+                    : 'bg-[#f500f1] text-[#1a0a2e] opacity-50 cursor-not-allowed'
+                }`}
+              >
               {enviando ? (
                 <>
                   <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />

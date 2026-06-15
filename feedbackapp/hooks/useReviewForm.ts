@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { reviewFormSchema } from '@/lib/validation/reviewForm'
 
 const STORAGE_KEY = (id: string) => `review_draft_${id}`
 
@@ -68,20 +67,8 @@ export function useReviewForm(reviewId: string): UseReviewFormReturn {
   }
 
   const onSubmit = async () => {
-    const result = reviewFormSchema.safeParse({
-      reviewId,
-      valoracion: puntaje,
-      review,
-    })
-
-    if (!result.success) {
-      const fieldErrors: Record<string, string> = {}
-      result.error.issues.forEach((issue) => {
-        const field = issue.path[0] as string
-        if (field === 'valoracion') fieldErrors.puntaje = issue.message
-        if (field === 'review') fieldErrors.review = issue.message
-      })
-      setErrores({ ...fieldErrors })
+    if (puntaje === null) {
+      setErrores({ puntaje: 'Seleccioná una valoración' })
       return
     }
 
@@ -92,7 +79,7 @@ export function useReviewForm(reviewId: string): UseReviewFormReturn {
       const response = await fetch('/api/reviews/realizar', {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(result.data),
+        body: JSON.stringify({ reviewId, valoracion: puntaje, review }),
       })
 
       const data = await response.json()

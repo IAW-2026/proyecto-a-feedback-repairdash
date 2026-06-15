@@ -13,23 +13,15 @@ export default async function PerfilPage() {
   }
 
   // Realizar todas las consultas en paralelo
-  const [reportesEnContra, reportesPendientes] = await Promise.all([
+  const [reportesEnMiContraActivos, reportesIniciadosPorMi, reportesFallados] = await Promise.all([
     prisma.reporte.count({
-      where: {
-        OR: [
-          { idReportante: user.id, decision: 'EnContra' },
-          { idReportado: user.id, decision: 'AFavor' },
-        ],
-      },
+      where: { idReportado: user.id, resolucion: 'SinResolver' },
     }),
     prisma.reporte.count({
-      where: {
-        resolucion: 'SinResolver',
-        OR: [
-          { idReportante: user.id },
-          { idReportado: user.id },
-        ],
-      },
+      where: { idReportante: user.id, resolucion: 'SinResolver' },
+    }),
+    prisma.reporte.count({
+      where: { idReportado: user.id, decision: 'EnContra' },
     }),
   ]);
 
@@ -62,24 +54,19 @@ export default async function PerfilPage() {
               </p>
             </div>
 
-            <div className="bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/30">
-              <p className="text-[#c392dd] uppercase font-semibold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                Valoración promedio recibida
-              </p>
-              <div className="flex items-center justify-center">
-                {promedioCalificaciones === null ? (
-                  <div className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
-                    Sin calificaciones
-                  </div>
-                ) : (
-                  <div className="flex flex-wrap items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
-                    <StarRating valoracion={promedioCalificaciones} size={20} />
-                    <span className="font-gilroy font-bold text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
-                      {promedioCalificaciones} / 5
-                    </span>
-                  </div>
-                )}
-              </div>
+            <div className="flex items-center justify-center">
+              {promedioCalificaciones === null ? (
+                <div className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                  Sin calificaciones
+                </div>
+              ) : (
+                <div className="flex flex-wrap items-center gap-[clamp(0.5rem,1vw,0.75rem)]">
+                  <StarRating valoracion={promedioCalificaciones} size={28} />
+                  <span className="font-gilroy font-bold text-[#fbdaf9]" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)' }}>
+                    {promedioCalificaciones} / 5
+                  </span>
+                </div>
+              )}
             </div>
           </div>
 
@@ -94,21 +81,21 @@ export default async function PerfilPage() {
 
             <div className="space-y-[clamp(1rem,3vw,1.5rem)]">
               <div>
-                <label className="block text-[#c392dd] uppercase font-semibold mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                <p className="text-[#c392dd] uppercase font-semibold mb-[clamp(0.25rem,0.5vw,0.375rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                   Nombre Completo
-                </label>
-                <div className="bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                </p>
+                <p className="text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                   {user.nombre} {user.apellido}
-                </div>
+                </p>
               </div>
 
               <div>
-                <label className="block text-[#c392dd] uppercase font-semibold mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                <p className="text-[#c392dd] uppercase font-semibold mb-[clamp(0.25rem,0.5vw,0.375rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
                   Email
-                </label>
-                <div className="bg-[#271033] border border-[#8d62a5]/20 text-[#fbdaf9] rounded-lg px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.625rem,2vw,0.875rem)]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+                </p>
+                <p className="text-[#fbdaf9]" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
                   {user.mail}
-                </div>
+                </p>
               </div>
             </div>
           </div>
@@ -122,20 +109,27 @@ export default async function PerfilPage() {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,1.5rem)]">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-[clamp(1rem,3vw,1.5rem)]">
               <StatCard
-                icon={<AlertCircle size={20} className="text-red-400 flex-shrink-0" />}
-                title="Fallados en tu contra"
-                value={reportesEnContra}
-                description="reportes resueltos desfavorablemente"
-                variant="danger"
+                icon={<Clock size={20} className="text-[#c392dd] flex-shrink-0" />}
+                title="En mi contra activos"
+                value={reportesEnMiContraActivos}
+                description="reportes activos donde fuiste denunciado"
+                variant="info"
               />
               <StatCard
                 icon={<Clock size={20} className="text-[#c392dd] flex-shrink-0" />}
-                title="Reportes pendientes"
-                value={reportesPendientes}
-                description="en evaluación o realizados por ti"
+                title="Iniciados por mí"
+                value={reportesIniciadosPorMi}
+                description="reportes que abriste y están en evaluación"
                 variant="info"
+              />
+              <StatCard
+                icon={<AlertCircle size={20} className="flex-shrink-0" />}
+                title="Fallados en mi contra"
+                value={reportesFallados}
+                description="reportes resueltos desfavorablemente"
+                variant={reportesFallados > 0 ? 'danger' : 'info'}
               />
             </div>
           </div>
