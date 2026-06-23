@@ -13,17 +13,47 @@ export async function GET(request: Request) {
   if (authError) return authError;
 
   const { searchParams } = new URL(request.url);
+  const from = searchParams.get("from");
+  const to = searchParams.get("to");
   const month = searchParams.get("month");
 
-  if (!month || !validarMonthParam(month)) {
-    return NextResponse.json(
-      { message: "El parámetro 'month' es requerido y debe tener formato YYYY-MM" },
-      { status: 400 }
-    );
+  let dateFilter: { gte: Date; lte: Date };
+  let period: string | { from: string; to: string };
+
+  if (from && to) {
+    const fromDate = new Date(from);
+    const toDate = new Date(to);
+    if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
+      return NextResponse.json(
+        { message: "Los parámetros 'from' y 'to' deben ser fechas válidas (ISO 8601)" },
+        { status: 400 }
+      );
+    }
+    dateFilter = { gte: fromDate, lte: toDate };
+    period = { from, to };
+  } else if (month) {
+    if (!validarMonthParam(month)) {
+      return NextResponse.json(
+        { message: "El parámetro 'month' debe tener formato YYYY-MM" },
+        { status: 400 }
+      );
+    }
+    const [year, monthNum] = month.split("-").map(Number);
+    dateFilter = {
+      gte: new Date(year, monthNum - 1, 1),
+      lte: new Date(year, monthNum, 0, 23, 59, 59, 999),
+    };
+    period = month;
+  } else {
+    const now = new Date();
+    const year = now.getFullYear();
+    const monthNum = now.getMonth() + 1;
+    dateFilter = {
+      gte: new Date(year, monthNum - 1, 1),
+      lte: new Date(year, monthNum, 0, 23, 59, 59, 999),
+    };
+    period = `${year}-${String(monthNum).padStart(2, "0")}`;
   }
- const [year, monthNum] = month.split("-").map(Number);
-  const startOfMonth = new Date(year, monthNum - 1, 1);
-  const endOfMonth = new Date(year, monthNum, 0, 23, 59, 59, 999);
 
   try {
     const [
@@ -38,14 +68,14 @@ export async function GET(request: Request) {
           estaCompleta: true,
           valoracion: { gte: 1, lte: 5 },
           trabajo: {
-            fechaFin: { gte: startOfMonth, lte: endOfMonth },
+            fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte },
           },
         },
       }),
       prisma.reporte.count({
         where: {
           trabajo: {
-            fechaFin: { gte: startOfMonth, lte: endOfMonth },
+            fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte },
           },
         },
       }),
@@ -53,7 +83,7 @@ export async function GET(request: Request) {
         where: {
           decision: "EnContra",
           trabajo: {
-            fechaFin: { gte: startOfMonth, lte: endOfMonth },
+            fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte },
           },
           reportado: {
             rol: "rider",
@@ -64,7 +94,7 @@ export async function GET(request: Request) {
         where: {
           decision: "EnContra",
           trabajo: {
-            fechaFin: { gte: startOfMonth, lte: endOfMonth },
+            fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte },
           },
           reportado: {
             rol: "driver",
@@ -73,7 +103,7 @@ export async function GET(request: Request) {
       }),
       prisma.trabajo.count({
         where: {
-          fechaFin: { gte: startOfMonth, lte: endOfMonth },
+          fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte },
         },
       }),
     ]);
@@ -86,7 +116,7 @@ export async function GET(request: Request) {
     return NextResponse.json(
       {
         source: "feedback",
-        period: month,
+        period,
         generatedAt: new Date().toISOString(),
         reviewsDelMes,
         reportesDelMes,
