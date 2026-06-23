@@ -45,6 +45,8 @@ export async function GET(request: Request) {
           trabajo: {
             select: { fechaFin: true },
           },
+          reportante: true,
+          reportado: true,
         },
         skip: (page - 1) * limit,
         take: limit,
@@ -60,6 +62,18 @@ export async function GET(request: Request) {
       idTrabajo: r.idTrabajo,
       idReportante: r.idReportante,
       idReportado: r.idReportado,
+      reportante: {
+        id: r.reportante.id,
+        nombre: r.reportante.nombre,
+        apellido: r.reportante.apellido,
+        rol: r.reportante.rol,
+      },
+      reportado: {
+        id: r.reportado.id,
+        nombre: r.reportado.nombre,
+        apellido: r.reportado.apellido,
+        rol: r.reportado.rol,
+      },
       descripcion: r.descripcion,
       estado: r.estado,
       resolucion: r.resolucion,
