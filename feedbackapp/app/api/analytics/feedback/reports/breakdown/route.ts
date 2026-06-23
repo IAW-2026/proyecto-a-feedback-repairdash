@@ -13,18 +13,47 @@ export async function GET(request: Request) {
   if (authError) return authError;
 
   const { searchParams } = new URL(request.url);
+  const from = searchParams.get("from");
+  const to = searchParams.get("to");
   const month = searchParams.get("month");
 
-  if (!month || !validarMonthParam(month)) {
-    return NextResponse.json(
-      { message: "El parámetro 'month' es requerido y debe tener formato YYYY-MM" },
-      { status: 400 }
-    );
-  }
+  let dateFilter: { gte: Date; lte: Date };
+  let period: string | { from: string; to: string };
 
-  const [year, monthNum] = month.split("-").map(Number);
-  const startOfMonth = new Date(year, monthNum - 1, 1);
-  const endOfMonth = new Date(year, monthNum, 0, 23, 59, 59, 999);
+  if (from && to) {
+    const fromDate = new Date(from);
+    const toDate = new Date(to);
+    if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
+      return NextResponse.json(
+        { message: "Los parámetros 'from' y 'to' deben ser fechas válidas (ISO 8601)" },
+        { status: 400 }
+      );
+    }
+    dateFilter = { gte: fromDate, lte: toDate };
+    period = { from, to };
+  } else if (month) {
+    if (!validarMonthParam(month)) {
+      return NextResponse.json(
+        { message: "El parámetro 'month' debe tener formato YYYY-MM" },
+        { status: 400 }
+      );
+    }
+    const [year, monthNum] = month.split("-").map(Number);
+    dateFilter = {
+      gte: new Date(year, monthNum - 1, 1),
+      lte: new Date(year, monthNum, 0, 23, 59, 59, 999),
+    };
+    period = month;
+  } else {
+    const now = new Date();
+    const year = now.getFullYear();
+    const monthNum = now.getMonth() + 1;
+    dateFilter = {
+      gte: new Date(year, monthNum - 1, 1),
+      lte: new Date(year, monthNum, 0, 23, 59, 59, 999),
+    };
+    period = `${year}-${String(monthNum).padStart(2, "0")}`;
+  }
   try {
     //a favor del retortante o encontra del mismo
     const [porEstadoRaw, aFavor, enContra, sinDecision, total] = await Promise.all([
@@ -32,7 +61,7 @@ export async function GET(request: Request) {
         by: ["estado"],
         where: {
           trabajo: {
-            fechaFin: { gte: startOfMonth, lte: endOfMonth },
+            fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte },
           },
         },
         _count: { estado: true },
@@ -40,24 +69,24 @@ export async function GET(request: Request) {
       prisma.reporte.count({
         where: {
           decision: "AFavor",
-          trabajo: { fechaFin: { gte: startOfMonth, lte: endOfMonth } },
+          trabajo: { fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte } },
         },
       }),
       prisma.reporte.count({
         where: {
           decision: "EnContra",
-          trabajo: { fechaFin: { gte: startOfMonth, lte: endOfMonth } },
+          trabajo: { fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte } },
         },
       }),
       prisma.reporte.count({
         where: {
           decision: null,
-          trabajo: { fechaFin: { gte: startOfMonth, lte: endOfMonth } },
+          trabajo: { fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte } },
         },
       }),
       prisma.reporte.count({
         where: {
-          trabajo: { fechaFin: { gte: startOfMonth, lte: endOfMonth } },
+          trabajo: { fechaFin: { gte: dateFilter.gte, lte: dateFilter.lte } },
         },
       }),
     ]);
@@ -77,7 +106,7 @@ export async function GET(request: Request) {
     return NextResponse.json(
       {
         source: "feedback",
-        period: month,
+        period,
         generatedAt: new Date().toISOString(),
         porEstado,
         porDecision: {
