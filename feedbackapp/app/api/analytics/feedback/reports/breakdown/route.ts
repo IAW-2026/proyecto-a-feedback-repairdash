@@ -29,7 +29,9 @@ export async function GET(request: Request) {
         { status: 400 }
       );
     }
-    dateFilter = { gte: fromDate, lte: toDate };
+    const toDateEnd = new Date(to);
+    toDateEnd.setHours(23, 59, 59, 999);
+    dateFilter = { gte: fromDate, lte: toDateEnd };
     period = { from, to };
   } else if (month) {
     if (!validarMonthParam(month)) {
