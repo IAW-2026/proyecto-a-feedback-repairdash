@@ -36,7 +36,7 @@ export default function AdminUsersClient({
     <div className="w-full">
       <div className="mb-8">
         <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-2 text-sm">
-          AdministraciÃ³n
+          Administración
         </p>
         <h1 className="text-4xl font-bold text-brand-text-light mb-3">
           Usuarios del sistema

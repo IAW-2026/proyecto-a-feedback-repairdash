@@ -30,7 +30,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
 
   return (
     <div className="w-full">
-      {/* BotÃ³n Volver */}
+      {/* Botón Volver */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <Link
           href="/reviews"
@@ -54,7 +54,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
           className="font-gilroy font-bold text-brand-text-light"
           style={{ fontSize: "clamp(1.75rem, 6vw, 2.25rem)" }}
         >
-          OpiniÃ³n
+          Opinión
         </h1>
       </div>
 
@@ -78,7 +78,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* ValoraciÃ³n */}
+        {/* Valoración */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           {review.valoracion !== null && (
             <>

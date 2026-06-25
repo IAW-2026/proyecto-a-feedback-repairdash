@@ -34,7 +34,7 @@ export default async function HomePage() {
             className="font-gilroy font-bold text-brand-text-light"
             style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}
           >
-            Panel de administraciÃ³n
+            Panel de administración
           </h1>
           <p className="text-brand-accent-mid mt-1" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
             Bienvenido a Feedback
@@ -43,7 +43,7 @@ export default async function HomePage() {
 
         {/* First row: 2 metric cards */}
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,2rem)] mb-[clamp(1rem,3vw,2rem)]">
-          {/* Card: Requieren resoluciÃ³n */}
+          {/* Card: Requieren resolución */}
           <Link
             href="/admin/reportes?estado=PRUEBAS_AGREGADAS"
             className="bg-brand-card rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block"
@@ -53,7 +53,7 @@ export default async function HomePage() {
                 className="text-brand-accent-mid font-semibold uppercase tracking-wider"
                 style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
               >
-                Requieren resoluciÃ³n
+                Requieren resolución
               </p>
               <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
                 <AlertTriangle size={20} className="text-brand-accent-strong" />
@@ -104,14 +104,14 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        {/* Second row: Acciones rÃ¡pidas */}
+        {/* Second row: Acciones rápidas */}
         <div className="bg-brand-card rounded-xl border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block">
           <div className="flex justify-between items-start p-[clamp(1rem,3vw,1.5rem)] pb-0">
             <p
               className="text-brand-accent-mid font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
-              Acciones rÃ¡pidas
+              Acciones rápidas
             </p>
             <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
               <Shield size={20} className="text-brand-accent-strong" />
@@ -122,13 +122,13 @@ export default async function HomePage() {
               href="/admin/reportes?estado=PRUEBAS_AGREGADAS"
               className="flex-1 px-4 py-3 bg-brand-accent-strong/10 border border-brand-accent-strong/30 rounded-lg text-center font-semibold text-brand-text-light hover:bg-brand-accent-strong/20 hover:border-brand-accent-strong/60 transition-all duration-200"
             >
-              Ver reportes pendientes â†’
+              Ver reportes pendientes →
             </Link>
             <Link
               href="/admin/reportes"
               className="flex-1 px-4 py-3 bg-brand-card border border-brand-accent-soft/30 rounded-lg text-center font-semibold text-brand-accent-mid hover:text-brand-text-light hover:border-brand-accent-strong/60 hover:bg-brand-card-hover transition-all duration-200"
             >
-              Ver todos los reportes â†’
+              Ver todos los reportes →
             </Link>
           </div>
         </div>
@@ -171,7 +171,7 @@ export default async function HomePage() {
 
       {/* First row: 2 cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-[clamp(1rem,3vw,2rem)] mb-[clamp(1rem,3vw,2rem)]">
-        {/* Card: ValoraciÃ³n promedio */}
+        {/* Card: Valoración promedio */}
         <Link
           href="/reviews"
           className="bg-brand-card rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block"
@@ -181,7 +181,7 @@ export default async function HomePage() {
               className="text-brand-accent-mid font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
-              ValoraciÃ³n promedio
+              Valoración promedio
             </p>
             <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
               <Star size={20} className="text-brand-accent-strong" />
@@ -206,7 +206,7 @@ export default async function HomePage() {
             className="text-brand-accent-mid mt-1 text-center"
             style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
           >
-            Promedio de tus reseÃ±as.
+            Promedio de reviews recibidas.
           </p>
         </Link>
 
@@ -236,7 +236,7 @@ export default async function HomePage() {
             className="text-brand-accent-mid mt-1 text-center"
             style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
           >
-            Reviews que tenÃ©s pendientes de completar.
+            Reviews que tenes pendientes de completar.
           </p>
         </Link>
       </div>
@@ -251,7 +251,7 @@ export default async function HomePage() {
             className="text-brand-accent-mid font-semibold uppercase tracking-wider"
             style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
           >
-            Reportes en evaluaciÃ³n
+            Reportes en evaluación en los que estas involucrado
           </p>
           <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
             <Bell size={20} className="text-brand-accent-strong" />
@@ -269,7 +269,7 @@ export default async function HomePage() {
               className="text-brand-accent-mid mt-1 text-center"
               style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}
             >
-              Reportes activos donde fuiste denunciado
+              Reportes que abrieron en tu contra
             </p>
           </div>
           <div className="hidden sm:block w-px bg-brand-accent-soft/20 mx-4 self-stretch" />
@@ -285,7 +285,7 @@ export default async function HomePage() {
               className="text-brand-accent-mid mt-1 text-center"
               style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}
             >
-              Reportes que abriste y estÃ¡n en evaluaciÃ³n
+              Reportes que abriste
             </p>
           </div>
         </div>

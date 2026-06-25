@@ -12,7 +12,7 @@ export default function LoginPage() {
           <h1 className="text-4xl font-bold text-brand-text-light mb-3">
             RepairDash
           </h1>
-          <p className="text-brand-accent-mid">IniciÃ¡ sesiÃ³n en tu cuenta</p>
+          <p className="text-brand-accent-mid">Iniciá sesión en tu cuenta</p>
         </div>
 
         {/* Card de Clerk con alto contraste */}

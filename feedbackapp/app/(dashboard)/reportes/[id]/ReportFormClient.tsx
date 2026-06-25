@@ -37,9 +37,9 @@ export default function ReportFormClient({
       <div className="min-h-screen bg-brand-bg flex flex-col items-center justify-center px-[clamp(1rem,4vw,2rem)] py-[clamp(1rem,4vw,2rem)]">
         <div className="w-full max-w-[600px] text-center">
           <CheckCircle className="text-green-500 mx-auto mb-4" size={64} />
-          <h2 className="text-3xl font-bold text-brand-text-light mb-2">Ã‚Â¡Reporte enviado!</h2>
+          <h2 className="text-3xl font-bold text-brand-text-light mb-2">¡Reporte enviado!</h2>
           <p className="text-brand-accent-mid mb-6">
-            Tu reporte ha sido registrado correctamente. SerÃƒÂ¡s redirigido...
+            Tu reporte ha sido registrado correctamente. Serás redirigido...
           </p>
         </div>
       </div>
@@ -51,11 +51,11 @@ export default function ReportFormClient({
       <div className="w-full max-w-[700px] mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-brand-text-light mb-2">Resolver Reporte</h1>
-          <p className="text-brand-accent-mid">ProporcionÃƒÂ¡ detalles sobre el incidente y adjuntÃƒÂ¡ evidencias</p>
+          <p className="text-brand-accent-mid">Proporcioná detalles sobre el incidente y adjuntá evidencias</p>
         </div>
 
         <div className="bg-brand-card rounded-xl p-6 border border-brand-accent-soft/20 mb-6 text-brand-text-light">
-          <h2 className="text-lg font-semibold mb-4">InformaciÃƒÂ³n del Reporte</h2>
+          <h2 className="text-lg font-semibold mb-4">Información del Reporte</h2>
           <div className="space-y-3 text-sm">
             <p>
               <span className="text-brand-accent-mid">Usuario reportado:</span> {reportado?.nombre}{' '}
@@ -73,10 +73,10 @@ export default function ReportFormClient({
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
             <label className="block text-brand-text-light font-semibold mb-2">
-              DescripciÃƒÂ³n del Incidente *
+              Descripción del Incidente *
             </label>
             <p className="text-xs text-brand-accent-mid mb-3">
-              CuÃƒÂ©ntanos quÃƒÂ© sucediÃƒÂ³. MÃƒÂ­nimo 20 caracteres.
+              Cuéntanos qué sucedió. Mínimo 20 caracteres.
             </p>
             <textarea
               value={formData.descripcion}
@@ -96,7 +96,7 @@ export default function ReportFormClient({
               Pruebas / Evidencias *
             </label>
             <p className="text-xs text-brand-accent-mid mb-3">
-              ArrastrÃƒÂ¡ archivos o hacÃƒÂ© clic para seleccionar. MÃƒÂ­nimo 1 prueba requerida.
+              Arrastrá archivos o hacé clic para seleccionar. Mínimo 1 prueba requerida.
             </p>
 
             <div className="mb-4">
@@ -132,10 +132,10 @@ export default function ReportFormClient({
                     <div className="flex flex-col items-center gap-2">
                       <Upload size={24} className="text-brand-accent-mid" />
                       <span className="text-brand-accent-mid text-sm">
-                        ArrastrÃƒÂ¡ archivos o hacÃƒÂ© clic
+                        Arrastrá archivos o hacé clic
                       </span>
                       <span className="text-brand-accent-mid text-xs">
-                        ImÃƒÂ¡genes o videos
+                        Imágenes o videos
                       </span>
                     </div>
                   )}
@@ -167,7 +167,7 @@ export default function ReportFormClient({
                             controls
                             className="w-full max-h-48 rounded-lg mb-2"
                           >
-                            Tu navegador no soporta la reproducciÃƒÂ³n de video.
+                            Tu navegador no soporta la reproducción de video.
                           </video>
                         ) : null}
                         <p className="text-xs text-brand-accent-mid uppercase">{prueba.tipo}</p>

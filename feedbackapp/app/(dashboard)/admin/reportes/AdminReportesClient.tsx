@@ -78,13 +78,13 @@ export default function AdminReportesClient({
         <div className="flex items-start justify-between mb-6">
           <div>
             <div className="text-xs uppercase tracking-widest text-brand-accent-mid mb-2 font-semibold">
-              PANEL DE ADMINISTRACIÃ“N
+              PANEL DE ADMINISTRACIÓN
             </div>
             <h1 className="text-4xl font-bold text-white mb-3">
-              GestiÃ³n de Conflictos
+              Gestión de Conflictos
             </h1>
             <p className="text-brand-accent-mid">
-              RevisÃ¡ y resolvÃ© los {totalPendientes} reporte{totalPendientes !== 1 ? 's' : ''} pendiente{totalPendientes !== 1 ? 's' : ''}
+              Revisá y resolvé los {totalPendientes} reporte{totalPendientes !== 1 ? 's' : ''} pendiente{totalPendientes !== 1 ? 's' : ''}
             </p>
           </div>
 
@@ -99,7 +99,7 @@ export default function AdminReportesClient({
         </div>
       </div>
 
-      {/* ========== BARRA DE BÃšSQUEDA + FILTRO ========== */}
+      {/* ========== BARRA DE BÚSQUEDA + FILTRO ========== */}
       <div className="flex flex-col sm:flex-row gap-3 mb-8">
         <div className="flex-1">
           <SearchInput
@@ -120,7 +120,7 @@ export default function AdminReportesClient({
         />
       </div>
 
-      {/* ========== ESTADO VACÃO ========== */}
+      {/* ========== ESTADO VACÍO ========== */}
       {hasNoReportes ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <div className="bg-brand-card/50 p-6 rounded-lg mb-4">
@@ -131,7 +131,7 @@ export default function AdminReportesClient({
           </h3>
           <p className="text-brand-accent-soft text-sm">
             {hasSearch
-              ? 'Intenta con otros criterios de bÃºsqueda'
+              ? 'Intenta con otros criterios de búsqueda'
               : 'Prueba seleccionando otro filtro de estado'}
           </p>
         </div>
@@ -157,7 +157,7 @@ export default function AdminReportesClient({
                         <User size={18} className="text-brand-accent-strong" />
                         <span className="text-sm text-brand-accent-mid">
                           <span className="font-semibold text-white">{reportanteNombre}</span>
-                          <span className="text-brand-accent-mid"> reportÃ³ a </span>
+                          <span className="text-brand-accent-mid"> reportó a </span>
                           <span className="font-semibold text-white">{reportadoNombre}</span>
                         </span>
                       </div>
@@ -179,7 +179,7 @@ export default function AdminReportesClient({
                       </div>
                     </div>
 
-                    {/* Badges de estado y decisiÃ³n */}
+                    {/* Badges de estado y decisión */}
                     <div className="flex flex-col gap-2 items-end">
                       <EstadoBadge estado={reporte.resolucion as 'SinResolver' | 'Resuelto'} />
                       {reporte.decision && (
@@ -188,10 +188,10 @@ export default function AdminReportesClient({
                     </div>
                   </div>
 
-                  {/* LÃ­nea divisoria */}
+                  {/* Línea divisoria */}
                   <div className="h-px bg-gradient-to-r from-brand-accent-soft/20 to-transparent mb-4" />
 
-                  {/* CTA: BotÃ³n para ver detalles */}
+                  {/* CTA: Botón para ver detalles */}
                   <div className="flex justify-end">
                     <span className="px-4 py-2 bg-brand-accent-strong/20 text-brand-text-light rounded-lg text-sm font-medium">
                       Ver detalles

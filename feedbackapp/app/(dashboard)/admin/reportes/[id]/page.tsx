@@ -93,7 +93,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
               <div className="flex items-center gap-3 text-brand-accent-mid">
                 <Calendar size={20} className="text-brand-accent-mid flex-shrink-0" />
                 <span>
-                  {reporte.trabajo.fechaInicio.toLocaleDateString('es-ES')} Ã¢â‚¬â€{' '}
+                  {reporte.trabajo.fechaInicio.toLocaleDateString('es-ES')} —{' '}
                   {reporte.trabajo.fechaFin?.toLocaleDateString('es-ES') ?? 'Sin fecha fin'}
                 </span>
               </div>
@@ -128,16 +128,16 @@ export default async function AdminReporteDetallePage({ params }: Props) {
             </div>
           </div>
 
-          {/* DescripciÃƒÂ³n */}
+          {/* Descripción */}
           <div className="bg-brand-card rounded-xl p-6 border border-brand-accent-soft/20">
             <div className="flex items-center gap-3 mb-4">
               <FileText size={20} className="text-brand-accent-mid flex-shrink-0" />
               <p className="text-brand-accent-mid font-semibold uppercase tracking-wider text-sm">
-                DescripciÃƒÂ³n
+                Descripción
               </p>
             </div>
             <p className="text-brand-text-light leading-relaxed whitespace-pre-wrap">
-              {reporte.descripcion ?? 'Sin descripciÃƒÂ³n'}
+              {reporte.descripcion ?? 'Sin descripción'}
             </p>
           </div>
 
@@ -156,7 +156,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
               <div className="space-y-6">
                 {imagenes.length > 0 && (
                   <div>
-                    <h3 className="text-brand-text-light font-bold mb-3">ImÃƒÂ¡genes</h3>
+                    <h3 className="text-brand-text-light font-bold mb-3">Imágenes</h3>
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                       {imagenes.map((img) => (
                         <div
@@ -188,7 +188,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                             controls
                             className="w-full h-full max-h-[300px]"
                           >
-                            Tu navegador no soporta la reproducciÃƒÂ³n de video.
+                            Tu navegador no soporta la reproducción de video.
                           </video>
                         </div>
                       ))}

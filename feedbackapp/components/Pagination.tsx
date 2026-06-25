@@ -24,11 +24,11 @@ export default function Pagination({
             : 'bg-brand-card text-brand-text-light hover:border-brand-accent-strong hover:text-brand-accent-strong'
         }`}
       >
-        â† Anterior
+        Anterior
       </button>
 
       <span className="text-brand-accent-mid text-sm">
-        PÃ¡gina {page} de {totalPaginas}
+        Página {page} de {totalPaginas}
       </span>
 
       <button
@@ -40,7 +40,7 @@ export default function Pagination({
             : 'bg-brand-card text-brand-text-light hover:border-brand-accent-strong hover:text-brand-accent-strong'
         }`}
       >
-        Siguiente â†’
+        Siguiente
       </button>
     </div>
   )

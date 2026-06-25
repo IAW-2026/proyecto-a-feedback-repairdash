@@ -36,7 +36,7 @@ export default function BuscarClient({
         </div>
         <h1 className="text-4xl font-bold text-white mb-3">Buscar usuarios</h1>
         <p className="text-brand-accent-mid">
-          BuscÃ¡ por nombre de usuario registrado en la plataforma
+          Buscá por nombre de usuario registrado en la plataforma
         </p>
       </div>
 
@@ -51,7 +51,7 @@ export default function BuscarClient({
       {hasNoUsers ? (
         <EmptyState
           icon={hasSearch ? Search : AlertTriangle}
-          title={hasSearch ? 'No se encontraron usuarios para tu bÃºsqueda' : 'Ingresa un nombre para buscar usuarios'}
+          title={hasSearch ? 'No se encontraron usuarios para tu búsqueda' : 'Ingresa un nombre para buscar usuarios'}
         />
       ) : (
         <>

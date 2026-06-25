@@ -19,7 +19,7 @@ function VerdictoBadge({ resolucion, decision, soyReportante }: { resolucion: st
     return (
       <span className="inline-flex items-center gap-2 bg-brand-accent-soft/20 text-brand-accent-mid font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
         <Clock size={14} />
-        En evaluaciÃƒÂ³n
+        En evaluación
       </span>
     );
   }
@@ -67,7 +67,7 @@ function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: stri
               Pendiente de veredicto
             </p>
             <p className="text-brand-accent-mid mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-              El administrador aÃƒÂºn no ha revisado este reporte
+              El administrador todavía no ha revisado este reporte
             </p>
             <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
@@ -79,7 +79,7 @@ function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: stri
             <p className="font-gilroy font-bold text-brand-text-light mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               Reporte aprobado
             </p>
-            <p className="text-brand-accent-mid mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador fallÃƒÂ³ {soyReportante ? 'a' : 'en'}{' '}tu favor</p>
+            <p className="text-brand-accent-mid mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador falló {soyReportante ? 'a' : 'en'}{' '}tu favor</p>
             <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
         )}
@@ -90,7 +90,7 @@ function VerdictCard({ resolucion, decision, soyReportante }: { resolucion: stri
             <p className="font-gilroy font-bold text-brand-text-light mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
               Reporte rechazado
             </p>
-            <p className="text-brand-accent-mid mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador fallÃƒÂ³ en tu contra</p>
+            <p className="text-brand-accent-mid mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>El administrador falló en tu contra</p>
             <VerdictoBadge resolucion={resolucion} decision={decision} soyReportante={soyReportante} />
           </>
         )}
@@ -169,7 +169,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-[clamp(1rem,3vw,2rem)]">
         {/* Columna principal (2/3) */}
         <div className="lg:col-span-2 space-y-[clamp(1.5rem,4vw,2rem)]">
-          {/* Card 1: InformaciÃƒÂ³n del trabajo */}
+          {/* Card 1: Información del trabajo */}
           <div className="bg-brand-card rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Trabajo Relacionado
@@ -183,7 +183,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] text-brand-accent-mid" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
                 <Calendar size={20} className="text-brand-accent-soft flex-shrink-0" />
                 <span>
-                  {mismasFechas ? fechaInicio : `${fechaInicio} Ã¢â‚¬â€ ${fechaFin}`}
+                  {mismasFechas ? fechaInicio : `${fechaInicio} — ${fechaFin}`}
                 </span>
               </div>
             </div>
@@ -218,17 +218,17 @@ export default async function ReporteDetailPage({ params }: PageProps) {
             </div>
           </div>
 
-          {/* Card 2: DescripciÃƒÂ³n del incidente */}
+          {/* Card 2: Descripción del incidente */}
           <div className="bg-brand-card rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <FileText size={20} className="text-brand-accent-mid flex-shrink-0" />
               <p className="text-brand-accent-mid font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                DescripciÃƒÂ³n
+                Descripción
               </p>
             </div>
 
             <p className="text-brand-text-light leading-relaxed whitespace-pre-wrap" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-              {reporte.descripcion ?? 'Sin descripciÃƒÂ³n'}
+              {reporte.descripcion ?? 'Sin descripción'}
             </p>
           </div>
 
@@ -245,10 +245,10 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               <p className="text-brand-accent-mid text-center py-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>Sin pruebas adjuntas</p>
             ) : (
               <div className="space-y-[clamp(1rem,3vw,2rem)]">
-                {/* ImÃƒÂ¡genes */}
+                {/* Imágenes */}
                 {imagenesProof.length > 0 && (
                   <div>
-                    <h3 className="text-brand-text-light font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>ImÃƒÂ¡genes</h3>
+                    <h3 className="text-brand-text-light font-gilroy font-bold mb-[clamp(0.75rem,2vw,1rem)]" style={{ fontSize: 'clamp(1rem, 3vw, 1.25rem)' }}>Imagenes</h3>
                     <div className="flex flex-wrap justify-center gap-[clamp(0.75rem,2vw,1rem)]">
                       {imagenesProof.map((imagen) => (
                         <div
@@ -281,7 +281,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                             controls
                             className="w-full h-full max-h-[300px]"
                           >
-                            Tu navegador no soporta la reproducciÃƒÂ³n de video.
+                            Tu navegador no soporta la reproducción de video.
                           </video>
                         </div>
                       ))}

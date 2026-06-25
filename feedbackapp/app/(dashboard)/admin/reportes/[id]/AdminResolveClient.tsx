@@ -31,7 +31,7 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
             Pendiente de pruebas
           </h3>
           <p className="text-brand-accent-mid text-sm">
-            El usuario aÃƒÂºn no ha cargado las pruebas. No se puede resolver hasta que se agreguen.
+            El usuario aún no ha cargado las pruebas. No se puede resolver hasta que se agreguen.
           </p>
         </div>
       </div>
@@ -52,7 +52,7 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
                 Reporte aprobado
               </h3>
               <p className="text-brand-accent-mid mb-4">
-                El administrador fallÃƒÂ³ a favor del reportante
+                El administrador falló a favor del reportante
               </p>
               <DecisionBadge favorable={true} />
             </>
@@ -63,7 +63,7 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
                 Reporte rechazado
               </h3>
               <p className="text-brand-accent-mid mb-4">
-                El administrador fallÃƒÂ³ en contra del reportante
+                El administrador falló en contra del reportante
               </p>
               <DecisionBadge favorable={false} />
             </>
@@ -90,7 +90,7 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
         <div className="text-center">
           <CheckCircle size={56} className="mx-auto mb-4 text-green-500" />
           <h3 className="font-bold text-brand-text-light mb-2 text-xl">
-            Ã‚Â¡Reporte resuelto!
+            ¡Reporte resuelto!
           </h3>
           <p className="text-brand-accent-mid mb-4">
             {decision === 'AFavor'
@@ -109,10 +109,10 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
           <div className="text-center mb-6">
             <Clock size={48} className="mx-auto mb-3 text-brand-accent-mid" />
             <h3 className="font-bold text-brand-text-light mb-2 text-lg">
-              Pendiente de resoluciÃƒÂ³n
+              Pendiente de resolución
             </h3>
             <p className="text-brand-accent-mid text-sm">
-              RevisÃƒÂ¡ las pruebas y tomÃƒÂ¡ una decisiÃƒÂ³n
+              Revisá las pruebas y tomá una decisión
             </p>
           </div>
 

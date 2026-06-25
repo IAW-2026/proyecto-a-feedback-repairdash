@@ -69,7 +69,7 @@ export default function RealizarReviewForm({
               <CheckCircle size={64} className="text-brand-accent-strong" />
             </div>
             <h2 className="text-2xl font-bold text-brand-text-light mb-4">
-              Ã‚Â¡Review completada!
+              ¡Review completada!
             </h2>
             <p className="text-brand-accent-mid">
               Gracias por tu feedback. Redirigiendo...
@@ -102,10 +102,10 @@ export default function RealizarReviewForm({
           </span>
         </div>
         <h1 className="text-4xl font-bold text-brand-text-light mb-3">
-          CompletÃƒÂ¡ tu review
+          Completá tu review
         </h1>
         <p className="text-brand-accent-mid">
-          ValorÃƒÂ¡ tu experiencia con este usuario
+          Valorá tu experiencia con este usuario
         </p>
       </div>
 
@@ -113,7 +113,7 @@ export default function RealizarReviewForm({
         <div className="bg-brand-card rounded-xl border border-brand-accent-soft/20 p-6">
           <div className="mb-6">
             <label className="text-xs uppercase tracking-widest font-semibold text-brand-accent-mid mb-4 block">
-              EstÃƒÂ¡s evaluando a
+              Estás evaluando a
             </label>
             <div className="flex flex-col items-center gap-4">
               <div className="w-16 h-16 rounded-full bg-brand-accent-soft flex items-center justify-center">
@@ -146,7 +146,7 @@ export default function RealizarReviewForm({
                 <span className="text-sm text-brand-text-light">
                   {trabajo.fechaInicio && trabajo.fechaFin && sameDay(trabajo.fechaInicio, trabajo.fechaFin)
                     ? formatDate(trabajo.fechaInicio)
-                    : `${trabajo.fechaInicio ? formatDate(trabajo.fechaInicio) : 'Fecha no definida'} Ã¢â€ â€™ ${trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Fecha no definida'}`
+                    : `${trabajo.fechaInicio ? formatDate(trabajo.fechaInicio) : 'Fecha no definida'} — ${trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Fecha no definida'}`
                   }
                 </span>
               </div>
@@ -158,7 +158,7 @@ export default function RealizarReviewForm({
           <div className="space-y-6">
             <div>
               <label className="text-sm font-semibold text-brand-text-light mb-3 block">
-                ValoraciÃƒÂ³n
+                Valoración
               </label>
               <div className="flex gap-3 mb-3 justify-center">
                 {[1, 2, 3, 4, 5].map((star) => {
@@ -190,7 +190,7 @@ export default function RealizarReviewForm({
                 {puntaje !== null ? (
                   <span className="text-brand-accent-mid">{ratingLabels[puntaje]}</span>
                 ) : (
-                  <span className="text-brand-accent-mid">SeleccionÃƒÂ¡ una valoraciÃƒÂ³n</span>
+                  <span className="text-brand-accent-mid">Seleccioná una valoración</span>
                 )}
               </p>
               {errores.puntaje && (
@@ -205,7 +205,7 @@ export default function RealizarReviewForm({
               <textarea
                 value={review}
                 onChange={onReviewChange}
-                placeholder="ContÃƒÂ¡ tu experiencia con este usuario..."
+                placeholder="Contá tu experiencia con este usuario..."
                 rows={5}
                 className="w-full bg-brand-bg border border-brand-accent-soft rounded-lg text-brand-text-light placeholder-brand-accent-soft/50 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent-strong transition-all duration-200 resize-none"
               />

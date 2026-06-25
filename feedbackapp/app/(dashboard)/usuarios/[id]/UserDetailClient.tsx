@@ -58,7 +58,7 @@ export default function UserDetailClient({
               icon={<AlertCircle size={20} className="flex-shrink-0" />}
               title="Reportes en contra"
               value={reportesEnContra}
-              description="reportes resueltos desfavorablemente"
+              description="Reportes resueltos desfavorablemente"
               variant={reportesEnContra > 0 ? 'danger' : 'info'}
             />
           </div>
@@ -81,7 +81,7 @@ export default function UserDetailClient({
                   </span>
                 </div>
                 <span className="text-brand-accent-mid text-sm">
-                  basado en {totalReviews} {totalReviews === 1 ? 'review' : 'reviews'}
+                  Basado en {totalReviews} {totalReviews === 1 ? 'review' : 'reviews'}
                 </span>
               </div>
             </div>

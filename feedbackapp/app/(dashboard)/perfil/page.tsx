@@ -36,21 +36,21 @@ export default async function PerfilPage() {
             Mi Perfil
           </p>
           <h1 className="font-gilroy font-bold text-brand-text-light mb-[clamp(0.5rem,1vw,0.75rem)]" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
-            InformaciÃ³n de cuenta
+            Información de cuenta
           </h1>
           <p className="text-brand-accent-mid" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-            VisualizÃ¡ tus datos personales y estadÃ­sticas
+              Visualizá tus datos personales y estadísticas
           </p>
         </div>
 
         {/* Contenido principal */}
         <div className="space-y-[clamp(1rem,3vw,2rem)]">
-          {/* ValoraciÃ³n Promedio */}
+          {/* Valoración Promedio */}
           <div className="bg-brand-card rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <Star size={24} className="text-brand-accent-mid flex-shrink-0" />
               <p className="text-brand-accent-mid font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
-                ValoraciÃ³n Promedio
+                Valoración Promedio
               </p>
             </div>
 
@@ -119,9 +119,9 @@ export default async function PerfilPage() {
               />
               <StatCard
                 icon={<Clock size={20} className="text-brand-accent-mid flex-shrink-0" />}
-                title="Iniciados por mÃ­"
+                title="Iniciados por mí"
                 value={reportesIniciadosPorMi}
-                description="reportes que abriste y estÃ¡n en evaluaciÃ³n"
+                description="reportes que abriste y están en evaluación"
                 variant="info"
               />
               <StatCard

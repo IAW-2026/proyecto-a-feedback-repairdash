@@ -16,7 +16,7 @@ export default function BienvenidaPage() {
             RepairDash
           </h1>
           <p className="text-brand-accent-mid leading-relaxed">
-            DejÃ¡ tu reseÃ±a sobre el servicio recibido o creÃ¡ un reporte si tuviste un inconveniente.
+            Dejá tu review sobre el servicio recibido o creá un reporte si tuviste un inconveniente.
           </p>
         </div>
 
@@ -24,7 +24,7 @@ export default function BienvenidaPage() {
           href="/login"
           className="block w-full bg-brand-accent-strong hover:bg-brand-accent-strong-hover text-white font-semibold rounded-xl px-6 py-3 transition-all duration-200 hover:scale-[1.02] active:scale-95 mb-8"
         >
-          Iniciar sesiÃ³n
+          Iniciar sesión
         </Link>
 
         <div className="relative mb-6">
@@ -32,7 +32,7 @@ export default function BienvenidaPage() {
             <div className="w-full border-t border-brand-accent-soft/20" />
           </div>
           <div className="relative flex justify-center">
-            <span className="bg-brand-bg px-4 text-sm text-brand-accent-mid">Â¿No tenÃ©s cuenta?</span>
+            <span className="bg-brand-bg px-4 text-sm text-brand-accent-mid">¿No tenés cuenta?</span>
           </div>
         </div>
 
@@ -58,7 +58,7 @@ export default function BienvenidaPage() {
         </div>
 
         <p className="text-brand-accent-soft text-xs mt-6">
-          Al registrarte aceptÃ¡s los tÃ©rminos del servicio de cada plataforma.
+          Al registrarte aceptás los términos del servicio de cada plataforma.
         </p>
       </div>
     </div>

@@ -30,7 +30,7 @@ export default function PendingReportScreen({
         </div>
 
         <h1 className="text-3xl font-bold text-brand-text-light mb-3">
-          TenÃ©s un reporte pendiente
+          Tenés un reporte pendiente
         </h1>
 
         <p className="text-brand-accent-mid mb-6">

@@ -101,7 +101,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="lg:hidden p-2 mr-2 text-brand-accent-mid hover:text-brand-text-light transition-colors"
-            aria-label={menuOpen ? 'Cerrar menÃº' : 'Abrir menÃº'}
+            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -118,7 +118,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center ml-6 gap-1" aria-label="NavegaciÃ³n principal">
+          <nav className="hidden lg:flex items-center ml-6 gap-1" aria-label="Navegación principal">
             {renderNavLink(navItems[0])}
             {renderNavLink(navItems[1])}
 
@@ -218,7 +218,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
             <button
               onClick={() => signOut({ redirectUrl: '/' })}
               className="flex items-center justify-center w-9 h-9 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
-              aria-label="Cerrar sesiÃ³n"
+              aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
             </button>
@@ -229,7 +229,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
             <button
               onClick={() => signOut({ redirectUrl: '/' })}
               className="p-2 text-brand-accent-mid hover:text-brand-text-light transition-colors"
-              aria-label="Cerrar sesiÃ³n"
+              aria-label="Cerrar sesión"
             >
               <LogOut size={20} />
             </button>
@@ -242,7 +242,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
         <div
           className="fixed top-16 left-0 right-0 z-50 lg:hidden bg-brand-card border-b border-brand-accent-soft/20 shadow-xl"
           role="navigation"
-          aria-label="NavegaciÃ³n principal"
+          aria-label="Navegación principal"
         >
           <div className="p-4 space-y-2">
             {renderNavLink(navItems[0])}
@@ -336,7 +336,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                 closeMenu();
               }}
               className="flex items-center gap-2 w-full px-3 py-3 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200 min-h-[44px]"
-              aria-label="Cerrar sesiÃ³n"
+              aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
             </button>
