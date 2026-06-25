@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
-import { reportEvidenceSchema } from '@/lib/validation/reportEvidence'
+import { reportEvidenceArraySchema } from '@/lib/validation/reportEvidence'
 
 const STORAGE_KEY = (id: string) => `report_draft_${id}`
 
@@ -175,11 +175,9 @@ export function useReportForm(reporteId: string): UseReportFormReturn {
     setIsLoading(true)
 
     try {
-      const firstPrueba = formData.pruebas[0]
-      const result = reportEvidenceSchema.safeParse({
+      const result = reportEvidenceArraySchema.safeParse({
         descripcion: formData.descripcion,
-        url: firstPrueba.url,
-        tipo: firstPrueba.tipo,
+        pruebas: formData.pruebas.map((p) => ({ url: p.url, tipo: p.tipo })),
       })
 
       if (!result.success) {
@@ -196,19 +194,6 @@ export function useReportForm(reporteId: string): UseReportFormReturn {
 
       if (!response.ok) {
         throw new Error(data.message || 'Error al resolver el reporte')
-      }
-
-      for (let i = 1; i < formData.pruebas.length; i++) {
-        const prueba = formData.pruebas[i]
-        await fetch(`/api/reports/${reporteId}`, {
-          method: 'PUT',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            descripcion: 'Prueba adicional',
-            url: prueba.url,
-            tipo: prueba.tipo,
-          }),
-        })
       }
 
       localStorage.removeItem(STORAGE_KEY(reporteId))
