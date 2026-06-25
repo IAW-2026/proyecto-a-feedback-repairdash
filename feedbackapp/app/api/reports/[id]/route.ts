@@ -6,7 +6,7 @@ Response 200 OK: { "message": "Prueba agregada al reporte", "idPrueba": "uuid", 
 
 import { NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
-import { reportEvidenceSchema } from '@/lib/validation/reportEvidence';
+import { reportEvidenceArraySchema } from '@/lib/validation/reportEvidence';
 import { validateInternalApiKey } from '@/lib/auth';
 
 export const dynamic = 'force-dynamic';
@@ -38,7 +38,7 @@ export async function PUT(
     }
 
     // Validar con Zod
-    const result = reportEvidenceSchema.safeParse(body);
+    const result = reportEvidenceArraySchema.safeParse(body);
     if (!result.success) {
       return NextResponse.json(
         { message: result.error.issues[0].message },
@@ -46,7 +46,7 @@ export async function PUT(
       );
     }
 
-    const { descripcion, url, tipo } = result.data;
+    const { descripcion, pruebas } = result.data;
 
     // Verificar que el reporte existe
     const reporte = await prisma.reporte.findUnique({
@@ -68,28 +68,28 @@ export async function PUT(
       );
     }
 
-    // Crear la prueba y actualizar el reporte en una sola query
+    // Crear todas las pruebas y actualizar el reporte en una sola query
     const reporteActualizado = await prisma.reporte.update({
       where: { id },
       data: {
         estado: 'PRUEBAS_AGREGADAS',
         ...(!reporte.descripcion ? { descripcion } : {}),
         pruebas: {
-          create: { tipo, url },
+          createMany: { data: pruebas },
         },
       },
       include: {
         pruebas: {
-          take: 1,
           orderBy: { id: 'desc' },
+          take: pruebas.length,
         },
       },
     });
 
     return NextResponse.json(
       {
-        message: 'Prueba agregada al reporte',
-        idPrueba: reporteActualizado.pruebas[0].id,
+        message: 'Pruebas agregadas al reporte',
+        pruebas: reporteActualizado.pruebas.map((p) => ({ id: p.id, url: p.url, tipo: p.tipo })),
         idReporte: reporteActualizado.id,
       },
       { status: 200 }
