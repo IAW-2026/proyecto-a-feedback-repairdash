@@ -111,8 +111,8 @@ export async function GET(request: Request) {
     ]);
 
     const tasaReportessobreTrabajos =
-      trabajosDelMes > 0
-        ? (reportesDelMes / trabajosDelMes).toFixed(3)
+      reviewsDelMes > 0
+        ? (reportesDelMes / reviewsDelMes).toFixed(3)
         : "0.000";
 
     return NextResponse.json(
