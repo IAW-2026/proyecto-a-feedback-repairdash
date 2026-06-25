@@ -55,7 +55,7 @@ export default function ReviewCard({
         </div>
       </div>
 
-      <p className="text-brand-text-light leading-relaxed line-clamp-3">
+      <p className="text-brand-text-light leading-relaxed line-clamp-3 break-words">
         {review}
       </p>
     </>

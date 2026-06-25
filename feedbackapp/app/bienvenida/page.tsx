@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import { UserRound, Bike } from 'lucide-react'
+import { UserRound, Car } from 'lucide-react'
 
 export default function BienvenidaPage() {
   const riderUrl = process.env.NEXT_PUBLIC_RIDER_APP_URL ?? '#'
@@ -52,7 +52,7 @@ export default function BienvenidaPage() {
             rel="noopener noreferrer"
             className="flex flex-col items-center gap-2 bg-brand-card border border-brand-accent-soft/20 rounded-xl px-4 py-5 text-brand-accent-mid hover:text-brand-text-light hover:border-brand-accent-strong/60 hover:bg-brand-card-hover transition-all duration-200 hover:scale-[1.02] active:scale-95"
           >
-            <Bike size={28} className="text-brand-accent-strong" />
+            <Car size={28} className="text-brand-accent-strong" />
             <span className="text-sm font-semibold">Driver</span>
           </a>
         </div>

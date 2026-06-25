@@ -31,7 +31,7 @@ export default function UserCard({ id, nombre, apellido, valoracion, badge, chil
             <span className="text-brand-accent-mid text-xs font-medium ml-1">{valoracion}/5</span>
           </div>
           {badge && (
-            <span className="inline-block px-2.5 py-0.5 bg-brand-accent-soft/20 text-brand-accent-mid text-xs font-medium rounded-full whitespace-nowrap">
+            <span className="inline-block px-2.5 py-0.5 bg-brand-accent-soft/20 text-brand-text-light text-xs font-medium rounded-full whitespace-nowrap">
               {badge}
             </span>
           )}

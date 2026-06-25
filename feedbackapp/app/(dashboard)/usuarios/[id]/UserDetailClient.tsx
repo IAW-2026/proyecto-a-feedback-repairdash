@@ -1,7 +1,7 @@
 'use client'
 
 import { useRouter, usePathname } from 'next/navigation'
-import { Star, AlertCircle } from 'lucide-react'
+import { Star, AlertCircle, ArrowLeft } from 'lucide-react'
 import StatCard from '@/components/StatCard'
 import StarRating from '@/components/StarRating'
 import ReviewCard from '@/components/ReviewCard'
@@ -43,6 +43,14 @@ export default function UserDetailClient({
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <div className="relative mb-[clamp(1.5rem,3vw,2rem)]">
           <div>
+            <button
+              onClick={() => router.back()}
+              className="flex items-center gap-1.5 text-brand-accent-mid hover:text-brand-text-light transition-colors mb-2"
+              aria-label="Volver"
+            >
+              <ArrowLeft size={18} />
+              <span className="text-sm font-medium">Volver</span>
+            </button>
             <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Perfil de usuario
             </p>
