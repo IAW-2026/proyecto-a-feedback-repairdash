@@ -77,7 +77,7 @@ export default function AdminReportesClient({
       <div className="mb-8">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <div className="text-xs uppercase tracking-widest text-[#f500f1] mb-2 font-semibold">
+            <div className="text-xs uppercase tracking-widest text-brand-accent-strong mb-2 font-semibold">
               PANEL DE ADMINISTRACIÓN
             </div>
             <h1 className="text-4xl font-bold text-white mb-3">
@@ -89,11 +89,11 @@ export default function AdminReportesClient({
           </div>
 
           {/* Badge de contador */}
-          <div className="bg-[#3a1f52] px-6 py-3 rounded-xl border border-[#f500f1]/30 flex items-center gap-3">
-            <AlertCircle size={24} className="text-[#f500f1]" />
+          <div className="bg-[#3a1f52] px-6 py-3 rounded-xl border border-brand-accent-strong/30 flex items-center gap-3">
+            <AlertCircle size={24} className="text-brand-accent-strong" />
             <div>
               <div className="text-[#c392dd] text-sm">Pendientes</div>
-              <div className="text-[#f500f1] font-bold text-2xl">{totalPendientes}</div>
+              <div className="text-brand-accent-strong font-bold text-2xl">{totalPendientes}</div>
             </div>
           </div>
         </div>
@@ -124,12 +124,12 @@ export default function AdminReportesClient({
       {hasNoReportes ? (
         <div className="flex flex-col items-center justify-center py-12 text-center">
           <div className="bg-[#3a1f52]/50 p-6 rounded-lg mb-4">
-            <FileText size={48} className="text-[#8d62a5] mx-auto" />
+            <FileText size={48} className="text-brand-accent-soft mx-auto" />
           </div>
           <h3 className="text-lg font-semibold text-[#c392dd] mb-2">
             {hasSearch ? 'No se encontraron reportes' : 'No hay reportes en este estado'}
           </h3>
-          <p className="text-[#8d62a5] text-sm">
+          <p className="text-brand-accent-soft text-sm">
             {hasSearch
               ? 'Intenta con otros criterios de búsqueda'
               : 'Prueba seleccionando otro filtro de estado'}
@@ -147,14 +147,14 @@ export default function AdminReportesClient({
                 <div
                   key={reporte.id}
                   onClick={() => router.push(`/admin/reportes/${reporte.id}`)}
-                  className="bg-[#3a1f52]/40 border border-[#8d62a5]/30 rounded-lg p-6 hover:border-[#f500f1]/50 transition-all duration-200 hover:shadow-lg hover:shadow-[#f500f1]/10 cursor-pointer"
+                  className="bg-[#3a1f52]/40 border border-brand-accent-soft/30 rounded-lg p-6 hover:border-brand-accent-strong/50 transition-all duration-200 hover:shadow-lg hover:shadow-brand-accent-strong/10 cursor-pointer"
                 >
                   {/* Encabezado del reporte */}
                   <div className="flex items-start justify-between mb-4">
                     <div className="flex-1">
                       {/* Nombre de usuarios */}
                       <div className="flex items-center gap-3 mb-2">
-                        <User size={18} className="text-[#f500f1]" />
+                        <User size={18} className="text-brand-accent-strong" />
                         <span className="text-sm text-[#c392dd]">
                           <span className="font-semibold text-white">{reportanteNombre}</span>
                           <span className="text-[#c392dd]"> reportó a </span>
@@ -164,7 +164,7 @@ export default function AdminReportesClient({
 
                       {/* Tipo de trabajo */}
                       <div className="flex items-center gap-2 mb-2">
-                        <FileText size={16} className="text-[#8d62a5]" />
+                        <FileText size={16} className="text-brand-accent-soft" />
                         <span className="text-sm text-[#c392dd]">
                           Trabajo: <span className="font-medium text-white">{reporte.trabajo.tipoDeTrabajo}</span>
                         </span>
@@ -172,7 +172,7 @@ export default function AdminReportesClient({
 
                       {/* Fecha */}
                       <div className="flex items-center gap-2">
-                        <Calendar size={16} className="text-[#8d62a5]" />
+                        <Calendar size={16} className="text-brand-accent-soft" />
                         <span className="text-sm text-[#c392dd]">
                           {formatDate(reporte.trabajo.fechaFin)}
                         </span>
@@ -189,11 +189,11 @@ export default function AdminReportesClient({
                   </div>
 
                   {/* Línea divisoria */}
-                  <div className="h-px bg-gradient-to-r from-[#8d62a5]/20 to-transparent mb-4" />
+                  <div className="h-px bg-gradient-to-r from-brand-accent-soft/20 to-transparent mb-4" />
 
                   {/* CTA: Botón para ver detalles */}
                   <div className="flex justify-end">
-                    <span className="px-4 py-2 bg-[#f500f1]/20 text-[#ff66ff] rounded-lg text-sm font-medium">
+                    <span className="px-4 py-2 bg-brand-accent-strong/20 text-[#ff66ff] rounded-lg text-sm font-medium">
                       Ver detalles
                     </span>
                   </div>

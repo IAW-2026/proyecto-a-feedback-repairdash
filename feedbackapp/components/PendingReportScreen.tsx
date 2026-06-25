@@ -21,10 +21,10 @@ export default function PendingReportScreen({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-      <div className="bg-[#271033] rounded-2xl p-8 max-w-md w-full mx-4 border border-[#8d62a5]/20 shadow-2xl">
+      <div className="bg-[#271033] rounded-2xl p-8 max-w-md w-full mx-4 border border-brand-accent-soft/20 shadow-2xl">
         <div className="flex items-center gap-2 mb-4">
-          <Flag className="text-[#f500f1]" size={24} />
-          <span className="text-[#f500f1] font-bold uppercase tracking-widest text-sm">
+          <Flag className="text-brand-accent-strong" size={24} />
+          <span className="text-brand-accent-strong font-bold uppercase tracking-widest text-sm">
             REPORTE PENDIENTE
           </span>
         </div>
@@ -37,9 +37,9 @@ export default function PendingReportScreen({
           Completalo antes de seguir usando la app
         </p>
 
-        <div className="bg-[#3a1f52] rounded-xl p-5 border border-[#8d62a5]/20 mb-6 space-y-4">
+        <div className="bg-[#3a1f52] rounded-xl p-5 border border-brand-accent-soft/20 mb-6 space-y-4">
           <div className="flex items-center gap-3">
-            <div className="w-9 h-9 rounded-full bg-[#8d62a5]/30 flex items-center justify-center flex-shrink-0">
+            <div className="w-9 h-9 rounded-full bg-brand-accent-soft/30 flex items-center justify-center flex-shrink-0">
               <span className="text-xs font-bold text-[#fbdaf9]">
                 {reportado?.nombre?.charAt(0)?.toUpperCase() ?? '?'}{reportado?.apellido?.charAt(0)?.toUpperCase() ?? ''}
               </span>
@@ -53,12 +53,12 @@ export default function PendingReportScreen({
           </div>
 
           <div className="flex items-center gap-3">
-            <Briefcase className="text-[#8d62a5]" size={18} />
+            <Briefcase className="text-brand-accent-soft" size={18} />
             <span className="text-[#c392dd]">{trabajo.tipoDeTrabajo}</span>
           </div>
 
           <div className="flex items-center gap-3">
-            <Calendar className="text-[#8d62a5]" size={18} />
+            <Calendar className="text-brand-accent-soft" size={18} />
             <span className="text-[#c392dd] capitalize">
               {trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Por confirmar'}
             </span>
@@ -67,7 +67,7 @@ export default function PendingReportScreen({
 
         <Link
           href={linkHref}
-          className="w-full flex items-center justify-center gap-2 bg-[#f500f1] text-[#1a0a2e] py-3 px-4 rounded-lg hover:scale-[1.02] transition-transform duration-300 shadow-lg font-semibold"
+          className="w-full flex items-center justify-center gap-2 bg-brand-accent-strong text-white py-3 px-4 rounded-lg hover:scale-[1.02] transition-transform duration-300 shadow-lg font-semibold"
         >
           Resolver reporte
           <ArrowRight size={20} />

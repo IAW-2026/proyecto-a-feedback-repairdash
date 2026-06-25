@@ -54,7 +54,7 @@ export default function ReportFormClient({
           <p className="text-[#c392dd]">Proporcioná detalles sobre el incidente y adjuntá evidencias</p>
         </div>
 
-        <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20 mb-6 text-[#fbdaf9]">
+        <div className="bg-[#3a1f52] rounded-xl p-6 border border-brand-accent-soft/20 mb-6 text-[#fbdaf9]">
           <h2 className="text-lg font-semibold mb-4">Información del Reporte</h2>
           <div className="space-y-3 text-sm">
             <p>
@@ -82,7 +82,7 @@ export default function ReportFormClient({
               value={formData.descripcion}
               onChange={handleDescripcionChange}
               disabled={isLoading}
-              className="w-full bg-[#3a1f52] border border-[#8d62a5]/30 rounded-lg p-4 text-[#fbdaf9] placeholder-[#8d62a5] focus:outline-none focus:border-[#f500f1] disabled:opacity-50 disabled:cursor-not-allowed resize-none"
+              className="w-full bg-[#3a1f52] border border-brand-accent-soft/30 rounded-lg p-4 text-[#fbdaf9] placeholder-brand-accent-soft focus:outline-none focus:border-brand-accent-strong disabled:opacity-50 disabled:cursor-not-allowed resize-none"
               rows={6}
               placeholder="Describe el incidente de forma clara y detallada..."
             />
@@ -107,10 +107,10 @@ export default function ReportFormClient({
                 onDrop={handleDrop}
                 className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
                   uploading
-                    ? 'border-[#f500f1]/50 bg-[#3a1f52]/50'
+                    ? 'border-brand-accent-strong/50 bg-[#3a1f52]/50'
                     : isDragOver
-                      ? 'border-[#f500f1] bg-[#3a1f52]/80'
-                      : 'border-[#8d62a5]/30 bg-[#3a1f52] hover:border-[#f500f1]/40 hover:bg-[#3a1f52]/80'
+                      ? 'border-brand-accent-strong bg-[#3a1f52]/80'
+                      : 'border-brand-accent-soft/30 bg-[#3a1f52] hover:border-brand-accent-strong/40 hover:bg-[#3a1f52]/80'
                 }`}
               >
                 <label htmlFor="file-upload" className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
@@ -125,7 +125,7 @@ export default function ReportFormClient({
                   />
                   {uploading ? (
                     <div className="flex flex-col items-center gap-2">
-                      <Loader size={24} className="animate-spin text-[#f500f1]" />
+                      <Loader size={24} className="animate-spin text-brand-accent-strong" />
                       <span className="text-[#c392dd] text-sm">Subiendo archivos...</span>
                     </div>
                   ) : (
@@ -151,7 +151,7 @@ export default function ReportFormClient({
                 {formData.pruebas.map((prueba: Prueba) => (
                   <div
                     key={prueba.id}
-                    className="bg-[#3a1f52] p-3 rounded-lg border border-[#8d62a5]/20"
+                    className="bg-[#3a1f52] p-3 rounded-lg border border-brand-accent-soft/20"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1 min-w-0">
@@ -176,7 +176,7 @@ export default function ReportFormClient({
                         type="button"
                         onClick={() => handleRemovePrueba(prueba.id)}
                         disabled={isLoading}
-                        className="text-[#f500f1] hover:text-red-500 transition-colors disabled:opacity-50 flex-shrink-0"
+                        className="text-brand-accent-strong hover:text-red-500 transition-colors disabled:opacity-50 flex-shrink-0"
                       >
                         <X size={18} />
                       </button>
@@ -198,7 +198,7 @@ export default function ReportFormClient({
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 flex items-center justify-center gap-2 bg-[#f500f1] text-[#1a0a2e] py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold"
+              className="flex-1 flex items-center justify-center gap-2 bg-brand-accent-strong text-white py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold"
             >
               {isLoading ? (
                 <>

@@ -22,12 +22,12 @@ export default function LoginPage() {
           fallbackRedirectUrl="/"
           appearance={{
             variables: {
-              colorPrimary: "#f500f1",
+              colorPrimary: "#c000bd",
               colorBackground: "#ffffff",
               colorInputBackground: "#f3f0f6",
               colorInputText: "#271033",
               colorText: "#271033",
-              colorTextSecondary: "#8d62a5",
+              colorTextSecondary: "#ad86c7",
               borderRadius: "1rem",
             },
             elements: {
@@ -46,18 +46,18 @@ export default function LoginPage() {
                 fontSize: "0.875rem",
               },
               formButtonPrimary: {
-                backgroundColor: "#f500f1",
+                backgroundColor: "#c000bd",
                 borderRadius: "0.5rem",
                 fontWeight: "600",
                 "&:hover": {
-                  backgroundColor: "#d400c9",
+                  backgroundColor: "#a0009e",
                 },
               },
               dividerLine: {
                 backgroundColor: "#e5d9f0",
               },
               dividerText: {
-                color: "#8d62a5",
+                color: "#ad86c7",
               },
               socialButtonsBlockButton: {
                 borderRadius: "0.5rem",

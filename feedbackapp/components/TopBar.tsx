@@ -139,7 +139,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                   <Star size={16} />
                   <span className="text-sm font-medium whitespace-nowrap">Reviews</span>
                   {pendingReviewsCount > 0 && (
-                    <span className="absolute -top-0.5 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f500f1] px-1 text-[10px] font-bold text-[#1a0a2e] animate-pulse">
+                    <span className="absolute -top-0.5 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-accent-strong px-1 text-[10px] font-bold text-white animate-pulse">
                       {pendingReviewsCount}
                     </span>
                   )}
@@ -147,13 +147,13 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                 </button>
 
                 {reviewsOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#271033] border border-[#8d62a5]/20 rounded-xl shadow-2xl py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#271033] border border-brand-accent-soft/20 rounded-xl shadow-2xl py-2 z-50">
                     <Link
                       href="/reviews"
                       onClick={closeMenu}
                       className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                         pathname === '/reviews'
-                          ? 'text-[#f500f1] bg-[#f500f1]/10'
+                          ? 'text-brand-accent-strong bg-brand-accent-strong/10'
                           : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
                       }`}
                     >
@@ -165,14 +165,14 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                       onClick={closeMenu}
                       className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                         pathname === '/reviews/pendientes'
-                          ? 'text-[#f500f1] bg-[#f500f1]/10'
+                          ? 'text-brand-accent-strong bg-brand-accent-strong/10'
                           : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
                       }`}
                     >
                       <Clock size={16} />
                       Reviews pendientes
                       {pendingReviewsCount > 0 && (
-                        <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
+                        <span className="ml-auto h-2 w-2 rounded-full bg-brand-accent-strong animate-pulse" />
                       )}
                     </Link>
                   </div>
@@ -192,7 +192,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                     : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
                 }`}
               >
-                <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-brand-accent-soft flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                   {inicial}
                 </div>
                 <span className="text-sm font-medium whitespace-nowrap">{nombreCompleto}</span>
@@ -258,7 +258,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                     <Star size={16} />
                     <span className="text-sm font-medium">Reviews</span>
                     {pendingReviewsCount > 0 && (
-                      <span className="absolute -top-2 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f500f1] px-1 text-[10px] font-bold text-[#1a0a2e]">
+                      <span className="absolute -top-2 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-accent-strong px-1 text-[10px] font-bold text-white">
                         {pendingReviewsCount}
                       </span>
                     )}
@@ -291,7 +291,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                       <Clock size={16} />
                       <span className="text-sm font-medium">Pendientes</span>
                       {pendingReviewsCount > 0 && (
-                        <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
+                        <span className="ml-auto h-2 w-2 rounded-full bg-brand-accent-strong animate-pulse" />
                       )}
                     </Link>
                   </div>
@@ -311,7 +311,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                     : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
                 }`}
               >
-                <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-brand-accent-soft flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                   {inicial}
                 </div>
                 <span className="text-sm font-medium">{nombreCompleto}</span>

@@ -46,8 +46,8 @@ export default function ReviewsClient({
 
         {/* Badge promedio */}
         {promedio !== null && (
-          <div className="bg-[#3a1f52] px-4 py-2 rounded-xl border border-[#8d62a5]/20 flex items-center gap-2">
-            <span className="text-[#f500f1] font-bold text-xl">★ {promedio}</span>
+          <div className="bg-[#3a1f52] px-4 py-2 rounded-xl border border-brand-accent-soft/20 flex items-center gap-2">
+            <span className="text-brand-accent-strong font-bold text-xl">★ {promedio}</span>
             <span className="text-[#c392dd] text-sm">{total} reviews</span>
           </div>
         )}

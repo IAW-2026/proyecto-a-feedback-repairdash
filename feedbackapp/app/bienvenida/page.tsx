@@ -22,7 +22,7 @@ export default function BienvenidaPage() {
 
         <Link
           href="/login"
-          className="block w-full bg-[#f500f1] hover:bg-[#d400d0] text-white font-semibold rounded-xl px-6 py-3 transition-all duration-200 hover:scale-[1.02] active:scale-95 mb-8"
+          className="block w-full bg-brand-accent-strong hover:bg-[#a0009e] text-white font-semibold rounded-xl px-6 py-3 transition-all duration-200 hover:scale-[1.02] active:scale-95 mb-8"
         >
           Iniciar sesión
         </Link>
@@ -41,23 +41,23 @@ export default function BienvenidaPage() {
             href={riderUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-2 bg-brand-card border border-brand-accent-soft/20 rounded-xl px-4 py-5 text-brand-accent-mid hover:text-[#fbdaf9] hover:border-[#f500f1]/60 hover:bg-[#4a2a6a] transition-all duration-200 hover:scale-[1.02] active:scale-95"
+            className="flex flex-col items-center gap-2 bg-brand-card border border-brand-accent-soft/20 rounded-xl px-4 py-5 text-brand-accent-mid hover:text-[#fbdaf9] hover:border-brand-accent-strong/60 hover:bg-[#4a2a6a] transition-all duration-200 hover:scale-[1.02] active:scale-95"
           >
-            <UserRound size={28} className="text-[#f500f1]" />
+            <UserRound size={28} className="text-brand-accent-strong" />
             <span className="text-sm font-semibold">Rider</span>
           </a>
           <a
             href={driverUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex flex-col items-center gap-2 bg-brand-card border border-brand-accent-soft/20 rounded-xl px-4 py-5 text-brand-accent-mid hover:text-[#fbdaf9] hover:border-[#f500f1]/60 hover:bg-[#4a2a6a] transition-all duration-200 hover:scale-[1.02] active:scale-95"
+            className="flex flex-col items-center gap-2 bg-brand-card border border-brand-accent-soft/20 rounded-xl px-4 py-5 text-brand-accent-mid hover:text-[#fbdaf9] hover:border-brand-accent-strong/60 hover:bg-[#4a2a6a] transition-all duration-200 hover:scale-[1.02] active:scale-95"
           >
-            <Bike size={28} className="text-[#f500f1]" />
+            <Bike size={28} className="text-brand-accent-strong" />
             <span className="text-sm font-semibold">Driver</span>
           </a>
         </div>
 
-        <p className="text-[#8d62a5] text-xs mt-6">
+        <p className="text-brand-accent-soft text-xs mt-6">
           Al registrarte aceptás los términos del servicio de cada plataforma.
         </p>
       </div>

@@ -3,7 +3,7 @@ import { ClerkProvider } from "@clerk/nextjs";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Feedback App",
+  title: "RepairDash | Feedback",
   description: "Plataforma de feedback y reviews",
 };
 

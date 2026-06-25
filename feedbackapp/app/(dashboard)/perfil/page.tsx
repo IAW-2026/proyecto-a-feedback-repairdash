@@ -46,7 +46,7 @@ export default async function PerfilPage() {
         {/* Contenido principal */}
         <div className="space-y-[clamp(1rem,3vw,2rem)]">
           {/* Valoración Promedio */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <Star size={24} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
@@ -71,7 +71,7 @@ export default async function PerfilPage() {
           </div>
 
           {/* Datos Personales */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <User size={24} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
@@ -101,7 +101,7 @@ export default async function PerfilPage() {
           </div>
 
           {/* Reportes */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <AlertCircle size={24} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>

@@ -64,9 +64,9 @@ export default function RealizarReviewForm({
           <span className="text-sm">Volver</span>
         </button>
       <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 p-8 max-w-xl w-full text-center">
+          <div className="bg-[#3a1f52] rounded-xl border border-brand-accent-soft/20 p-8 max-w-xl w-full text-center">
             <div className="flex justify-center mb-6">
-              <CheckCircle size={64} className="text-[#f500f1]" />
+              <CheckCircle size={64} className="text-brand-accent-strong" />
             </div>
             <h2 className="text-2xl font-bold text-[#fbdaf9] mb-4">
               ¡Review completada!
@@ -96,7 +96,7 @@ export default function RealizarReviewForm({
           <span className="text-sm">Volver</span>
         </button>
         <div className="flex items-center gap-2 mb-3">
-          <AlertCircle size={16} className="text-[#f500f1]" />
+          <AlertCircle size={16} className="text-brand-accent-strong" />
           <span className="text-xs uppercase tracking-widest font-semibold text-[#c392dd]">
             Review Pendiente
           </span>
@@ -110,27 +110,27 @@ export default function RealizarReviewForm({
       </div>
 
       <div className="max-w-2xl mx-auto">
-        <div className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 p-6">
+        <div className="bg-[#3a1f52] rounded-xl border border-brand-accent-soft/20 p-6">
           <div className="mb-6">
             <label className="text-xs uppercase tracking-widest font-semibold text-[#c392dd] mb-4 block">
               Estás evaluando a
             </label>
             <div className="flex flex-col items-center gap-4">
-              <div className="w-16 h-16 rounded-full bg-[#8d62a5] flex items-center justify-center">
+              <div className="w-16 h-16 rounded-full bg-brand-accent-soft flex items-center justify-center">
                 <span className="text-xl font-bold text-white">{initials}</span>
               </div>
               <div className="text-center">
                 <h2 className="text-lg font-bold text-[#fbdaf9]">
                   {usuarioAEvaluar.nombre} {usuarioAEvaluar.apellido}
                 </h2>
-                <span className="inline-block mt-2 px-3 py-1 bg-[#8d62a5]/20 rounded-full text-xs text-[#c392dd] font-medium">
+                <span className="inline-block mt-2 px-3 py-1 bg-brand-accent-soft/20 rounded-full text-xs text-[#c392dd] font-medium">
                   {getRolLabel(usuarioAEvaluar.rol)}
                 </span>
               </div>
             </div>
           </div>
 
-          <div className="h-px bg-[#8d62a5]/20 mb-6" />
+          <div className="h-px bg-brand-accent-soft/20 mb-6" />
 
           <div className="mb-6">
             <label className="text-xs uppercase tracking-widest font-semibold text-[#c392dd] mb-4 block">
@@ -153,7 +153,7 @@ export default function RealizarReviewForm({
             </div>
           </div>
 
-          <div className="h-px bg-[#8d62a5]/20 mb-6" />
+          <div className="h-px bg-brand-accent-soft/20 mb-6" />
 
           <div className="space-y-6">
             <div>
@@ -178,8 +178,8 @@ export default function RealizarReviewForm({
                         size={32}
                         className={`${
                           isSelected || isHovered
-                            ? 'fill-[#f500f1] text-[#f500f1] scale-110'
-                            : 'text-[#8d62a5] opacity-30'
+                            ? 'fill-brand-accent-strong text-brand-accent-strong scale-110'
+                            : 'text-brand-accent-soft opacity-30'
                         } transition-all duration-200`}
                       />
                     </button>
@@ -207,7 +207,7 @@ export default function RealizarReviewForm({
                 onChange={onReviewChange}
                 placeholder="Contá tu experiencia con este usuario..."
                 rows={5}
-                className="w-full bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] placeholder-[#8d62a5]/50 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200 resize-none"
+                className="w-full bg-[#271033] border border-brand-accent-soft rounded-lg text-[#fbdaf9] placeholder-brand-accent-soft/50 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent-strong transition-all duration-200 resize-none"
               />
               <div className="flex items-center justify-between mt-2">
                 <div>
@@ -227,8 +227,8 @@ export default function RealizarReviewForm({
                 disabled={puntaje === null || enviando}
                 className={`w-full py-3 px-4 rounded-lg font-semibold text-sm flex items-center justify-center gap-2 transition-all duration-200 ${
                   puntaje !== null && !enviando
-                    ? 'bg-[#f500f1] text-[#1a0a2e] cursor-pointer hover:scale-[1.02]'
-                    : 'bg-[#f500f1] text-[#1a0a2e] opacity-50 cursor-not-allowed'
+                    ? 'bg-brand-accent-strong text-white cursor-pointer hover:scale-[1.02]'
+                    : 'bg-brand-accent-strong text-white opacity-50 cursor-not-allowed'
                 }`}
               >
               {enviando ? (

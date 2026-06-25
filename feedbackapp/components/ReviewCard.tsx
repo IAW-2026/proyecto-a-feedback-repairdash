@@ -20,7 +20,7 @@ export default function ReviewCard({
   href,
 }: ReviewCardProps) {
   const cardClass =
-    'block bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02]'
+    'block bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-brand-accent-soft/30 hover:border-brand-accent-strong/40 hover:shadow-lg hover:shadow-brand-accent-strong/10 transition-all duration-300 hover:scale-[1.02]'
 
   const content = (
     <>
@@ -31,7 +31,7 @@ export default function ReviewCard({
               {autor.nombre ?? ''} {autor.apellido ?? ''}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="inline-block px-3 py-1 bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium rounded-full">
+              <span className="inline-block px-3 py-1 bg-brand-accent-soft/20 text-[#c392dd] text-xs font-medium rounded-full">
                 {getRolLabel(autor.rol)}
               </span>
             </div>

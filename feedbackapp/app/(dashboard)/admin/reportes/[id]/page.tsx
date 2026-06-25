@@ -52,7 +52,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
       <div className="mb-8">
         <Link
           href="/admin/reportes"
-          className="flex items-center gap-2 text-[#c392dd] hover:text-[#f500f1] transition-colors mb-6 w-fit group"
+          className="flex items-center gap-2 text-[#c392dd] hover:text-brand-accent-strong transition-colors mb-6 w-fit group"
         >
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
           <span>Volver a reportes</span>
@@ -82,7 +82,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
         {/* Main column */}
         <div className="lg:col-span-2 space-y-6">
           {/* Trabajo info */}
-          <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-6 border border-brand-accent-soft/20">
             <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
               Trabajo Relacionado
             </p>
@@ -99,9 +99,9 @@ export default async function AdminReporteDetallePage({ params }: Props) {
               </div>
             </div>
 
-            <div className="space-y-3 pt-6 border-t border-[#8d62a5]/20">
+            <div className="space-y-3 pt-6 border-t border-brand-accent-soft/20">
               <div className="flex items-center gap-3 py-2">
-                <div className="w-10 h-10 rounded-full bg-[#8d62a5]/30 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-brand-accent-soft/30 flex items-center justify-center flex-shrink-0">
                   <User size={20} className="text-[#c392dd]" />
                 </div>
                 <div>
@@ -114,7 +114,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
               </div>
 
               <div className="flex items-center gap-3 py-2">
-                <div className="w-10 h-10 rounded-full bg-[#8d62a5]/30 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-brand-accent-soft/30 flex items-center justify-center flex-shrink-0">
                   <Shield size={20} className="text-[#c392dd]" />
                 </div>
                 <div>
@@ -129,7 +129,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
           </div>
 
           {/* Descripción */}
-          <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-6 border border-brand-accent-soft/20">
             <div className="flex items-center gap-3 mb-4">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider text-sm">
@@ -142,7 +142,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
           </div>
 
           {/* Pruebas */}
-          <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-6 border border-brand-accent-soft/20">
             <div className="flex items-center gap-3 mb-4">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider text-sm">
@@ -161,7 +161,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                       {imagenes.map((img) => (
                         <div
                           key={img.id}
-                          className="rounded-lg overflow-hidden border border-[#8d62a5]/30 hover:border-[#f500f1]/40 transition-all duration-300"
+                          className="rounded-lg overflow-hidden border border-brand-accent-soft/30 hover:border-brand-accent-strong/40 transition-all duration-300"
                         >
                           <img
                             src={img.url}
@@ -181,7 +181,7 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                       {videos.map((video) => (
                         <div
                           key={video.id}
-                          className="rounded-lg overflow-hidden border border-[#8d62a5]/30 hover:border-[#f500f1]/40 transition-all duration-300"
+                          className="rounded-lg overflow-hidden border border-brand-accent-soft/30 hover:border-brand-accent-strong/40 transition-all duration-300"
                         >
                           <video
                             src={video.url}
@@ -206,13 +206,13 @@ export default async function AdminReporteDetallePage({ params }: Props) {
                           href={pdf.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex items-center justify-between bg-[#271033] rounded-lg p-3 border border-[#8d62a5]/20 hover:border-[#f500f1]/40 transition-all duration-300 group"
+                          className="flex items-center justify-between bg-[#271033] rounded-lg p-3 border border-brand-accent-soft/20 hover:border-brand-accent-strong/40 transition-all duration-300 group"
                         >
                           <div className="flex items-center gap-2">
-                            <FileText size={18} className="text-[#c392dd] group-hover:text-[#f500f1] transition-colors" />
+                            <FileText size={18} className="text-[#c392dd] group-hover:text-brand-accent-strong transition-colors" />
                             <span className="text-[#fbdaf9] font-medium">Documento PDF</span>
                           </div>
-                          <span className="text-[#c392dd] group-hover:text-[#f500f1] transition-colors text-sm">Ver</span>
+                          <span className="text-[#c392dd] group-hover:text-brand-accent-strong transition-colors text-sm">Ver</span>
                         </a>
                       ))}
                     </div>

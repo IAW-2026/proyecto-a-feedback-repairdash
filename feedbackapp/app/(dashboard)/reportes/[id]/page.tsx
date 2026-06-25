@@ -17,7 +17,7 @@ import { prisma } from '@/lib/prisma';
 function VerdictoBadge({ resolucion, decision, soyReportante }: { resolucion: string; decision: string | null; soyReportante: boolean }) {
   if (resolucion === 'SinResolver') {
     return (
-      <span className="inline-flex items-center gap-2 bg-[#8d62a5]/20 text-[#c392dd] font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+      <span className="inline-flex items-center gap-2 bg-brand-accent-soft/20 text-[#c392dd] font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full min-h-[28px]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
         <Clock size={14} />
         En evaluación
       </span>
@@ -142,7 +142,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
       <div className="mb-6">
         <Link
           href="/reportes"
-          className="flex items-center gap-2 text-[#c392dd] hover:text-[#f500f1] transition-colors mb-[clamp(1rem,3vw,2rem)] w-fit group"
+          className="flex items-center gap-2 text-[#c392dd] hover:text-brand-accent-strong transition-colors mb-[clamp(1rem,3vw,2rem)] w-fit group"
         >
           <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
           <span style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>Volver a reportes</span>
@@ -170,7 +170,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
         {/* Columna principal (2/3) */}
         <div className="lg:col-span-2 space-y-[clamp(1.5rem,4vw,2rem)]">
           {/* Card 1: Información del trabajo */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-[clamp(1rem,3vw,2rem)]" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Trabajo Relacionado
             </p>
@@ -181,7 +181,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
 
             <div className="space-y-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1.5rem,4vw,2rem)]">
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-                <Calendar size={20} className="text-[#8d62a5] flex-shrink-0" />
+                <Calendar size={20} className="text-brand-accent-soft flex-shrink-0" />
                 <span>
                   {mismasFechas ? fechaInicio : `${fechaInicio} — ${fechaFin}`}
                 </span>
@@ -189,9 +189,9 @@ export default async function ReporteDetailPage({ params }: PageProps) {
             </div>
 
             {/* Reportante y Reportado */}
-            <div className="space-y-[clamp(0.75rem,2vw,1rem)] pt-6 border-t border-[#8d62a5]/20">
+            <div className="space-y-[clamp(0.75rem,2vw,1rem)] pt-6 border-t border-brand-accent-soft/20">
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] py-2">
-                <div className="w-10 h-10 rounded-full bg-[#8d62a5]/30 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-brand-accent-soft/30 flex items-center justify-center flex-shrink-0">
                   <span className="text-sm font-bold text-[#fbdaf9]">{getInitials(reporte.reportante.nombre, reporte.reportante.apellido)}</span>
                 </div>
                 <div className="min-w-0">
@@ -204,7 +204,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
               </div>
 
               <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] py-2">
-                <div className="w-10 h-10 rounded-full bg-[#8d62a5]/30 flex items-center justify-center flex-shrink-0">
+                <div className="w-10 h-10 rounded-full bg-brand-accent-soft/30 flex items-center justify-center flex-shrink-0">
                   <span className="text-sm font-bold text-[#fbdaf9]">{getInitials(reporte.reportado.nombre, reporte.reportado.apellido)}</span>
                 </div>
                 <div className="min-w-0">
@@ -219,7 +219,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
           </div>
 
           {/* Card 2: Descripción del incidente */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
@@ -233,7 +233,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
           </div>
 
           {/* Card 3: Pruebas aportadas */}
-          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-[#8d62a5]/20">
+          <div className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
             <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
               <FileText size={20} className="text-[#c392dd] flex-shrink-0" />
               <p className="text-[#c392dd] font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
@@ -253,7 +253,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                       {imagenesProof.map((imagen) => (
                         <div
                           key={imagen.id}
-                          className="cursor-pointer rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 border border-[#8d62a5]/30 hover:border-[#f500f1]/40 min-h-[160px] flex-1 basis-[45%] max-w-[500px]"
+                          className="cursor-pointer rounded-lg overflow-hidden hover:scale-[1.02] transition-all duration-300 border border-brand-accent-soft/30 hover:border-brand-accent-strong/40 min-h-[160px] flex-1 basis-[45%] max-w-[500px]"
                         >
                           <img
                             src={imagen.url}
@@ -274,7 +274,7 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                       {videosProof.map((video) => (
                         <div
                           key={video.id}
-                          className="rounded-lg overflow-hidden border border-[#8d62a5]/30 hover:border-[#f500f1]/40 transition-all duration-300"
+                          className="rounded-lg overflow-hidden border border-brand-accent-soft/30 hover:border-brand-accent-strong/40 transition-all duration-300"
                         >
                           <video
                             src={video.url}
@@ -297,16 +297,16 @@ export default async function ReporteDetailPage({ params }: PageProps) {
                       {pdfsProof.map((pdf) => (
                         <div
                           key={pdf.id}
-                          className="flex items-center justify-between bg-[#271033] rounded-lg p-[clamp(0.75rem,2vw,1rem)] border border-[#8d62a5]/20 hover:border-[#f500f1]/40 transition-all duration-300 group min-h-[44px]"
+                          className="flex items-center justify-between bg-[#271033] rounded-lg p-[clamp(0.75rem,2vw,1rem)] border border-brand-accent-soft/20 hover:border-brand-accent-strong/40 transition-all duration-300 group min-h-[44px]"
                         >
                           <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] min-w-0">
                             <FileText
                               size={20}
-                              className="text-[#c392dd] group-hover:text-[#f500f1] transition-colors flex-shrink-0"
+                              className="text-[#c392dd] group-hover:text-brand-accent-strong transition-colors flex-shrink-0"
                             />
                             <span className="text-[#fbdaf9] font-medium truncate" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>Documento PDF</span>
                           </div>
-                          <button className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] text-[#c392dd] hover:text-[#f500f1] transition-colors px-[clamp(0.5rem,1vw,0.75rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded flex-shrink-0">
+                          <button className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] text-[#c392dd] hover:text-brand-accent-strong transition-colors px-[clamp(0.5rem,1vw,0.75rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded flex-shrink-0">
                             <ExternalLink size={18} />
                             <span style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>Ver</span>
                           </button>

@@ -52,8 +52,8 @@ export default function UserDetailClient({
           </div>
 
           {promedio !== null && (
-            <div className="bg-[#3a1f52] px-4 py-2 rounded-xl border border-[#8d62a5]/20 flex items-center gap-2">
-              <span className="text-[#f500f1] font-bold text-xl">★ {promedio}</span>
+            <div className="bg-[#3a1f52] px-4 py-2 rounded-xl border border-brand-accent-soft/20 flex items-center gap-2">
+              <span className="text-brand-accent-strong font-bold text-xl">★ {promedio}</span>
               <span className="text-[#c392dd] text-sm">promedio</span>
             </div>
           )}
@@ -76,8 +76,8 @@ export default function UserDetailClient({
         </h2>
 
         {reviews.length === 0 ? (
-          <div className="bg-[#3a1f52]/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-[#8d62a5]/30 text-center">
-            <Star size={48} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-[#8d62a5]" />
+          <div className="bg-[#3a1f52]/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-brand-accent-soft/30 text-center">
+            <Star size={48} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-brand-accent-soft" />
             <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
               Sin reviews
             </h3>

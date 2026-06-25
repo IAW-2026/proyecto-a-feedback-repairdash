@@ -20,7 +20,7 @@ interface ReportesClientProps {
 function ReporteCard({ reporte }: { reporte: ReporteCardData }) {
   return (
     <Link href={`/reportes/${reporte.id}`}>
-      <div className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
+      <div className="bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-brand-accent-soft/30 hover:border-brand-accent-strong/40 hover:shadow-lg hover:shadow-brand-accent-strong/10 transition-all duration-300 hover:scale-[1.02] cursor-pointer group">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(0.75rem,2vw,1rem)]">
           <div className="min-w-0">
             <h3 className="font-gilroy font-bold text-[#fbdaf9] break-words" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
@@ -49,8 +49,8 @@ function ReporteCard({ reporte }: { reporte: ReporteCardData }) {
 
 function EmptyState({ title }: { title: string }) {
   return (
-    <div className="bg-[#3a1f52]/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-[#8d62a5]/30 text-center">
-      <AlertTriangle size={48} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-[#8d62a5]" />
+    <div className="bg-[#3a1f52]/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-brand-accent-soft/30 text-center">
+      <AlertTriangle size={48} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-brand-accent-soft" />
       <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
         Sin reportes
       </h3>
