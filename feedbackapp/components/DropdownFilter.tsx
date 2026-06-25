@@ -33,17 +33,17 @@ export default function DropdownFilter({ value, onChange, options }: DropdownFil
 
   return (
     <div className="relative" ref={ref}>
-      <Filter size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-[#8d62a5] pointer-events-none" />
+      <Filter size={18} className="absolute left-3 top-1/2 -translate-y-1/2 text-brand-accent-soft pointer-events-none" />
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="w-full min-w-[180px] pl-10 pr-8 py-3 bg-[#271033] border border-[#8d62a5] rounded-lg text-[#fbdaf9] text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#f500f1] transition-all duration-200"
+        className="w-full min-w-[180px] pl-10 pr-8 py-3 bg-brand-bg border border-brand-accent-soft rounded-lg text-brand-text-light text-left cursor-pointer focus:outline-none focus:ring-2 focus:ring-brand-accent-strong transition-all duration-200"
       >
         {displayLabel}
       </button>
-      <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-[#8d62a5] pointer-events-none" />
+      <ChevronDown size={16} className="absolute right-3 top-1/2 -translate-y-1/2 text-brand-accent-soft pointer-events-none" />
       {open && (
-        <div className="absolute z-50 mt-1 w-full bg-[#271033] border border-[#8d62a5] rounded-lg overflow-hidden shadow-lg">
+        <div className="absolute z-50 mt-1 w-full bg-brand-bg border border-brand-accent-soft rounded-lg overflow-hidden shadow-lg">
           {options.map((opt) => (
             <button
               key={opt.value}
@@ -54,8 +54,8 @@ export default function DropdownFilter({ value, onChange, options }: DropdownFil
               }}
               className={`w-full text-left px-4 py-2.5 text-sm transition-colors duration-150 ${
                 opt.value === value
-                  ? 'bg-[#f500f1] text-white font-medium'
-                  : 'text-[#fbdaf9] hover:bg-[#3a1f52]'
+                  ? 'bg-brand-accent-strong text-white font-medium'
+                  : 'text-brand-text-light hover:bg-brand-card'
               }`}
             >
               {opt.label}

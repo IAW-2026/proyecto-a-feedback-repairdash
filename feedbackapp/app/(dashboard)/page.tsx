@@ -31,12 +31,12 @@ export default async function HomePage() {
         {/* Header */}
         <div className="mb-[clamp(2rem,6vw,3rem)]">
           <h1
-            className="font-gilroy font-bold text-[#fbdaf9]"
+            className="font-gilroy font-bold text-brand-text-light"
             style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}
           >
             Panel de administración
           </h1>
-          <p className="text-[#c392dd] mt-1" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+          <p className="text-brand-accent-mid mt-1" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
             Bienvenido a Feedback
           </p>
         </div>
@@ -46,27 +46,27 @@ export default async function HomePage() {
           {/* Card: Requieren resolución */}
           <Link
             href="/admin/reportes?estado=PRUEBAS_AGREGADAS"
-            className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+            className="bg-brand-card rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block"
           >
             <div className="flex justify-between items-start mb-3">
               <p
-                className="text-[#c392dd] font-semibold uppercase tracking-wider"
+                className="text-brand-accent-mid font-semibold uppercase tracking-wider"
                 style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
               >
                 Requieren resolución
               </p>
-              <div className="bg-[#f500f1]/10 p-2 rounded-lg">
-                <AlertTriangle size={20} className="text-[#f500f1]" />
+              <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
+                <AlertTriangle size={20} className="text-brand-accent-strong" />
               </div>
             </div>
             <div
-              className="font-gilroy font-bold text-[#fbdaf9] text-center"
+              className="font-gilroy font-bold text-brand-text-light text-center"
               style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
             >
               {requierenResolucion}
             </div>
             <p
-              className="text-[#c392dd] mt-1 text-center"
+              className="text-brand-accent-mid mt-1 text-center"
               style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
             >
               Reportes con pruebas agregadas listos para resolver.
@@ -76,27 +76,27 @@ export default async function HomePage() {
           {/* Card: Esperando pruebas */}
           <Link
             href="/admin/reportes?estado=CREADO"
-            className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+            className="bg-brand-card rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block"
           >
             <div className="flex justify-between items-start mb-3">
               <p
-                className="text-[#c392dd] font-semibold uppercase tracking-wider"
+                className="text-brand-accent-mid font-semibold uppercase tracking-wider"
                 style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
               >
                 Esperando pruebas
               </p>
-              <div className="bg-[#f500f1]/10 p-2 rounded-lg">
-                <Clock size={20} className="text-[#f500f1]" />
+              <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
+                <Clock size={20} className="text-brand-accent-strong" />
               </div>
             </div>
             <div
-              className="font-gilroy font-bold text-[#fbdaf9] text-center"
+              className="font-gilroy font-bold text-brand-text-light text-center"
               style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
             >
               {esperandoPruebas}
             </div>
             <p
-              className="text-[#c392dd] mt-1 text-center"
+              className="text-brand-accent-mid mt-1 text-center"
               style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
             >
               Reportes creados esperando que se agreguen pruebas.
@@ -105,28 +105,28 @@ export default async function HomePage() {
         </div>
 
         {/* Second row: Acciones rápidas */}
-        <div className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block">
+        <div className="bg-brand-card rounded-xl border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block">
           <div className="flex justify-between items-start p-[clamp(1rem,3vw,1.5rem)] pb-0">
             <p
-              className="text-[#c392dd] font-semibold uppercase tracking-wider"
+              className="text-brand-accent-mid font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
               Acciones rápidas
             </p>
-            <div className="bg-[#f500f1]/10 p-2 rounded-lg">
-              <Shield size={20} className="text-[#f500f1]" />
+            <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
+              <Shield size={20} className="text-brand-accent-strong" />
             </div>
           </div>
           <div className="flex flex-col sm:flex-row gap-4 p-[clamp(1rem,3vw,1.5rem)] pt-[clamp(1rem,3vw,1rem)]">
             <Link
               href="/admin/reportes?estado=PRUEBAS_AGREGADAS"
-              className="flex-1 px-4 py-3 bg-[#f500f1]/10 border border-[#f500f1]/30 rounded-lg text-center font-semibold text-[#fbdaf9] hover:bg-[#f500f1]/20 hover:border-[#f500f1]/60 transition-all duration-200"
+              className="flex-1 px-4 py-3 bg-brand-accent-strong/10 border border-brand-accent-strong/30 rounded-lg text-center font-semibold text-brand-text-light hover:bg-brand-accent-strong/20 hover:border-brand-accent-strong/60 transition-all duration-200"
             >
               Ver reportes pendientes →
             </Link>
             <Link
               href="/admin/reportes"
-              className="flex-1 px-4 py-3 bg-[#3a1f52] border border-[#8d62a5]/30 rounded-lg text-center font-semibold text-[#c392dd] hover:text-[#fbdaf9] hover:border-[#f500f1]/60 hover:bg-[#4a2a6a] transition-all duration-200"
+              className="flex-1 px-4 py-3 bg-brand-card border border-brand-accent-soft/30 rounded-lg text-center font-semibold text-brand-accent-mid hover:text-brand-text-light hover:border-brand-accent-strong/60 hover:bg-brand-card-hover transition-all duration-200"
             >
               Ver todos los reportes →
             </Link>
@@ -159,12 +159,12 @@ export default async function HomePage() {
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <h1
-          className="font-gilroy font-bold text-[#fbdaf9]"
+          className="font-gilroy font-bold text-brand-text-light"
           style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}
         >
           Hola, {firstName}
         </h1>
-        <p className="text-[#c392dd] mt-1" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
+        <p className="text-brand-accent-mid mt-1" style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}>
           Bienvenido a Feedback
         </p>
       </div>
@@ -174,69 +174,69 @@ export default async function HomePage() {
         {/* Card: Valoración promedio */}
         <Link
           href="/reviews"
-          className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+          className="bg-brand-card rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block"
         >
           <div className="flex justify-between items-start mb-3">
             <p
-              className="text-[#c392dd] font-semibold uppercase tracking-wider"
+              className="text-brand-accent-mid font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
               Valoración promedio
             </p>
-            <div className="bg-[#f500f1]/10 p-2 rounded-lg">
-              <Star size={20} className="text-[#f500f1]" />
+            <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
+              <Star size={20} className="text-brand-accent-strong" />
             </div>
           </div>
           {promedioCalificaciones === null ? (
             <p
-              className="text-[#c392dd] text-center"
+              className="text-brand-accent-mid text-center"
               style={{ fontSize: 'clamp(0.875rem, 2vw, 1rem)' }}
             >
               Sin calificaciones
             </p>
           ) : (
             <div
-              className="font-gilroy font-bold text-[#fbdaf9] text-center"
+              className="font-gilroy font-bold text-brand-text-light text-center"
               style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
             >
               {promedioCalificaciones}
             </div>
           )}
           <p
-            className="text-[#c392dd] mt-1 text-center"
+            className="text-brand-accent-mid mt-1 text-center"
             style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
           >
-            Promedio de tus reseñas.
+            Promedio de reviews recibidas.
           </p>
         </Link>
 
         {/* Card: Reviews pendientes */}
         <Link
           href="/reviews/pendientes"
-          className="bg-[#3a1f52] rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+          className="bg-brand-card rounded-xl p-[clamp(1rem,3vw,1.5rem)] border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block"
         >
           <div className="flex justify-between items-start mb-3">
             <p
-              className="text-[#c392dd] font-semibold uppercase tracking-wider"
+              className="text-brand-accent-mid font-semibold uppercase tracking-wider"
               style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
             >
               Reviews pendientes
             </p>
-            <div className="bg-[#f500f1]/10 p-2 rounded-lg">
-              <MessageSquare size={20} className="text-[#f500f1]" />
+            <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
+              <MessageSquare size={20} className="text-brand-accent-strong" />
             </div>
           </div>
           <div
-            className="font-gilroy font-bold text-[#fbdaf9] text-center"
+            className="font-gilroy font-bold text-brand-text-light text-center"
             style={{ fontSize: 'clamp(2rem, 5vw, 2.5rem)' }}
           >
             {reviewsPendientes}
           </div>
           <p
-            className="text-[#c392dd] mt-1 text-center"
+            className="text-brand-accent-mid mt-1 text-center"
             style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}
           >
-            Reviews que tenés pendientes de completar.
+            Reviews que tenes pendientes de completar.
           </p>
         </Link>
       </div>
@@ -244,48 +244,48 @@ export default async function HomePage() {
       {/* Second row: full-width reports card */}
       <Link
         href="/reportes"
-        className="bg-[#3a1f52] rounded-xl border border-[#8d62a5]/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-[#f500f1]/60 hover:shadow-xl hover:shadow-[#f500f1]/20 block"
+        className="bg-brand-card rounded-xl border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20 block"
       >
         <div className="flex justify-between items-start p-[clamp(1rem,3vw,1.5rem)] pb-0">
           <p
-            className="text-[#c392dd] font-semibold uppercase tracking-wider"
+            className="text-brand-accent-mid font-semibold uppercase tracking-wider"
             style={{ fontSize: 'clamp(0.65rem, 1.5vw, 0.75rem)' }}
           >
-            Reportes en evaluación
+            Reportes en evaluación en los que estas involucrado
           </p>
-          <div className="bg-[#f500f1]/10 p-2 rounded-lg">
-            <Bell size={20} className="text-[#f500f1]" />
+          <div className="bg-brand-accent-strong/10 p-2 rounded-lg">
+            <Bell size={20} className="text-brand-accent-strong" />
           </div>
         </div>
         <div className="flex flex-col sm:flex-row p-[clamp(1rem,3vw,1.5rem)] pt-[clamp(1rem,3vw,1rem)]">
           <div className="flex-1 flex flex-col items-center justify-center py-4 sm:py-6">
             <div
-              className="font-gilroy font-bold text-[#fbdaf9]"
+              className="font-gilroy font-bold text-brand-text-light"
               style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}
             >
               {reportesReportado}
             </div>
             <p
-              className="text-[#c392dd] mt-1 text-center"
+              className="text-brand-accent-mid mt-1 text-center"
               style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}
             >
-              Reportes activos donde fuiste denunciado
+              Reportes que abrieron en tu contra
             </p>
           </div>
-          <div className="hidden sm:block w-px bg-[#8d62a5]/20 mx-4 self-stretch" />
-          <div className="block sm:hidden h-px bg-[#8d62a5]/20 my-4 mx-8" />
+          <div className="hidden sm:block w-px bg-brand-accent-soft/20 mx-4 self-stretch" />
+          <div className="block sm:hidden h-px bg-brand-accent-soft/20 my-4 mx-8" />
           <div className="flex-1 flex flex-col items-center justify-center py-4 sm:py-6">
             <div
-              className="font-gilroy font-bold text-[#fbdaf9]"
+              className="font-gilroy font-bold text-brand-text-light"
               style={{ fontSize: 'clamp(2.5rem, 5vw, 3.5rem)' }}
             >
               {reportesReportante}
             </div>
             <p
-              className="text-[#c392dd] mt-1 text-center"
+              className="text-brand-accent-mid mt-1 text-center"
               style={{ fontSize: 'clamp(0.8rem, 2vw, 0.9rem)' }}
             >
-              Reportes que abriste y están en evaluación
+              Reportes que abriste
             </p>
           </div>
         </div>

@@ -20,10 +20,10 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
   const appUrl = isRider ? process.env.NEXT_PUBLIC_RIDER_APP_URL : isDriver ? process.env.NEXT_PUBLIC_DRIVER_APP_URL : null;
   const appLabel = isRider ? 'Panel Rider' : 'Panel Driver';
   const [menuOpen, setMenuOpen] = useState(false);
-  const [reviewsOpen, setReviewsOpen] = useState(false);
   const [mobileReviewsOpen, setMobileReviewsOpen] = useState(false);
+  const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
-  const closeMenu = () => { setMenuOpen(false); setReviewsOpen(false); setMobileReviewsOpen(false); };
+  const closeMenu = () => { setMenuOpen(false); setMobileReviewsOpen(false); };
 
   const navItems = isAdmin
     ? [
@@ -113,7 +113,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               <span className="text-xs text-brand-accent-mid tracking-wide hidden sm:inline">Feedback</span>
             </div>
             {isAdmin && (
-              <span className="text-[11px] font-bold text-[#e879f9] tracking-wide -mt-0.5">Admin View</span>
+              <span className="text-[11px] font-bold text-brand-accent-mid tracking-wide -mt-0.5">Admin View</span>
             )}
           </Link>
 
@@ -125,37 +125,34 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
             {!isAdmin && (
               /* Reviews dropdown */
               <div
-                className="relative"
-                onMouseEnter={() => setReviewsOpen(true)}
-                onMouseLeave={() => setReviewsOpen(false)}
+                className="relative group"
               >
                 <button
-                  className={`relative flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-                    pathname.startsWith('/reviews')
-                      ? 'bg-brand-accent-soft text-white'
-                      : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-                  }`}
+                  className={`relative flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${pathname.startsWith('/reviews')
+                    ? 'bg-brand-accent-soft text-white'
+                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                    }`}
                 >
                   <Star size={16} />
                   <span className="text-sm font-medium whitespace-nowrap">Reviews</span>
                   {pendingReviewsCount > 0 && (
-                    <span className="absolute -top-0.5 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f500f1] px-1 text-[10px] font-bold text-[#1a0a2e] animate-pulse">
+                    <span className="absolute -top-0.5 -right-1 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-accent-strong px-1 text-[10px] font-bold text-white animate-pulse">
                       {pendingReviewsCount}
                     </span>
                   )}
-                  <ChevronDown size={14} className={`transition-transform duration-200 ${reviewsOpen ? 'rotate-180' : ''}`} />
+                  <ChevronDown size={14} className="transition-transform duration-200 group-hover:rotate-180" />
                 </button>
 
-                {reviewsOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#271033] border border-[#8d62a5]/20 rounded-xl shadow-2xl py-2 z-50">
+
+                 <div className="absolute top-full left-0 pt-1 w-52 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all duration-200">
+                  <div className="bg-brand-bg border border-brand-accent-soft/20 rounded-xl shadow-2xl py-2">
                     <Link
                       href="/reviews"
                       onClick={closeMenu}
-                      className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
-                        pathname === '/reviews'
-                          ? 'text-[#f500f1] bg-[#f500f1]/10'
-                          : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
-                      }`}
+                      className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${pathname === '/reviews'
+                        ? 'text-brand-accent-strong bg-brand-accent-strong/10'
+                        : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-card'
+                        }`}
                     >
                       <Star size={16} />
                       Reviews recibidas
@@ -163,20 +160,19 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                     <Link
                       href="/reviews/pendientes"
                       onClick={closeMenu}
-                      className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
-                        pathname === '/reviews/pendientes'
-                          ? 'text-[#f500f1] bg-[#f500f1]/10'
-                          : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
-                      }`}
+                      className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${pathname === '/reviews/pendientes'
+                        ? 'text-brand-accent-strong bg-brand-accent-strong/10'
+                        : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-card'
+                        }`}
                     >
                       <Clock size={16} />
                       Reviews pendientes
                       {pendingReviewsCount > 0 && (
-                        <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
+                        <span className="ml-auto h-2 w-2 rounded-full bg-brand-accent-strong animate-pulse" />
                       )}
                     </Link>
                   </div>
-                )}
+                </div>
               </div>
             )}
             {renderNavLink(navItems[2])}
@@ -186,13 +182,12 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               <Link
                 href="/perfil"
                 onClick={closeMenu}
-                className={`flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-                  pathname === '/perfil'
-                    ? 'bg-brand-accent-soft text-white'
-                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-                }`}
+                className={`flex items-center gap-1.5 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${pathname === '/perfil'
+                  ? 'bg-brand-accent-soft text-white'
+                  : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                  }`}
               >
-                <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-brand-accent-soft flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                   {inicial}
                 </div>
                 <span className="text-sm font-medium whitespace-nowrap">{nombreCompleto}</span>
@@ -216,18 +211,19 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               </Link>
             )}
             <button
-              onClick={() => signOut({ redirectUrl: '/' })}
-              className="flex items-center justify-center w-9 h-9 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
+              onClick={() => setShowLogoutConfirm(true)}
+              className="flex items-center gap-1.5 px-3 py-2 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
               aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
+              <span className="text-sm font-medium whitespace-nowrap hidden xl:inline">Cerrar sesión</span>
             </button>
           </div>
 
           {/* Mobile logout button */}
           <div className="lg:hidden flex items-center gap-1 ml-auto">
             <button
-              onClick={() => signOut({ redirectUrl: '/' })}
+              onClick={() => setShowLogoutConfirm(true)}
               className="p-2 text-brand-accent-mid hover:text-brand-text-light transition-colors"
               aria-label="Cerrar sesión"
             >
@@ -240,7 +236,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
       {/* Mobile dropdown menu */}
       {menuOpen && (
         <div
-          className="fixed top-16 left-0 right-0 z-50 lg:hidden bg-brand-card border-b border-brand-accent-soft/20 shadow-xl"
+          className="fixed top-16 left-0 right-0 z-[55] lg:hidden bg-brand-card border-b border-brand-accent-soft/20 shadow-xl"
           role="navigation"
           aria-label="Navegación principal"
         >
@@ -258,7 +254,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                     <Star size={16} />
                     <span className="text-sm font-medium">Reviews</span>
                     {pendingReviewsCount > 0 && (
-                      <span className="absolute -top-2 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-[#f500f1] px-1 text-[10px] font-bold text-[#1a0a2e]">
+                      <span className="absolute -top-2 -right-3 flex h-4 min-w-4 items-center justify-center rounded-full bg-brand-accent-strong px-1 text-[10px] font-bold text-white">
                         {pendingReviewsCount}
                       </span>
                     )}
@@ -270,11 +266,10 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                     <Link
                       href="/reviews"
                       onClick={closeMenu}
-                      className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-                        pathname === '/reviews'
-                          ? 'bg-brand-accent-soft text-white'
-                          : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-                      }`}
+                      className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${pathname === '/reviews'
+                        ? 'bg-brand-accent-soft text-white'
+                        : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                        }`}
                     >
                       <Star size={16} />
                       <span className="text-sm font-medium">Recibidas</span>
@@ -282,16 +277,15 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                     <Link
                       href="/reviews/pendientes"
                       onClick={closeMenu}
-                      className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-                        pathname === '/reviews/pendientes'
-                          ? 'bg-brand-accent-soft text-white'
-                          : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-                      }`}
+                      className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${pathname === '/reviews/pendientes'
+                        ? 'bg-brand-accent-soft text-white'
+                        : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                        }`}
                     >
                       <Clock size={16} />
                       <span className="text-sm font-medium">Pendientes</span>
                       {pendingReviewsCount > 0 && (
-                        <span className="ml-auto h-2 w-2 rounded-full bg-[#f500f1] animate-pulse" />
+                        <span className="ml-auto h-2 w-2 rounded-full bg-brand-accent-strong animate-pulse" />
                       )}
                     </Link>
                   </div>
@@ -305,13 +299,12 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               <Link
                 href="/perfil"
                 onClick={closeMenu}
-                className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${
-                  pathname === '/perfil'
-                    ? 'bg-brand-accent-soft text-white'
-                    : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
-                }`}
+                className={`flex items-center gap-2 px-2 py-2 rounded-lg transition-all duration-200 min-h-[44px] ${pathname === '/perfil'
+                  ? 'bg-brand-accent-soft text-white'
+                  : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30'
+                  }`}
               >
-                <div className="w-6 h-6 rounded-full bg-[#8d62a5] flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
+                <div className="w-6 h-6 rounded-full bg-brand-accent-soft flex items-center justify-center text-xs font-bold text-white flex-shrink-0">
                   {inicial}
                 </div>
                 <span className="text-sm font-medium">{nombreCompleto}</span>
@@ -332,19 +325,61 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
             )}
             <button
               onClick={() => {
-                signOut({ redirectUrl: '/' });
+                setShowLogoutConfirm(true);
                 closeMenu();
               }}
               className="flex items-center gap-2 w-full px-3 py-3 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200 min-h-[44px]"
               aria-label="Cerrar sesión"
             >
               <LogOut size={18} />
+              <span className="text-sm font-medium">Cerrar sesión</span>
             </button>
           </div>
         </div>
       )}
 
       {/* Spacer for fixed top bar */}
+      {showLogoutConfirm && (
+        <div
+          className="fixed inset-0 z-[60] flex items-center justify-center"
+          onClick={() => setShowLogoutConfirm(false)}
+        >
+          <div
+            className="absolute inset-0 bg-black/60 backdrop-blur-sm"
+            aria-hidden="true"
+          />
+          <div
+            className="relative bg-brand-card border border-brand-accent-soft/20 rounded-2xl shadow-2xl p-6 w-[90vw] max-w-sm mx-4"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex flex-col items-center text-center gap-4">
+              <div className="w-12 h-12 rounded-full bg-brand-accent-soft/20 flex items-center justify-center">
+                <LogOut size={24} className="text-brand-accent-soft" />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold text-white">Cerrar sesión</h3>
+                <p className="text-sm text-brand-accent-mid mt-1">
+                  ¿Estás seguro de que deseas cerrar sesión?
+                </p>
+              </div>
+              <div className="flex gap-3 w-full mt-2">
+                <button
+                  onClick={() => setShowLogoutConfirm(false)}
+                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-brand-accent-mid bg-brand-accent-soft/10 hover:bg-brand-accent-soft/20 transition-all duration-200"
+                >
+                  Cancelar
+                </button>
+                <button
+                  onClick={() => signOut({ redirectUrl: '/' })}
+                  className="flex-1 px-4 py-2.5 rounded-xl text-sm font-medium text-white bg-brand-accent-soft hover:bg-brand-accent-strong transition-all duration-200"
+                >
+                  Confirmar
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
       <div className="h-16" />
     </>
   );

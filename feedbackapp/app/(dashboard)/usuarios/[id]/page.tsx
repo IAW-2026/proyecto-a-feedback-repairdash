@@ -74,6 +74,7 @@ export default async function UserDetailPage({
       }}
       promedio={promedio}
       reportesEnContra={reportesEnContra}
+      totalReviews={totalReviews}
       reviews={reviewsData}
       page={page}
       totalPaginas={totalPaginas}

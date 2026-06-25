@@ -35,13 +35,13 @@ export default function AdminUsersClient({
   return (
     <div className="w-full">
       <div className="mb-8">
-        <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2 text-sm">
+        <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-2 text-sm">
           Administración
         </p>
-        <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
+        <h1 className="text-4xl font-bold text-brand-text-light mb-3">
           Usuarios del sistema
         </h1>
-        <p className="text-[#c392dd]">
+        <p className="text-brand-accent-mid">
           {total} usuario{total !== 1 ? 's' : ''} registrado{total !== 1 ? 's' : ''}
         </p>
       </div>
@@ -83,7 +83,7 @@ export default function AdminUsersClient({
                 valoracion={u.valoracion}
                 badge={getRolLabel(u.rol)}
               >
-                <div className="flex items-center gap-1.5 text-[#c392dd] text-xs whitespace-nowrap">
+                <div className="flex items-center gap-1.5 text-brand-accent-mid text-xs whitespace-nowrap">
                   <Mail size={13} className="flex-shrink-0" />
                   <span>{u.mail}</span>
                 </div>

@@ -20,18 +20,18 @@ export default function ReviewCard({
   href,
 }: ReviewCardProps) {
   const cardClass =
-    'block bg-[#3a1f52] rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-[#8d62a5]/30 hover:border-[#f500f1]/40 hover:shadow-lg hover:shadow-[#f500f1]/10 transition-all duration-300 hover:scale-[1.02]'
+    'block bg-brand-card rounded-lg p-[clamp(1rem,4vw,1.5rem)] border border-brand-accent-soft/30 hover:border-brand-accent-strong/40 hover:shadow-lg hover:shadow-brand-accent-strong/10 transition-all duration-300 hover:scale-[1.02]'
 
   const content = (
     <>
       <div className="mb-3">
         <div className="flex items-start justify-between gap-4 mb-2">
           <div className="flex-1">
-            <div className="text-lg font-bold text-[#fbdaf9] mb-1">
+            <div className="text-lg font-bold text-brand-text-light mb-1">
               {autor.nombre ?? ''} {autor.apellido ?? ''}
             </div>
             <div className="flex items-center gap-2 flex-wrap">
-              <span className="inline-block px-3 py-1 bg-[#8d62a5]/20 text-[#c392dd] text-xs font-medium rounded-full">
+              <span className="inline-block px-3 py-1 bg-brand-accent-soft/20 text-brand-text-light text-xs font-medium rounded-full">
                 {getRolLabel(autor.rol)}
               </span>
             </div>
@@ -43,7 +43,7 @@ export default function ReviewCard({
           )}
         </div>
 
-        <div className="flex items-center gap-4 text-sm text-[#c392dd]">
+        <div className="flex items-center gap-4 text-sm text-brand-accent-mid">
           <div className="flex items-center gap-2">
             <Briefcase size={16} />
             <span>{trabajo.tipoDeTrabajo}</span>
@@ -55,7 +55,7 @@ export default function ReviewCard({
         </div>
       </div>
 
-      <p className="text-[#fbdaf9] leading-relaxed line-clamp-3">
+      <p className="text-brand-text-light leading-relaxed line-clamp-3 break-words">
         {review}
       </p>
     </>

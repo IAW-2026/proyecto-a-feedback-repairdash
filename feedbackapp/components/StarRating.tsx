@@ -19,8 +19,8 @@ export default function StarRating({ valoracion, max = 5, size = 18 }: StarRatin
           size={size}
           className={
             i < Math.round(valoracion)
-              ? 'fill-[#f500f1] text-[#f500f1]'
-              : 'text-[#8d62a5] opacity-30'
+              ? 'fill-brand-accent-strong text-brand-accent-strong'
+              : 'text-brand-accent-soft opacity-30'
           }
         />
       ))}

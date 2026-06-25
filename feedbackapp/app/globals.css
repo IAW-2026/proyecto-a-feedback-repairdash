@@ -5,19 +5,23 @@
 @theme {
   --color-brand-bg: #271033;
   --color-brand-card: #3a1f52;
-  --color-brand-accent-soft: #8d62a5;
+  --color-brand-accent-soft: #ad86c7;
   --color-brand-accent-mid: #c392dd;
-  --color-brand-accent-strong: #f500f1;
+  --color-brand-accent-strong: #c000bd;
   --color-brand-text-light: #fbdaf9;
+  --color-brand-card-hover: #4a2a6a;
+  --color-brand-accent-strong-hover: #a0009e;
 }
 
 :root {
   --brand-bg: #271033;
   --brand-card: #3a1f52;
-  --brand-accent-soft: #8d62a5;
+  --brand-accent-soft: #ad86c7;
   --brand-accent-mid: #c392dd;
-  --brand-accent-strong: #f500f1;
+  --brand-accent-strong: #c000bd;
   --brand-text-light: #fbdaf9;
+  --brand-card-hover: #4a2a6a;
+  --brand-accent-strong-hover: #a0009e;
 }
 
 @font-face {

@@ -12,9 +12,11 @@ export function useSearch({ search, filters = {} }: UseSearchParams) {
   const router = useRouter()
   const pathname = usePathname()
   const [searchValue, setSearchValue] = useState(search)
+  const [initialSearch] = useState(search)
   const filterKey = JSON.stringify(filters)
 
   useEffect(() => {
+    if (searchValue === initialSearch) return
     const timer = setTimeout(() => {
       const currentFilters = JSON.parse(filterKey) as Record<string, string>
       const params = new URLSearchParams()

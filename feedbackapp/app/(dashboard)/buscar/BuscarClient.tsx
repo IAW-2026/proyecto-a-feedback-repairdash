@@ -31,11 +31,11 @@ export default function BuscarClient({
   return (
     <div className="p-8">
       <div className="mb-8">
-        <div className="text-xs uppercase tracking-widest text-[#c392dd] mb-2">
+        <div className="text-xs uppercase tracking-widest text-brand-accent-mid mb-2">
           BUSCAR USUARIOS
         </div>
         <h1 className="text-4xl font-bold text-white mb-3">Buscar usuarios</h1>
-        <p className="text-[#c392dd]">
+        <p className="text-brand-accent-mid">
           Buscá por nombre de usuario registrado en la plataforma
         </p>
       </div>
@@ -65,16 +65,16 @@ export default function BuscarClient({
                 valoracion={usuario.promedioEstrellas}
               >
                 <div className="flex items-center gap-4" style={{ fontSize: 'clamp(0.7rem, 1.5vw, 0.8rem)' }}>
-                  <div className="flex items-center gap-1.5 text-[#c392dd]">
+                  <div className="flex items-center gap-1.5 text-brand-accent-mid">
                     <AlertTriangle size={14} className="flex-shrink-0" />
                     <span>
-                      Reportes: <strong className="text-[#fbdaf9]">{usuario.reportesEnContra}</strong>
+                      Reportes: <strong className="text-brand-text-light">{usuario.reportesEnContra}</strong>
                     </span>
                   </div>
-                  <div className="flex items-center gap-1.5 text-[#c392dd]">
+                  <div className="flex items-center gap-1.5 text-brand-accent-mid">
                     <Briefcase size={14} className="flex-shrink-0" />
                     <span>
-                      Trabajos: <strong className="text-[#fbdaf9]">{usuario.trabajosInvolucrado}</strong>
+                      Trabajos: <strong className="text-brand-text-light">{usuario.trabajosInvolucrado}</strong>
                     </span>
                   </div>
                 </div>

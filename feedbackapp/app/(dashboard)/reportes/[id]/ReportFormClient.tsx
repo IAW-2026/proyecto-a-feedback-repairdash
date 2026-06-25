@@ -34,11 +34,11 @@ export default function ReportFormClient({
 
   if (success) {
     return (
-      <div className="min-h-screen bg-[#271033] flex flex-col items-center justify-center px-[clamp(1rem,4vw,2rem)] py-[clamp(1rem,4vw,2rem)]">
+      <div className="min-h-screen bg-brand-bg flex flex-col items-center justify-center px-[clamp(1rem,4vw,2rem)] py-[clamp(1rem,4vw,2rem)]">
         <div className="w-full max-w-[600px] text-center">
           <CheckCircle className="text-green-500 mx-auto mb-4" size={64} />
-          <h2 className="text-3xl font-bold text-[#fbdaf9] mb-2">¡Reporte enviado!</h2>
-          <p className="text-[#c392dd] mb-6">
+          <h2 className="text-3xl font-bold text-brand-text-light mb-2">¡Reporte enviado!</h2>
+          <p className="text-brand-accent-mid mb-6">
             Tu reporte ha sido registrado correctamente. Serás redirigido...
           </p>
         </div>
@@ -47,55 +47,55 @@ export default function ReportFormClient({
   }
 
   return (
-    <div className="min-h-screen bg-[#271033] py-[clamp(1.5rem,4vw,3rem)] px-[clamp(1rem,4vw,2rem)]">
+    <div className="min-h-screen bg-brand-bg py-[clamp(1.5rem,4vw,3rem)] px-[clamp(1rem,4vw,2rem)]">
       <div className="w-full max-w-[700px] mx-auto">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold text-[#fbdaf9] mb-2">Resolver Reporte</h1>
-          <p className="text-[#c392dd]">Proporcioná detalles sobre el incidente y adjuntá evidencias</p>
+          <h1 className="text-4xl font-bold text-brand-text-light mb-2">Resolver Reporte</h1>
+          <p className="text-brand-accent-mid">Proporcioná detalles sobre el incidente y adjuntá evidencias</p>
         </div>
 
-        <div className="bg-[#3a1f52] rounded-xl p-6 border border-[#8d62a5]/20 mb-6 text-[#fbdaf9]">
+        <div className="bg-brand-card rounded-xl p-6 border border-brand-accent-soft/20 mb-6 text-brand-text-light">
           <h2 className="text-lg font-semibold mb-4">Información del Reporte</h2>
           <div className="space-y-3 text-sm">
             <p>
-              <span className="text-[#c392dd]">Usuario reportado:</span> {reportado?.nombre}{' '}
+              <span className="text-brand-accent-mid">Usuario reportado:</span> {reportado?.nombre}{' '}
               {reportado?.apellido}
             </p>
             <p>
-              <span className="text-[#c392dd]">Tipo de trabajo:</span> {trabajo?.tipoDeTrabajo}
+              <span className="text-brand-accent-mid">Tipo de trabajo:</span> {trabajo?.tipoDeTrabajo}
             </p>
             <p>
-              <span className="text-[#c392dd]">ID del trabajo:</span> <code className="bg-[#2a0f3a] px-2 py-1 rounded">{trabajo?.id}</code>
+              <span className="text-brand-accent-mid">ID del trabajo:</span> <code className="bg-brand-card px-2 py-1 rounded">{trabajo?.id}</code>
             </p>
           </div>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div>
-            <label className="block text-[#fbdaf9] font-semibold mb-2">
+            <label className="block text-brand-text-light font-semibold mb-2">
               Descripción del Incidente *
             </label>
-            <p className="text-xs text-[#c392dd] mb-3">
+            <p className="text-xs text-brand-accent-mid mb-3">
               Cuéntanos qué sucedió. Mínimo 20 caracteres.
             </p>
             <textarea
               value={formData.descripcion}
               onChange={handleDescripcionChange}
               disabled={isLoading}
-              className="w-full bg-[#3a1f52] border border-[#8d62a5]/30 rounded-lg p-4 text-[#fbdaf9] placeholder-[#8d62a5] focus:outline-none focus:border-[#f500f1] disabled:opacity-50 disabled:cursor-not-allowed resize-none"
+              className="w-full bg-brand-card border border-brand-accent-soft/30 rounded-lg p-4 text-brand-text-light placeholder-brand-accent-soft focus:outline-none focus:border-brand-accent-strong disabled:opacity-50 disabled:cursor-not-allowed resize-none"
               rows={6}
               placeholder="Describe el incidente de forma clara y detallada..."
             />
-            <p className="text-xs text-[#c392dd] mt-2">
+            <p className="text-xs text-brand-accent-mid mt-2">
               {formData.descripcion.length} / 500 caracteres
             </p>
           </div>
 
           <div>
-            <label className="block text-[#fbdaf9] font-semibold mb-2">
+            <label className="block text-brand-text-light font-semibold mb-2">
               Pruebas / Evidencias *
             </label>
-            <p className="text-xs text-[#c392dd] mb-3">
+            <p className="text-xs text-brand-accent-mid mb-3">
               Arrastrá archivos o hacé clic para seleccionar. Mínimo 1 prueba requerida.
             </p>
 
@@ -107,10 +107,10 @@ export default function ReportFormClient({
                 onDrop={handleDrop}
                 className={`flex flex-col items-center justify-center w-full h-32 border-2 border-dashed rounded-xl cursor-pointer transition-colors ${
                   uploading
-                    ? 'border-[#f500f1]/50 bg-[#3a1f52]/50'
+                    ? 'border-brand-accent-strong/50 bg-brand-card/50'
                     : isDragOver
-                      ? 'border-[#f500f1] bg-[#3a1f52]/80'
-                      : 'border-[#8d62a5]/30 bg-[#3a1f52] hover:border-[#f500f1]/40 hover:bg-[#3a1f52]/80'
+                      ? 'border-brand-accent-strong bg-brand-card/80'
+                      : 'border-brand-accent-soft/30 bg-brand-card hover:border-brand-accent-strong/40 hover:bg-brand-card/80'
                 }`}
               >
                 <label htmlFor="file-upload" className="w-full h-full flex flex-col items-center justify-center cursor-pointer">
@@ -125,16 +125,16 @@ export default function ReportFormClient({
                   />
                   {uploading ? (
                     <div className="flex flex-col items-center gap-2">
-                      <Loader size={24} className="animate-spin text-[#f500f1]" />
-                      <span className="text-[#c392dd] text-sm">Subiendo archivos...</span>
+                      <Loader size={24} className="animate-spin text-brand-accent-strong" />
+                      <span className="text-brand-accent-mid text-sm">Subiendo archivos...</span>
                     </div>
                   ) : (
                     <div className="flex flex-col items-center gap-2">
-                      <Upload size={24} className="text-[#c392dd]" />
-                      <span className="text-[#c392dd] text-sm">
+                      <Upload size={24} className="text-brand-accent-mid" />
+                      <span className="text-brand-accent-mid text-sm">
                         Arrastrá archivos o hacé clic
                       </span>
-                      <span className="text-[#c392dd] text-xs">
+                      <span className="text-brand-accent-mid text-xs">
                         Imágenes o videos
                       </span>
                     </div>
@@ -145,13 +145,13 @@ export default function ReportFormClient({
 
             {formData.pruebas.length > 0 && (
               <div className="space-y-3">
-                <p className="text-sm text-[#fbdaf9] font-semibold">
+                <p className="text-sm text-brand-text-light font-semibold">
                   Pruebas agregadas ({formData.pruebas.length})
                 </p>
                 {formData.pruebas.map((prueba: Prueba) => (
                   <div
                     key={prueba.id}
-                    className="bg-[#3a1f52] p-3 rounded-lg border border-[#8d62a5]/20"
+                    className="bg-brand-card p-3 rounded-lg border border-brand-accent-soft/20"
                   >
                     <div className="flex items-start justify-between gap-2">
                       <div className="flex-1 min-w-0">
@@ -170,13 +170,13 @@ export default function ReportFormClient({
                             Tu navegador no soporta la reproducción de video.
                           </video>
                         ) : null}
-                        <p className="text-xs text-[#c392dd] uppercase">{prueba.tipo}</p>
+                        <p className="text-xs text-brand-accent-mid uppercase">{prueba.tipo}</p>
                       </div>
                       <button
                         type="button"
                         onClick={() => handleRemovePrueba(prueba.id)}
                         disabled={isLoading}
-                        className="text-[#f500f1] hover:text-red-500 transition-colors disabled:opacity-50 flex-shrink-0"
+                        className="text-brand-accent-strong hover:text-red-500 transition-colors disabled:opacity-50 flex-shrink-0"
                       >
                         <X size={18} />
                       </button>
@@ -198,7 +198,7 @@ export default function ReportFormClient({
             <button
               type="submit"
               disabled={isLoading}
-              className="flex-1 flex items-center justify-center gap-2 bg-[#f500f1] text-[#1a0a2e] py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold"
+              className="flex-1 flex items-center justify-center gap-2 bg-brand-accent-strong text-white py-3 px-4 rounded-lg transform transition-transform duration-300 hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 font-semibold"
             >
               {isLoading ? (
                 <>
