@@ -3,6 +3,7 @@
 import { useRouter, usePathname } from 'next/navigation'
 import { Star, AlertCircle } from 'lucide-react'
 import StatCard from '@/components/StatCard'
+import StarRating from '@/components/StarRating'
 import ReviewCard from '@/components/ReviewCard'
 import Pagination from '@/components/Pagination'
 import type { Review } from '@/types'
@@ -15,6 +16,7 @@ interface UserDetailClientProps {
   }
   promedio: number | null
   reportesEnContra: number
+  totalReviews: number
   reviews: Review[]
   page: number
   totalPaginas: number
@@ -24,6 +26,7 @@ export default function UserDetailClient({
   usuario,
   promedio,
   reportesEnContra,
+  totalReviews,
   reviews,
   page,
   totalPaginas,
@@ -38,36 +41,52 @@ export default function UserDetailClient({
   return (
     <div className="w-full">
       <div className="mb-[clamp(2rem,6vw,3rem)]">
-        <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(1rem,3vw,2rem)]">
-          <div className="min-w-0">
+        <div className="relative mb-[clamp(1.5rem,3vw,2rem)]">
+          <div>
             <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Perfil de usuario
             </p>
-            <h1 className="font-gilroy font-bold text-brand-text-light mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
+            <h1 className="font-gilroy font-bold text-brand-text-light mb-1" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
               {usuario.nombre} {usuario.apellido}
             </h1>
             <p className="text-brand-accent-mid" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-              InformaciÃƒÂ³n y reviews del usuario
+              Información y reviews del usuario
             </p>
           </div>
+          <div className="opacity-70 scale-[0.7] origin-top-right sm:absolute sm:right-0 sm:top-0">
+            <StatCard
+              icon={<AlertCircle size={20} className="flex-shrink-0" />}
+              title="Reportes en contra"
+              value={reportesEnContra}
+              description="reportes resueltos desfavorablemente"
+              variant={reportesEnContra > 0 ? 'danger' : 'info'}
+            />
+          </div>
+        </div>
 
+        <div className="flex flex-col gap-4">
           {promedio !== null && (
-            <div className="bg-brand-card px-4 py-2 rounded-xl border border-brand-accent-soft/20 flex items-center gap-2">
-              <span className="text-brand-accent-strong font-bold text-xl">Ã¢Ëœâ€¦ {promedio}</span>
-              <span className="text-brand-accent-mid text-sm">promedio</span>
+            <div className="bg-brand-card rounded-xl p-[clamp(1rem,4vw,2rem)] border border-brand-accent-soft/20">
+              <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] mb-[clamp(1rem,3vw,2rem)]">
+                <Star size={24} className="text-brand-accent-mid flex-shrink-0" />
+                <p className="text-brand-accent-mid font-semibold uppercase tracking-wider" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+                  Valoración Promedio
+                </p>
+              </div>
+              <div className="flex flex-col items-center">
+                <div className="flex flex-wrap items-center gap-[clamp(0.5rem,1vw,0.75rem)] mb-2">
+                  <StarRating valoracion={promedio} size={28} />
+                  <span className="font-gilroy font-bold text-brand-text-light" style={{ fontSize: 'clamp(1.25rem, 3vw, 1.5rem)' }}>
+                    {promedio} / 5
+                  </span>
+                </div>
+                <span className="text-brand-accent-mid text-sm">
+                  basado en {totalReviews} {totalReviews === 1 ? 'review' : 'reviews'}
+                </span>
+              </div>
             </div>
           )}
         </div>
-      </div>
-
-      <div className="mb-[clamp(2rem,6vw,3rem)]">
-        <StatCard
-          icon={<AlertCircle size={20} className="text-red-400 flex-shrink-0" />}
-          title="Reportes en contra"
-          value={reportesEnContra}
-          description="reportes resueltos desfavorablemente"
-          variant="danger"
-        />
       </div>
 
       <div>
@@ -82,7 +101,7 @@ export default function UserDetailClient({
               Sin reviews
             </h3>
             <p className="text-brand-accent-mid" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-              Este usuario no ha recibido reviews todavÃƒÂ­a
+              Este usuario no ha recibido reviews todavía
             </p>
           </div>
         ) : (

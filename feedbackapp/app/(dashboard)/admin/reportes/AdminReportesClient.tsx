@@ -77,7 +77,7 @@ export default function AdminReportesClient({
       <div className="mb-8">
         <div className="flex items-start justify-between mb-6">
           <div>
-            <div className="text-xs uppercase tracking-widest text-brand-accent-strong mb-2 font-semibold">
+            <div className="text-xs uppercase tracking-widest text-brand-accent-mid mb-2 font-semibold">
               PANEL DE ADMINISTRACIÃ“N
             </div>
             <h1 className="text-4xl font-bold text-white mb-3">
@@ -193,7 +193,7 @@ export default function AdminReportesClient({
 
                   {/* CTA: BotÃ³n para ver detalles */}
                   <div className="flex justify-end">
-                    <span className="px-4 py-2 bg-brand-accent-strong/20 text-[#ff66ff] rounded-lg text-sm font-medium">
+                    <span className="px-4 py-2 bg-brand-accent-strong/20 text-brand-text-light rounded-lg text-sm font-medium">
                       Ver detalles
                     </span>
                   </div>

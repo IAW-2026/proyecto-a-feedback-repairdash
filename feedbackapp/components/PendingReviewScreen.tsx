@@ -25,7 +25,7 @@ export default function PendingReviewScreen({
       <div className="bg-brand-bg rounded-2xl p-8 max-w-md w-full mx-4 border border-brand-accent-soft/20 shadow-2xl">
         <div className="flex items-center gap-2 mb-4">
           <AlertCircle className="text-brand-accent-strong" size={24} />
-          <span className="text-brand-accent-strong font-bold uppercase tracking-widest text-sm">
+          <span className="text-brand-accent-mid font-bold uppercase tracking-widest text-sm">
             REVIEW{reviewCount !== 1 ? 'S' : ''} PENDIENTE{reviewCount !== 1 ? 'S' : ''}
           </span>
         </div>

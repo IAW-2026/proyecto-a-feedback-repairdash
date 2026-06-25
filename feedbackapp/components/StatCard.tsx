@@ -6,6 +6,7 @@ interface StatCardProps {
   value: number | string
   description: string
   variant: 'danger' | 'info'
+  compact?: boolean
 }
 
 const variantStyles = {
@@ -21,8 +22,29 @@ const variantStyles = {
   },
 }
 
-export default function StatCard({ icon, title, value, description, variant }: StatCardProps) {
+export default function StatCard({ icon, title, value, description, variant, compact }: StatCardProps) {
   const styles = variantStyles[variant]
+
+  if (compact) {
+    return (
+      <div className={`bg-brand-card rounded-xl px-4 py-3 border ${styles.border} transition-all`}>
+        <div className="flex items-center gap-2 mb-1">
+          {icon}
+          <p className="text-brand-accent-mid uppercase font-semibold text-xs">
+            {title}
+          </p>
+        </div>
+        <div className="flex items-baseline gap-1.5">
+          <span className={`font-gilroy font-bold ${styles.value} text-2xl`}>
+            {value}
+          </span>
+          <span className={`${styles.description} text-xs`}>
+            {description}
+          </span>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div className={`bg-brand-bg rounded-lg p-[clamp(1rem,3vw,1.5rem)] border ${styles.border} transition-all`}>

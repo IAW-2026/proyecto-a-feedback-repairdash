@@ -65,7 +65,7 @@ export default function ReportFormClient({
               <span className="text-brand-accent-mid">Tipo de trabajo:</span> {trabajo?.tipoDeTrabajo}
             </p>
             <p>
-              <span className="text-brand-accent-mid">ID del trabajo:</span> <code className="bg-[#2a0f3a] px-2 py-1 rounded">{trabajo?.id}</code>
+              <span className="text-brand-accent-mid">ID del trabajo:</span> <code className="bg-brand-card px-2 py-1 rounded">{trabajo?.id}</code>
             </p>
           </div>
         </div>

@@ -113,7 +113,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
               <span className="text-xs text-brand-accent-mid tracking-wide hidden sm:inline">Feedback</span>
             </div>
             {isAdmin && (
-              <span className="text-[11px] font-bold text-[#e879f9] tracking-wide -mt-0.5">Admin View</span>
+              <span className="text-[11px] font-bold text-brand-accent-mid tracking-wide -mt-0.5">Admin View</span>
             )}
           </Link>
 

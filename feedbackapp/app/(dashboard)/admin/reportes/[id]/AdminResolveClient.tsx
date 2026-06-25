@@ -99,7 +99,7 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
           </p>
           <button
             onClick={() => router.push('/admin/reportes')}
-            className="px-4 py-2 bg-[#6ba587]/20 text-[#4ade80] rounded-lg text-sm font-medium hover:bg-[#6ba587]/30 transition-all duration-200"
+            className="px-4 py-2 bg-green-500/20 text-green-400 rounded-lg text-sm font-medium hover:bg-green-500/30 transition-all duration-200"
           >
             Volver a reportes
           </button>
