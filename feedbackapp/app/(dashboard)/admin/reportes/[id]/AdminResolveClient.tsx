@@ -21,17 +21,17 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
 
   if (isCreado && !success) {
     return (
-      <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
-        <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
+      <div className="bg-brand-card rounded-xl p-6 border-2 border-brand-accent-mid">
+        <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-4 text-sm">
           Reporte
         </p>
         <div className="text-center">
-          <Clock size={48} className="mx-auto mb-3 text-[#c392dd]" />
-          <h3 className="font-bold text-[#fbdaf9] mb-2 text-lg">
+          <Clock size={48} className="mx-auto mb-3 text-brand-accent-mid" />
+          <h3 className="font-bold text-brand-text-light mb-2 text-lg">
             Pendiente de pruebas
           </h3>
-          <p className="text-[#c392dd] text-sm">
-            El usuario aún no ha cargado las pruebas. No se puede resolver hasta que se agreguen.
+          <p className="text-brand-accent-mid text-sm">
+            El usuario aÃƒÂºn no ha cargado las pruebas. No se puede resolver hasta que se agreguen.
           </p>
         </div>
       </div>
@@ -40,30 +40,30 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
 
   if (isResuelto && !success) {
     return (
-      <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
-        <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
+      <div className="bg-brand-card rounded-xl p-6 border-2 border-brand-accent-mid">
+        <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-4 text-sm">
           Veredicto
         </p>
         <div className="text-center">
           {decision === 'AFavor' ? (
             <>
               <CheckCircle size={56} className="mx-auto mb-4 text-green-500" />
-              <h3 className="font-bold text-[#fbdaf9] mb-2 text-xl">
+              <h3 className="font-bold text-brand-text-light mb-2 text-xl">
                 Reporte aprobado
               </h3>
-              <p className="text-[#c392dd] mb-4">
-                El administrador falló a favor del reportante
+              <p className="text-brand-accent-mid mb-4">
+                El administrador fallÃƒÂ³ a favor del reportante
               </p>
               <DecisionBadge favorable={true} />
             </>
           ) : (
             <>
               <XCircle size={56} className="mx-auto mb-4 text-red-500" />
-              <h3 className="font-bold text-[#fbdaf9] mb-2 text-xl">
+              <h3 className="font-bold text-brand-text-light mb-2 text-xl">
                 Reporte rechazado
               </h3>
-              <p className="text-[#c392dd] mb-4">
-                El administrador falló en contra del reportante
+              <p className="text-brand-accent-mid mb-4">
+                El administrador fallÃƒÂ³ en contra del reportante
               </p>
               <DecisionBadge favorable={false} />
             </>
@@ -74,8 +74,8 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
   }
 
   return (
-    <div className="bg-[#3a1f52] rounded-xl p-6 border-2 border-[#c392dd]">
-      <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-4 text-sm">
+    <div className="bg-brand-card rounded-xl p-6 border-2 border-brand-accent-mid">
+      <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-4 text-sm">
         Resolver Reporte
       </p>
 
@@ -89,10 +89,10 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
       {success ? (
         <div className="text-center">
           <CheckCircle size={56} className="mx-auto mb-4 text-green-500" />
-          <h3 className="font-bold text-[#fbdaf9] mb-2 text-xl">
-            ¡Reporte resuelto!
+          <h3 className="font-bold text-brand-text-light mb-2 text-xl">
+            Ã‚Â¡Reporte resuelto!
           </h3>
-          <p className="text-[#c392dd] mb-4">
+          <p className="text-brand-accent-mid mb-4">
             {decision === 'AFavor'
               ? 'Decidiste a favor del reportante'
               : 'Decidiste en contra del reportante'}
@@ -107,12 +107,12 @@ export default function AdminResolveClient({ reporteId, estado, decision }: Prop
       ) : (
         <>
           <div className="text-center mb-6">
-            <Clock size={48} className="mx-auto mb-3 text-[#c392dd]" />
-            <h3 className="font-bold text-[#fbdaf9] mb-2 text-lg">
-              Pendiente de resolución
+            <Clock size={48} className="mx-auto mb-3 text-brand-accent-mid" />
+            <h3 className="font-bold text-brand-text-light mb-2 text-lg">
+              Pendiente de resoluciÃƒÂ³n
             </h3>
-            <p className="text-[#c392dd] text-sm">
-              Revisá las pruebas y tomá una decisión
+            <p className="text-brand-accent-mid text-sm">
+              RevisÃƒÂ¡ las pruebas y tomÃƒÂ¡ una decisiÃƒÂ³n
             </p>
           </div>
 

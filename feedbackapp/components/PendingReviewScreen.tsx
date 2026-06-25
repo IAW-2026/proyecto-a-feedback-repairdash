@@ -22,7 +22,7 @@ export default function PendingReviewScreen({
       className="fixed inset-0 z-50 flex items-center justify-center bg-black/60"
       onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}
     >
-      <div className="bg-[#271033] rounded-2xl p-8 max-w-md w-full mx-4 border border-brand-accent-soft/20 shadow-2xl">
+      <div className="bg-brand-bg rounded-2xl p-8 max-w-md w-full mx-4 border border-brand-accent-soft/20 shadow-2xl">
         <div className="flex items-center gap-2 mb-4">
           <AlertCircle className="text-brand-accent-strong" size={24} />
           <span className="text-brand-accent-strong font-bold uppercase tracking-widest text-sm">
@@ -30,7 +30,7 @@ export default function PendingReviewScreen({
           </span>
         </div>
 
-        <h1 className="text-3xl font-bold text-[#fbdaf9] mb-6">
+        <h1 className="text-3xl font-bold text-brand-text-light mb-6">
           {texto}
         </h1>
 
@@ -45,7 +45,7 @@ export default function PendingReviewScreen({
 
           <button
             onClick={onClose}
-            className="w-full flex items-center justify-center gap-2 bg-transparent text-[#c392dd] border border-brand-accent-soft/40 py-3 px-4 rounded-lg hover:bg-[#3a1f52] transition-colors duration-200 font-semibold cursor-pointer"
+            className="w-full flex items-center justify-center gap-2 bg-transparent text-brand-accent-mid border border-brand-accent-soft/40 py-3 px-4 rounded-lg hover:bg-brand-card transition-colors duration-200 font-semibold cursor-pointer"
           >
             <X size={20} />
             Cerrar

@@ -21,7 +21,7 @@ export default function PendingReportScreen({
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
-      <div className="bg-[#271033] rounded-2xl p-8 max-w-md w-full mx-4 border border-brand-accent-soft/20 shadow-2xl">
+      <div className="bg-brand-bg rounded-2xl p-8 max-w-md w-full mx-4 border border-brand-accent-soft/20 shadow-2xl">
         <div className="flex items-center gap-2 mb-4">
           <Flag className="text-brand-accent-strong" size={24} />
           <span className="text-brand-accent-strong font-bold uppercase tracking-widest text-sm">
@@ -29,24 +29,24 @@ export default function PendingReportScreen({
           </span>
         </div>
 
-        <h1 className="text-3xl font-bold text-[#fbdaf9] mb-3">
-          Tenés un reporte pendiente
+        <h1 className="text-3xl font-bold text-brand-text-light mb-3">
+          TenÃ©s un reporte pendiente
         </h1>
 
-        <p className="text-[#c392dd] mb-6">
+        <p className="text-brand-accent-mid mb-6">
           Completalo antes de seguir usando la app
         </p>
 
-        <div className="bg-[#3a1f52] rounded-xl p-5 border border-brand-accent-soft/20 mb-6 space-y-4">
+        <div className="bg-brand-card rounded-xl p-5 border border-brand-accent-soft/20 mb-6 space-y-4">
           <div className="flex items-center gap-3">
             <div className="w-9 h-9 rounded-full bg-brand-accent-soft/30 flex items-center justify-center flex-shrink-0">
-              <span className="text-xs font-bold text-[#fbdaf9]">
+              <span className="text-xs font-bold text-brand-text-light">
                 {reportado?.nombre?.charAt(0)?.toUpperCase() ?? '?'}{reportado?.apellido?.charAt(0)?.toUpperCase() ?? ''}
               </span>
             </div>
             <div>
-              <p className="text-xs text-[#c392dd] uppercase">Usuario Reportado</p>
-              <span className="font-semibold text-[#fbdaf9]">
+              <p className="text-xs text-brand-accent-mid uppercase">Usuario Reportado</p>
+              <span className="font-semibold text-brand-text-light">
                 {reportado?.nombre} {reportado?.apellido}
               </span>
             </div>
@@ -54,12 +54,12 @@ export default function PendingReportScreen({
 
           <div className="flex items-center gap-3">
             <Briefcase className="text-brand-accent-soft" size={18} />
-            <span className="text-[#c392dd]">{trabajo.tipoDeTrabajo}</span>
+            <span className="text-brand-accent-mid">{trabajo.tipoDeTrabajo}</span>
           </div>
 
           <div className="flex items-center gap-3">
             <Calendar className="text-brand-accent-soft" size={18} />
-            <span className="text-[#c392dd] capitalize">
+            <span className="text-brand-accent-mid capitalize">
               {trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Por confirmar'}
             </span>
           </div>

@@ -9,10 +9,10 @@ export default function LoginPage() {
           <div className="text-xs uppercase tracking-widest text-brand-accent-mid font-semibold mb-2">
             Feedback App
           </div>
-          <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
+          <h1 className="text-4xl font-bold text-brand-text-light mb-3">
             RepairDash
           </h1>
-          <p className="text-brand-accent-mid">Iniciá sesión en tu cuenta</p>
+          <p className="text-brand-accent-mid">IniciÃ¡ sesiÃ³n en tu cuenta</p>
         </div>
 
         {/* Card de Clerk con alto contraste */}
@@ -22,12 +22,12 @@ export default function LoginPage() {
           fallbackRedirectUrl="/"
           appearance={{
             variables: {
-              colorPrimary: "#c000bd",
+              colorPrimary: "var(--brand-accent-strong)",
               colorBackground: "#ffffff",
               colorInputBackground: "#f3f0f6",
-              colorInputText: "#271033",
-              colorText: "#271033",
-              colorTextSecondary: "#ad86c7",
+              colorInputText: "var(--brand-bg)",
+              colorText: "var(--brand-bg)",
+              colorTextSecondary: "var(--brand-accent-soft)",
               borderRadius: "1rem",
             },
             elements: {
@@ -42,15 +42,15 @@ export default function LoginPage() {
                 borderColor: "#e5d9f0",
               },
               formFieldLabel: {
-                color: "#271033",
+                color: "var(--brand-bg)",
                 fontSize: "0.875rem",
               },
               formButtonPrimary: {
-                backgroundColor: "#c000bd",
+                backgroundColor: "var(--brand-accent-strong)",
                 borderRadius: "0.5rem",
                 fontWeight: "600",
                 "&:hover": {
-                  backgroundColor: "#a0009e",
+                  backgroundColor: "var(--brand-accent-strong-hover)",
                 },
               },
               dividerLine: {
@@ -62,10 +62,10 @@ export default function LoginPage() {
               socialButtonsBlockButton: {
                 borderRadius: "0.5rem",
                 borderColor: "#e5d9f0",
-                color: "#271033",
+                color: "var(--brand-bg)",
               },
               socialButtonsBlockButtonText: {
-                color: "#271033",
+                color: "var(--brand-bg)",
               },
             },
           }}

@@ -40,21 +40,21 @@ export default function UserDetailClient({
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start gap-[clamp(1rem,3vw,2rem)]">
           <div className="min-w-0">
-            <p className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+            <p className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-2" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
               Perfil de usuario
             </p>
-            <h1 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
+            <h1 className="font-gilroy font-bold text-brand-text-light mb-2" style={{ fontSize: 'clamp(1.75rem, 6vw, 2.25rem)' }}>
               {usuario.nombre} {usuario.apellido}
             </h1>
-            <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-              Información y reviews del usuario
+            <p className="text-brand-accent-mid" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
+              InformaciÃƒÂ³n y reviews del usuario
             </p>
           </div>
 
           {promedio !== null && (
-            <div className="bg-[#3a1f52] px-4 py-2 rounded-xl border border-brand-accent-soft/20 flex items-center gap-2">
-              <span className="text-brand-accent-strong font-bold text-xl">★ {promedio}</span>
-              <span className="text-[#c392dd] text-sm">promedio</span>
+            <div className="bg-brand-card px-4 py-2 rounded-xl border border-brand-accent-soft/20 flex items-center gap-2">
+              <span className="text-brand-accent-strong font-bold text-xl">Ã¢Ëœâ€¦ {promedio}</span>
+              <span className="text-brand-accent-mid text-sm">promedio</span>
             </div>
           )}
         </div>
@@ -71,18 +71,18 @@ export default function UserDetailClient({
       </div>
 
       <div>
-        <h2 className="font-gilroy font-bold text-[#fbdaf9] mb-[clamp(1rem,3vw,1.5rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
+        <h2 className="font-gilroy font-bold text-brand-text-light mb-[clamp(1rem,3vw,1.5rem)]" style={{ fontSize: 'clamp(1.25rem, 4vw, 1.5rem)' }}>
           Reviews recibidas
         </h2>
 
         {reviews.length === 0 ? (
-          <div className="bg-[#3a1f52]/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-brand-accent-soft/30 text-center">
+          <div className="bg-brand-card/50 rounded-lg p-[clamp(1.5rem,4vw,3rem)] border border-dashed border-brand-accent-soft/30 text-center">
             <Star size={48} className="mx-auto mb-[clamp(0.75rem,2vw,1rem)] text-brand-accent-soft" />
-            <h3 className="font-gilroy font-bold text-[#fbdaf9] mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
+            <h3 className="font-gilroy font-bold text-brand-text-light mb-2" style={{ fontSize: 'clamp(1rem, 3vw, 1.125rem)' }}>
               Sin reviews
             </h3>
-            <p className="text-[#c392dd]" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
-              Este usuario no ha recibido reviews todavía
+            <p className="text-brand-accent-mid" style={{ fontSize: 'clamp(0.875rem, 2.5vw, 1rem)' }}>
+              Este usuario no ha recibido reviews todavÃƒÂ­a
             </p>
           </div>
         ) : (

@@ -101,7 +101,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="lg:hidden p-2 mr-2 text-brand-accent-mid hover:text-brand-text-light transition-colors"
-            aria-label={menuOpen ? 'Cerrar menú' : 'Abrir menú'}
+            aria-label={menuOpen ? 'Cerrar menÃº' : 'Abrir menÃº'}
           >
             {menuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -118,7 +118,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
           </Link>
 
           {/* Desktop nav */}
-          <nav className="hidden lg:flex items-center ml-6 gap-1" aria-label="Navegación principal">
+          <nav className="hidden lg:flex items-center ml-6 gap-1" aria-label="NavegaciÃ³n principal">
             {renderNavLink(navItems[0])}
             {renderNavLink(navItems[1])}
 
@@ -147,14 +147,14 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                 </button>
 
                 {reviewsOpen && (
-                  <div className="absolute top-full left-0 mt-1 w-52 bg-[#271033] border border-brand-accent-soft/20 rounded-xl shadow-2xl py-2 z-50">
+                  <div className="absolute top-full left-0 mt-1 w-52 bg-brand-bg border border-brand-accent-soft/20 rounded-xl shadow-2xl py-2 z-50">
                     <Link
                       href="/reviews"
                       onClick={closeMenu}
                       className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                         pathname === '/reviews'
                           ? 'text-brand-accent-strong bg-brand-accent-strong/10'
-                          : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
+                          : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-card'
                       }`}
                     >
                       <Star size={16} />
@@ -166,7 +166,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                       className={`flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
                         pathname === '/reviews/pendientes'
                           ? 'text-brand-accent-strong bg-brand-accent-strong/10'
-                          : 'text-[#c392dd] hover:text-[#fbdaf9] hover:bg-[#3a1f52]'
+                          : 'text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-card'
                       }`}
                     >
                       <Clock size={16} />
@@ -218,7 +218,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
             <button
               onClick={() => signOut({ redirectUrl: '/' })}
               className="flex items-center justify-center w-9 h-9 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200"
-              aria-label="Cerrar sesión"
+              aria-label="Cerrar sesiÃ³n"
             >
               <LogOut size={18} />
             </button>
@@ -229,7 +229,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
             <button
               onClick={() => signOut({ redirectUrl: '/' })}
               className="p-2 text-brand-accent-mid hover:text-brand-text-light transition-colors"
-              aria-label="Cerrar sesión"
+              aria-label="Cerrar sesiÃ³n"
             >
               <LogOut size={20} />
             </button>
@@ -242,7 +242,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
         <div
           className="fixed top-16 left-0 right-0 z-50 lg:hidden bg-brand-card border-b border-brand-accent-soft/20 shadow-xl"
           role="navigation"
-          aria-label="Navegación principal"
+          aria-label="NavegaciÃ³n principal"
         >
           <div className="p-4 space-y-2">
             {renderNavLink(navItems[0])}
@@ -336,7 +336,7 @@ export function TopBar({ pendingReviewsCount = 0 }: { pendingReviewsCount?: numb
                 closeMenu();
               }}
               className="flex items-center gap-2 w-full px-3 py-3 rounded-lg text-brand-accent-mid hover:text-brand-text-light hover:bg-brand-accent-soft/30 transition-all duration-200 min-h-[44px]"
-              aria-label="Cerrar sesión"
+              aria-label="Cerrar sesiÃ³n"
             >
               <LogOut size={18} />
             </button>

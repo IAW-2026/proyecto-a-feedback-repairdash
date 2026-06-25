@@ -55,23 +55,23 @@ export default function RealizarReviewForm({
 
   if (enviado) {
     return (
-              <div className="bg-[#271033] px-[clamp(1rem,4vw,2rem)]">
+              <div className="bg-brand-bg px-[clamp(1rem,4vw,2rem)]">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-1 text-[#c392dd] hover:text-[#fbdaf9] transition-colors duration-200 mb-4"
+          className="flex items-center gap-1 text-brand-accent-mid hover:text-brand-text-light transition-colors duration-200 mb-4"
         >
           <ArrowLeft size={18} />
           <span className="text-sm">Volver</span>
         </button>
       <div className="flex items-center justify-center min-h-[60vh]">
-          <div className="bg-[#3a1f52] rounded-xl border border-brand-accent-soft/20 p-8 max-w-xl w-full text-center">
+          <div className="bg-brand-card rounded-xl border border-brand-accent-soft/20 p-8 max-w-xl w-full text-center">
             <div className="flex justify-center mb-6">
               <CheckCircle size={64} className="text-brand-accent-strong" />
             </div>
-            <h2 className="text-2xl font-bold text-[#fbdaf9] mb-4">
-              ¡Review completada!
+            <h2 className="text-2xl font-bold text-brand-text-light mb-4">
+              Ã‚Â¡Review completada!
             </h2>
-            <p className="text-[#c392dd]">
+            <p className="text-brand-accent-mid">
               Gracias por tu feedback. Redirigiendo...
             </p>
           </div>
@@ -86,44 +86,44 @@ export default function RealizarReviewForm({
   );
 
   return (
-    <div className="bg-[#271033] px-[clamp(1rem,4vw,2rem)]">
+    <div className="bg-brand-bg px-[clamp(1rem,4vw,2rem)]">
       <div className="mb-6">
         <button
           onClick={() => router.back()}
-          className="flex items-center gap-1 text-[#c392dd] hover:text-[#fbdaf9] transition-colors duration-200 mb-4"
+          className="flex items-center gap-1 text-brand-accent-mid hover:text-brand-text-light transition-colors duration-200 mb-4"
         >
           <ArrowLeft size={18} />
           <span className="text-sm">Volver</span>
         </button>
         <div className="flex items-center gap-2 mb-3">
           <AlertCircle size={16} className="text-brand-accent-strong" />
-          <span className="text-xs uppercase tracking-widest font-semibold text-[#c392dd]">
+          <span className="text-xs uppercase tracking-widest font-semibold text-brand-accent-mid">
             Review Pendiente
           </span>
         </div>
-        <h1 className="text-4xl font-bold text-[#fbdaf9] mb-3">
-          Completá tu review
+        <h1 className="text-4xl font-bold text-brand-text-light mb-3">
+          CompletÃƒÂ¡ tu review
         </h1>
-        <p className="text-[#c392dd]">
-          Valorá tu experiencia con este usuario
+        <p className="text-brand-accent-mid">
+          ValorÃƒÂ¡ tu experiencia con este usuario
         </p>
       </div>
 
       <div className="max-w-2xl mx-auto">
-        <div className="bg-[#3a1f52] rounded-xl border border-brand-accent-soft/20 p-6">
+        <div className="bg-brand-card rounded-xl border border-brand-accent-soft/20 p-6">
           <div className="mb-6">
-            <label className="text-xs uppercase tracking-widest font-semibold text-[#c392dd] mb-4 block">
-              Estás evaluando a
+            <label className="text-xs uppercase tracking-widest font-semibold text-brand-accent-mid mb-4 block">
+              EstÃƒÂ¡s evaluando a
             </label>
             <div className="flex flex-col items-center gap-4">
               <div className="w-16 h-16 rounded-full bg-brand-accent-soft flex items-center justify-center">
                 <span className="text-xl font-bold text-white">{initials}</span>
               </div>
               <div className="text-center">
-                <h2 className="text-lg font-bold text-[#fbdaf9]">
+                <h2 className="text-lg font-bold text-brand-text-light">
                   {usuarioAEvaluar.nombre} {usuarioAEvaluar.apellido}
                 </h2>
-                <span className="inline-block mt-2 px-3 py-1 bg-brand-accent-soft/20 rounded-full text-xs text-[#c392dd] font-medium">
+                <span className="inline-block mt-2 px-3 py-1 bg-brand-accent-soft/20 rounded-full text-xs text-brand-accent-mid font-medium">
                   {getRolLabel(usuarioAEvaluar.rol)}
                 </span>
               </div>
@@ -133,20 +133,20 @@ export default function RealizarReviewForm({
           <div className="h-px bg-brand-accent-soft/20 mb-6" />
 
           <div className="mb-6">
-            <label className="text-xs uppercase tracking-widest font-semibold text-[#c392dd] mb-4 block">
+            <label className="text-xs uppercase tracking-widest font-semibold text-brand-accent-mid mb-4 block">
               Trabajo realizado
             </label>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
-                <Briefcase size={18} className="text-[#c392dd] flex-shrink-0" />
-                <span className="text-sm text-[#fbdaf9]">{trabajo.tipoDeTrabajo}</span>
+                <Briefcase size={18} className="text-brand-accent-mid flex-shrink-0" />
+                <span className="text-sm text-brand-text-light">{trabajo.tipoDeTrabajo}</span>
               </div>
               <div className="flex items-center gap-3">
-                <Calendar size={18} className="text-[#c392dd] flex-shrink-0" />
-                <span className="text-sm text-[#fbdaf9]">
+                <Calendar size={18} className="text-brand-accent-mid flex-shrink-0" />
+                <span className="text-sm text-brand-text-light">
                   {trabajo.fechaInicio && trabajo.fechaFin && sameDay(trabajo.fechaInicio, trabajo.fechaFin)
                     ? formatDate(trabajo.fechaInicio)
-                    : `${trabajo.fechaInicio ? formatDate(trabajo.fechaInicio) : 'Fecha no definida'} → ${trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Fecha no definida'}`
+                    : `${trabajo.fechaInicio ? formatDate(trabajo.fechaInicio) : 'Fecha no definida'} Ã¢â€ â€™ ${trabajo.fechaFin ? formatDate(trabajo.fechaFin) : 'Fecha no definida'}`
                   }
                 </span>
               </div>
@@ -157,8 +157,8 @@ export default function RealizarReviewForm({
 
           <div className="space-y-6">
             <div>
-              <label className="text-sm font-semibold text-[#fbdaf9] mb-3 block">
-                Valoración
+              <label className="text-sm font-semibold text-brand-text-light mb-3 block">
+                ValoraciÃƒÂ³n
               </label>
               <div className="flex gap-3 mb-3 justify-center">
                 {[1, 2, 3, 4, 5].map((star) => {
@@ -188,9 +188,9 @@ export default function RealizarReviewForm({
               </div>
               <p className="text-center text-sm font-medium">
                 {puntaje !== null ? (
-                  <span className="text-[#c392dd]">{ratingLabels[puntaje]}</span>
+                  <span className="text-brand-accent-mid">{ratingLabels[puntaje]}</span>
                 ) : (
-                  <span className="text-[#c392dd]">Seleccioná una valoración</span>
+                  <span className="text-brand-accent-mid">SeleccionÃƒÂ¡ una valoraciÃƒÂ³n</span>
                 )}
               </p>
               {errores.puntaje && (
@@ -199,15 +199,15 @@ export default function RealizarReviewForm({
             </div>
 
             <div>
-              <label className="text-sm font-semibold text-[#fbdaf9] mb-2 block">
+              <label className="text-sm font-semibold text-brand-text-light mb-2 block">
                 Tu experiencia
               </label>
               <textarea
                 value={review}
                 onChange={onReviewChange}
-                placeholder="Contá tu experiencia con este usuario..."
+                placeholder="ContÃƒÂ¡ tu experiencia con este usuario..."
                 rows={5}
-                className="w-full bg-[#271033] border border-brand-accent-soft rounded-lg text-[#fbdaf9] placeholder-brand-accent-soft/50 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent-strong transition-all duration-200 resize-none"
+                className="w-full bg-brand-bg border border-brand-accent-soft rounded-lg text-brand-text-light placeholder-brand-accent-soft/50 p-3 text-sm focus:outline-none focus:ring-2 focus:ring-brand-accent-strong transition-all duration-200 resize-none"
               />
               <div className="flex items-center justify-between mt-2">
                 <div>
@@ -218,7 +218,7 @@ export default function RealizarReviewForm({
                     <p className="text-red-400 text-xs">{errores.api}</p>
                   )}
                 </div>
-                <span className="text-xs text-[#c392dd]">{review.length} / 1000</span>
+                <span className="text-xs text-brand-accent-mid">{review.length} / 1000</span>
               </div>
             </div>
 

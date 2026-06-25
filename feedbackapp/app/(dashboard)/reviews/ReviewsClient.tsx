@@ -33,22 +33,22 @@ export default function ReviewsClient({
   return (
     <div className="p-8">
       {/* Header */}
-      <div className="mb-8 flex items-start justify-between">
+      <div className="mb-8 flex flex-col md:flex-row md:items-start md:justify-between">
         <div>
-          <div className="text-xs uppercase tracking-widest text-[#c392dd] mb-2">
+          <div className="text-xs uppercase tracking-widest text-brand-accent-mid mb-2">
             REVIEWS RECIBIDAS
           </div>
           <h1 className="text-4xl font-bold text-white mb-3">Reviews recibidas</h1>
-          <p className="text-[#c392dd]">
+          <p className="text-brand-accent-mid">
             Reviews recibidas por trabajos que realicé
           </p>
         </div>
 
         {/* Badge promedio */}
         {promedio !== null && (
-          <div className="bg-[#3a1f52] px-4 py-2 rounded-xl border border-brand-accent-soft/20 flex items-center gap-2">
-            <span className="text-brand-accent-strong font-bold text-xl">★ {promedio}</span>
-            <span className="text-[#c392dd] text-sm">{total} reviews</span>
+          <div className="bg-brand-card px-4 py-2 rounded-xl border border-brand-accent-soft/20 flex items-center gap-2 self-center md:self-auto w-full md:w-auto justify-center md:justify-start">
+            <span className="text-brand-text-light font-bold text-xl">★ {promedio}</span>
+            <span className="text-brand-accent-mid text-sm">{total} reviews</span>
           </div>
         )}
       </div>

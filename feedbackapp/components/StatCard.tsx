@@ -15,9 +15,9 @@ const variantStyles = {
     border: 'border-red-500/30 hover:border-red-500/60',
   },
   info: {
-    value: 'text-[#c392dd]',
-    description: 'text-[#c392dd]/90',
-    border: 'border-[#c392dd]/30 hover:border-[#c392dd]/60',
+    value: 'text-brand-accent-mid',
+    description: 'text-brand-accent-mid/90',
+    border: 'border-brand-accent-mid/30 hover:border-brand-accent-mid/60',
   },
 }
 
@@ -25,10 +25,10 @@ export default function StatCard({ icon, title, value, description, variant }: S
   const styles = variantStyles[variant]
 
   return (
-    <div className={`bg-[#271033] rounded-lg p-[clamp(1rem,3vw,1.5rem)] border ${styles.border} transition-all`}>
+    <div className={`bg-brand-bg rounded-lg p-[clamp(1rem,3vw,1.5rem)] border ${styles.border} transition-all`}>
       <div className="flex items-center gap-[clamp(0.5rem,1vw,0.75rem)] mb-[clamp(0.75rem,2vw,1rem)]">
         {icon}
-        <p className="text-[#c392dd] uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
+        <p className="text-brand-accent-mid uppercase font-semibold" style={{ fontSize: 'clamp(0.75rem, 2vw, 0.875rem)' }}>
           {title}
         </p>
       </div>

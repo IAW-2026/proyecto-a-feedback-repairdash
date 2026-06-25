@@ -8,7 +8,7 @@ interface EstadoBadgeProps {
 export default function EstadoBadge({ estado }: EstadoBadgeProps) {
   if (estado === 'SinResolver') {
     return (
-      <span className="bg-brand-accent-soft/20 text-[#c392dd] text-xs font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full inline-flex items-center gap-1.5 whitespace-nowrap min-h-[28px]">
+      <span className="bg-brand-accent-soft/20 text-brand-accent-mid text-xs font-medium px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full inline-flex items-center gap-1.5 whitespace-nowrap min-h-[28px]">
         <AlertTriangle size={14} />
         Sin resolver
       </span>

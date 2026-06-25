@@ -30,11 +30,11 @@ export default async function ReviewDetailPage({ params }: PageProps) {
 
   return (
     <div className="w-full">
-      {/* Botón Volver */}
+      {/* BotÃ³n Volver */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <Link
           href="/reviews"
-          className="inline-flex items-center gap-1 text-brand-accent-strong hover:text-brand-accent-strong/80 transition-colors font-medium"
+          className="inline-flex items-center gap-1 text-brand-accent-mid hover:text-brand-accent-mid/80 transition-colors font-medium"
           style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}
         >
           <ArrowLeft size={18} />
@@ -45,32 +45,32 @@ export default async function ReviewDetailPage({ params }: PageProps) {
       {/* Header */}
       <div className="mb-[clamp(2rem,6vw,3rem)]">
         <p
-          className="text-[#c392dd] font-semibold uppercase tracking-wider mb-2"
+          className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-2"
           style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
         >
           Detalle de Review
         </p>
         <h1
-          className="font-gilroy font-bold text-[#fbdaf9]"
+          className="font-gilroy font-bold text-brand-text-light"
           style={{ fontSize: "clamp(1.75rem, 6vw, 2.25rem)" }}
         >
-          Opinión
+          OpiniÃ³n
         </h1>
       </div>
 
       {/* Card principal */}
-      <div className="bg-[#3a1f52] rounded-xl p-[clamp(1.5rem,4vw,2.5rem)] border border-brand-accent-soft/20 max-w-2xl mx-auto w-full">
+      <div className="bg-brand-card rounded-xl p-[clamp(1.5rem,4vw,2.5rem)] border border-brand-accent-soft/20 max-w-2xl mx-auto w-full">
         {/* Autor */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] flex-wrap">
             <h2
-              className="font-gilroy font-bold text-[#fbdaf9]"
+              className="font-gilroy font-bold text-brand-text-light"
               style={{ fontSize: "clamp(1.1rem, 3vw, 1.3rem)" }}
             >
               {review.autor.nombre} {review.autor.apellido}
             </h2>
             <span
-              className="bg-brand-accent-soft/30 text-[#fbdaf9] px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full font-medium whitespace-nowrap"
+              className="bg-brand-accent-soft/30 text-brand-text-light px-[clamp(0.75rem,2vw,1rem)] py-[clamp(0.375rem,1vw,0.5rem)] rounded-full font-medium whitespace-nowrap"
               style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
             >
               {tipoLabel}
@@ -78,7 +78,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
           </div>
         </div>
 
-        {/* Valoración */}
+        {/* ValoraciÃ³n */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           {review.valoracion !== null && (
             <>
@@ -86,7 +86,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
                 <StarRating valoracion={review.valoracion} size={28} />
               </div>
               <div
-                className="font-gilroy font-bold text-brand-accent-strong"
+                className="font-gilroy font-bold text-brand-accent-mid"
                 style={{ fontSize: "clamp(1.5rem, 4vw, 1.75rem)" }}
               >
                 {review.valoracion} / 5
@@ -101,7 +101,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         {/* Texto de review */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           <p
-            className="text-[#fbdaf9] leading-relaxed"
+            className="text-brand-text-light leading-relaxed"
             style={{ fontSize: "clamp(0.95rem, 2.5vw, 1.1rem)" }}
           >
             {review.review ?? 'Sin comentario'}
@@ -114,13 +114,13 @@ export default async function ReviewDetailPage({ params }: PageProps) {
         {/* Trabajo relacionado */}
         <div className="mb-[clamp(1.5rem,4vw,2rem)]">
           <p
-            className="text-[#c392dd] font-semibold uppercase tracking-wider mb-[clamp(0.75rem,2vw,1rem)]"
+            className="text-brand-accent-mid font-semibold uppercase tracking-wider mb-[clamp(0.75rem,2vw,1rem)]"
             style={{ fontSize: "clamp(0.75rem, 2vw, 0.875rem)" }}
           >
             Trabajo relacionado
           </p>
           <div className="flex items-center gap-[clamp(0.75rem,2vw,1rem)] flex-wrap">
-            <div className="flex items-center gap-1 text-[#fbdaf9]">
+            <div className="flex items-center gap-1 text-brand-text-light">
               <Briefcase size={18} />
               <span
                 className="font-medium"
@@ -129,7 +129,7 @@ export default async function ReviewDetailPage({ params }: PageProps) {
                 {review.trabajo.tipoDeTrabajo}
               </span>
             </div>
-            <div className="flex items-center gap-1 text-[#c392dd]">
+            <div className="flex items-center gap-1 text-brand-accent-mid">
               <Calendar size={18} />
               <span style={{ fontSize: "clamp(0.875rem, 2vw, 1rem)" }}>
                 {formatDate(review.trabajo.fechaFin)}

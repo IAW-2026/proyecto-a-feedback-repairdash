@@ -20,15 +20,15 @@ export default function Pagination({
         disabled={page === 1}
         className={`px-4 py-2 border border-brand-accent-soft rounded-lg font-semibold text-sm transition-all duration-200 ${
           page === 1
-            ? 'opacity-40 cursor-not-allowed text-[#fbdaf9]'
-            : 'bg-[#3a1f52] text-[#fbdaf9] hover:border-brand-accent-strong hover:text-brand-accent-strong'
+            ? 'opacity-40 cursor-not-allowed text-brand-text-light'
+            : 'bg-brand-card text-brand-text-light hover:border-brand-accent-strong hover:text-brand-accent-strong'
         }`}
       >
-        ← Anterior
+        â† Anterior
       </button>
 
-      <span className="text-[#c392dd] text-sm">
-        Página {page} de {totalPaginas}
+      <span className="text-brand-accent-mid text-sm">
+        PÃ¡gina {page} de {totalPaginas}
       </span>
 
       <button
@@ -36,11 +36,11 @@ export default function Pagination({
         disabled={page === totalPaginas}
         className={`px-4 py-2 border border-brand-accent-soft rounded-lg font-semibold text-sm transition-all duration-200 ${
           page === totalPaginas
-            ? 'opacity-40 cursor-not-allowed text-[#fbdaf9]'
-            : 'bg-[#3a1f52] text-[#fbdaf9] hover:border-brand-accent-strong hover:text-brand-accent-strong'
+            ? 'opacity-40 cursor-not-allowed text-brand-text-light'
+            : 'bg-brand-card text-brand-text-light hover:border-brand-accent-strong hover:text-brand-accent-strong'
         }`}
       >
-        Siguiente →
+        Siguiente â†’
       </button>
     </div>
   )

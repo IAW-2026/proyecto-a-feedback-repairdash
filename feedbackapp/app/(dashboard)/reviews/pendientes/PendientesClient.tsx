@@ -33,17 +33,17 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
   return (
     <div className="w-full">
       <div className="mb-8">
-        <div className="text-xs uppercase tracking-widest text-[#c392dd] mb-2">
+        <div className="text-xs uppercase tracking-widest text-brand-accent-mid mb-2">
           REVIEWS PENDIENTES
         </div>
         <h1 className="text-4xl font-bold text-white mb-3">Reviews pendientes</h1>
-        <p className="text-[#c392dd]">{total} {total === 1 ? 'review que tenés' : 'reviews que tenés'} que completar sobre otros usuarios</p>
+        <p className="text-brand-accent-mid">{total} {total === 1 ? 'review que tenés' : 'reviews que tenés'} que completar sobre otros usuarios</p>
       </div>
 
       {reviews.length === 0 ? (
         <div className="flex flex-col items-center justify-center py-16 text-center">
           <Inbox size={48} className="text-brand-accent-soft opacity-50 mb-4" />
-          <p className="text-[#c392dd] text-lg">No tenés reviews pendientes</p>
+          <p className="text-brand-accent-mid text-lg">No tenés reviews pendientes</p>
           <p className="text-brand-accent-soft mt-2 text-sm">
             {page > 1 ? 'No hay más resultados en esta página' : 'Todas tus reviews están completadas'}
           </p>
@@ -60,7 +60,7 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
               return (
                 <div
                   key={review.id}
-                  className="bg-[#3a1f52] rounded-xl p-6 border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-[#4a2a6a] hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20"
+                  className="bg-brand-card rounded-xl p-6 border border-brand-accent-soft/20 transition-all duration-300 ease-out hover:scale-[1.02] hover:bg-brand-card-hover hover:border-brand-accent-strong/60 hover:shadow-xl hover:shadow-brand-accent-strong/20"
                 >
                   <div className="flex items-start justify-between gap-4">
                     <div className="flex-1 space-y-3">
@@ -69,10 +69,10 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
                           <User size={20} className="text-brand-accent-strong" />
                         </div>
                         <div>
-                          <p className="text-[#c392dd] text-xs uppercase tracking-wider">
+                          <p className="text-brand-accent-mid text-xs uppercase tracking-wider">
                             Usuario a evaluar
                           </p>
-                          <p className="text-[#fbdaf9] font-semibold truncate max-w-[120px] sm:max-w-none">
+                          <p className="text-brand-text-light font-semibold truncate max-w-[120px] sm:max-w-none">
                             {usuarioAEvaluar?.nombre} {usuarioAEvaluar?.apellido}
                           </p>
                         </div>
@@ -80,12 +80,12 @@ export default function PendientesClient({ userId, reviews, total, page, totalPa
 
                       <div className="flex items-center gap-3">
                         <Briefcase size={18} className="text-brand-accent-soft" />
-                        <span className="text-[#c392dd]">{review.trabajo.tipoDeTrabajo}</span>
+                        <span className="text-brand-accent-mid">{review.trabajo.tipoDeTrabajo}</span>
                       </div>
 
                       <div className="flex items-center gap-3">
                         <Calendar size={18} className="text-brand-accent-soft" />
-                        <span className="text-[#c392dd]">
+                        <span className="text-brand-accent-mid">
                           {formatDate(review.trabajo.fechaFin)}
                         </span>
                       </div>
