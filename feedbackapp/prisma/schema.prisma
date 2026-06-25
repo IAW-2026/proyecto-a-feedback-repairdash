@@ -1,0 +1,102 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Get a free hosted Postgres database in seconds: `npx create-db`
+
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Usuario {
+  id                 String       @id
+  mail               String       @unique
+  nombre             String
+  apellido           String
+  valoracion         Float
+  rol                rolDeUsuario
+  activo             Boolean      @default(true)
+  trabajosComoRider  Trabajo[]    @relation("TrabajoRider") //Esto son nombres a las relaciones
+  trabajosComoDriver Trabajo[]    @relation("TrabajoDriver")
+  reviews            Review[]
+  reportesHechos     Reporte[]    @relation("ReporteReportante")
+  reportesRecibidos  Reporte[]    @relation("ReporteReportado")
+}
+
+enum rolDeUsuario {
+  rider
+  driver
+  feedbackAdmin
+}
+
+model Trabajo {
+  id            String    @id
+  idRider       String
+  idDriver      String
+  tipoDeTrabajo String
+  fechaInicio   DateTime
+  fechaFin      DateTime?
+  activo        Boolean   @default(true)
+  rider         Usuario   @relation("TrabajoRider", fields: [idRider], references: [id])
+  driver        Usuario   @relation("TrabajoDriver", fields: [idDriver], references: [id])
+  reviews       Review[]
+  reportes      Reporte[]
+}
+
+model Review {
+  id           String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idTrabajo    String
+  idUsuario    String
+  estaCompleta Boolean @default(false)
+  valoracion   Int?
+  review       String?
+  autor        Usuario @relation(fields: [idUsuario], references: [id])
+  trabajo      Trabajo @relation(fields: [idTrabajo], references: [id])
+
+  @@unique([idTrabajo, idUsuario])
+}
+
+model Reporte {
+  id           String         @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idTrabajo    String
+  idReportado  String
+  idReportante String
+  descripcion  String?
+  decision     Fallo?
+  pruebas      Pruebas[]
+  resolucion   Estado         @default(SinResolver)
+  estado       EstadoReporte  @default(CREADO)
+  trabajo      Trabajo        @relation(fields: [idTrabajo], references: [id])
+  reportado    Usuario        @relation("ReporteReportado", fields: [idReportado], references: [id])
+  reportante   Usuario        @relation("ReporteReportante", fields: [idReportante], references: [id])
+
+  @@unique([idTrabajo, idReportante])
+}
+
+enum Fallo {
+  AFavor
+  EnContra
+}
+
+model Pruebas {
+  id        String  @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  idReporte String  @db.Uuid
+  tipo      String
+  url       String
+  reporte   Reporte @relation(fields: [idReporte], references: [id])
+}
+
+enum Estado {
+  SinResolver
+  Resuelto
+}
+
+enum EstadoReporte {
+  CREADO
+  PRUEBAS_AGREGADAS
+  RESUELTO
+}

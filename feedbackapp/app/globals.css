@@ -1,0 +1,81 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@import "tailwindcss";
+
+@theme {
+  --color-brand-bg: #271033;
+  --color-brand-card: #3a1f52;
+  --color-brand-accent-soft: #ad86c7;
+  --color-brand-accent-mid: #c392dd;
+  --color-brand-accent-strong: #c000bd;
+  --color-brand-text-light: #fbdaf9;
+  --color-brand-card-hover: #4a2a6a;
+  --color-brand-accent-strong-hover: #a0009e;
+}
+
+:root {
+  --brand-bg: #271033;
+  --brand-card: #3a1f52;
+  --brand-accent-soft: #ad86c7;
+  --brand-accent-mid: #c392dd;
+  --brand-accent-strong: #c000bd;
+  --brand-text-light: #fbdaf9;
+  --brand-card-hover: #4a2a6a;
+  --brand-accent-strong-hover: #a0009e;
+}
+
+@font-face {
+  font-family: 'Gilroy';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local('Gilroy'), url('https://fonts.googleapis.com/css2?family=Inter:wght@400&display=swap');
+  fallback: 'Inter', system-ui, sans-serif;
+}
+
+@keyframes starRotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(15deg);
+  }
+}
+
+@keyframes briefcaseSlide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(2px);
+  }
+}
+
+.star-rotate {
+  animation: starRotate 0.3s ease-out forwards;
+}
+
+.briefcase-slide {
+  animation: briefcaseSlide 0.2s ease-out forwards;
+}
+
+/* Animaciones de hover para cards */
+.review-card:hover .star-icon {
+  animation: starRotate 0.3s ease-out forwards;
+}
+
+.review-card:hover .briefcase-icon {
+  animation: briefcaseSlide 0.2s ease-out forwards;
+}
+
+body {
+  background: var(--brand-bg);
+  color: #ffffff;
+  font-family: 'Gilroy', 'Inter', system-ui, sans-serif;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
